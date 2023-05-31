@@ -1,5 +1,6 @@
 package br.com.efono;
 
+import br.com.efono.util.Util;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -7,6 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Properties;
+import org.apache.commons.lang.StringEscapeUtils;
 
 /**
  * @author João Bolsson (joaovictorbolsson@gmail.com)
@@ -26,6 +28,12 @@ public class Main {
      */
     public static void main(final String[] args) {
         System.out.println("Arguments received: " + Arrays.toString(args));
+
+        if (1 > 0) {
+            // TODO: ainda esta salvando com unicode: {"key1":"[\u2019lu.vẽj̃]","key2":"olaMundinho"}
+            Util.createJSON(StringEscapeUtils.unescapeJava("[’lu.vẽj̃]"), "olaMundinho");
+            return;
+        }
 
         Properties prop = new Properties();
 
