@@ -21,15 +21,24 @@ import org.json.simple.JSONObject;
  */
 public class Util {
 
+    // TODO: deveria pegar essas constantes de algum pacote. Ver Phon.
     /**
      * Vowel phonemes.
      */
-    public static final String[] VOWELS = new String[]{"a", "ɐ", "ə", "e", "ɛ", "ẽ", "i", "ɪ", "ĩ", "o", "ɔ", "õ", "u", "ʊ", "ũ", "ø", "w", "j̃"};
+    public static final String[] VOWELS = new String[]{"a", "ɐ", "ə", "e", "ɛ", "Ɛ", "ẽ", "i", "ɪ", "ĩ", "o", "ɔ", "õ", "u",
+        "ʊ", "ũ", "ø", "w", "j̃"};
+
+    /**
+     * Consonant clusters.
+     */
+    public static final String[] CONSONANT_CLUSTERS = new String[]{"pɾ", "pl", "bɾ", "bl", "tɾ", "dl", "dɾ", "kɾ", "kl",
+        "gɾ", "gχ", "gl", "fɾ", "fl", "vɾ"};
 
     /**
      * Special characters found on transcriptions.
      */
-    public static final String[] SPECIAL = new String[]{"\\[", "\\'", "\"", "\\]", "\\ʷ", "\\.", "\\'", "\\‘", "\\’", "\\ʼ", "\\ø"};
+    public static final String[] SPECIAL = new String[]{"\\[", "\\'", "\"", "\\]", "\\ʷ", "\\.", "\\'", "\\‘", "\\’",
+        "\\ʼ", "\\ø"};
 
     /**
      * Read all the transcriptions from file. Each line must contains a single transcription.
@@ -103,6 +112,62 @@ public class Util {
     }
 
     /**
+     * Checks the consistency of the given array and return a new one with valid phonemes. It's used most to separate
+     * invalid consonant clusters, like "nk": this usually represents a coda (n) followed by another phoneme from the
+     * next syllable.
+     *
+     * @param phonemes The given phonemes to check.
+     * @return An array containing only valid phonemes or empty if couldn't resolve inconsistencies.
+     */
+    public static String[] checkPhonemes(final String[] phonemes) {
+        List<String> list = new ArrayList<>();
+        if (phonemes != null) {
+            for (String phoneme : phonemes) {
+                if (phoneme != null) {
+                    phoneme = StringEscapeUtils.unescapeJava(phoneme); // just in case...
+                    phoneme = phoneme.trim();
+                    if (!phoneme.isBlank()) {
+                        if (phoneme.length() == 1 || Arrays.asList(CONSONANT_CLUSTERS).contains(phoneme)) {
+                            // if the phoneme is represented by only one char or contains a consonant cluster, it's ok
+                            list.add(phoneme);
+                        } else {
+                            // the array as a inconsistensy: just split all the chars
+                            list.addAll(Arrays.asList(phoneme.split("")));
+                        }
+                    }
+                }
+            }
+        }
+
+        /**
+         * TODO: ter uma lista de fonemas consonantais válidos? existe algum pacote com esses fonemas? ver Phon aqui
+         * poderia ter uma chamada de recursiva, e se tiver algum fonema inválido no array retorna lista vazia.
+         */
+        return list.toArray(new String[list.size()]);
+    }
+
+    /**
+     * Gets consonant phonemes from the given transcription.
+     *
+     * @param transcription Given transcription.
+     * @return An ordered list with the consonant phonemes or empty if inconsistencies were found.
+     */
+    public static List<String> getConsonantPhonemes(final String transcription) {
+        String clean = cleanTranscription(transcription);
+
+        // remove special characters
+        for (String vowel : VOWELS) {
+            clean = clean.replaceAll(vowel, " ");
+        }
+
+        // replace double spaces for just one: this will be used to separe the positions of the phonemes
+        clean = clean.trim().replaceAll(" +", " ");
+        String[] split = clean.split(" ");
+
+        return Arrays.asList(checkPhonemes(split));
+    }
+
+    /**
      * Decompose a transcription into phonemes with their respective position in the transcription.
      *
      * @param transcription Given transcription to decompose.
@@ -110,7 +175,10 @@ public class Util {
     public static void decomposeTranscription(final String transcription) {
         String clean = cleanTranscription(transcription);
 
+        getConsonantPhonemes(clean);
+
         System.out.println("Initial Onset: " + getInitialOnset(clean));
+
     }
 
     public static File createJSON(String value1, String value2) {
