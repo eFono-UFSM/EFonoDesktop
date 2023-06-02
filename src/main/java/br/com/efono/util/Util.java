@@ -131,6 +131,8 @@ public class Util {
                             // if the phoneme is represented by only one char or contains a consonant cluster, it's ok
                             list.add(phoneme);
                         } else {
+                            // TODO: aqui deveria "marcar" o primeiro fonema como CODA e o outro como onset alguma coisa... (precisa de um objeto para essa lista de phonemas, nao vai ter como descobrir depois só usando o array)
+                            // TODO: TESTAR CM seguido de OCME (vai falhar)
                             // the array as a inconsistensy: just split all the chars
                             list.addAll(Arrays.asList(phoneme.split("")));
                         }
@@ -175,6 +177,7 @@ public class Util {
     public static void decomposeTranscription(final String transcription) {
         String clean = cleanTranscription(transcription);
 
+        // TODO: 
         getConsonantPhonemes(clean);
 
         System.out.println("Initial Onset: " + getInitialOnset(clean));
