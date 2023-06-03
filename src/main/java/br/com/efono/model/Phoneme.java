@@ -8,6 +8,19 @@ import java.util.Objects;
  * @version 2023, Jun 02.
  */
 public class Phoneme {
+    
+    // TODO: deveria pegar essas constantes de algum pacote. Ver Phon.
+    /**
+     * Vowel phonemes.
+     */
+    public static final String[] VOWELS = new String[]{"a", "ɐ", "ə", "e", "ɛ", "Ɛ", "ẽ", "i", "ɪ", "ĩ", "o", "ɔ", "õ", "u",
+        "ʊ", "ũ", "ø", "w", "j̃"};
+
+    /**
+     * Consonant clusters.
+     */
+    public static final String[] CONSONANT_CLUSTERS = new String[]{"pɾ", "pl", "bɾ", "bl", "tɾ", "dl", "dɾ", "kɾ", "kl",
+        "gɾ", "gχ", "gl", "fɾ", "fl", "vɾ"};
 
     /**
      * All the possible phoneme positions at the word.

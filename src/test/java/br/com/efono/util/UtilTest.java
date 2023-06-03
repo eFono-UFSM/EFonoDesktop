@@ -31,9 +31,9 @@ public class UtilTest {
         System.out.println("testConstants");
         String enc = System.getProperty("file.encoding");
         System.out.println("file encoding: " + enc);
-        System.setProperty("file.encoding", "UTF-8");
+//        System.setProperty("file.encoding", "UTF-8");
 
-        for (String phoneme : Util.VOWELS) {
+        for (String phoneme : Phoneme.VOWELS) {
             System.out.println("phoneme: [" + phoneme + "]");
         }
         System.out.println("--specials--");
@@ -140,6 +140,45 @@ public class UtilTest {
     }
 
     /**
+     * Tests {@link Util#checkPhoneme(String)}.
+     */
+    @Test
+    public void testCheckPhoneme() {
+        System.out.println("testCheckPhoneme - null");
+        assertEquals(0, Util.checkPhoneme(null).length);
+
+        System.out.println("testCheckPhoneme - blank");
+        assertEquals(0, Util.checkPhoneme("").length);
+        assertEquals(0, Util.checkPhoneme("     ").length);
+
+        System.out.println("testCheckPhoneme - consonant clusters");
+        for (String cluster : Phoneme.CONSONANT_CLUSTERS) {
+            Phoneme[] result = Util.checkPhoneme(cluster);
+
+            assertEquals(1, result.length);
+            assertEquals(cluster, result[0].getPhoneme());
+        }
+
+        System.out.println("testCheckPhoneme - a single charcater phoneme");
+        Phoneme[] result = Util.checkPhoneme("b");
+        assertEquals("b", result[0].getPhoneme());
+        
+        System.out.println("testCheckPhoneme - invalid phoneme - coda followed by Medial Complex Onset");
+        result = Util.checkPhoneme("skɾ");
+        Phoneme[] expected = new Phoneme[]{
+            new Phoneme("s", Phoneme.POSITION.CM), 
+            new Phoneme("kɾ", Phoneme.POSITION.OCME)};
+        assertArrayEquals(expected, result);
+        
+        System.out.println("testCheckPhoneme - invalid phoneme - coda followed by Medial Onset");
+        result = Util.checkPhoneme("sp");
+        expected = new Phoneme[]{
+            new Phoneme("s", Phoneme.POSITION.CM), 
+            new Phoneme("p", Phoneme.POSITION.OM)};
+        assertArrayEquals(expected, result);
+    }
+
+    /**
      * Tests {@link Util#checkPhonemes(String[])}.
      */
     @Test
@@ -196,6 +235,8 @@ public class UtilTest {
         for (int i = 0; i < expected.length; i++) {
             assertEquals(expected[i], result[i].getPhoneme());
         }
+
+        // TODO: depois, testar com a posição dos fonemas
     }
 
     /**

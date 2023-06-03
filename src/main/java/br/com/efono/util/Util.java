@@ -1,6 +1,8 @@
 package br.com.efono.util;
 
 import br.com.efono.model.Phoneme;
+import static br.com.efono.model.Phoneme.CONSONANT_CLUSTERS;
+import static br.com.efono.model.Phoneme.VOWELS;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,19 +23,6 @@ import org.json.simple.JSONObject;
  * @version 2023, May 28.
  */
 public class Util {
-
-    // TODO: deveria pegar essas constantes de algum pacote. Ver Phon.
-    /**
-     * Vowel phonemes. TODO: mover para Phoneme.
-     */
-    public static final String[] VOWELS = new String[]{"a", "ɐ", "ə", "e", "ɛ", "Ɛ", "ẽ", "i", "ɪ", "ĩ", "o", "ɔ", "õ", "u",
-        "ʊ", "ũ", "ø", "w", "j̃"};
-
-    /**
-     * Consonant clusters. TODO: mover para Phoneme.
-     */
-    public static final String[] CONSONANT_CLUSTERS = new String[]{"pɾ", "pl", "bɾ", "bl", "tɾ", "dl", "dɾ", "kɾ", "kl",
-        "gɾ", "gχ", "gl", "fɾ", "fl", "vɾ"};
 
     /**
      * Special characters found on transcriptions.
@@ -118,6 +107,48 @@ public class Util {
     }
 
     /**
+     * Checks if the given phoneme is valid or not and return a valid array containing all the valid phonemes in the
+     * given target.
+     *
+     * @param phonemeTarget Target phoneme to check.
+     * @return An array with the valid phonemes found in the target.
+     */
+    public static Phoneme[] checkPhoneme(final String phonemeTarget) {
+        String phoneme = phonemeTarget;
+        List<Phoneme> list = new ArrayList<>();
+        if (phoneme != null) {
+            phoneme = StringEscapeUtils.unescapeJava(phoneme); // just in case...
+            phoneme = phoneme.trim();
+            if (!phoneme.isBlank()) {
+                if (phoneme.length() == 1 || Arrays.asList(CONSONANT_CLUSTERS).contains(phoneme)) {
+                    // if the phoneme is represented by only one char or contains a consonant cluster, it's ok
+                    list.add(new Phoneme(phoneme));
+                } else {
+                    // the array as an inconsistensy. Treating it here...
+
+                    // always CM, because CF is at the end of the word.
+                    list.add(new Phoneme(phoneme.substring(0, 1), Phoneme.POSITION.CM));
+
+                    Phoneme next = new Phoneme(phoneme.substring(1));
+
+                    /**
+                     * The next phoneme can be only OM/OCME, because OI and OCME must be at the beginning of the word,
+                     * and codas it's not the case (it was just read before).
+                     */
+                    if (next.getPhoneme().length() == 1) {
+                        next.setPosition(Phoneme.POSITION.OM);
+                    } else {
+                        next.setPosition(Phoneme.POSITION.OCME);
+                    }
+
+                    list.add(next);
+                }
+            }
+        }
+        return list.toArray(new Phoneme[list.size()]);
+    }
+
+    /**
      * Checks the consistency of the given array and return a new one with valid phonemes. It's used most to separate
      * invalid consonant clusters, like "nk": this usually represents a coda (n) followed by another phoneme from the
      * next syllable.
@@ -129,38 +160,8 @@ public class Util {
         List<Phoneme> list = new ArrayList<>();
         if (phonemes != null && phonemes.length >= 1) {
             for (String phoneme : phonemes) {
-                // TODO: mover todo esse if para outro metodo, assim posso tratar a primeira posição de forma correta e já retornar o fonema na posição OI ou OCME
-
-                // checkPhoneme
-                if (phoneme != null) {
-                    phoneme = StringEscapeUtils.unescapeJava(phoneme); // just in case...
-                    phoneme = phoneme.trim();
-                    if (!phoneme.isBlank()) {
-                        if (phoneme.length() == 1 || Arrays.asList(CONSONANT_CLUSTERS).contains(phoneme)) {
-                            // if the phoneme is represented by only one char or contains a consonant cluster, it's ok
-                            list.add(new Phoneme(phoneme));
-                        } else {
-                            // the array as an inconsistensy. Treating it here...
-
-                            // always CM, because CF is at the end of the word.
-                            list.add(new Phoneme(phoneme.substring(0, 1), Phoneme.POSITION.CM));
-
-                            Phoneme next = new Phoneme(phoneme.substring(1));
-
-                            /**
-                             * The next phoneme can be only OM/OCME, because OI and OCME must be at the beginning of the
-                             * word, and codas it's not the case (it was just read before).
-                             */
-                            if (next.getPhoneme().length() == 1) {
-                                next.setPosition(Phoneme.POSITION.OM);
-                            } else {
-                                next.setPosition(Phoneme.POSITION.OCME);
-                            }
-
-                            list.add(next);
-                        }
-                    }
-                }
+                // TODO: tratar o primeiro index do array e já retornar o fonema na posição OI ou OCME
+                list.addAll(Arrays.asList(checkPhoneme(phoneme)));
             }
         }
 
