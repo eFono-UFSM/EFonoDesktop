@@ -130,4 +130,14 @@ public class Phoneme {
         return Objects.equals(this.phoneme, other.phoneme) && Objects.equals(this.position, other.position);
     }
 
+    @Override
+    public String toString() {
+        if (position != null) {
+            StringBuilder builder = new StringBuilder(position.toString());
+            builder.append("(").append(phoneme).append(")");
+            return builder.toString();
+        }
+        return phoneme;
+    }
+
 }

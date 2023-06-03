@@ -1,5 +1,6 @@
 package br.com.efono.util;
 
+import br.com.efono.model.Phoneme;
 import java.io.File;
 import java.net.URISyntaxException;
 import java.util.Arrays;
@@ -123,10 +124,19 @@ public class UtilTest {
         assertNull(Util.getInitialOnset("[..'.]"));
 
         System.out.println("testGetInitialOnset - transcription has consonant phoneme at Initial Onset");
-        assertEquals("b", Util.getInitialOnset("[ba.χi.'gui.ɲə]"));
+        Phoneme expected = new Phoneme("b", Phoneme.POSITION.OI);
+        Phoneme result = Util.getInitialOnset("[ba.χi.'gui.ɲə]");
+        assertEquals(expected, result);
+        assertEquals("b", result.getPhoneme());
+        assertEquals(Phoneme.POSITION.OI, result.getPosition());
 
         System.out.println("testGetInitialOnset - transcription withou consonant phoneme at Initial Onset");
         assertNull(Util.getInitialOnset("[anɛw'ziɲu]"));
+
+        System.out.println("testGetInitialOnset - transcription has a consonant cluster at Initial Complex Onset");
+        expected = new Phoneme("bɾ", Phoneme.POSITION.OCI);
+        result = Util.getInitialOnset("[’bɾĩnko]");
+        assertEquals(expected, result);
     }
 
     /**

@@ -1,5 +1,6 @@
 package br.com.efono.util;
 
+import br.com.efono.model.Phoneme;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,12 +25,14 @@ public class Util {
     // TODO: deveria pegar essas constantes de algum pacote. Ver Phon.
     /**
      * Vowel phonemes.
+     * TODO: mover para Phoneme.
      */
     public static final String[] VOWELS = new String[]{"a", "ɐ", "ə", "e", "ɛ", "Ɛ", "ẽ", "i", "ɪ", "ĩ", "o", "ɔ", "õ", "u",
         "ʊ", "ũ", "ø", "w", "j̃"};
 
     /**
      * Consonant clusters.
+     * TODO: mover para Phoneme.
      */
     public static final String[] CONSONANT_CLUSTERS = new String[]{"pɾ", "pl", "bɾ", "bl", "tɾ", "dl", "dɾ", "kɾ", "kl",
         "gɾ", "gχ", "gl", "fɾ", "fl", "vɾ"};
@@ -100,12 +103,17 @@ public class Util {
      * @param transcription The given transcription.
      * @return The consonant phoneme at Initial Onset or {@code null}.
      */
-    public static String getInitialOnset(final String transcription) {
+    public static Phoneme getInitialOnset(final String transcription) {
+        // TODO: esse método já tem que receber a primeira posição do resultado de getConsonantPhonemes
+        // assim, só vai testar o primeiro fonema lido e vai retornar o fonema com a POSITION correta.
         String clean = cleanTranscription(transcription);
         if (!clean.isEmpty()) {
-            // tests for Initial Onset
+            // if the first letter is a vowel, then Initial Onset doesn't exists here.
             if (!Arrays.asList(VOWELS).contains(clean.substring(0, 1))) {
-                return clean.substring(0, 1);
+                if (Arrays.asList(CONSONANT_CLUSTERS).contains(clean.substring(0, 2))) {
+                    return new Phoneme(clean.substring(0, 2), Phoneme.POSITION.OCI);
+                }
+                return new Phoneme(clean.substring(0, 1), Phoneme.POSITION.OI);
             }
         }
         return null;
