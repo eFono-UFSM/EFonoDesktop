@@ -24,15 +24,13 @@ public class Util {
 
     // TODO: deveria pegar essas constantes de algum pacote. Ver Phon.
     /**
-     * Vowel phonemes.
-     * TODO: mover para Phoneme.
+     * Vowel phonemes. TODO: mover para Phoneme.
      */
     public static final String[] VOWELS = new String[]{"a", "ɐ", "ə", "e", "ɛ", "Ɛ", "ẽ", "i", "ɪ", "ĩ", "o", "ɔ", "õ", "u",
         "ʊ", "ũ", "ø", "w", "j̃"};
 
     /**
-     * Consonant clusters.
-     * TODO: mover para Phoneme.
+     * Consonant clusters. TODO: mover para Phoneme.
      */
     public static final String[] CONSONANT_CLUSTERS = new String[]{"pɾ", "pl", "bɾ", "bl", "tɾ", "dl", "dɾ", "kɾ", "kl",
         "gɾ", "gχ", "gl", "fɾ", "fl", "vɾ"};
@@ -98,15 +96,15 @@ public class Util {
     }
 
     /**
-     * Gets the consonant phoneme at initial onset from the given transcription.
+     * Gets the consonant phoneme at initial onset from the given string.
      *
-     * @param transcription The given transcription.
+     * @param str The given transcription.
      * @return The consonant phoneme at Initial Onset or {@code null}.
      */
-    public static Phoneme getInitialOnset(final String transcription) {
+    public static Phoneme getInitialOnset(final String str) {
         // TODO: esse método já tem que receber a primeira posição do resultado de getConsonantPhonemes
         // assim, só vai testar o primeiro fonema lido e vai retornar o fonema com a POSITION correta.
-        String clean = cleanTranscription(transcription);
+        String clean = cleanTranscription(str);
         if (!clean.isEmpty()) {
             // if the first letter is a vowel, then Initial Onset doesn't exists here.
             if (!Arrays.asList(VOWELS).contains(clean.substring(0, 1))) {
@@ -127,22 +125,39 @@ public class Util {
      * @param phonemes The given phonemes to check.
      * @return An array containing only valid phonemes or empty if couldn't resolve inconsistencies.
      */
-    public static String[] checkPhonemes(final String[] phonemes) {
-        List<String> list = new ArrayList<>();
-        if (phonemes != null) {
+    public static Phoneme[] checkPhonemes(final String[] phonemes) {
+        List<Phoneme> list = new ArrayList<>();
+        if (phonemes != null && phonemes.length >= 1) {
             for (String phoneme : phonemes) {
+                // TODO: mover todo esse if para outro metodo, assim posso tratar a primeira posição de forma correta e já retornar o fonema na posição OI ou OCME
+
+                // checkPhoneme
                 if (phoneme != null) {
                     phoneme = StringEscapeUtils.unescapeJava(phoneme); // just in case...
                     phoneme = phoneme.trim();
                     if (!phoneme.isBlank()) {
                         if (phoneme.length() == 1 || Arrays.asList(CONSONANT_CLUSTERS).contains(phoneme)) {
                             // if the phoneme is represented by only one char or contains a consonant cluster, it's ok
-                            list.add(phoneme);
+                            list.add(new Phoneme(phoneme));
                         } else {
-                            // TODO: aqui deveria "marcar" o primeiro fonema como CODA e o outro como onset alguma coisa... (precisa de um objeto para essa lista de phonemas, nao vai ter como descobrir depois só usando o array)
-                            // TODO: TESTAR CM seguido de OCME (vai falhar)
-                            // the array as a inconsistensy: just split all the chars
-                            list.addAll(Arrays.asList(phoneme.split("")));
+                            // the array as an inconsistensy. Treating it here...
+
+                            // always CM, because CF is at the end of the word.
+                            list.add(new Phoneme(phoneme.substring(0, 1), Phoneme.POSITION.CM));
+
+                            Phoneme next = new Phoneme(phoneme.substring(1));
+
+                            /**
+                             * The next phoneme can be only OM/OCME, because OI and OCME must be at the beginning of the
+                             * word, and codas it's not the case (it was just read before).
+                             */
+                            if (next.getPhoneme().length() == 1) {
+                                next.setPosition(Phoneme.POSITION.OM);
+                            } else {
+                                next.setPosition(Phoneme.POSITION.OCME);
+                            }
+
+                            list.add(next);
                         }
                     }
                 }
@@ -153,7 +168,7 @@ public class Util {
          * TODO: ter uma lista de fonemas consonantais válidos? existe algum pacote com esses fonemas? ver Phon aqui
          * poderia ter uma chamada de recursiva, e se tiver algum fonema inválido no array retorna lista vazia.
          */
-        return list.toArray(new String[list.size()]);
+        return list.toArray(new Phoneme[list.size()]);
     }
 
     /**
@@ -162,7 +177,7 @@ public class Util {
      * @param transcription Given transcription.
      * @return An ordered list with the consonant phonemes or empty if inconsistencies were found.
      */
-    public static List<String> getConsonantPhonemes(final String transcription) {
+    public static List<Phoneme> getConsonantPhonemes(final String transcription) {
         String clean = cleanTranscription(transcription);
 
         // remove special characters
@@ -187,8 +202,6 @@ public class Util {
 
         // TODO: 
         getConsonantPhonemes(clean);
-
-        System.out.println("Initial Onset: " + getInitialOnset(clean));
 
     }
 
