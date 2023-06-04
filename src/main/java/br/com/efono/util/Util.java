@@ -89,7 +89,7 @@ public class Util {
      * Gets the consonant phoneme at initial onset from the given string.
      *
      * @param transcription The given transcription.
-     * @return The consonant phoneme at Initial Onset or {@code null}.
+     * @return The consonant phoneme at Initial Onset or {@code null} if it doesn't exist.
      */
     public static Phoneme getInitialOnset(final String transcription) {
         String clean = cleanTranscription(transcription);
@@ -101,6 +101,38 @@ public class Util {
                 }
                 return new Phoneme(clean.substring(0, 1), Phoneme.POSITION.OI);
             }
+        }
+        return null;
+    }
+
+    /**
+     * Gets the consonant phoneme at Final Coda from the given string.
+     *
+     * @param transcription The given transcription.
+     * @return The consonant phoneme at Final Coda or {@code null} if it doesn't exist.
+     */
+    public static Phoneme getFinalCoda(final String transcription) {
+        String clean = cleanTranscription(transcription);
+        String phoneme = clean.substring(clean.length() - 1);
+        if (Arrays.asList(VOWELS).contains(phoneme)) {
+            return null;
+        }
+        // if the final phoneme of the transcription is a consonant, then it's a Final Coda
+        // TODO: testar somente codas finais válidas? (s) e (r)? quais são?
+        return new Phoneme(phoneme, Phoneme.POSITION.CF);
+    }
+
+    /**
+     * Replace the last occurence of the regex at the given text.
+     *
+     * @param text Text to change.
+     * @param regex Text to be replaced.
+     * @param replacement Replacement of the text.
+     * @return The text without the last occurence of the regex.
+     */
+    public static String replaceLast(final String text, final String regex, final String replacement) {
+        if (text != null && regex != null && replacement != null) {
+            return text.replaceFirst("(?s)" + regex + "(?!.*?" + regex + ")", replacement);
         }
         return null;
     }
@@ -177,12 +209,23 @@ public class Util {
                 clean = clean.replaceFirst(initialOnset.getPhoneme(), "");
             }
 
+            Phoneme finalCoda = getFinalCoda(transcription);
+            if (finalCoda != null) {
+                // remove the phoneme, because we already treat the final coda
+                clean = replaceLast(clean, finalCoda.getPhoneme(), "");
+            }
+
             String[] split = clean.split(" ");
 
             if (split.length >= 1) {
                 for (String phoneme : split) {
                     list.addAll(Arrays.asList(checkPhoneme(phoneme)));
                 }
+            }
+
+            // Final Coda must be added only at the end, because it keep the same order of the phonemes in transcription
+            if (finalCoda != null) {
+                list.add(finalCoda);
             }
 
             return list;

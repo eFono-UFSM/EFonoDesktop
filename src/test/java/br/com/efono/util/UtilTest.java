@@ -161,20 +161,63 @@ public class UtilTest {
         System.out.println("testCheckPhoneme - a single charcater phoneme");
         Phoneme[] result = Util.checkPhoneme("b");
         assertEquals("b", result[0].getPhoneme());
-        
+
         System.out.println("testCheckPhoneme - invalid phoneme - coda followed by Medial Complex Onset");
         result = Util.checkPhoneme("skɾ");
         Phoneme[] expected = new Phoneme[]{
-            new Phoneme("s", Phoneme.POSITION.CM), 
+            new Phoneme("s", Phoneme.POSITION.CM),
             new Phoneme("kɾ", Phoneme.POSITION.OCME)};
         assertArrayEquals(expected, result);
-        
+
         System.out.println("testCheckPhoneme - invalid phoneme - coda followed by Medial Onset");
         result = Util.checkPhoneme("sp");
         expected = new Phoneme[]{
-            new Phoneme("s", Phoneme.POSITION.CM), 
+            new Phoneme("s", Phoneme.POSITION.CM),
             new Phoneme("p", Phoneme.POSITION.OM)};
         assertArrayEquals(expected, result);
+    }
+
+    /**
+     * Tests {@link Util#getFinalCoda(String)}.
+     */
+    @Test
+    public void testGetFinalCoda() {
+        // OCME and CF
+        String transcription = "[ʼʃifɾis]";
+        System.out.println("testGetFinalCoda - valid tests for Final Codas: " + transcription);
+        Phoneme expected = new Phoneme("s", Phoneme.POSITION.CF);
+        Phoneme result = Util.getFinalCoda(transcription);
+        assertEquals(expected, result);
+
+        // CM and OCME and CF
+        transcription = "[iskɾe’veɾ]";
+        System.out.println("testGetFinalCoda - valid tests for Final Codas: " + transcription);
+        expected = new Phoneme("ɾ", Phoneme.POSITION.CF);
+        result = Util.getFinalCoda(transcription);
+        assertEquals(expected, result);
+    }
+
+    /**
+     * Tests {@link Util#replaceLast(String, String, String)}.
+     */
+    @Test
+    public void testReplaceLast() {
+        System.out.println("testReplaceLast - null parameters");
+        assertNull(Util.replaceLast(null, null, null));
+        assertNull(Util.replaceLast("foo AB bar BAAB AB done", null, null));
+        assertNull(Util.replaceLast("foo AB bar BAAB AB done", null, ""));
+        assertNull(Util.replaceLast("foo AB bar BAAB AB done", "AB", null));
+        assertNull(Util.replaceLast(null, "AB", null));
+        assertNull(Util.replaceLast(null, null, ""));
+        String expected = "foo AB bar BAAB done";
+
+        System.out.println("testReplaceLast valid test");
+        String result = Util.replaceLast("foo AB bar BAAB ABdone", "AB", "");
+        assertEquals(expected, result);
+
+        expected = "foo AB bar BAAB AB done";
+        result = Util.replaceLast("foo AB bar BAAB AB doneAB", "AB", "");
+        assertEquals(expected, result);
     }
 
     /**
@@ -188,88 +231,84 @@ public class UtilTest {
         assertTrue(Util.getConsonantPhonemes(null).isEmpty());
         assertTrue(Util.getConsonantPhonemes("").isEmpty());
         assertTrue(Util.getConsonantPhonemes("  ").isEmpty());
-        
+
         // TODO: tests givin a transcription with UNICODE: [\u2019lu.vẽj̃] // read from file as well
         String transcription = "[ba.χi.'gui.ɲə]";
-        List<String> expected = Arrays.asList(new String[]{"b", "χ", "g", "ɲ"});
+        List<Phoneme> expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("b", Phoneme.POSITION.OI),
+            new Phoneme("χ", Phoneme.POSITION.OM),
+            new Phoneme("g", Phoneme.POSITION.OM),
+            new Phoneme("ɲ", Phoneme.POSITION.OM)});
+
         System.out.println("testGetConsonantPhonemes: " + transcription);
-        List<Phoneme> phonemes = Util.getConsonantPhonemes(transcription);
-        assertEquals(expected.size(), phonemes.size());
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.get(i), phonemes.get(i).getPhoneme());
-        }
-        
-        // TODO: depois, testar com a posição dos fonemas
+        List<Phoneme> result = Util.getConsonantPhonemes(transcription);
+        assertArrayEquals(expected.toArray(), result.toArray());
+
+        transcription = "[ba .χi.' g ui   .ɲə]";
+        System.out.println("testGetConsonantPhonemes: tests with transcription with blank spaces " + transcription);
+        result = Util.getConsonantPhonemes(transcription);
+        assertArrayEquals(expected.toArray(), result.toArray());
+
         transcription = "[anɛw'ziɲu]";
         System.out.println("testGetConsonantPhonemes: " + transcription);
-        phonemes = Util.getConsonantPhonemes(transcription);
-        expected = Arrays.asList(new String[]{"n", "z", "ɲ"});
-        assertEquals(expected.size(), phonemes.size());
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.get(i), phonemes.get(i).getPhoneme());
-        }
+        result = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("n", Phoneme.POSITION.OM), // transcription doesn't have OI
+            new Phoneme("z", Phoneme.POSITION.OM),
+            new Phoneme("ɲ", Phoneme.POSITION.OM)});
+        assertArrayEquals(expected.toArray(), result.toArray());
 
         // tests for test for consonant clusters and codas
         // OCI and CM
         transcription = "[’bɾĩnko]";
         System.out.println("testGetConsonantPhonemes: test for Initial Complex Onset (bɾ) and Medial Coda (n): " + transcription);
-        phonemes = Util.getConsonantPhonemes(transcription);
-        expected = Arrays.asList(new String[]{"bɾ", "n", "k"});
-        assertEquals(expected.size(), phonemes.size());
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.get(i), phonemes.get(i).getPhoneme());
-        }
+        result = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("bɾ", Phoneme.POSITION.OCI),
+            new Phoneme("n", Phoneme.POSITION.CM),
+            new Phoneme("k", Phoneme.POSITION.OM)});
+        assertArrayEquals(expected.toArray(), result.toArray());
 
         // OCME
         transcription = "[ʃi’klƐʧi]";
         System.out.println("testGetConsonantPhonemes: test for Initial Medial Complex Onset (kl): " + transcription);
-        phonemes = Util.getConsonantPhonemes(transcription);
-        expected = Arrays.asList(new String[]{"ʃ", "kl", "ʧ"});
-        assertEquals(expected.size(), phonemes.size());
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.get(i), phonemes.get(i).getPhoneme());
-        }
+        result = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("ʃ", Phoneme.POSITION.OI),
+            new Phoneme("kl", Phoneme.POSITION.OCME),
+            new Phoneme("ʧ", Phoneme.POSITION.OM)});
+        assertArrayEquals(expected.toArray(), result.toArray());
 
         // OCME and CF
         transcription = "[ʼʃifɾis]";
         System.out.println("testGetConsonantPhonemes: test for Initial Medial Complex Onset (fɾ) and Final Coda (s): " + transcription);
-        phonemes = Util.getConsonantPhonemes(transcription);
-        expected = Arrays.asList(new String[]{"ʃ", "fɾ", "s"});
-        assertEquals(expected.size(), phonemes.size());
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.get(i), phonemes.get(i).getPhoneme());
-        }
+        result = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("ʃ", Phoneme.POSITION.OI),
+            new Phoneme("fɾ", Phoneme.POSITION.OCME),
+            new Phoneme("s", Phoneme.POSITION.CF)});
+        assertArrayEquals(expected.toArray(), result.toArray());
 
+        // CM and OCME and CF
         transcription = "[iskɾe’veɾ]";
         System.out.println("testGetConsonantPhonemes: test for Medial Coda (s) followed by Medial Complex Onset (kɾ): " + transcription);
-        phonemes = Util.getConsonantPhonemes(transcription);
-        expected = Arrays.asList(new String[]{"s", "kɾ", "v", "ɾ"});
-        assertEquals(expected.size(), phonemes.size());
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.get(i), phonemes.get(i).getPhoneme());
-        }
-        assertEquals(Phoneme.POSITION.CM, phonemes.get(0).getPosition());
-        assertEquals(Phoneme.POSITION.OCME, phonemes.get(1).getPosition());
+        result = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("s", Phoneme.POSITION.CM),
+            new Phoneme("kɾ", Phoneme.POSITION.OCME),
+            new Phoneme("v", Phoneme.POSITION.OM),
+            new Phoneme("ɾ", Phoneme.POSITION.CF)});
+        assertArrayEquals(expected.toArray(), result.toArray());
 
+        // CM and OM
         transcription = "[es'peʎu]";
         System.out.println("testGetConsonantPhonemes: test for Medial Coda (s) followed by Medial Onset (kɾ): " + transcription);
-        phonemes = Util.getConsonantPhonemes(transcription);
-        expected = Arrays.asList(new String[]{"s", "p", "ʎ"});
-        assertEquals(expected.size(), phonemes.size());
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.get(i), phonemes.get(i).getPhoneme());
-        }
-        assertEquals(Phoneme.POSITION.CM, phonemes.get(0).getPosition());
-        assertEquals(Phoneme.POSITION.OM, phonemes.get(1).getPosition());
-
-        transcription = "[ba .χi.' g ui   .ɲə]";
-        System.out.println("testGetConsonantPhonemes: tests with transcription with blank spaces " + transcription);
-        phonemes = Util.getConsonantPhonemes(transcription);
-        expected = Arrays.asList(new String[]{"b", "χ", "g", "ɲ"});
-        assertEquals(expected.size(), phonemes.size());
-        for (int i = 0; i < expected.size(); i++) {
-            assertEquals(expected.get(i), phonemes.get(i).getPhoneme());
-        }
+        result = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("s", Phoneme.POSITION.CM),
+            new Phoneme("p", Phoneme.POSITION.OM),
+            new Phoneme("ʎ", Phoneme.POSITION.OM)});
+        assertArrayEquals(expected.toArray(), result.toArray());
     }
 
 }

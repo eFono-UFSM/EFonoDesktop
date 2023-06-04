@@ -42,7 +42,7 @@ public class Phoneme {
         /**
          * Beginning of syllable, middle of the word. Example "bl" at [bi.blio.te.ca].
          */
-        OCME("Initial Medial Complex Onset"),
+        OCME("Medial Complex Onset"),
         /**
          * End of syllable, middle of the word. Example "r" at [ca.dar.ço].
          */
