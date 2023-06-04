@@ -1400,7 +1400,7 @@
                 "position": "OI"
             },
             {
-                "phoneme": "g",
+                "phoneme": "gʷ",
                 "position": "OM"
             },
             {
@@ -1868,25 +1868,6 @@
             {
                 "phoneme": "s",
                 "position": "CF"
-            }
-        ]
-    },
-    {
-        "word": "língua", 
-        "representation": "lĩngʷa",
-        "correct": true,
-        "phonemes": [
-            {
-                "phoneme": "l",
-                "position": "OI"
-            },
-            {
-                "phoneme": "n",
-                "position": "CM"
-            },
-            {
-                "phoneme": "g",
-                "position": "OM"
             }
         ]
     },

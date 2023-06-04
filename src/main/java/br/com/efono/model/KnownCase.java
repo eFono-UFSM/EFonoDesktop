@@ -63,6 +63,15 @@ public class KnownCase {
     }
 
     /**
+     * Gets the target word of this case.
+     *
+     * @return The word.
+     */
+    public String getWord() {
+        return word;
+    }
+
+    /**
      * Gets the representation/transcription of the pronunciation.
      *
      * @return The representation/transcription of the pronunciation.

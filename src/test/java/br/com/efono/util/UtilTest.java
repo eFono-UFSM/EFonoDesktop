@@ -359,31 +359,38 @@ public class UtilTest {
             new Phoneme("ʎ", Phoneme.POSITION.OM)});
         assertArrayEquals(expected.toArray(), result.toArray());
 
-        // labialization test
+        // labialization tests: https://pt.wikipedia.org/wiki/Labializa%C3%A7%C3%A3o
+        // labialization after CM
         transcription = "['lĩngʷa]";
-        System.out.println("testGetConsonantPhonemes: test when transcription contains a Labialization: " + transcription);
+        System.out.println("testGetConsonantPhonemes: test when transcription contains a Labialization after CM: " + transcription);
         result = Util.getConsonantPhonemes(transcription);
         expected = Arrays.asList(new Phoneme[]{
             new Phoneme("l", Phoneme.POSITION.OI),
             new Phoneme("n", Phoneme.POSITION.CM),
             new Phoneme("gʷ", Phoneme.POSITION.OM)});
         assertArrayEquals(expected.toArray(), result.toArray());
+        
+        // labialization after OI // fogʷeɾə
+        transcription = "[fo.'gʷe.ɾə]";
+        System.out.println("testGetConsonantPhonemes: test when transcription contains a Labialization after OI: " + transcription);
+        result = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("f", Phoneme.POSITION.OI),
+            new Phoneme("gʷ", Phoneme.POSITION.OM),
+            new Phoneme("ɾ", Phoneme.POSITION.OM)});
+        assertArrayEquals(expected.toArray(), result.toArray());
 
-        if (1 < 0) {
-            // lĩngʷa // [gʷ] https://pt.wikipedia.org/wiki/Labializa%C3%A7%C3%A3o
-            System.out.println("testGetConsonantPhonemes: tests with all known cases");
-            File allCorrect = new File(UtilTest.class.getResource("/data/allCorrect.json").toURI());
-            List<KnownCase> cases = KnownCase.loadFile(allCorrect);
-            for (KnownCase c : cases) {
-                expected = c.getPhonemes();
-                result = Util.getConsonantPhonemes(c.getRepresentation());
+        System.out.println("testGetConsonantPhonemes: tests with all known cases");
+        File allCorrect = new File(UtilTest.class.getResource("/data/allCorrect.json").toURI());
+        List<KnownCase> cases = KnownCase.loadFile(allCorrect);
+        for (KnownCase c : cases) {
+            expected = c.getPhonemes();
+            result = Util.getConsonantPhonemes(c.getRepresentation());
 
-                System.out.println("case: " + c.getRepresentation() + " expected: " + Arrays.toString(expected.toArray()) + ""
-                        + " result: " + Arrays.toString(result.toArray()));
+            System.out.println("case: " + c.getRepresentation() + " word: " + c.getWord() + "\n\texpected: " + Arrays.toString(expected.toArray()) + ""
+                    + "\n\tresult: " + Arrays.toString(result.toArray()));
 
-                assertArrayEquals("case: " + c.getRepresentation() + " expected: " + Arrays.toString(expected.toArray()) + ""
-                        + " result: " + Arrays.toString(result.toArray()), expected.toArray(), result.toArray());
-            }
+            assertArrayEquals(expected.toArray(), result.toArray());
         }
     }
 
