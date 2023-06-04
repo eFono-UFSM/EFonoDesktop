@@ -309,6 +309,8 @@ public class UtilTest {
             new Phoneme("p", Phoneme.POSITION.OM),
             new Phoneme("ʎ", Phoneme.POSITION.OM)});
         assertArrayEquals(expected.toArray(), result.toArray());
+        
+        // TODO: testar esse metodo com todas as palavras do gabarito.json
     }
 
 }

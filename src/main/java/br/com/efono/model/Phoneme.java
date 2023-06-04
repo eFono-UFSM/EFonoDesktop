@@ -8,7 +8,7 @@ import java.util.Objects;
  * @version 2023, Jun 02.
  */
 public class Phoneme {
-    
+
     // TODO: deveria pegar essas constantes de algum pacote. Ver Phon.
     /**
      * Vowel phonemes.
@@ -67,6 +67,13 @@ public class Phoneme {
 
     private final String phoneme;
     private POSITION position;
+
+    /**
+     * Default constructor.
+     */
+    public Phoneme() {
+        this("");
+    }
 
     /**
      * Creates a phoneme representation.

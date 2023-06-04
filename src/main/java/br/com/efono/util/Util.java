@@ -123,7 +123,8 @@ public class Util {
     }
 
     /**
-     * Replace the last occurence of the regex at the given text.
+     * Replace the last occurrence of the regex at the given text. Method from here:
+     * https://stackoverflow.com/questions/2282728/java-replacelast.
      *
      * @param text Text to change.
      * @param regex Text to be replaced.

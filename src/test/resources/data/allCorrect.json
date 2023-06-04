@@ -1,0 +1,2978 @@
+[
+    {
+        "word": "anel",
+        "representation": "anɛw",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "anel",
+        "representation": "anɛwziɲu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "barriga",
+        "representation": "baχiguiɲə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "barriga",
+        "representation": "baχigə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "batom",
+        "representation": "batõw",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "bebê",
+        "representation": "bebe",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "beijo",
+        "representation": "beʒu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "beijo",
+        "representation": "beʒiɲu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "beijo",
+        "representation": "beʒo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "beijo",
+        "representation": "bejʒo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "beijo",
+        "representation": "bejʒu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "biblioteca",
+        "representation": "bibliotɛkə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "bicicleta",
+        "representation": "bisiklɛtə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "kl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "bolsa",
+        "representation": "bowsə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "brinco",
+        "representation": "bɾĩnko",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "brinco",
+        "representation": "bɾĩnkos",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "brinco",
+        "representation": "bɾĩnkiɲo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "bruxa",
+        "representation": "bɾuʃə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "cabelo",
+        "representation": "kabelu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "cabelo",
+        "representation": "kabelo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "cachorro",
+        "representation": "kaʃoχo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "cachorro",
+        "representation": "kaʃoχiɲo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "cachorro",
+        "representation": "kaʃoχiɲu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "caixa",
+        "representation": "kaʃə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "caixa",
+        "representation": "kajʃə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "calça",
+        "representation": "kawsə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "cama",
+        "representation": "kəmə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "caminhão",
+        "representation": "kamiɲəw",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "casa",
+        "representation": "kazə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "cavalo",
+        "representation": "kavalo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "cavalo",
+        "representation": "kavalu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "chapéu",
+        "representation": "ʃapɛw",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "chiclete",
+        "representation": "ʃiklƐte",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "kl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "chiclete",
+        "representation": "ʃiklƐʧi",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "kl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "chiclete",
+        "representation": "ʃiklƐ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "kl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "chifre",
+        "representation": "ʃifɾe",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "chifre",
+        "representation": "ʃifɾes",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "chifre",
+        "representation": "ʃifɾi",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "chinelo",
+        "representation": "ʃinɛlu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "chinelo",
+        "representation": "ʃinɛlo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "cobra",
+        "representation": "kɔbɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "coelho",
+        "representation": "koeʎiɲo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "coelho",
+        "representation": "koeʎiɲu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "coelho",
+        "representation": "koeʎu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "coelho",
+        "representation": "kueʎo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "coelho",
+        "representation": "kueʎiɲu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "coelho",
+        "representation": "kueʎiɲo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "coelho",
+        "representation": "koeʎo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "colher",
+        "representation": "kuʎɛɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "colher",
+        "representation": "kuʎɛɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "colher",
+        "representation": "koʎɛɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "cruz",
+        "representation": "kɾus",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "cruz",
+        "representation": "kɾuziɲə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "dado",
+        "representation": "dado",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "dado",
+        "representation": "dados",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "dado",
+        "representation": "daʤiɲo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʤ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "dado",
+        "representation": "dadu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "dedo",
+        "representation": "dedu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "dedo",
+        "representation": "dedo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "dedo",
+        "representation": "deʤiɲu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʤ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "dente",
+        "representation": "dẽnʧi",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "dente",
+        "representation": "dẽnte",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "dragão",
+        "representation": "dɾagəw",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "dɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "escrever",
+        "representation": "iskɾeveɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "escrever",
+        "representation": "iskɾevẽndu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "escrever",
+        "representation": "eskɾeveɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "escrever",
+        "representation": "eskɾevẽndo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "escrever",
+        "representation": "iskɾeve",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "escrever",
+        "representation": "eskɾeve",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "espelho",
+        "representation": "espeʎo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "espelho",
+        "representation": "ispeʎo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "espelho",
+        "representation": "ispeʎu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "estrela",
+        "representation": "istɾelə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "faca",
+        "representation": "fakə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "floresta",
+        "representation": "floɾɛstə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "fl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "flor",
+        "representation": "floɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "fl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "fogo",
+        "representation": "fogo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "fogo",
+        "representation": "fogʷeɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "fogo",
+        "representation": "fogu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "folha",
+        "representation": "foʎə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "fralda",
+        "representation": "fɾawʤiɲa",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ʤ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "fralda",
+        "representation": "fɾawdə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "fruta",
+        "representation": "fɾutəs",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "fruta",
+        "representation": "fɾutə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "fruta",
+        "representation": "fɾuʧiɲə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "galinha",
+        "representation": "galiɲə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "garfo",
+        "representation": "gaɾfu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "garfo",
+        "representation": "gaɾfo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "gato",
+        "representation": "gaʧiɲo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "gato",
+        "representation": "gato",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "gato",
+        "representation": "gatu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "gato",
+        "representation": "gaʧiɲu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "girafa",
+        "representation": "ʒiɾafə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "grama",
+        "representation": "gɾəmə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "gritar",
+        "representation": "gɾita",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "gritar",
+        "representation": "gɾitəndu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "gritar",
+        "representation": "gɾitaɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "igreja",
+        "representation": "igɾeʒə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "jacaré",
+        "representation": "ʒakaɾɛ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "jornal",
+        "representation": "ʒoɾnaw",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "lápis",
+        "representation": "lapis",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "letra",
+        "representation": "letɾiɲas",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "letra",
+        "representation": "letɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "letra",
+        "representation": "letɾəs",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "língua", 
+        "representation": "lĩngʷa",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "língua", 
+        "representation": "lĩngʷa",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "gʷ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "livro",
+        "representation": "livɾu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "vɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "livro",
+        "representation": "livɾo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "vɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "magro",
+        "representation": "magɾiɲu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "magro",
+        "representation": "magɾo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "magro",
+        "representation": "magɾɛlu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "magro",
+        "representation": "magɾu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "magro",
+        "representation": "magɾɛlo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "mesa",
+        "representation": "mezə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "microfone",
+        "representation": "mikɾofoni",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "microfone",
+        "representation": "mikɾofone",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "nariz",
+        "representation": "naɾis",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "navio",
+        "representation": "naviw",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "nuvem",
+        "representation": "nuvẽj̃s",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "nuvem",
+        "representation": "nuvẽj̃",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "passarinho",
+        "representation": "pasaɾu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "passarinho",
+        "representation": "pasaɾiɲo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "passarinho",
+        "representation": "pasaɾiɲu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "pastel",
+        "representation": "pastɛw",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "pedra",
+        "representation": "pɛdɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "dɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "placa",
+        "representation": "plakə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "pl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "plástico",
+        "representation": "plasʧiko",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "pl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "porta",
+        "representation": "pɔɾtə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "prato",
+        "representation": "pɾato",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "pɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "prato",
+        "representation": "pɾatu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "pɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "presente",
+        "representation": "pɾezẽnʧi",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "pɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "presente",
+        "representation": "pɾezẽnte",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "pɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "rabo",
+        "representation": "χabu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "rabo",
+        "representation": "χabo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "refri",
+        "representation": "χefɾiʒeɾənʧi",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "refri",
+        "representation": "χefɾiʒeɾənte",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "refri",
+        "representation": "χefɾi",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "relógio",
+        "representation": "χelɔʒu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "relógio",
+        "representation": "χelɔʒiw",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "relógio",
+        "representation": "χelɔʒo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "sapato",
+        "representation": "sapatu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "sapato",
+        "representation": "sapato",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "sapo",
+        "representation": "sapu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "sapo",
+        "representation": "sapo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "sofá",
+        "representation": "sofa",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "soprar",
+        "representation": "asopɾa",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "soprar",
+        "representation": "sopɾa",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "soprar",
+        "representation": "sopɾəndu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "soprar",
+        "representation": "sopɾaɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "soprar",
+        "representation": "asopɾəndu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "tênis",
+        "representation": "tenis",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "terra",
+        "representation": "tɛχə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "tesoura",
+        "representation": "tezoɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "tesoura",
+        "representation": "tezowɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "tesoura",
+        "representation": "ʧizoɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "travesseiro",
+        "representation": "tɾaveseɾo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "tɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "trem",
+        "representation": "tɾẽj̃",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "tɾ",
+                "position": "OCI"
+            }
+        ]
+    },
+    {
+        "word": "vaca",
+        "representation": "vakə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "ventilador",
+        "representation": "vẽnʧiladoɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "vidro",
+        "representation": "vidɾu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "dɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "vidro",
+        "representation": "vidɾo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "dɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "zebra",
+        "representation": "zebɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "zero",
+        "representation": "zɛɾu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "zero",
+        "representation": "zɛɾo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    }
+]
