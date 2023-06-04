@@ -63,6 +63,24 @@ public class KnownCase {
     }
 
     /**
+     * Gets the representation/transcription of the pronunciation.
+     *
+     * @return The representation/transcription of the pronunciation.
+     */
+    public String getRepresentation() {
+        return representation;
+    }
+
+    /**
+     * All the phonemes in this case.
+     *
+     * @return A list with the phonemes in this case.
+     */
+    public List<Phoneme> getPhonemes() {
+        return phonemes;
+    }
+
+    /**
      * @return If the transcription represents a correct pronunciation or not.
      */
     public boolean isCorrect() {

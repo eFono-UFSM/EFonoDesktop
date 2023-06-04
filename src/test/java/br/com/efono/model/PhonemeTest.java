@@ -19,6 +19,21 @@ public class PhonemeTest {
     }
 
     /**
+     * Tests for integrity.
+     */
+    @Test
+    public void testIntegrity() {
+        /**
+         * The array cannot contains more than 9 strings, because we use the index treat transcriptions.
+         *
+         * We need to replace the labialization string to just 1 char, so we can split the phonemes correctly at
+         * {@link Util#getConsonantPhonemes}.
+         */
+        System.out.println("testIntegrity - test for array length");
+        assertTrue(Phoneme.LABIALIZATION.length <= 9);
+    }
+
+    /**
      * Tests {@link Phoneme#getPhoneme()}, {@link Phoneme#getPosition()} and
      * {@link Phoneme#setPosition(Phoneme.POSITION)}
      */

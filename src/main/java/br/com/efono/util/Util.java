@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.json.simple.JSONObject;
 
 /**
@@ -28,8 +28,8 @@ public class Util {
     /**
      * Special characters found on transcriptions.
      */
-    public static final String[] SPECIAL = new String[]{"\\[", "\\'", "\"", "\\]", "\\ʷ", "\\.", "\\'", "\\‘", "\\’",
-        "\\ʼ", "\\ø"};
+    public static final String[] SPECIAL = new String[]{"\\[", "\\'", "\"", "\\]", "\\.", "\\'", "\\‘", "\\’", "\\ʼ",
+        "\\ø"};
 
     /**
      * Read all the transcriptions from file. Each line must contains a single transcription.
@@ -153,7 +153,7 @@ public class Util {
             phoneme = phoneme.trim();
             if (!phoneme.isBlank()) {
                 // TODO: ter uma lista de fonemas consonantais válidos? existe algum pacote com esses fonemas? ver Phon
-                if (phoneme.length() == 1) {
+                if (phoneme.length() == 1 || Arrays.asList(Phoneme.LABIALIZATION).contains(phoneme)) {
                     list.add(new Phoneme(phoneme, Phoneme.POSITION.OM));
                 } else if (Arrays.asList(CONSONANT_CLUSTERS).contains(phoneme)) {
                     list.add(new Phoneme(phoneme, Phoneme.POSITION.OCME));
@@ -169,7 +169,8 @@ public class Util {
                      * The next phoneme can be only OM/OCME, because OI and OCME must be at the beginning of the word,
                      * and codas it's not the case (it was just read before).
                      */
-                    if (next.getPhoneme().length() == 1) {
+                    if (next.getPhoneme().length() == 1
+                            || Arrays.asList(Phoneme.LABIALIZATION).contains(next.getPhoneme())) {
                         next.setPosition(Phoneme.POSITION.OM);
                     } else {
                         // TODO: nesse caso, precisaria avaliar se o foneme é um encontro consonantal válido, se não for, precisaria rever o algoritmo
@@ -181,6 +182,25 @@ public class Util {
             }
         }
         return list.toArray(new Phoneme[list.size()]);
+    }
+
+    /**
+     * Replace labialization representations in the given string as their indexes at {@link Phoneme#LABIALIZATIO}.
+     *
+     * @param str The given string.
+     * @return The treat string without labialization representations.
+     */
+    public static String replaceLabialization(final String str) {
+        if (str != null) {
+            String clean = str;
+
+            int index = 0;
+            for (String p : Phoneme.LABIALIZATION) {
+                clean = clean.replaceAll(p, Integer.toString(index++));
+            }
+            return clean;
+        }
+        return null;
     }
 
     /**
@@ -216,10 +236,17 @@ public class Util {
                 clean = replaceLast(clean, finalCoda.getPhoneme(), "");
             }
 
+            // maps each labialization phoneme (if exists) to an index at Phoneme.LABIALIZATION
+            clean = replaceLabialization(clean);
+
             String[] split = clean.split(" ");
 
             if (split.length >= 1) {
                 for (String phoneme : split) {
+                    // replaces all possible labialization phonemes. This array never must have an index greater than 9
+                    for (int i = 0; i < Phoneme.LABIALIZATION.length; i++) {
+                        phoneme = phoneme.replaceAll(i + "", Phoneme.LABIALIZATION[i]);
+                    }
                     list.addAll(Arrays.asList(checkPhoneme(phoneme)));
                 }
             }

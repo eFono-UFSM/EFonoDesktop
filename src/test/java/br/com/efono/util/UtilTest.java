@@ -1,7 +1,9 @@
 package br.com.efono.util;
 
+import br.com.efono.model.KnownCase;
 import br.com.efono.model.Phoneme;
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
@@ -41,6 +43,43 @@ public class UtilTest {
             System.out.println("phoneme: [" + phoneme + "]");
         }
         fail();
+    }
+
+    /**
+     * Tests for {@link Util#replaceLabialization(String)}.
+     */
+    @Test
+    public void testLabialization() {
+        // What is labialization? https://pt.wikipedia.org/wiki/Labializa%C3%A7%C3%A3o
+        System.out.println("testLabialization - null parameter");
+        assertNull(Util.replaceLabialization(null));
+
+        System.out.println("testLabialization - empty parameter");
+        assertTrue(Util.replaceLabialization("").isBlank());
+        assertTrue(Util.replaceLabialization("  ").isBlank());
+
+        String transcription = "['lĩngʷa]";
+        System.out.println("testLabialization - labialization of /g/: gʷ -> " + transcription);
+
+        int gIndex = Arrays.asList(Phoneme.LABIALIZATION).indexOf("gʷ");
+        assertTrue(gIndex >= 0); // index exists
+        String expected = "['lĩn" + gIndex + "a]";
+        assertEquals(expected, Util.replaceLabialization(transcription));
+
+        // [lĩkʷɐ]
+        transcription = "[lĩkʷɐ]";
+        System.out.println("testLabialization - labialization of /k/: kʷ -> " + transcription);
+
+        int kIndex = Arrays.asList(Phoneme.LABIALIZATION).indexOf("kʷ");
+        assertTrue(kIndex >= 0); // index exists
+        expected = "[lĩ" + kIndex + "ɐ]";
+        assertEquals(expected, Util.replaceLabialization(transcription));
+
+        // do not remove it
+        transcription = "[lĩkʷɐ]['lĩngʷa][lĩkʷɐ]";
+        System.out.println("testLabialization - just to make sure that all labialization phonemes are replaced: " + transcription);
+        expected = "[lĩ" + kIndex + "ɐ]['lĩn" + gIndex + "a][lĩ" + kIndex + "ɐ]";
+        assertEquals(expected, Util.replaceLabialization(transcription));
     }
 
     /**
@@ -87,7 +126,7 @@ public class UtilTest {
         System.out.println("testCleanTranscription - null and empty");
         assertTrue(Util.cleanTranscription(null).isEmpty());
         assertTrue(Util.cleanTranscription("[..'.]").isEmpty());
-        assertTrue(Util.cleanTranscription("[.'\".'ʷ.'‘..’]ʼø").isEmpty());
+        assertTrue(Util.cleanTranscription("[.'\".'.'‘..’]ʼø").isEmpty());
         assertTrue(Util.cleanTranscription("     ").isEmpty());
 
         System.out.println("testCleanTranscription - valid parameters");
@@ -158,6 +197,14 @@ public class UtilTest {
             assertEquals(cluster, result[0].getPhoneme());
         }
 
+        System.out.println("testCheckPhoneme - labialization phonemes");
+        for (String labialization : Phoneme.LABIALIZATION) {
+            Phoneme[] result = Util.checkPhoneme(labialization);
+
+            assertEquals(1, result.length);
+            assertEquals(labialization, result[0].getPhoneme());
+        }
+
         System.out.println("testCheckPhoneme - a single charcater phoneme");
         Phoneme[] result = Util.checkPhoneme("b");
         assertEquals("b", result[0].getPhoneme());
@@ -221,12 +268,14 @@ public class UtilTest {
     }
 
     /**
-     * Tests {@link Util#getConsonantPhonemes(String)}.
+     * Tests {@link Util#getConsonantPhonemes(String)}.Tests only the phonemes, not their positions in the
+     * transcriptions.
      *
-     * Tests only the phonemes, not their positions in the transcriptions.
+     * @throws java.net.URISyntaxException Exception reading file.
+     * @throws java.io.IOException Exception reading file.
      */
     @Test
-    public void testGetConsonantPhonemes() {
+    public void testGetConsonantPhonemes() throws URISyntaxException, IOException {
         System.out.println("testGetConsonantPhonemes - null and empty parameters");
         assertTrue(Util.getConsonantPhonemes(null).isEmpty());
         assertTrue(Util.getConsonantPhonemes("").isEmpty());
@@ -309,8 +358,33 @@ public class UtilTest {
             new Phoneme("p", Phoneme.POSITION.OM),
             new Phoneme("ʎ", Phoneme.POSITION.OM)});
         assertArrayEquals(expected.toArray(), result.toArray());
-        
-        // TODO: testar esse metodo com todas as palavras do gabarito.json
+
+        // labialization test
+        transcription = "['lĩngʷa]";
+        System.out.println("testGetConsonantPhonemes: test when transcription contains a Labialization: " + transcription);
+        result = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("l", Phoneme.POSITION.OI),
+            new Phoneme("n", Phoneme.POSITION.CM),
+            new Phoneme("gʷ", Phoneme.POSITION.OM)});
+        assertArrayEquals(expected.toArray(), result.toArray());
+
+        if (1 < 0) {
+            // lĩngʷa // [gʷ] https://pt.wikipedia.org/wiki/Labializa%C3%A7%C3%A3o
+            System.out.println("testGetConsonantPhonemes: tests with all known cases");
+            File allCorrect = new File(UtilTest.class.getResource("/data/allCorrect.json").toURI());
+            List<KnownCase> cases = KnownCase.loadFile(allCorrect);
+            for (KnownCase c : cases) {
+                expected = c.getPhonemes();
+                result = Util.getConsonantPhonemes(c.getRepresentation());
+
+                System.out.println("case: " + c.getRepresentation() + " expected: " + Arrays.toString(expected.toArray()) + ""
+                        + " result: " + Arrays.toString(result.toArray()));
+
+                assertArrayEquals("case: " + c.getRepresentation() + " expected: " + Arrays.toString(expected.toArray()) + ""
+                        + " result: " + Arrays.toString(result.toArray()), expected.toArray(), result.toArray());
+            }
+        }
     }
 
 }

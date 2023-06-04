@@ -13,14 +13,21 @@ public class Phoneme {
     /**
      * Vowel phonemes.
      */
-    public static final String[] VOWELS = new String[]{"a", "ɐ", "ə", "e", "ɛ", "Ɛ", "ẽ", "i", "ɪ", "ĩ", "o", "ɔ", "õ", "u",
-        "ʊ", "ũ", "ø", "w", "j̃"};
+    public static final String[] VOWELS = new String[] {"ã", "a", "ɐ", "ə", "e", "ɛ", "Ɛ", "ẽ", "i", "ɪ", "ĩ", "o", "ɔ", 
+        "õ", "u", "ʊ", "ũ", "w̃", "w", "j̃", "j"};
 
     /**
      * Consonant clusters.
      */
     public static final String[] CONSONANT_CLUSTERS = new String[]{"pɾ", "pl", "bɾ", "bl", "tɾ", "dl", "dɾ", "kɾ", "kl",
         "gɾ", "gχ", "gl", "fɾ", "fl", "vɾ"};
+    
+    /**
+     * Phonemes with labialization: https://pt.wikipedia.org/wiki/Labializa%C3%A7%C3%A3o.
+     * 
+     * This array cannot contains more than 9 strings, because we use the index to treat transcriptions.
+     */
+    public static final String[] LABIALIZATION = new String[]{"kʷ", "gʷ"};
 
     /**
      * All the possible phoneme positions at the word.
@@ -92,7 +99,7 @@ public class Phoneme {
      */
     public Phoneme(final String phoneme, final POSITION position) {
         if (phoneme == null) {
-            throw new IllegalArgumentException("Phoneme can't be null.");
+            throw new IllegalArgumentException("Phoneme cant be null.");
         }
         this.phoneme = phoneme;
         this.position = position;
