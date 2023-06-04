@@ -40,7 +40,6 @@ public class UtilTest {
         for (String phoneme : Util.SPECIAL) {
             System.out.println("phoneme: [" + phoneme + "]");
         }
-        assertFalse(true);
         fail();
     }
 
@@ -179,73 +178,17 @@ public class UtilTest {
     }
 
     /**
-     * Tests {@link Util#checkPhonemes(String[])}.
-     */
-    @Test
-    public void testCheckPhonemes() {
-        System.out.println("testCheckPhonemes - null and empty parameter");
-        assertEquals(0, Util.checkPhonemes(null).length);
-        assertEquals(0, Util.checkPhonemes(new String[]{}).length);
-
-        System.out.println("testCheckPhonemes - valid arrays");
-        String[] expected = new String[]{"b", "χ", "g", "ɲ"};
-        Phoneme[] result = Util.checkPhonemes(expected);
-        assertEquals(expected.length, result.length);
-        for (int i = 0; i < expected.length; i++) {
-            assertEquals(expected[i], result[i].getPhoneme());
-        }
-
-        expected = new String[]{"bɾ", "n", "k"};
-        result = Util.checkPhonemes(expected);
-        assertEquals(expected.length, result.length);
-        for (int i = 0; i < expected.length; i++) {
-            assertEquals(expected[i], result[i].getPhoneme());
-        }
-
-        expected = new String[]{"ʃ", "kl", "ʧ"};
-        result = Util.checkPhonemes(expected);
-        assertEquals(expected.length, result.length);
-        for (int i = 0; i < expected.length; i++) {
-            assertEquals(expected[i], result[i].getPhoneme());
-        }
-
-        System.out.println("invalid arrays");
-        String[] invalidArray = new String[]{"bɾ", "nk"};
-        expected = new String[]{"bɾ", "n", "k"};
-        result = Util.checkPhonemes(invalidArray);
-        assertEquals(expected.length, result.length);
-        for (int i = 0; i < expected.length; i++) {
-            assertEquals(expected[i], result[i].getPhoneme());
-        }
-
-        System.out.println("invalid arrays - null, empty and blank spaces must be discarted");
-        invalidArray = new String[]{"b", null, "", "χ", " ", " g ", "  ", "ɲ"};
-        expected = new String[]{"b", "χ", "g", "ɲ"};
-        result = Util.checkPhonemes(invalidArray);
-        assertEquals(expected.length, result.length);
-        for (int i = 0; i < expected.length; i++) {
-            assertEquals(expected[i], result[i].getPhoneme());
-        }
-
-        // iskɾeveɾ -> skɾ v ɾ (invalid array)
-        invalidArray = new String[]{"skɾ", "v", "ɾ"};
-        expected = new String[]{"s", "kɾ", "v", "ɾ"};
-        result = Util.checkPhonemes(invalidArray);
-        assertEquals(expected.length, result.length);
-        for (int i = 0; i < expected.length; i++) {
-            assertEquals(expected[i], result[i].getPhoneme());
-        }
-
-        // TODO: depois, testar com a posição dos fonemas
-    }
-
-    /**
      * Tests {@link Util#getConsonantPhonemes(String)}.
      *
      * Tests only the phonemes, not their positions in the transcriptions.
      */
     @Test
     public void testGetConsonantPhonemes() {
+        System.out.println("testGetConsonantPhonemes - null and empty parameters");
+        assertTrue(Util.getConsonantPhonemes(null).isEmpty());
+        assertTrue(Util.getConsonantPhonemes("").isEmpty());
+        assertTrue(Util.getConsonantPhonemes("  ").isEmpty());
+        
         // TODO: tests givin a transcription with UNICODE: [\u2019lu.vẽj̃] // read from file as well
         String transcription = "[ba.χi.'gui.ɲə]";
         List<String> expected = Arrays.asList(new String[]{"b", "χ", "g", "ɲ"});
@@ -255,7 +198,8 @@ public class UtilTest {
         for (int i = 0; i < expected.size(); i++) {
             assertEquals(expected.get(i), phonemes.get(i).getPhoneme());
         }
-
+        
+        // TODO: depois, testar com a posição dos fonemas
         transcription = "[anɛw'ziɲu]";
         System.out.println("testGetConsonantPhonemes: " + transcription);
         phonemes = Util.getConsonantPhonemes(transcription);
@@ -317,15 +261,15 @@ public class UtilTest {
         }
         assertEquals(Phoneme.POSITION.CM, phonemes.get(0).getPosition());
         assertEquals(Phoneme.POSITION.OM, phonemes.get(1).getPosition());
-    }
 
-    @Test
-    public void test() {
-        Util.decomposeTranscription("[ba.χi.'gui.ɲə]");
-
-        Util.decomposeTranscription("[anɛw'ziɲu]");
-
-        fail();
+        transcription = "[ba .χi.' g ui   .ɲə]";
+        System.out.println("testGetConsonantPhonemes: tests with transcription with blank spaces " + transcription);
+        phonemes = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new String[]{"b", "χ", "g", "ɲ"});
+        assertEquals(expected.size(), phonemes.size());
+        for (int i = 0; i < expected.size(); i++) {
+            assertEquals(expected.get(i), phonemes.get(i).getPhoneme());
+        }
     }
 
 }
