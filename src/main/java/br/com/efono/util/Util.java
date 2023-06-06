@@ -2,6 +2,7 @@ package br.com.efono.util;
 
 import br.com.efono.model.Phoneme;
 import static br.com.efono.model.Phoneme.CONSONANT_CLUSTERS;
+import static br.com.efono.model.Phoneme.SEMI_VOWELS;
 import static br.com.efono.model.Phoneme.VOWELS;
 import java.io.BufferedReader;
 import java.io.File;
@@ -113,6 +114,10 @@ public class Util {
      */
     public static Phoneme getFinalCoda(final String transcription) {
         String clean = cleanTranscription(transcription);
+        for (String sv : SEMI_VOWELS) {
+            clean = clean.replaceAll(sv, "");
+        }
+
         String phoneme = clean.substring(clean.length() - 1);
         if (Arrays.asList(VOWELS).contains(phoneme)) {
             return null;
@@ -213,9 +218,12 @@ public class Util {
         if (transcription != null && !transcription.isBlank()) {
             String clean = cleanTranscription(transcription);
 
-            // remove special characters
             for (String vowel : VOWELS) {
                 clean = clean.replaceAll(vowel, " ");
+            }
+
+            for (String sv : SEMI_VOWELS) {
+                clean = clean.replaceAll(sv, " ");
             }
 
             // replace double spaces for just one: this will be used to separe the positions of the phonemes

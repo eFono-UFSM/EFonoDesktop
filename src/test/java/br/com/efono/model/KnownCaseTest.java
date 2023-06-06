@@ -47,7 +47,7 @@ public class KnownCaseTest {
         System.out.println("testLoadFile - test if all cases were read");
         File allCorrect = new File(UtilTest.class.getResource("/data/allCorrect.json").toURI());
         List<KnownCase> cases = KnownCase.loadFile(allCorrect);        
-        assertEquals(164, cases.size());
+        assertEquals(163, cases.size());
     }
 
 }

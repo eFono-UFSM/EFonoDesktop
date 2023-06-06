@@ -13,18 +13,23 @@ public class Phoneme {
     /**
      * Vowel phonemes.
      */
-    public static final String[] VOWELS = new String[] {"ã", "a", "ɐ", "ə", "e", "ɛ", "Ɛ", "ẽ", "i", "ɪ", "ĩ", "o", "ɔ", 
-        "õ", "u", "ʊ", "ũ", "w̃", "w", "j̃", "j"};
+    public static final String[] VOWELS = new String[]{"ã", "a", "ɐ", "ə", "e", "ɛ", "Ɛ", "ẽ", "i", "ɪ", "ĩ", "o", "ɔ",
+        "õ", "u", "ʊ", "ũ"};
+
+    /**
+     * Semi vowels or Glide are sounds that are associated with another vowel. https://pt.wikipedia.org/wiki/Semivogal
+     */
+    public static final String[] SEMI_VOWELS = new String[]{"w̃", "w", "j̃", "j"};
 
     /**
      * Consonant clusters.
      */
     public static final String[] CONSONANT_CLUSTERS = new String[]{"pɾ", "pl", "bɾ", "bl", "tɾ", "dl", "dɾ", "kɾ", "kl",
         "gɾ", "gχ", "gl", "fɾ", "fl", "vɾ"};
-    
+
     /**
      * Phonemes with labialization: https://pt.wikipedia.org/wiki/Labializa%C3%A7%C3%A3o.
-     * 
+     *
      * This array cannot contains more than 9 strings, because we use the index to treat transcriptions.
      */
     public static final String[] LABIALIZATION = new String[]{"kʷ", "gʷ"};

@@ -17,6 +17,9 @@ import org.junit.Ignore;
  */
 public class UtilTest {
 
+    /**
+     * Just to ensure if java is recognizing the phonemes.
+     */
     @Test
     public void testChars() {
         System.out.println("test string length with special chars");
@@ -30,12 +33,20 @@ public class UtilTest {
     @Test
     @Ignore
     public void testConstants() {
+        /**
+         * Just to ensure if java is recognizing the phonemes.
+         */
         System.out.println("testConstants");
         String enc = System.getProperty("file.encoding");
         System.out.println("file encoding: " + enc);
 //        System.setProperty("file.encoding", "UTF-8");
 
+        System.out.println("--vowels--");
         for (String phoneme : Phoneme.VOWELS) {
+            System.out.println("phoneme: [" + phoneme + "]");
+        }
+        System.out.println("--semivowels--");
+        for (String phoneme : Phoneme.SEMI_VOWELS) {
             System.out.println("phoneme: [" + phoneme + "]");
         }
         System.out.println("--specials--");
@@ -369,7 +380,7 @@ public class UtilTest {
             new Phoneme("n", Phoneme.POSITION.CM),
             new Phoneme("gʷ", Phoneme.POSITION.OM)});
         assertArrayEquals(expected.toArray(), result.toArray());
-        
+
         // labialization after OI // fogʷeɾə
         transcription = "[fo.'gʷe.ɾə]";
         System.out.println("testGetConsonantPhonemes: test when transcription contains a Labialization after OI: " + transcription);
@@ -378,6 +389,28 @@ public class UtilTest {
             new Phoneme("f", Phoneme.POSITION.OI),
             new Phoneme("gʷ", Phoneme.POSITION.OM),
             new Phoneme("ɾ", Phoneme.POSITION.OM)});
+        assertArrayEquals(expected.toArray(), result.toArray());
+
+        /**
+         * Tests for diphthong:
+         * https://pt.wikipedia.org/wiki/Fonologia_da_l%C3%ADngua_portuguesa#Classifica%C3%A7%C3%A3o_das_vogais
+         */
+        // semi vowel: parte de ditongo /ej/ (ditongo oral)
+        transcription = "[’bej.ʒu]";
+        System.out.println("testGetConsonantPhonemes: test when transcription contains an oral diphthong: " + transcription);
+        result = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("b", Phoneme.POSITION.OI),
+            new Phoneme("ʒ", Phoneme.POSITION.OM)});
+        assertArrayEquals(expected.toArray(), result.toArray());
+
+        // semi vowel: parte de ditonto /ẽj̃/ (ditongo nasal)
+        transcription = "[’nuvẽj̃]";
+        System.out.println("testGetConsonantPhonemes: test when transcription contains a nasal diphthong: " + transcription);
+        result = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("n", Phoneme.POSITION.OI),
+            new Phoneme("v", Phoneme.POSITION.OM)});
         assertArrayEquals(expected.toArray(), result.toArray());
 
         System.out.println("testGetConsonantPhonemes: tests with all known cases");
