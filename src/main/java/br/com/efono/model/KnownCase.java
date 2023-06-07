@@ -91,6 +91,16 @@ public class KnownCase {
     }
 
     /**
+     * Clears the current phonemes and inserts the given ones.
+     *
+     * @param phonemes Phonemes of the case.
+     */
+    public void putPhonemes(final List<Phoneme> phonemes) {
+        this.phonemes.clear();
+        this.phonemes.addAll(phonemes);
+    }
+
+    /**
      * @return If the transcription represents a correct pronunciation or not.
      */
     public boolean isCorrect() {
@@ -166,6 +176,25 @@ public class KnownCase {
         }
 
         return list;
+    }
+
+    /**
+     * Saves the list with known cases into file. Only JSON file for now.
+     *
+     * @param cases Cases to save.
+     * @param file File to write.
+     */
+    public static void saveKnownCases(final List<KnownCase> cases, final File file) {
+        if (cases != null && file != null && file.getAbsolutePath().endsWith(".json")) {
+            try {
+                ObjectMapper mapper = new ObjectMapper();
+                mapper.writeValue(file, cases);
+
+                System.out.println(cases.size() + " cases saved into " + file);
+            } catch (final IOException ex) {
+                System.out.println("Couldn't read file " + file + ": " + ex);
+            }
+        }
     }
 
 }

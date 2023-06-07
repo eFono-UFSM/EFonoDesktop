@@ -413,7 +413,7 @@ public class UtilTest {
             new Phoneme("v", Phoneme.POSITION.OM)});
         assertArrayEquals(expected.toArray(), result.toArray());
 
-        System.out.println("testGetConsonantPhonemes: tests with all known cases");
+        System.out.println("testGetConsonantPhonemes: tests with all correct known cases");
         File allCorrect = new File(UtilTest.class.getResource("/data/allCorrect.json").toURI());
         List<KnownCase> cases = KnownCase.loadFile(allCorrect);
         for (KnownCase c : cases) {
