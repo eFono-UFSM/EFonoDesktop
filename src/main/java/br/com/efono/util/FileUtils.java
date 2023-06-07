@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -19,18 +21,30 @@ public class FileUtils {
      *
      * @param file File to read.
      * @param separator Column separator.
-     * @throws FileNotFoundException
-     * @throws IOException
+     * @return A list with all lines read. The array indexes represent each column.
      */
-    public static void readCSV(final File file, final String separator) throws FileNotFoundException, IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-            String line;
-            int i = 1;
-            while ((line = reader.readLine()) != null) {
-                String[] row = line.split(separator);
-                System.out.println("Row " + (i++) + ": "+ Arrays.toString(row));
+    public static List<String[]> readCSV(final File file, final String separator) {
+        final List<String[]> list = new ArrayList<>();
+        if (file != null && separator != null) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String line;
+                int i = 1;
+                while ((line = reader.readLine()) != null) {
+                    if (!line.isBlank()) {
+                        // needs StringEscapeUtils.unescapeJava(line) ?
+                        String[] row = line.split(separator);
+                        System.out.println("Row " + (i++) + ": " + Arrays.toString(row));
+                        list.add(row);
+                    }
+                }
+            } catch (final FileNotFoundException ex) {
+                // TODO: substituir por sistema de logs
+                System.out.println("File " + file + " not found: " + ex);
+            } catch (final IOException ex) {
+                System.out.println("Couldn't read file " + file + ": " + ex);
             }
         }
+        return list;
     }
 
 }

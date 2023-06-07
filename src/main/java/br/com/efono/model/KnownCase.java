@@ -1,5 +1,6 @@
 package br.com.efono.model;
 
+import br.com.efono.util.FileUtils;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -145,6 +146,26 @@ public class KnownCase {
             });
         }
         return Collections.emptyList();
+    }
+
+    /**
+     * Builds a list with known cases from a file. Accepts only .CSV format for now.
+     *
+     * @param file File to read
+     * @return A list with known cases.
+     */
+    public static List<KnownCase> buildKnownCases(final File file) {
+        final List<KnownCase> list = new ArrayList<>();
+
+        if (file != null && file.getAbsolutePath().endsWith(".csv")) {
+            List<String[]> csv = FileUtils.readCSV(file, ",");
+            for (String[] line : csv) {
+                // word,transcription,correct
+                list.add(new KnownCase(line[0], line[1], "1".equals(line[2])));
+            }
+        }
+
+        return list;
     }
 
 }
