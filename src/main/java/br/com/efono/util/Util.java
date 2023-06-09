@@ -269,6 +269,7 @@ public class Util {
         return Collections.emptyList();
     }
 
+    @Deprecated
     public static File createJSON(String value1, String value2) {
         // {"key1":"[\u2019lu.vẽj̃]","key2":"olaMundinho"}
         JSONObject jsonObject = new JSONObject();

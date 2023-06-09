@@ -58,6 +58,7 @@ public class KnownCaseTest {
 
     /**
      * Tests {@link KnownCase#saveKnownCases(List, File)}.
+     * @throws java.net.URISyntaxException
      */
     @Test
     public void testSaveKnownCases() throws URISyntaxException {
@@ -78,12 +79,7 @@ public class KnownCaseTest {
         // just reading the cases
         for (KnownCase c : allCases) {
             if (enableWords.contains(c.getWord())) {
-                List<Phoneme> consonantPhonemes = Util.getConsonantPhonemes(c.getRepresentation());
-
-                System.out.println(c.getRepresentation());
-                System.out.println("\t" + consonantPhonemes);
-
-                c.putPhonemes(consonantPhonemes);
+                c.putPhonemes(Util.getConsonantPhonemes(c.getRepresentation()));
 
                 mapCases.get(c.getWord()).add(c);
             } else {
@@ -96,13 +92,14 @@ public class KnownCaseTest {
             Map.Entry<String, List<KnownCase>> next = it.next();
 
             System.out.println(next.getKey() + " -> " + next.getValue().size());
-            // TODO: usar um arquivo no target/ do projeto
-            File out = new File("C:\\Users\\Joao\\Documents\\mestrado\\Java\\output-" + next.getKey() + ".json");
 
+            File resDir = new File(KnownCaseTest.class.getResource("/cases").toURI());
+            File out = new File(resDir, "output-" + next.getKey() + ".json");
             System.out.println("testSaveKnownCases - saving cases for word " + next.getKey());
             KnownCase.saveKnownCases(next.getValue(), out);
         }
 
+        // just to print all the files path
         fail();
     }
 
