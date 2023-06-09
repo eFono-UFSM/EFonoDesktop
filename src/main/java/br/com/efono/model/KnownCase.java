@@ -1,6 +1,7 @@
 package br.com.efono.model;
 
 import br.com.efono.util.FileUtils;
+import br.com.efono.util.Util;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -54,13 +55,13 @@ public class KnownCase {
      * @param word Target word.
      * @param representation Phonetic transcription.
      * @param correct If the transcription represents a correct pronunciation or not.
-     * @param phonemas Only consonant phonemes in the transcription.
+     * @param phonemes Only consonant phonemes in the transcription.
      */
-    public KnownCase(final String word, final String representation, boolean correct, final List<Phoneme> phonemas) {
-        this.word = word;
-        this.representation = representation;
+    public KnownCase(final String word, final String representation, boolean correct, final List<Phoneme> phonemes) {
+        this.word = Objects.requireNonNull(word);
+        this.representation = Util.cleanTranscription(Objects.requireNonNull(representation));
         this.correct = correct;
-        this.phonemes = phonemas;
+        this.phonemes = Objects.requireNonNull(phonemes);
     }
 
     /**
@@ -112,7 +113,6 @@ public class KnownCase {
         int hash = 3;
         hash = 89 * hash + Objects.hashCode(this.word);
         hash = 89 * hash + Objects.hashCode(this.representation);
-        hash = 89 * hash + Objects.hashCode(this.phonemes);
         return hash;
     }
 
@@ -131,15 +131,12 @@ public class KnownCase {
         if (!Objects.equals(this.word, other.word)) {
             return false;
         }
-        if (!Objects.equals(this.representation, other.representation)) {
-            return false;
-        }
-        return Objects.equals(this.phonemes, other.phonemes);
+        return Objects.equals(this.representation, other.representation);
     }
 
     @Override
     public String toString() {
-        return "representation: " + representation + " word: " + word;
+        return "KnownCase(word: " + word + " representation: " + representation + ")";
     }
 
     /**

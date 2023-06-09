@@ -1,0 +1,98 @@
+[
+    {
+        "word": "Anel",
+        "representation": "anɛw",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Anel",
+        "representation": "amew",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Anel",
+        "representation": "anɛwziɲu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Anel",
+        "representation": "nɛw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Anel",
+        "representation": "mɛw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Anel",
+        "representation": "anaw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Anel",
+        "representation": "adɛw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Anel",
+        "representation": "amɛw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    }
+]
