@@ -7,8 +7,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import static org.junit.Assert.*;
@@ -187,10 +188,10 @@ public class KnownCaseTest {
         List<KnownCase> casesFromCSV = KnownCase.buildKnownCases(file);
 
         // word -> list with known cases
-        Map<String, List<KnownCase>> mapCases = new HashMap<>(); // all the cases are saved for each word, for now...
+        Map<String, List<KnownCase>> mapCases = new LinkedHashMap<>();// all the cases are saved for each word, for now...
 
         // vou testar palavra por palavra e ir avançando pra ver o resultado
-        List<String> enableWords = Arrays.asList(new String[]{"Anel", "Barriga"});
+        List<String> enableWords = Arrays.asList(new String[]{"Anel", "Barriga", "Batom"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
         // just reading the cases
@@ -230,12 +231,8 @@ public class KnownCaseTest {
         File resDir = new File(KnownCaseTest.class.getResource("/cases").toURI());
         File outAll = new File(resDir, "allCases.json");
 
-        List<KnownCase> allCases = new ArrayList<>();
-        // keep same order
-        List<List<KnownCase>> values = new ArrayList<>(mapCases.values());
-        for (int i = values.size() -1; i >= 0; i--) {
-            allCases.addAll(values.get(i));
-        }
+        List<KnownCase> allCases = new LinkedList<>();
+        mapCases.values().forEach(val -> allCases.addAll(val));
 
         KnownCase.saveKnownCases(allCases, outAll);
 
