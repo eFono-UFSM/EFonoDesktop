@@ -94,5 +94,391 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baχigə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baigə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "bai",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baɾiga",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baχiguiɲə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baɾigə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baidə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baligə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "paχikə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baχikə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baχidə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baχitə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baigona",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baika",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baχigonə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baitə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "balidə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "beχigə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "baia",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "paχigə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "bizə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Barriga",
+        "representation": "aχigə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
     }
 ]

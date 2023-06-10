@@ -190,10 +190,9 @@ public class KnownCaseTest {
         Map<String, List<KnownCase>> mapCases = new HashMap<>(); // all the cases are saved for each word, for now...
 
         // vou testar palavra por palavra e ir avançando pra ver o resultado
-        List<String> enableWords = Arrays.asList(new String[]{"Anel"});
+        List<String> enableWords = Arrays.asList(new String[]{"Anel", "Barriga"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
-        List<KnownCase> allCases = new ArrayList<>();
         // just reading the cases
         for (KnownCase c : casesFromCSV) {
             if (enableWords.contains(c.getWord())) {
@@ -203,7 +202,6 @@ public class KnownCaseTest {
                     c.putPhonemes(Util.getConsonantPhonemes(c.getRepresentation()));
 
                     list.add(c);
-                    allCases.add(c); // to store later
                 }
             } else {
                 break;
@@ -224,14 +222,21 @@ public class KnownCaseTest {
 
         /**
          * allCases.json contem os casos que foram validados
-         * 
-         * 1. gera um output com os casos de cada palavra
-         * 2. valida esse output
-         * 3. copia todo o conteudo de allCases.json para o arquivo em src/main/resources/data/allCases.json (commitado)
-         * 3.1 não pode ter nenhuma diferença nos casos anteriores já validados
+         *
+         * 1. gera um output com os casos de cada palavra 2. valida esse output 3. copia todo o conteudo de
+         * allCases.json para o arquivo em src/main/resources/data/allCases.json (commitado) 3.1 não pode ter nenhuma
+         * diferença nos casos anteriores já validados
          */
         File resDir = new File(KnownCaseTest.class.getResource("/cases").toURI());
         File outAll = new File(resDir, "allCases.json");
+
+        List<KnownCase> allCases = new ArrayList<>();
+        // keep same order
+        List<List<KnownCase>> values = new ArrayList<>(mapCases.values());
+        for (int i = values.size() -1; i >= 0; i--) {
+            allCases.addAll(values.get(i));
+        }
+
         KnownCase.saveKnownCases(allCases, outAll);
 
         // just to print all the files path
