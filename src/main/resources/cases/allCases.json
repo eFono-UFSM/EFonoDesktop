@@ -7101,5 +7101,298 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "kajsə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "kajʃə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "kaʃə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "kasə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "kajʃiɲa",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "kaiʃə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "kaʃiɲa",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "tasə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "taʃə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "katə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "satə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "tatə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "kajʧə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "tajʃə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "fajʃɐ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "fajsɐ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "tajsa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "fajsa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caixa",
+        "representation": "taʃa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
     }
 ]
