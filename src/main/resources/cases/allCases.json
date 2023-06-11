@@ -5391,5 +5391,355 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "bɾuʃə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "buʃə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "busə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "bɾusə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "bluʃə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "bl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "buʃiɲə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "pɾuʃə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "pɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "buɾsə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "puʃə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "blusə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "bl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "bɾussa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "bulusə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "pusə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "buʃiɲa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "butə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "puta",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "buɾusə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "bɾutə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "bɾufə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "uʃə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "buʧə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Bruxa",
+        "representation": "pɾuʃɐ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "pɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
     }
 ]
