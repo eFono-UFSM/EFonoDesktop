@@ -152,7 +152,7 @@ public class Util {
      */
     public static Phoneme[] checkPhoneme(final String phonemeTarget) {
         String phoneme = phonemeTarget;
-        List<Phoneme> list = new ArrayList<>();
+        final List<Phoneme> list = new ArrayList<>();
         if (phoneme != null) {
             phoneme = StringEscapeUtils.unescapeJava(phoneme); // just in case...
             phoneme = phoneme.trim();
@@ -178,12 +178,19 @@ public class Util {
                             || Arrays.asList(Phoneme.LABIALIZATION).contains(next.getPhoneme())) {
                         next.setPosition(Phoneme.POSITION.OM);
                     } else {
-                        // TODO: nesse caso, precisaria avaliar se o foneme é um encontro consonantal válido, se não for, precisaria rever o algoritmo
-                        
-                        // TODO: aqui seria o caso de /ʃ/ em bisʃkɛtə, esta identificando ʃk como um OCME
                         /**
-                         * se não for valido, teria que separar os dois em OM
+                         * Checks if the phoneme is a valid consonant cluster. If it's not, then split in two (and only two) Medial Onsets.
+                         * 
+                         * Case of bisʃkɛtə, which /ʃ/ is a Medial Onset and not a consonant cluster.
                          */
+                        if (next.getPhoneme().length() == 2
+                                && !Arrays.asList(Phoneme.CONSONANT_CLUSTERS).contains(next.getPhoneme())) {
+                            Arrays.asList(next.getPhoneme().split("")).forEach(phon -> {
+                                list.add(new Phoneme(phon, Phoneme.POSITION.OM));
+                            });
+                            return list.toArray(new Phoneme[list.size()]);
+                        }
+
                         next.setPosition(Phoneme.POSITION.OCME);
                     }
 

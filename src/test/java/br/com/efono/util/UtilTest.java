@@ -422,8 +422,18 @@ public class UtilTest {
             new Phoneme("tl", Phoneme.POSITION.OCME),
             new Phoneme("k", Phoneme.POSITION.OM)});
         assertArrayEquals(expected.toArray(), result.toArray());
-        
-        // TODO: bisʃkɛtə:  /ʃ/ som de ch  https://pt.wikipedia.org/wiki/Fonema
+
+        // /ʃ/ som de ch  https://pt.wikipedia.org/wiki/Fonema
+        transcription = "bisʃkɛtə";
+        System.out.println("testGetConsonantPhonemes: test transcription: " + transcription);
+        result = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("b", Phoneme.POSITION.OI),
+            new Phoneme("s", Phoneme.POSITION.CM),
+            new Phoneme("ʃ", Phoneme.POSITION.OM),
+            new Phoneme("k", Phoneme.POSITION.OM),
+            new Phoneme("t", Phoneme.POSITION.OM)});
+        assertArrayEquals(expected.toArray(), result.toArray());
 
         System.out.println("testGetConsonantPhonemes: tests with all correct known cases");
         File allCorrect = new File(UtilTest.class.getResource("/data/allCorrect.json").toURI());
