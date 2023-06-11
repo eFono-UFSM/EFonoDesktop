@@ -192,7 +192,7 @@ public class KnownCaseTest {
 
         // vou testar palavra por palavra e ir avançando pra ver o resultado
         List<String> enableWords = Arrays.asList(new String[]{"Anel", "Barriga", "Batom", "Bebê", "Beijo", "Biblioteca", 
-            "Bicicleta", "Bolsa", "Brinco", "Bruxa", "Cabelo", "Cachorro", "Caixa", "Calça", "Cama"});
+            "Bicicleta", "Bolsa", "Brinco", "Bruxa", "Cabelo", "Cachorro", "Caixa", "Calça", "Cama", "Caminhão"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
         // just reading the cases

@@ -7788,5 +7788,248 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "kamiɲəw",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "paiɲaw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "kajəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "taminəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "tamiɲəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "kamiəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "eeəw",
+        "correct": false,
+        "phonemes": []
+    },
+    {
+        "word": "Caminhão",
+        "representation": "kamiãw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "kadəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "miɲəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "tamiəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "ɲəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ɲ",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "kaliməw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "ləw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "kamiɲəo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Caminhão",
+        "representation": "pamiɲəu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
     }
 ]
