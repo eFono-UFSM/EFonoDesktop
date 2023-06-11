@@ -4909,5 +4909,487 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bɾĩnko",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bɾĩnku",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "blĩnku",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "bl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bĩnko",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bĩnku",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "blĩnko",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "bl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bĩko",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bĩnkiɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bĩku",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "piko",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "pɾĩnko",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "pɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bĩbos",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "pĩnko",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bĩnto",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bĩntu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bilĩnko",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "biku",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bɾĩnkus",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bĩto",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bɾĩnto",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bĩɾinku",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "kĩnko",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "bino",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "pɾĩnku",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "pɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "pĩntu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Brinco",
+        "representation": "pɾĩku",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "pɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
     }
 ]
