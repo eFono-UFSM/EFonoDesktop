@@ -30,7 +30,7 @@ public class Util {
      * Special characters found on transcriptions.
      */
     public static final String[] SPECIAL = new String[]{"\\[", "\\'", "\"", "\\]", "\\.", "\\'", "\\‘", "\\’", "\\ʼ",
-        "\\ø"};
+        "\\´", "\\ø"};
 
     /**
      * Read all the transcriptions from file. Each line must contains a single transcription.
@@ -179,8 +179,9 @@ public class Util {
                         next.setPosition(Phoneme.POSITION.OM);
                     } else {
                         /**
-                         * Checks if the phoneme is a valid consonant cluster. If it's not, then split in two (and only two) Medial Onsets.
-                         * 
+                         * Checks if the phoneme is a valid consonant cluster. If it's not, then split in two (and only
+                         * two) Medial Onsets.
+                         *
                          * Case of bisʃkɛtə, which /ʃ/ is a Medial Onset and not a consonant cluster.
                          */
                         if (next.getPhoneme().length() == 2
