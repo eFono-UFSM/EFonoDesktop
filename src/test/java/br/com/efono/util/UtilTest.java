@@ -422,6 +422,8 @@ public class UtilTest {
             new Phoneme("tl", Phoneme.POSITION.OCME),
             new Phoneme("k", Phoneme.POSITION.OM)});
         assertArrayEquals(expected.toArray(), result.toArray());
+        
+        // TODO: bisʃkɛtə:  /ʃ/ som de ch  https://pt.wikipedia.org/wiki/Fonema
 
         System.out.println("testGetConsonantPhonemes: tests with all correct known cases");
         File allCorrect = new File(UtilTest.class.getResource("/data/allCorrect.json").toURI());

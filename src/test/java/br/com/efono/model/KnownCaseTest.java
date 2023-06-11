@@ -191,7 +191,8 @@ public class KnownCaseTest {
         Map<String, List<KnownCase>> mapCases = new LinkedHashMap<>();// all the cases are saved for each word, for now...
 
         // vou testar palavra por palavra e ir avançando pra ver o resultado
-        List<String> enableWords = Arrays.asList(new String[]{"Anel", "Barriga", "Batom", "Bebê", "Beijo", "Biblioteca"});
+        List<String> enableWords = Arrays.asList(new String[]{"Anel", "Barriga", "Batom", "Bebê", "Beijo", "Biblioteca", 
+            "Bicicleta"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
         // just reading the cases

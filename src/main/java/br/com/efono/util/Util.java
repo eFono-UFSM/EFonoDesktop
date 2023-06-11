@@ -179,6 +179,11 @@ public class Util {
                         next.setPosition(Phoneme.POSITION.OM);
                     } else {
                         // TODO: nesse caso, precisaria avaliar se o foneme é um encontro consonantal válido, se não for, precisaria rever o algoritmo
+                        
+                        // TODO: aqui seria o caso de /ʃ/ em bisʃkɛtə, esta identificando ʃk como um OCME
+                        /**
+                         * se não for valido, teria que separar os dois em OM
+                         */
                         next.setPosition(Phoneme.POSITION.OCME);
                     }
 
