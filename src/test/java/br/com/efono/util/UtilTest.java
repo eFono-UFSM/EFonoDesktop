@@ -412,6 +412,8 @@ public class UtilTest {
             new Phoneme("n", Phoneme.POSITION.OI),
             new Phoneme("v", Phoneme.POSITION.OM)});
         assertArrayEquals(expected.toArray(), result.toArray());
+        
+        // TODO: blibliotlɛkə
 
         System.out.println("testGetConsonantPhonemes: tests with all correct known cases");
         File allCorrect = new File(UtilTest.class.getResource("/data/allCorrect.json").toURI());
