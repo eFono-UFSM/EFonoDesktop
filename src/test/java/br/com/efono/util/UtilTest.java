@@ -435,7 +435,7 @@ public class UtilTest {
             new Phoneme("t", Phoneme.POSITION.OM)});
         assertArrayEquals(expected.toArray(), result.toArray());
 
-        transcription = "[si’kɾʧi]"; // si’kɾʧi
+        transcription = "[si’kɾʧi]"; // sikɾʧi
         System.out.println("testGetConsonantPhonemes: test transcription: " + transcription);
         result = Util.getConsonantPhonemes(transcription);
         expected = Arrays.asList(new Phoneme[]{
