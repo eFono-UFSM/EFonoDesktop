@@ -13080,5 +13080,417 @@
                 "position": "CF"
             }
         ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kɾus",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kus",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kujs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kɾujs",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kɾuziɲə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "klus",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "ku",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kuj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kuɾus",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kuzi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "tus",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kui",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kuʃ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "lus",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "pus",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "bus",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "bɾus",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kɾuʃ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kɾuis",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "bɾʊs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "bɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kɾuza",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kuze",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "tɾus",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "tɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kɾuzis",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kɾu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "kluʃ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "ius",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Cruz",
+        "representation": "tujs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
     }
 ]
