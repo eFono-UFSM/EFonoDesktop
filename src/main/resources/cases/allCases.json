@@ -15075,5 +15075,1494 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskɾeveɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskɾeveɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskeve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskeveɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskeveɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskeve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskɾeve",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskɾeve",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "keve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "pakə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "ikeve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskendu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "ekeve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskevɾe",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "vɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskɾevẽndu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "ekevendu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "keveɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskevẽndu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "ikevẽndu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskleve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskeɾve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskleve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskɾeveχ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "χ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "kejendu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "teve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskɾevẽndo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskevɾe",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "vɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eseve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskɾefe",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "ispebe",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskɾevendo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "kɾeveɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "ikefe",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "es",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iteve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskɾezeɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "esteve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "istevendu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "isteve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "isteveɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskefe",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskɾevɾe",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "vɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "ikleve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskevẽndu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "kefe",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eʃkɾeve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskepe",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "tesẽndu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "kize",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskevendu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskɾefe",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "ikɾede",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "ikeje",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskɾeze",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskevendo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskeze",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "ikebendu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskevendu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskweve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "istɾeve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eʃkeve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iskefendu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eʃkleve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eʃkleveɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "iʃkɾeve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "feve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "veju",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "kese",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "ze",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eʃkɾevẽndu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eʃkɾeveɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "ekevẽnu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "kebendu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "eskɾefeɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Escrever",
+        "representation": "kɾebe",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
     }
 ]
