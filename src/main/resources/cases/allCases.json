@@ -11273,5 +11273,396 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kɔbɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kɔbə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "klɔba",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kɔblə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "klɔbla",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "bl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "koɾɔbə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kɔpə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kɾɔba",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kɔɾbə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "tɔbə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kɔpɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kɾɔbə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "tɔbɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "taba",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "tabə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kolɔbə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kɔbɾɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kɔə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "pɔbə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "pɔpə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "tɔblə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kɔbaɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kɔkə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kɔpɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Cobra",
+        "representation": "kɾɔbɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "bɾ",
+                "position": "OCME"
+            }
+        ]
     }
 ]
