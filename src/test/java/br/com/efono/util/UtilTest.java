@@ -435,10 +435,17 @@ public class UtilTest {
             new Phoneme("t", Phoneme.POSITION.OM)});
         assertArrayEquals(expected.toArray(), result.toArray());
 
+        transcription = "[si’kɾʧi]"; // si’kɾʧi
+        System.out.println("testGetConsonantPhonemes: test transcription: " + transcription);
+        result = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("s", Phoneme.POSITION.OI),
+            new Phoneme("kɾ", Phoneme.POSITION.OCME),
+            new Phoneme("ʧ", Phoneme.POSITION.OM)});
+        assertArrayEquals(expected.toArray(), result.toArray());
+
         // TODO: kazinhə (transcrição errada vinda do banco, esse nh deveria ser o /ɲ/
         // a classe KnownCase ou Phoneme deveriam suportar esse tipo de erro vindo do usuário
-        
-        
         System.out.println("testGetConsonantPhonemes: tests with all correct known cases");
         File allCorrect = new File(UtilTest.class.getResource("/data/allCorrect.json").toURI());
         List<KnownCase> cases = KnownCase.loadFile(allCorrect);

@@ -163,39 +163,55 @@ public class Util {
                 } else if (Arrays.asList(CONSONANT_CLUSTERS).contains(phoneme)) {
                     list.add(new Phoneme(phoneme, Phoneme.POSITION.OCME));
                 } else {
-                    // the array as an inconsistensy. Treating it here...
-
-                    // always CM, because CF is at the end of the word.
-                    list.add(new Phoneme(phoneme.substring(0, 1), Phoneme.POSITION.CM));
-
-                    Phoneme next = new Phoneme(phoneme.substring(1));
+                    // the array has an inconsistensy. Treating it here...
 
                     /**
-                     * The next phoneme can be only OM/OCME, because OI and OCME must be at the beginning of the word,
-                     * and codas it's not the case (it was just read before).
+                     * some possibilities: ngʷ skɾ sʃk kɾʧ.
                      */
-                    if (next.getPhoneme().length() == 1
-                            || Arrays.asList(Phoneme.LABIALIZATION).contains(next.getPhoneme())) {
-                        next.setPosition(Phoneme.POSITION.OM);
-                    } else {
-                        /**
-                         * Checks if the phoneme is a valid consonant cluster. If it's not, then split in two (and only
-                         * two) Medial Onsets.
-                         *
-                         * Case of bisʃkɛtə, which /ʃ/ is a Medial Onset and not a consonant cluster.
-                         */
-                        if (next.getPhoneme().length() == 2
-                                && !Arrays.asList(Phoneme.CONSONANT_CLUSTERS).contains(next.getPhoneme())) {
-                            Arrays.asList(next.getPhoneme().split("")).forEach(phon -> {
-                                list.add(new Phoneme(phon, Phoneme.POSITION.OM));
-                            });
-                            return list.toArray(new Phoneme[list.size()]);
+                    if (phoneme.length() == 3) {
+                        // treating kɾʧ: consonant cluster at the beggining: si’kɾʧi.
+                        for (String cluster : CONSONANT_CLUSTERS) {
+                            if (phoneme.startsWith(cluster)) {
+                                list.add(new Phoneme(cluster, Phoneme.POSITION.OCME));
+                                list.add(new Phoneme(phoneme.substring(cluster.length()), Phoneme.POSITION.OM));
+                                phoneme = "";
+                            }
                         }
-
-                        next.setPosition(Phoneme.POSITION.OCME);
                     }
 
-                    list.add(next);
+                    if (phoneme.length() > 0) {
+                        // always CM, because CF is at the end of the word.
+                        list.add(new Phoneme(phoneme.substring(0, 1), Phoneme.POSITION.CM));
+
+                        Phoneme next = new Phoneme(phoneme.substring(1));
+
+                        /**
+                         * The next phoneme can be only OM/OCME, because OI and OCME must be at the beginning of the
+                         * word, and codas it's not the case (it was just read before).
+                         */
+                        if (next.getPhoneme().length() == 1
+                                || Arrays.asList(Phoneme.LABIALIZATION).contains(next.getPhoneme())) {
+                            next.setPosition(Phoneme.POSITION.OM);
+                        } else {
+                            /**
+                             * Checks if the phoneme is a valid consonant cluster. If it's not, then split in two (and
+                             * only two) Medial Onsets.
+                             *
+                             * Case of bisʃkɛtə, which /ʃ/ is a Medial Onset and not a consonant cluster.
+                             */
+                            if (next.getPhoneme().length() == 2
+                                    && !Arrays.asList(Phoneme.CONSONANT_CLUSTERS).contains(next.getPhoneme())) {
+                                Arrays.asList(next.getPhoneme().split("")).forEach(phon -> {
+                                    list.add(new Phoneme(phon, Phoneme.POSITION.OM));
+                                });
+                                return list.toArray(new Phoneme[list.size()]);
+                            }
+
+                            next.setPosition(Phoneme.POSITION.OCME);
+                        }
+
+                        list.add(next);
+                    }
                 }
             }
         }
