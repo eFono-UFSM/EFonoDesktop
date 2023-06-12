@@ -14460,5 +14460,620 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dɾagəw",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "dɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dagχəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gχ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dagχəw̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gχ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dagəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "ʤagɾəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʤ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dagɾəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dagaw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dagɾaw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "nagaw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "takəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "nagəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dlagəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "dl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dɾagɾəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "dɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "gaɾgəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "daɾgəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "tɾagãw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "tɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "gagəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "nanəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "lagɾãw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "kakəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "tagəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "tɾakəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "tɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "pagəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "gadəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "tɾagəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "tɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dakəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dadəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "kagəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dalagəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "tagəu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "gɾagəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "tatəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "adaw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dlagləw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "dl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "gl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dɾadəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "dɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dagləw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "lagəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "gadãw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "daəw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Dragão",
+        "representation": "dɾakəw̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "dɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
     }
 ]
