@@ -16564,5 +16564,649 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ispeʎu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "espeʎu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ispeʎo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "espeʎo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "peju",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ipeʎu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "espelu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ispelo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ispelu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ipelo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ipeʎo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ipejo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "peʎu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "espeɾu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "pelu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ispejo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ipeju",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ipelu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ifeʎo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ispeju",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "peʎo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "pelo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "epeio",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "epeʎo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "esteʎo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "espejo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "iʃpeʎo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "pejo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "pedu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "iepeju",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "espelo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "eʃpeʎo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ʤipeʎu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʤ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "epe",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "iʃpelo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "ispeɾo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "eʃpeʎu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "iʃpeʎu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "espeju",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Espelho",
+        "representation": "eʃpelu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
     }
 ]
