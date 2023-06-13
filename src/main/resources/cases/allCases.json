@@ -18470,5 +18470,511 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Flor",
+        "representation": "floɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "fl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "fɾoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "foɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "fo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "foj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "fɾo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "flo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fl",
+                "position": "OCI"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "foɾziɲa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "foli",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "polis",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "koɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "floziɲa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "floɾziɲə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "fl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "sloɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "floj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fl",
+                "position": "OCI"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "fɾoɾes",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "flois",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "poj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "ʃoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "dasoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "so",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "fojziɲa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "toɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "ʃo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "floɾes",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "fol",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "soɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "po",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "fɾol",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "l",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "fɾoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "ɾoza",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ɾ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "soj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "floχ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Flor",
+        "representation": "fojs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
     }
 ]

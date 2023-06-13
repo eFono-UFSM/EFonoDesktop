@@ -29,13 +29,36 @@ public class KnownCaseTest {
      * @throws IOException
      */
     @Test(expected = IOException.class)
-    public void test() throws URISyntaxException, IOException {
-        System.out.println("testReadTranscriptions - invalid path - FileNotFoundException");
+    public void testLoadFileException() throws URISyntaxException, IOException {
+        System.out.println("testLoadFile - invalid path - FileNotFoundException");
 
         File resDir = new File(UtilTest.class.getResource("/data").toURI());
         File invalid = new File(resDir, "invalid.json");
         List<KnownCase> cases = KnownCase.loadFile(invalid);
         assertTrue(cases.isEmpty());
+    }
+
+    /**
+     * Tests KnownCase constructor for wrong cases inserted by the user.
+     *
+     * @throws URISyntaxException
+     * @throws IOException
+     */
+    @Test
+    public void testConstructorWithJSON() throws URISyntaxException, IOException {
+        /**
+         * kazinhə (wrong transcription from database). The /nh/ should be replaced by /ɲ/. The class KnownCase should
+         * deal with that type of mistake.
+         */
+        System.out.println("testConstructorWithJSON - tests for wrong cases inserted by the user: "
+                + "/nh/ in transcription should be replaced by /ɲ/");
+        File allCorrect = new File(UtilTest.class.getResource("/data/specialCases.json").toURI());
+        List<KnownCase> cases = KnownCase.loadFile(allCorrect);
+        assertEquals(3, cases.size());
+
+        assertEquals("floziɲa", cases.get(0).getRepresentation());
+        assertEquals("kaziɲə", cases.get(1).getRepresentation());
+        assertEquals("anɛwziɲu", cases.get(2).getRepresentation()); // all normal
     }
 
     /**
@@ -191,10 +214,10 @@ public class KnownCaseTest {
         Map<String, List<KnownCase>> mapCases = new LinkedHashMap<>();// all the cases are saved for each word, for now...
 
         // vou testar palavra por palavra e ir avançando pra ver o resultado
-        List<String> enableWords = Arrays.asList(new String[]{"Anel", "Barriga", "Batom", "Bebê", "Beijo", "Biblioteca", 
-            "Bicicleta", "Bolsa", "Brinco", "Bruxa", "Cabelo", "Cachorro", "Caixa", "Calça", "Cama", "Caminhão", "Casa", 
-            "Cavalo", "Chapéu", "Chiclete", "Chifre", "Chinelo", "Cobra", "Coelho", "Colher", "Cruz", "Dado", "Dedo", 
-            "Dente", "Dragão", "Escrever", "Espelho", "Estrela", "Faca"});
+        List<String> enableWords = Arrays.asList(new String[]{"Anel", "Barriga", "Batom", "Bebê", "Beijo", "Biblioteca",
+            "Bicicleta", "Bolsa", "Brinco", "Bruxa", "Cabelo", "Cachorro", "Caixa", "Calça", "Cama", "Caminhão", "Casa",
+            "Cavalo", "Chapéu", "Chiclete", "Chifre", "Chinelo", "Cobra", "Coelho", "Colher", "Cruz", "Dado", "Dedo",
+            "Dente", "Dragão", "Escrever", "Espelho", "Estrela", "Faca", "Flor"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
         // just reading the cases

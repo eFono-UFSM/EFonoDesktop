@@ -1,0 +1,17 @@
+[
+    {
+        "word": "Flor",
+        "representation": "flozinha",
+        "correct": false
+    },
+    {
+        "word": "Casa",
+        "representation": "[‘kazinhə]",
+        "correct": true
+    },
+    {
+        "word": "Anel",
+        "representation": "anɛwziɲu",
+        "correct": true
+    }
+]

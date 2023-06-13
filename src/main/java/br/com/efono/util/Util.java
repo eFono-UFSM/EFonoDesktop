@@ -13,7 +13,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.lang3.StringEscapeUtils;
@@ -31,6 +34,17 @@ public class Util {
      */
     public static final String[] SPECIAL = new String[]{"\\[", "\\'", "\"", "\\]", "\\.", "\\'", "\\‘", "\\’", "\\ʼ",
         "\\´", "\\ø"};
+
+    /**
+     * Map of equivalent phonemes. The key phoneme should be replaced by the value when found in a transcription.
+     * Usually, this happens when there is a mistake from the user at the time of doing the transcription, and they can
+     * insert the 'key' phoneme instead of the 'value'.
+     */
+    public static final Map<String, String> EQUIVALENT_PHONEMES = new HashMap<>();
+
+    static {
+        EQUIVALENT_PHONEMES.put("nh", "ɲ");
+    }
 
     /**
      * Read all the transcriptions from file. Each line must contains a single transcription.
@@ -81,6 +95,13 @@ public class Util {
             for (String special : SPECIAL) {
                 clean = clean.replaceAll(special, "");
             }
+
+            Iterator<Map.Entry<String, String>> it = EQUIVALENT_PHONEMES.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<String, String> next = it.next();
+                clean = clean.replaceAll(next.getKey(), next.getValue());
+            }
+
             return clean;
         }
         return "";

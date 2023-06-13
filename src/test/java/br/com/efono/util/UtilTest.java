@@ -149,6 +149,9 @@ public class UtilTest {
          */
         assertEquals("baχiguiɲə", Util.cleanTranscription(" [ba.χi.'gui .   ɲ    ə]   "));
         assertEquals("anɛwziɲu", Util.cleanTranscription("anɛwziɲu"));
+        
+        System.out.println("testCleanTranscription - /nh/ in the given transcription: should be replaced by /ɲ/");
+        assertEquals("kaziɲə", Util.cleanTranscription("[‘kazinhə]"));
 
         File file = new File(UtilTest.class.getResource("/data/transcriptions.txt").toURI());
         System.out.println("testCleanTranscription - reading from file");
@@ -444,8 +447,6 @@ public class UtilTest {
             new Phoneme("ʧ", Phoneme.POSITION.OM)});
         assertArrayEquals(expected.toArray(), result.toArray());
 
-        // TODO: kazinhə (transcrição errada vinda do banco, esse nh deveria ser o /ɲ/
-        // a classe KnownCase ou Phoneme deveriam suportar esse tipo de erro vindo do usuário
         System.out.println("testGetConsonantPhonemes: tests with all correct known cases");
         File allCorrect = new File(UtilTest.class.getResource("/data/allCorrect.json").toURI());
         List<KnownCase> cases = KnownCase.loadFile(allCorrect);
