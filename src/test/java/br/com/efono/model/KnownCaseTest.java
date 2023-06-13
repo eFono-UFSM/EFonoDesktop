@@ -62,6 +62,33 @@ public class KnownCaseTest {
     }
 
     /**
+     * Tests {@link KnownCase#KnownCase(java.lang.String, java.lang.String, boolean)} with /nh/ phoneme in the given
+     * transcription.
+     */
+    @Test
+    public void testConstructorWithTreat() {
+        System.out.println("testConstructorWithTreat");
+
+        KnownCase instance = new KnownCase("Flor", "floziɲa", false);
+        assertEquals("floziɲa", instance.getRepresentation());
+    }
+    
+    /**
+     * Tests {@link KnownCase#KnownCase(KnownCase)}.
+     */
+    @Test
+    public void testConstructorCopy() {
+        System.out.println("testConstructorCopy");
+
+        KnownCase instance = new KnownCase("Flor", "flozinha", false);
+        assertEquals("floziɲa", instance.getRepresentation());
+        
+        KnownCase copy = new KnownCase(instance);
+        assertTrue(instance.equals(copy));
+        assertEquals("floziɲa", copy.getRepresentation());        
+    }
+
+    /**
      * Tests construct for null word.
      */
     @Test(expected = NullPointerException.class)

@@ -65,6 +65,15 @@ public class KnownCase {
     }
 
     /**
+     * Creates a copy of the given case.
+     *
+     * @param source Source known case.
+     */
+    public KnownCase(final KnownCase source) {
+        this(source.getWord(), source.getRepresentation(), source.isCorrect(), new ArrayList<>(source.getPhonemes()));
+    }
+
+    /**
      * Gets the target word of this case.
      *
      * @return The word.
@@ -149,8 +158,17 @@ public class KnownCase {
     public static List<KnownCase> loadFile(final File file) throws IOException {
         if (file != null && file.getAbsolutePath().endsWith(".json")) {
             ObjectMapper objectMapper = new ObjectMapper();
-            return objectMapper.readValue(file, new TypeReference<List<KnownCase>>() {
+            /**
+             * Deserialization is not treating fields like representation with the {@link Util#cleanTranscription()}
+             * method. So we create a temp list here and then treat the objects properly.
+             */
+            List<KnownCase> readValue = objectMapper.readValue(file, new TypeReference<List<KnownCase>>() {
             });
+
+            List<KnownCase> treatedCases = new ArrayList<>();
+            readValue.forEach(val -> treatedCases.add(new KnownCase(val)));
+
+            return treatedCases;
         }
         return Collections.emptyList();
     }
