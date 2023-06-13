@@ -17208,5 +17208,1012 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estɾelə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "istɾelə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "istelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "esteχɐ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "istlelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "itɾelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "telə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "itelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "isteliɲa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "isteɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estɾeliɲə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "etelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "esteliɲə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "isteɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "istejə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "tejə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "itejə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "isteliɲə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estɾeə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estɾejə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estlelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "isteɾlə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "ekelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "eskelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estwelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "istela",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "teə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "istɾeliɲə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "eʃtɾelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "iteliɲa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estɾeɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estela",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "eʃtlelɐ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "isteə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "eskɾelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estleɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "istalə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "esteɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estɾeda",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "iteiɲə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "istewə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "iteliɲə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "eʃtelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "isteɾelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "iʃtɾelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "ʧejə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "iskelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estlela",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estejə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "iteə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "esteɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "eʃtɾela",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "isejə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estea",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "itlelə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "tl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Estrela",
+        "representation": "estleɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "tl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
     }
 ]
