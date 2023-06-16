@@ -19962,5 +19962,441 @@
                 "position": "OCME"
             }
         ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "fogo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "fogu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "fogʷeɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gʷ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "foku",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "fogʷejɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gʷ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "fodu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "fogʷeɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gʷ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "fogʷejə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gʷ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "pogo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "fogɛla",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "sogo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "fotu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "foko",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "fogʷela",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gʷ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "poku",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "fofu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "fogwela",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "togu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "ʃogu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "ʃou",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "sogu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "powo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "foʤu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʤ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "fodo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "fokʷeiɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "kʷ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "ogo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "kogu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fogo",
+        "representation": "pogu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
     }
 ]
