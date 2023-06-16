@@ -72,7 +72,7 @@ public class KnownCaseTest {
         KnownCase instance = new KnownCase("Flor", "floziɲa", false);
         assertEquals("floziɲa", instance.getRepresentation());
     }
-    
+
     /**
      * Tests {@link KnownCase#KnownCase(KnownCase)}.
      */
@@ -82,10 +82,10 @@ public class KnownCaseTest {
 
         KnownCase instance = new KnownCase("Flor", "flozinha", false);
         assertEquals("floziɲa", instance.getRepresentation());
-        
+
         KnownCase copy = new KnownCase(instance);
         assertTrue(instance.equals(copy));
-        assertEquals("floziɲa", copy.getRepresentation());        
+        assertEquals("floziɲa", copy.getRepresentation());
     }
 
     /**
@@ -244,7 +244,8 @@ public class KnownCaseTest {
         List<String> enableWords = Arrays.asList(new String[]{"Anel", "Barriga", "Batom", "Bebê", "Beijo", "Biblioteca",
             "Bicicleta", "Bolsa", "Brinco", "Bruxa", "Cabelo", "Cachorro", "Caixa", "Calça", "Cama", "Caminhão", "Casa",
             "Cavalo", "Chapéu", "Chiclete", "Chifre", "Chinelo", "Cobra", "Coelho", "Colher", "Cruz", "Dado", "Dedo",
-            "Dente", "Dragão", "Escrever", "Espelho", "Estrela", "Faca", "Flor", "Floresta", "Fogo", "Folha", "Fralda"});
+            "Dente", "Dragão", "Escrever", "Espelho", "Estrela", "Faca", "Flor", "Floresta", "Fogo", "Folha", "Fralda",
+            "Fruta"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
         // just reading the cases
