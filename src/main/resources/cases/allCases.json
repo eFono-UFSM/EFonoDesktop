@@ -24481,5 +24481,356 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Grama",
+        "representation": "gɾəmə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "gəmə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "χəmə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "kχamɐ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "gəɾmə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "gɾəməs",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "gləmə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "gɾəmiɲə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "kəmə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "gaɾma",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "kɾəmə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "dəmə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "təmə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "gɾəmədo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "bəndə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "bənə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "gəɾamə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "mənə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "dɾəmədo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "dɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "tɾəmədu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "tɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "m",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Grama",
+        "representation": "əɲə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
     }
 ]

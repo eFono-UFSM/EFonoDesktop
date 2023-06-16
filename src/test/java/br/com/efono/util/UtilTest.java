@@ -149,7 +149,7 @@ public class UtilTest {
          */
         assertEquals("baχiguiɲə", Util.cleanTranscription(" [ba.χi.'gui .   ɲ    ə]   "));
         assertEquals("anɛwziɲu", Util.cleanTranscription("anɛwziɲu"));
-        
+
         System.out.println("testCleanTranscription - /nh/ in the given transcription: should be replaced by /ɲ/");
         assertEquals("kaziɲə", Util.cleanTranscription("[‘kazinhə]"));
 
@@ -447,6 +447,7 @@ public class UtilTest {
             new Phoneme("ʧ", Phoneme.POSITION.OM)});
         assertArrayEquals(expected.toArray(), result.toArray());
 
+        // TODO: kχamɐ (grama) perguntar pra Marcia se /kχ/ é um encontro consonantal como /gχ/
         System.out.println("testGetConsonantPhonemes: tests with all correct known cases");
         File allCorrect = new File(UtilTest.class.getResource("/data/allCorrect.json").toURI());
         List<KnownCase> cases = KnownCase.loadFile(allCorrect);
