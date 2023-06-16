@@ -22205,5 +22205,811 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gaχfo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gaɾfu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gafu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gafo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gaɾfo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gajfu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gɾafo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gaɾfju",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gajsu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gajfo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "bafu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gɾafu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gawfu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gaw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "dafo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "kaɾfo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "tapu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "kafo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "bafo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gaɾso",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "dafu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "daɾfo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "taɾfu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gawfo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "kapo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gafɾu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "dajsu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gafjo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "sasu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gatu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gaʃu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gasu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "dajfu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "pajʃo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gaɾsu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gapu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gaχfu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "daɾfu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "galifo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "glasu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "taɾfo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gaso",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "kawfu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gaʃo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "kaɾfu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "kafu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "dasu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "tafo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "gaɾpo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Garfo",
+        "representation": "kajfu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
     }
 ]
