@@ -20715,5 +20715,679 @@
                 "position": "OI"
             }
         ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fɾawdə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fawdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fawʤiɲa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʤ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "flawdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fawʤiɲə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʤ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fɔwda",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "faɾdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fɾawdəs",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fɔda",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fɾawʤiɲa",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ʤ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fadə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fawdɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "dɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "padə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fawdəɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fawʤi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʤ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fɾawtə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fɾawdɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "dɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "pawdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fawtə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "flagə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fɾawgə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "sɾawdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fodə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "pawda",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "sɔdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fawdɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "dɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "tawdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "ʃatə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "ʒada",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "sawdəɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fɔdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fɔʃa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "patə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "sɔda",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "siɾawdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "χawdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "faɾawdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fawgə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "kadə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fɾawta",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "pɾawdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "pɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Fralda",
+        "representation": "fawdəs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
     }
 ]
