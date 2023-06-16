@@ -20398,5 +20398,322 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Folha",
+        "representation": "foʎə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "fojə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "folə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "foə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "tojə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "poʎə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "foɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "soʎə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "poʎas",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "sodə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "soɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "soə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "fo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "toʎə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "ʃojə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "ʃoja",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "pojə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "foʎiɲə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "soʎa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "foʎəs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʎ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "sojə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "foɾja",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Folha",
+        "representation": "poə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            }
+        ]
     }
 ]
