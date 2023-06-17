@@ -24,8 +24,8 @@ public class Phoneme {
     /**
      * Consonant clusters.
      */
-    public static final String[] CONSONANT_CLUSTERS = new String[]{"pɾ", "pl", "bɾ", "bl", "tɾ", "tl", "dl", "dɾ", "kɾ", 
-        "kl", "gɾ", "gχ", "gl", "fɾ", "fl", "vɾ", "vl"};
+    public static final String[] CONSONANT_CLUSTERS = new String[]{"pɾ", "pχ", "pl", "bɾ", "bχ", "bl", "tɾ", "tχ", "tl",
+        "dl", "dɾ", "dχ", "kɾ", "kχ", "kl", "gɾ", "gχ", "gl", "fɾ", "fχ", "fl", "vɾ", "vχ", "vl"};
 
     /**
      * Phonemes with labialization: https://pt.wikipedia.org/wiki/Labializa%C3%A7%C3%A3o.

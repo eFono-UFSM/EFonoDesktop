@@ -245,7 +245,7 @@ public class KnownCaseTest {
             "Bicicleta", "Bolsa", "Brinco", "Bruxa", "Cabelo", "Cachorro", "Caixa", "Calça", "Cama", "Caminhão", "Casa",
             "Cavalo", "Chapéu", "Chiclete", "Chifre", "Chinelo", "Cobra", "Coelho", "Colher", "Cruz", "Dado", "Dedo",
             "Dente", "Dragão", "Escrever", "Espelho", "Estrela", "Faca", "Flor", "Floresta", "Fogo", "Folha", "Fralda",
-            "Fruta", "Galinha", "Garfo", "Gato", "Girafa", "Grama", "Gritar"});
+            "Fruta", "Galinha", "Garfo", "Gato", "Girafa", "Grama", "Gritar", "Igreja"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
         // just reading the cases
@@ -283,6 +283,7 @@ public class KnownCaseTest {
          * diferença nos casos anteriores já validados
          */
         File resDir = new File(KnownCaseTest.class.getResource("/cases").toURI());
+        // TODO: esta enviando para o target/, tem como enviar para o sources?
         File outAll = new File(resDir, "allCases.json");
 
         List<KnownCase> allCases = new LinkedList<>();

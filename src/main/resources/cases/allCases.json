@@ -24533,12 +24533,8 @@
         "correct": false,
         "phonemes": [
             {
-                "phoneme": "k",
-                "position": "OI"
-            },
-            {
-                "phoneme": "χ",
-                "position": "OM"
+                "phoneme": "kχ",
+                "position": "OCI"
             },
             {
                 "phoneme": "m",
@@ -25583,6 +25579,770 @@
             },
             {
                 "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igɾeʒə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ikeʒə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ikχeʒa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kχ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igeʒə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igezə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igɾezə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "geʃa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ingɾeʒə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "geʒə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ĩngɾeʒə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "iglezə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "geza",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igleʒa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igleʒə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "gɾeʒə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "egɾeʒə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "gezə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "iɾgeʒə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igɾeʃə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "dekexa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "x",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ikeʃə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "idezə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ideʒə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ikesə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igesə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ikesa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ingeʒa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igelezə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "deʃə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igɾesa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igedə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igɾesə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "egɾeza",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ikɾesə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ideʤə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʤ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ĩngeʒə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igeʃə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igeʒa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "idɾeʒə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "dɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "zigeza",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "iklesə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "idɾezə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "dɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "igɾedə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "inkɾeʃə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "inkɾeʃa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ideza",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ikɾeʃə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Igreja",
+        "representation": "ikɾeʃʃɐ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʃ",
                 "position": "OM"
             }
         ]
