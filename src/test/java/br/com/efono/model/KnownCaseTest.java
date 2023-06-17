@@ -262,7 +262,7 @@ public class KnownCaseTest {
             "Bicicleta", "Bolsa", "Brinco", "Bruxa", "Cabelo", "Cachorro", "Caixa", "Calça", "Cama", "Caminhão", "Casa",
             "Cavalo", "Chapéu", "Chiclete", "Chifre", "Chinelo", "Cobra", "Coelho", "Colher", "Cruz", "Dado", "Dedo",
             "Dente", "Dragão", "Escrever", "Espelho", "Estrela", "Faca", "Flor", "Floresta", "Fogo", "Folha", "Fralda",
-            "Fruta", "Galinha", "Garfo", "Gato", "Girafa", "Grama", "Gritar", "Igreja"});
+            "Fruta", "Galinha", "Garfo", "Gato", "Girafa", "Grama", "Gritar", "Igreja", "Jacaré"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
         // just reading the cases
