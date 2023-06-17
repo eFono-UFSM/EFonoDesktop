@@ -224,6 +224,23 @@ public class KnownCaseTest {
     }
 
     /**
+     * Tests {@link KnownCase#buildKnownCases(File)}.
+     *
+     * @throws java.net.URISyntaxException
+     */
+    @Test
+    public void testBuildKnownCases() throws URISyntaxException {
+        System.out.println("testBuildKnownCases - .csv file containing valid and invalid cases");
+        File file = new File(UtilTest.class.getResource("/data/testBuildCases.csv").toURI());
+
+        List<KnownCase> list = KnownCase.buildKnownCases(file);
+        assertEquals(2, list.size());
+        
+        assertEquals("Igreja", list.get(0).getWord());
+        assertEquals("Gritar", list.get(1).getWord());
+    }
+
+    /**
      * Tests {@link KnownCase#saveKnownCases(List, File)}.
      *
      * @throws java.net.URISyntaxException

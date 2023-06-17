@@ -60,6 +60,9 @@ public class KnownCase {
     public KnownCase(final String word, final String representation, boolean correct, final List<Phoneme> phonemes) {
         this.word = Objects.requireNonNull(word);
         this.representation = Util.cleanTranscription(Objects.requireNonNull(representation));
+        if (this.representation.contains("?")) {
+            throw new IllegalArgumentException("Non identified phonemes are now allowed in a Known Case.");
+        }
         this.correct = correct;
         this.phonemes = Objects.requireNonNull(phonemes);
     }
@@ -186,7 +189,11 @@ public class KnownCase {
             List<String[]> csv = FileUtils.readCSV(file, ",");
             for (String[] line : csv) {
                 // word,transcription,correct
-                list.add(new KnownCase(line[0], line[1], "1".equals(line[2])));
+                try {
+                    list.add(new KnownCase(line[0], line[1], "1".equals(line[2])));
+                } catch (final Exception e) {
+                    System.out.println("Failed on building new case: " + e);
+                }
             }
         }
 
