@@ -27733,5 +27733,535 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Letra",
+        "representation": "letɾəs",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "letləs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "letɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "letχɐ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tχ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "letəs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "etə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "letə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "letlə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "etəs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "letɾiɲas",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "letiɲas",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "ɾetɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ɾ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "lekə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "letalə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "letɾəʃ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "tetəs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "lekɾəs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "leʧiɲa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "etas",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "jetɾəs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "j",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "wetɾəs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "w",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "jetə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "j",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "jetas",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "j",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "letɾas",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "letaɾəs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "lekəs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "ɾetɾəs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ɾ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "le",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "letsə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "CM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Letra",
+        "representation": "lestə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
     }
 ]

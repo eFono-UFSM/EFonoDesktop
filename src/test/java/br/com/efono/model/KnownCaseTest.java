@@ -235,7 +235,7 @@ public class KnownCaseTest {
 
         List<KnownCase> list = KnownCase.buildKnownCases(file);
         assertEquals(2, list.size());
-        
+
         assertEquals("Igreja", list.get(0).getWord());
         assertEquals("Gritar", list.get(1).getWord());
     }
@@ -262,16 +262,13 @@ public class KnownCaseTest {
             "Bicicleta", "Bolsa", "Brinco", "Bruxa", "Cabelo", "Cachorro", "Caixa", "Calça", "Cama", "Caminhão", "Casa",
             "Cavalo", "Chapéu", "Chiclete", "Chifre", "Chinelo", "Cobra", "Coelho", "Colher", "Cruz", "Dado", "Dedo",
             "Dente", "Dragão", "Escrever", "Espelho", "Estrela", "Faca", "Flor", "Floresta", "Fogo", "Folha", "Fralda",
-            "Fruta", "Galinha", "Garfo", "Gato", "Girafa", "Grama", "Gritar", "Igreja", "Jacaré", "Jornal", "Lápis"});
+            "Fruta", "Galinha", "Garfo", "Gato", "Girafa", "Grama", "Gritar", "Igreja", "Jacaré", "Jornal", "Lápis",
+            "Letra"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
-        
-        /**
-         * TODO: essas transcrições estão corretas?
-         * ʒoɾnal
-         * japis
-         * wapis
-         */
 
+        /**
+         * TODO: essas transcrições estão corretas? ʒoɾnal
+         */
         // just reading the cases
         for (KnownCase c : casesFromCSV) {
             if (enableWords.contains(c.getWord())) {
