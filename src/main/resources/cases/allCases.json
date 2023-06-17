@@ -27469,5 +27469,269 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "lapis",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "lapes",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "lapi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "laspi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "apis",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "japis",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "j",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "lape",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "api",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "tati",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "lapiʃ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "apiʃ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "lapidi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "wapis",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "w",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "aʧipe",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "ɾapis",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ɾ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Lápis",
+        "representation": "aʧi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
     }
 ]
