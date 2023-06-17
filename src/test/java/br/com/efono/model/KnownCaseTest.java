@@ -263,7 +263,7 @@ public class KnownCaseTest {
             "Cavalo", "Chapéu", "Chiclete", "Chifre", "Chinelo", "Cobra", "Coelho", "Colher", "Cruz", "Dado", "Dedo",
             "Dente", "Dragão", "Escrever", "Espelho", "Estrela", "Faca", "Flor", "Floresta", "Fogo", "Folha", "Fralda",
             "Fruta", "Galinha", "Garfo", "Gato", "Girafa", "Grama", "Gritar", "Igreja", "Jacaré", "Jornal", "Lápis",
-            "Letra"});
+            "Letra", "Língua"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
         /**

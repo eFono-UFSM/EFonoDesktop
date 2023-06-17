@@ -32,7 +32,7 @@ public class Phoneme {
      *
      * This array cannot contains more than 9 strings, because we use the index to treat transcriptions.
      */
-    public static final String[] LABIALIZATION = new String[]{"kʷ", "gʷ"};
+    public static final String[] LABIALIZATION = new String[]{"kʷ", "gʷ", "dʷ"};
 
     /**
      * All the possible phoneme positions at the word.
