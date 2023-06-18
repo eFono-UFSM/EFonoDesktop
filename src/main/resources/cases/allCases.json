@@ -32705,5 +32705,590 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "duvẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuvẽj̃",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuvẽj̃s",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuvi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "luvi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "luvẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuvis",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "uvi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuvẽs",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "luvẽj̃s",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuvĩ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "luvẽj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nubẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "uvẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nusẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuzẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nufẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nupẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "udj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuʤĩ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʤ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuiʃ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nui",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuzẽj̃s",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "luve",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "uva",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuvizis̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s̃",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nubĩ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "luzẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuis",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuvj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nusi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nufẽj̃ɛ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuves",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nuj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "uvej̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "uvẽj̃s",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "udẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Nuvem",
+        "representation": "nufi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
     }
 ]
