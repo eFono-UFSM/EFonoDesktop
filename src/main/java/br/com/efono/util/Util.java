@@ -136,7 +136,9 @@ public class Util {
     public static Phoneme getFinalCoda(final String transcription) {
         String clean = cleanTranscription(transcription);
         for (String sv : SEMI_VOWELS) {
-            clean = clean.replaceAll(sv, "");
+            if (clean.endsWith(sv)) {
+                return null;
+            }
         }
 
         String phoneme = clean.substring(clean.length() - 1);
