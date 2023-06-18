@@ -33290,5 +33290,712 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasaɾiɲo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasaɾiɲu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasaɾo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasaliɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasaɾu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasaliɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasaiɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasaiɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "kɔbə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "paʃaliɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasalu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasalo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "paʃaĩɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasao",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pataliɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasajo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "paʃaɾiɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasaχiɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasajdu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "taʤiɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʤ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasagiɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pataiɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "paʃaiɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasau",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "piiɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "paʃaliɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "kakaiɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasaw̃iɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasawo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "paʃaiɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "pasaliɲuɪ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "paʃaɾiɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "aʧiɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "iɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "paʃaɾo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Passarinho",
+        "representation": "aiɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
     }
 ]
