@@ -29229,5 +29229,761 @@
                 "position": "OCME"
             }
         ]
+    },
+    {
+        "word": "Magro",
+        "representation": "maχgu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "magɾu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "magɾiɲu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "magu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "magχu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gχ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "magɾiɲo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "magiɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "magɾo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "maɾagu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "maigu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "mago",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "magliɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "mɾagu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "maɾago",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "maɾgo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "maga",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "magiɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "maɾgu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "mlago",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "maguiɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "maglo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "maku",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "maguiɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "magɾɛlo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "ado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "maɾgiɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "magɾɛlu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "makɾo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "mabo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "madu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "matu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "makiɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "madiɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "maɾu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "mado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "makɾu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "kɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "mɾago",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "makjɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "madɾo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "dɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "maglu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "magoɾo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "magliɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "masu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Magro",
+        "representation": "mɾagɾo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            }
+        ]
     }
 ]
