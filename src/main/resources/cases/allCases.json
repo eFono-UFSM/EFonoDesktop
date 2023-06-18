@@ -28850,5 +28850,384 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Livro",
+        "representation": "livɾu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "vɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "livɾo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "vɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "livo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "livu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "ivo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "livlu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "vl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "livɾos",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "vɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "s",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "ivu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "lifɾo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "ɾibo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ɾ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "liɾvo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "v",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "lifo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "libu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "idu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "izu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "lifɾu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "ifu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "lidu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "ijo",
+        "correct": false,
+        "phonemes": []
+    },
+    {
+        "word": "Livro",
+        "representation": "liju",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "itu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "ifo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "lizu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "ipo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "ivɾo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "vɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "lilo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "liɾo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Livro",
+        "representation": "libɾo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bɾ",
+                "position": "OCME"
+            }
+        ]
     }
 ]
