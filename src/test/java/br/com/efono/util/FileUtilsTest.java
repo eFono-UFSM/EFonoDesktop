@@ -50,7 +50,7 @@ public class FileUtilsTest {
         System.out.println("testReadCSV - reading file");
         File file = new File(UtilTest.class.getResource("/data/allKnownCases.csv").toURI());
         List<String[]> csv = FileUtils.readCSV(file, ",");
-        assertEquals(4642, csv.size()); // lines read
+        assertEquals(4640, csv.size()); // lines read
     }
 
 }

@@ -30,7 +30,10 @@ public class PhonemeTest {
          * {@link Util#getConsonantPhonemes}.
          */
         System.out.println("testIntegrity - test for array length");
-        assertTrue(Phoneme.LABIALIZATION.length <= 9);
+        /**
+         * Needs to be less than 10, because then the index in the list with the two arrays will go until 9.
+         */
+        assertTrue(Phoneme.SPECIAL_CONSONANTS.length + Phoneme.LABIALIZATION.length <= 10);
     }
 
     /**

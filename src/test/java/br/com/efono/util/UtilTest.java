@@ -57,17 +57,17 @@ public class UtilTest {
     }
 
     /**
-     * Tests for {@link Util#replaceLabialization(String)}.
+     * Tests for {@link Util#replaceSpecialPhonemes(String)}.
      */
     @Test
-    public void testLabialization() {
+    public void testReplaceSpecialPhonemes() {
         // What is labialization? https://pt.wikipedia.org/wiki/Labializa%C3%A7%C3%A3o
         System.out.println("testLabialization - null parameter");
-        assertNull(Util.replaceLabialization(null));
+        assertNull(Util.replaceSpecialPhonemes(null));
 
         System.out.println("testLabialization - empty parameter");
-        assertTrue(Util.replaceLabialization("").isBlank());
-        assertTrue(Util.replaceLabialization("  ").isBlank());
+        assertTrue(Util.replaceSpecialPhonemes("").isBlank());
+        assertTrue(Util.replaceSpecialPhonemes("  ").isBlank());
 
         String transcription = "['lĩngʷa]";
         System.out.println("testLabialization - labialization of /g/: gʷ -> " + transcription);
@@ -75,7 +75,7 @@ public class UtilTest {
         int gIndex = Arrays.asList(Phoneme.LABIALIZATION).indexOf("gʷ");
         assertTrue(gIndex >= 0); // index exists
         String expected = "['lĩn" + gIndex + "a]";
-        assertEquals(expected, Util.replaceLabialization(transcription));
+        assertEquals(expected, Util.replaceSpecialPhonemes(transcription));
 
         // [lĩkʷɐ]
         transcription = "[lĩkʷɐ]";
@@ -84,13 +84,20 @@ public class UtilTest {
         int kIndex = Arrays.asList(Phoneme.LABIALIZATION).indexOf("kʷ");
         assertTrue(kIndex >= 0); // index exists
         expected = "[lĩ" + kIndex + "ɐ]";
-        assertEquals(expected, Util.replaceLabialization(transcription));
+        assertEquals(expected, Util.replaceSpecialPhonemes(transcription));
 
         // do not remove it
         transcription = "[lĩkʷɐ]['lĩngʷa][lĩkʷɐ]";
         System.out.println("testLabialization - just to make sure that all labialization phonemes are replaced: " + transcription);
         expected = "[lĩ" + kIndex + "ɐ]['lĩn" + gIndex + "a][lĩ" + kIndex + "ɐ]";
-        assertEquals(expected, Util.replaceLabialization(transcription));
+        assertEquals(expected, Util.replaceSpecialPhonemes(transcription));
+
+        // nuvizis̃
+        transcription = "['nu.vi.zis̃]";
+        int sIndex = Arrays.asList(Phoneme.SPECIAL_CONSONANTS).indexOf("s̃") + Phoneme.LABIALIZATION.length;
+        System.out.println("testLabialization - special phonemes must be replaced: " + transcription);
+        expected = "['nu.vi.zi" + sIndex + "]";
+        assertEquals(expected, Util.replaceSpecialPhonemes(transcription));
     }
 
     /**
@@ -453,6 +460,25 @@ public class UtilTest {
         expected = Arrays.asList(new Phoneme[]{
             new Phoneme("n", Phoneme.POSITION.OI),
             new Phoneme("v", Phoneme.POSITION.OM)});
+        assertArrayEquals(expected.toArray(), result.toArray());
+
+        transcription = "[’nu.ʤĩ]"; // nuvem -> nuʤĩ
+        System.out.println("testGetConsonantPhonemes: test transcription: " + transcription);
+        result = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("n", Phoneme.POSITION.OI),
+            new Phoneme("ʤ", Phoneme.POSITION.OM)});
+        assertArrayEquals(expected.toArray(), result.toArray());
+
+        // special consonant phoneme s̃
+        transcription = "['nu.vi.zis̃]";
+        System.out.println("testGetConsonantPhonemes: test transcription: " + transcription);
+        result = Util.getConsonantPhonemes(transcription);
+        expected = Arrays.asList(new Phoneme[]{
+            new Phoneme("n", Phoneme.POSITION.OI),
+            new Phoneme("v", Phoneme.POSITION.OM),
+            new Phoneme("z", Phoneme.POSITION.OM),
+            new Phoneme("s̃", Phoneme.POSITION.CF)});
         assertArrayEquals(expected.toArray(), result.toArray());
 
         System.out.println("testGetConsonantPhonemes: tests with all correct known cases");

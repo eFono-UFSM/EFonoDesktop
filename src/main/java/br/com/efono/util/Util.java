@@ -15,6 +15,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
@@ -135,16 +136,24 @@ public class Util {
      */
     public static Phoneme getFinalCoda(final String transcription) {
         String clean = cleanTranscription(transcription);
-        for (String sv : SEMI_VOWELS) {
-            if (clean.endsWith(sv)) {
+
+        List<String> vowelsAndSV = new ArrayList<>();
+        vowelsAndSV.addAll(Arrays.asList(SEMI_VOWELS));
+        vowelsAndSV.addAll(Arrays.asList(VOWELS));
+
+        for (String v : vowelsAndSV) {
+            if (clean.endsWith(v)) {
                 return null;
             }
         }
 
-        String phoneme = clean.substring(clean.length() - 1);
-        if (Arrays.asList(VOWELS).contains(phoneme)) {
-            return null;
+        for (String c : Phoneme.SPECIAL_CONSONANTS) {
+            if (clean.endsWith(c)) {
+                return new Phoneme(c, Phoneme.POSITION.CF);
+            }
         }
+
+        String phoneme = clean.substring(clean.length() - 1);
         // if the final phoneme of the transcription is a consonant, then it's a Final Coda
         // TODO: testar somente codas finais válidas? (s) e (r)? quais são?
         return new Phoneme(phoneme, Phoneme.POSITION.CF);
@@ -181,7 +190,8 @@ public class Util {
             phoneme = phoneme.trim();
             if (!phoneme.isBlank()) {
                 // TODO: ter uma lista de fonemas consonantais válidos? existe algum pacote com esses fonemas? ver Phon
-                if (phoneme.length() == 1 || Arrays.asList(Phoneme.LABIALIZATION).contains(phoneme)) {
+                if (phoneme.length() == 1 || Arrays.asList(Phoneme.LABIALIZATION).contains(phoneme)
+                        || Arrays.asList(Phoneme.SPECIAL_CONSONANTS).contains(phoneme)) {
                     list.add(new Phoneme(phoneme, Phoneme.POSITION.OM));
                 } else if (Arrays.asList(CONSONANT_CLUSTERS).contains(phoneme)) {
                     list.add(new Phoneme(phoneme, Phoneme.POSITION.OCME));
@@ -213,7 +223,8 @@ public class Util {
                          * word, and codas it's not the case (it was just read before).
                          */
                         if (next.getPhoneme().length() == 1
-                                || Arrays.asList(Phoneme.LABIALIZATION).contains(next.getPhoneme())) {
+                                || Arrays.asList(Phoneme.LABIALIZATION).contains(next.getPhoneme())
+                                || Arrays.asList(Phoneme.SPECIAL_CONSONANTS).contains(next.getPhoneme())) {
                             next.setPosition(Phoneme.POSITION.OM);
                         } else {
                             /**
@@ -242,17 +253,32 @@ public class Util {
     }
 
     /**
-     * Replace labialization representations in the given string as their indexes at {@link Phoneme#LABIALIZATIO}.
+     * Replace phonemes that are represented of more than 1 byte in the given string as indexes in a list with no more
+     * than 10 elements.
+     *
+     * See {@link Phoneme#LABIALIZATION} and {@link Phoneme#SPECIAL_CONSONANTS}.
      *
      * @param str The given string.
-     * @return The treat string without labialization representations.
+     * @return The treat string without special representations.
      */
-    public static String replaceLabialization(final String str) {
+    public static String replaceSpecialPhonemes(final String str) {
         if (str != null) {
             String clean = str;
 
+            List<String> list = new LinkedList<>();
+            list.addAll(Arrays.asList(Phoneme.LABIALIZATION));
+            list.addAll(Arrays.asList(Phoneme.SPECIAL_CONSONANTS));
+
+            if (list.size() > 9) {
+                /**
+                 * If this happens, then it's time to increase the algorithm. More than 9 digits we won't be able to
+                 * replace correctly again when translate the indexes with their representations.
+                 */
+                throw new UnsupportedOperationException("The total size of special phonemes must not be greater than 9.");
+            }
+
             int index = 0;
-            for (String p : Phoneme.LABIALIZATION) {
+            for (String p : list) {
                 clean = clean.replaceAll(p, Integer.toString(index++));
             }
             return clean;
@@ -297,15 +323,19 @@ public class Util {
             }
 
             // maps each labialization phoneme (if exists) to an index at Phoneme.LABIALIZATION
-            clean = replaceLabialization(clean);
+            clean = replaceSpecialPhonemes(clean);
 
             String[] split = clean.split(" ");
 
             if (split.length >= 1) {
+                List<String> special = new LinkedList<>();
+                special.addAll(Arrays.asList(Phoneme.LABIALIZATION));
+                special.addAll(Arrays.asList(Phoneme.SPECIAL_CONSONANTS));
+
                 for (String phoneme : split) {
                     // replaces all possible labialization phonemes. This array never must have an index greater than 9
-                    for (int i = 0; i < Phoneme.LABIALIZATION.length; i++) {
-                        phoneme = phoneme.replaceAll(i + "", Phoneme.LABIALIZATION[i]);
+                    for (int i = 0; i < special.size(); i++) {
+                        phoneme = phoneme.replaceAll(i + "", special.get(i));
                     }
                     list.addAll(Arrays.asList(checkPhoneme(phoneme)));
                 }

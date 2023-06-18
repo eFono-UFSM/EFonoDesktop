@@ -11,10 +11,11 @@ public class Phoneme {
 
     // TODO: deveria pegar essas constantes de algum pacote. Ver Phon.
     /**
-     * Vowel phonemes.
+     * Vowel phonemes. The vowel /ĩ/ needs to be before /i/ in this list, Because we replaced all vowels to spaces, and
+     * if we replace /i/ first then the /̃/ lasts alone.
      */
-    public static final String[] VOWELS = new String[]{"ã", "a", "ɐ", "ə", "e", "ɛ", "Ɛ", "ẽ", "i", "ɪ", "ĩ", "o", "ɔ",
-        "õ", "u", "ʊ", "ũ"};
+    public static final String[] VOWELS = new String[]{"ã", "a", "ɐ", "ə", "e", "ɛ", "Ɛ", "ẽ", "ĩ", "i", "ɪ", "ĩ",
+        "o", "ɔ", "õ", "u", "ʊ", "ũ"};
 
     /**
      * Semi vowels or Glide are sounds that are associated with another vowel. https://pt.wikipedia.org/wiki/Semivogal
@@ -33,6 +34,11 @@ public class Phoneme {
      * This array cannot contains more than 9 strings, because we use the index to treat transcriptions.
      */
     public static final String[] LABIALIZATION = new String[]{"kʷ", "gʷ", "dʷ"};
+
+    /**
+     * Consonants phonemes that are represented of more than 1 byte.
+     */
+    public static final String[] SPECIAL_CONSONANTS = new String[]{"s̃"};
 
     /**
      * All the possible phoneme positions at the word.

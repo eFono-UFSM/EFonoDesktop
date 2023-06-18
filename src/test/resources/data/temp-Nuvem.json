@@ -315,10 +315,6 @@
             {
                 "phoneme": "ʤ",
                 "position": "OM"
-            },
-            {
-                "phoneme": "̃",
-                "position": "CF"
             }
         ]
     },
@@ -411,11 +407,7 @@
                 "position": "OM"
             },
             {
-                "phoneme": "s",
-                "position": "OM"
-            },
-            {
-                "phoneme": "̃",
+                "phoneme": "s̃",
                 "position": "CF"
             }
         ]
@@ -432,10 +424,6 @@
             {
                 "phoneme": "b",
                 "position": "OM"
-            },
-            {
-                "phoneme": "̃",
-                "position": "CF"
             }
         ]
     },
