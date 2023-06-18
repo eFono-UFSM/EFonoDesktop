@@ -263,13 +263,13 @@ public class KnownCaseTest {
             "Cavalo", "Chapéu", "Chiclete", "Chifre", "Chinelo", "Cobra", "Coelho", "Colher", "Cruz", "Dado", "Dedo",
             "Dente", "Dragão", "Escrever", "Espelho", "Estrela", "Faca", "Flor", "Floresta", "Fogo", "Folha", "Fralda",
             "Fruta", "Galinha", "Garfo", "Gato", "Girafa", "Grama", "Gritar", "Igreja", "Jacaré", "Jornal", "Lápis",
-            "Letra", "Língua", "Livro", "Magro", "Mesa"});
+            "Letra", "Língua", "Livro", "Magro", "Mesa", "Microfone"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
         /**
          * TODO: essas transcrições estão corretas? ʒoɾnal
          * 
-         * conferir casos com as fonos: mɾago
+         * conferir casos com as fonos: mɾago, mɾikofoni
          */
         // just reading the cases
         for (KnownCase c : casesFromCSV) {
