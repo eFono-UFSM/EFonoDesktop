@@ -264,7 +264,7 @@ public class KnownCaseTest {
             "Dente", "Dragão", "Escrever", "Espelho", "Estrela", "Faca", "Flor", "Floresta", "Fogo", "Folha", "Fralda",
             "Fruta", "Galinha", "Garfo", "Gato", "Girafa", "Grama", "Gritar", "Igreja", "Jacaré", "Jornal", "Lápis",
             "Letra", "Língua", "Livro", "Magro", "Mesa", "Microfone", "Nariz", "Navio", "Nuvem", "Passarinho", "Pastel",
-            "Pedra", "Placa", "Plástico", "Porta", "Prato", "Presente"});
+            "Pedra", "Placa", "Plástico", "Porta", "Prato", "Presente", "Rabo"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
         /**
@@ -274,7 +274,7 @@ public class KnownCaseTest {
          *
          * Alguns casos estão no diminutivo como incorretos, tipo "naɾiziɲu", não deveria ser considerado correto?
          *
-         * Revisar casos como: paʧʒɛw
+         * Revisar casos como: paʧʒɛw,jabu
          */
         // just reading the cases
         for (KnownCase c : casesFromCSV) {
