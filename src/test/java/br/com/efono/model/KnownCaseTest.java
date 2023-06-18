@@ -264,7 +264,7 @@ public class KnownCaseTest {
             "Dente", "Dragão", "Escrever", "Espelho", "Estrela", "Faca", "Flor", "Floresta", "Fogo", "Folha", "Fralda",
             "Fruta", "Galinha", "Garfo", "Gato", "Girafa", "Grama", "Gritar", "Igreja", "Jacaré", "Jornal", "Lápis",
             "Letra", "Língua", "Livro", "Magro", "Mesa", "Microfone", "Nariz", "Navio", "Nuvem", "Passarinho", "Pastel",
-            "Pedra", "Placa"});
+            "Pedra", "Placa", "Plástico"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
         /**
