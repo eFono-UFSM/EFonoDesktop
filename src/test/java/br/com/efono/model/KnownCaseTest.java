@@ -263,16 +263,17 @@ public class KnownCaseTest {
             "Cavalo", "Chapéu", "Chiclete", "Chifre", "Chinelo", "Cobra", "Coelho", "Colher", "Cruz", "Dado", "Dedo",
             "Dente", "Dragão", "Escrever", "Espelho", "Estrela", "Faca", "Flor", "Floresta", "Fogo", "Folha", "Fralda",
             "Fruta", "Galinha", "Garfo", "Gato", "Girafa", "Grama", "Gritar", "Igreja", "Jacaré", "Jornal", "Lápis",
-            "Letra", "Língua", "Livro", "Magro", "Mesa", "Microfone", "Nariz", "Navio", "Nuvem", "Passarinho", "Pastel"});
+            "Letra", "Língua", "Livro", "Magro", "Mesa", "Microfone", "Nariz", "Navio", "Nuvem", "Passarinho", "Pastel",
+            "Pedra"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
         /**
          * TODO: essas transcrições estão corretas? ʒoɾnal,pastɛl
-         * 
+         *
          * conferir casos com as fonos: mɾago, mɾikofoni.
-         * 
+         *
          * Alguns casos estão no diminutivo como incorretos, tipo "naɾiziɲu", não deveria ser considerado correto?
-         * 
+         *
          * Revisar casos como: paʧʒɛw
          */
         // just reading the cases

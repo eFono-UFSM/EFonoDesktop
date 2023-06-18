@@ -34269,5 +34269,407 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɛdɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "dɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɛdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "plɛdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "pl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɾɛdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "pɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɛdlə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "dl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "peɾɛdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɛtə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɾɛda",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "pɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɛɾdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "plɛdɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "pl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "dɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɛtɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɛgə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "nɛdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "batə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "padə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɛkə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "plɛgə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "pl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pelɛdə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɛ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɾeda",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "pɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɛgɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "gɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pleda",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "pl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "plɛda",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "pl",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɛdaɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɛdəɔ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Pedra",
+        "representation": "pɛtɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            },
+            {
+                "phoneme": "tɾ",
+                "position": "OCME"
+            }
+        ]
     }
 ]
