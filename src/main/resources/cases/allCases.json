@@ -40621,5 +40621,354 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "ʃofa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "sofa",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "fofa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "sufa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "tofa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "ʃupa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "topa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "sosa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "supa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "dosaɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "kosa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "tota",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "ʃoʃa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "sopa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "sita",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "sasa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "ʃoχa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "fosa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "sofaɛ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "mofa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "ʃa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "ofa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Sofá",
+        "representation": "sofaziɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
     }
 ]
