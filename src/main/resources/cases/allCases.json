@@ -37894,5 +37894,1029 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefɾi",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "efi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefɾiʒeɾənte",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefɾiʒeɾənʧi",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefliʒelənte",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefiʒeɾənte",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "ifi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefliʒelənʧi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefiʒeɾənʧi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χifi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefli",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "lefi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefɾiʒeɾãnte",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "fi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "fɾiʒeɾənte",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefɾiʒelənte",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χeɾfi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "efɾi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "efli",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "tepi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "ʃefi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefiʒelãnte",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "efiʒelənʧi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χesɾi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "sefi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefili",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χepiʒeɾənte",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "zefi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "esi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "lefɾi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "zesi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "iʃi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "eʃi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χesiɾi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χesi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefiʒelənte",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χesiʒelãnʧi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefɾizeɾãnte",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "efiʒeɾənte",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefliʒeɾənte",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "fl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefizeɾanʧi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefizelənte",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefiʒeante",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefiejãnʧi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "fɾi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "χefiʒejənte",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Refri",
+        "representation": "ɾefi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ɾ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "f",
+                "position": "OM"
+            }
+        ]
     }
 ]
