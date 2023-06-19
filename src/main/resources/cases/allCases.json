@@ -42181,5 +42181,1033 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧizoɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tezoɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tezowɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧizowɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧizolə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧizojə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧiʒoɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tezowa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tezolə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tezojə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧizoə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧiʃolə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tedojə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "teola",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "teʒojə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tesowɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tezowlə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "kizolə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧisojə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧiʒojə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "kizoɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧidolə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧisolə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tezowə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧisoɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧiʃojə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tiʒowə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "teʒoɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧidoə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧzowə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʃiʃojə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "dazoɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧizowa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧidonə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧizowlə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tesowɾɐ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧidowə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧiʒolə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧiʒoja",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "teowə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʃiʃolə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧiʧojə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧizowə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "zizola",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tezoə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧioɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧisowə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "teʒowɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "teʒowɾɐ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "sizolə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "sizoɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "ʧiokə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tesoɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "sizola",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "zoɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "teʒoɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tesowɾu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tedoɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "tedola",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Tesoura",
+        "representation": "teʒowa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
     }
 ]
