@@ -40970,5 +40970,822 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "asopɾa",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "asopɾaɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sopa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "asopaɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sopɾaɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "asopa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sopaɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sopɾa",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "asoɾpa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sopla",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "aʃopa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "asopla",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "pl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sopəndu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sopɾəndo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "asopəndu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sopɾəndu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "ʃopa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "asopɾəndo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "apopa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "asopɾəndu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sopo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "asopɾaχ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "χ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sopɾo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "soɾpa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sopɾandu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sopandu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "topaɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "atopa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "azopɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sʃopa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "topa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "asopala",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "aʃopɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "kopa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "suba",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "aʃopla",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "pl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "atopɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "asopaɪ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "ʃoplaɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pl",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "opa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "pa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "p",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "ʃopɾaɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "asope",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sopaj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "asopəndo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "tɾopɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "tɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Soprar",
+        "representation": "sopu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
     }
 ]
