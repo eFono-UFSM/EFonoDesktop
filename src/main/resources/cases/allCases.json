@@ -38918,5 +38918,1149 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔʒu",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔʒiw",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔzo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔʒo",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔzu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "gɾelɔʒo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "gɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χolɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "elɔʃo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "ɾelɔʒo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ɾ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "eɔʒo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "lelɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "eɔʒiɲo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔʤiu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʤ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χilɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "elɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "eɔzu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔʒju",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "telɔzu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "eɔo",
+        "correct": false,
+        "phonemes": []
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔʃu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χeɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "delɔzu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "lelɔzu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χejɔzu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "elɔziw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "oɔʒo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χeɔzu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "eɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔʃo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χejɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χilɔzu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "gulɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "iɾɔzu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "ʒeoʒio",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "ejɔzu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "ʒelɔʒo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔsiw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔsu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "delɔdu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "kilɔlu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "iɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "eɔto",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "elɔdu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "ejɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "eχɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "elɔzu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "iɔʤju",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʤ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "iɔtu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χewɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χewɔʒiw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "lɔʒi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔʒio",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelsio",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "CM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔdo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χolɔʒo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "kolɔʒo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "leɔsu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χeɾɔzu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "mɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "m",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "ʤilɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʤ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "aɔʒo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "ʃiaju",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "ejɔʃu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χeɔzo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χulɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "olɔʒo",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "velɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "eɔdiw",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔdu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "χelɔʤio",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "χ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʤ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Relógio",
+        "representation": "golɔʒu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "g",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            }
+        ]
     }
 ]
