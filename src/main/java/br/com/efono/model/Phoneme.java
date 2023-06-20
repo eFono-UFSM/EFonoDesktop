@@ -15,7 +15,7 @@ public class Phoneme {
      * if we replace /i/ first then the /̃/ lasts alone.
      */
     public static final String[] VOWELS = new String[]{"ã", "a", "ɐ", "ə", "e", "ɛ", "Ɛ", "ẽ", "ĩ", "i", "ɪ", "ĩ",
-        "o", "ɔ", "õ", "u", "ʊ", "ũ"};
+        "õ", "o", "ɔ", "õ", "ũ", "u", "ʊ", "ũ"};
 
     /**
      * Semi vowels or Glide are sounds that are associated with another vowel. https://pt.wikipedia.org/wiki/Semivogal

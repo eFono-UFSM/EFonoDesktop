@@ -45227,5 +45227,166 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Trem",
+        "representation": "tɾẽj̃",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "tɾ",
+                "position": "OCI"
+            }
+        ]
+    },
+    {
+        "word": "Trem",
+        "representation": "tẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Trem",
+        "representation": "tχẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "tχ",
+                "position": "OCI"
+            }
+        ]
+    },
+    {
+        "word": "Trem",
+        "representation": "tlẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "tl",
+                "position": "OCI"
+            }
+        ]
+    },
+    {
+        "word": "Trem",
+        "representation": "kẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "k",
+                "position": "OI"
+            }
+        ]
+    },
+    {
+        "word": "Trem",
+        "representation": "tɾẽjziɲũ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "tɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Trem",
+        "representation": "tɾelej̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "tɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Trem",
+        "representation": "tɾẽj̃ziɲu",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "tɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Trem",
+        "representation": "teɾẽj̃",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Trem",
+        "representation": "tẽj̃ziɲõ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Trem",
+        "representation": "tẽjziɲõ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "z",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɲ",
+                "position": "OM"
+            }
+        ]
     }
 ]
