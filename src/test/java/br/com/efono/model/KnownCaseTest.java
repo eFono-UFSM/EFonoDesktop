@@ -265,7 +265,8 @@ public class KnownCaseTest {
             "Fruta", "Galinha", "Garfo", "Gato", "Girafa", "Grama", "Gritar", "Igreja", "Jacaré", "Jornal", "Lápis",
             "Letra", "Língua", "Livro", "Magro", "Mesa", "Microfone", "Nariz", "Navio", "Nuvem", "Passarinho", "Pastel",
             "Pedra", "Placa", "Plástico", "Porta", "Prato", "Presente", "Rabo", "Refri", "Relógio", "Sapato", "Sapo",
-            "Sofá", "Soprar", "Tênis", "Terra", "Tesoura", "Travesseiro", "Trem", "Vaca", "Ventilador", "Vidro", "Zebra"});
+            "Sofá", "Soprar", "Tênis", "Terra", "Tesoura", "Travesseiro", "Trem", "Vaca", "Ventilador", "Vidro", 
+            "Zebra", "Zero"});
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
         /**
