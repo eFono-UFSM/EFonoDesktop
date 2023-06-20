@@ -48221,5 +48221,463 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "zebɾə",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "zebə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "zedə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "ʒebə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "zepa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "sebə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "debə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "zeblə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "seba",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "ʃebə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "eba",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "sepɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "bebə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "sepə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "p",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "tebə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "sebɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "zebalə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "ʒebɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "sebɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "zepɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "zeʧa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "ʒeblə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "seblə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bl",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "zebaɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "debɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "bɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "fɾebɾə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "fɾ",
+                "position": "OCI"
+            },
+            {
+                "phoneme": "bɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "vebala",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "zepɾa",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "zepɾɐ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "pɾ",
+                "position": "OCME"
+            }
+        ]
+    },
+    {
+        "word": "Zebra",
+        "representation": "vebə",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "b",
+                "position": "OM"
+            }
+        ]
     }
 ]
