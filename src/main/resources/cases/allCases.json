@@ -45654,5 +45654,1895 @@
                 "position": "OM"
             }
         ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧiladoɾ",
+        "correct": true,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽntadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧiadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧilado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ẽnʧiado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧiladoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽntadoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧiadoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ʧiadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ʧiladoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "veadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧiladɾoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "dɾ",
+                "position": "OCME"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽladoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "venʧiadoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "velẽnʧiladoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "veadoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "velenʧiadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vĩnʧiladoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vinʧiladoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "sadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "s",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "veɾadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ʃiadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "taladoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧitadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧiladoχ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "χ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ʧiuʧiladoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧiado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "fẽnʧiladoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ʧiʧiado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "fiʧadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "tado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ʧilado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnladoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ẽnʧiadoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "viadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ladoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "l",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧiatoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽkilakoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnkilakoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧilatoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧilagoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧiʒeladoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ʒ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "fẽnʧilatoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "fẽnʧilato",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnsiako",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ʃadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʃ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vĩnʧiadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "fẽʧado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnsiladoi",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "bẽnʧiladoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ʧiadoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnsiɾadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ʧiladoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "eʧiado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "zẽnʧiladoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "toɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧigado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "g",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "venkiakoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            },
+            {
+                "phoneme": "k",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧiladol",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "zẽntilado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "z",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ʧiχado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʧ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "χ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽsiladoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnsadadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnsiladoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "s",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "fẽnʧiado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "f",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnʧiɾadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ʒiɾadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "ʒ",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "doɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽnɾadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "viadoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "viɾadoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "voadoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "vẽʧilatoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "bẽnʧiladoɾ",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "b",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "ʧ",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            },
+            {
+                "phoneme": "ɾ",
+                "position": "CF"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "ventadoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "v",
+                "position": "OI"
+            },
+            {
+                "phoneme": "n",
+                "position": "CM"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "adoj",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
+    },
+    {
+        "word": "Ventilador",
+        "representation": "titilado",
+        "correct": false,
+        "phonemes": [
+            {
+                "phoneme": "t",
+                "position": "OI"
+            },
+            {
+                "phoneme": "t",
+                "position": "OM"
+            },
+            {
+                "phoneme": "l",
+                "position": "OM"
+            },
+            {
+                "phoneme": "d",
+                "position": "OM"
+            }
+        ]
     }
 ]
