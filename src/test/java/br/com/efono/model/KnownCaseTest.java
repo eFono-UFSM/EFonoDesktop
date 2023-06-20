@@ -267,6 +267,7 @@ public class KnownCaseTest {
             "Pedra", "Placa", "Plástico", "Porta", "Prato", "Presente", "Rabo", "Refri", "Relógio", "Sapato", "Sapo",
             "Sofá", "Soprar", "Tênis", "Terra", "Tesoura", "Travesseiro", "Trem", "Vaca", "Ventilador", "Vidro", 
             "Zebra", "Zero"});
+        assertEquals(84, enableWords.size());
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
 
         /**
