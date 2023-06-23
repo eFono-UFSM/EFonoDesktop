@@ -244,11 +244,16 @@ public class KnownCaseTest {
      * Tests {@link KnownCase#saveKnownCases(List, File)}.
      *
      * @throws java.net.URISyntaxException
+     * @throws java.io.IOException
      */
     @Test
-    public void testSaveKnownCases() throws URISyntaxException {
-        // TODO:
+    public void testSaveKnownCases() throws URISyntaxException, IOException {
         System.out.println("testSaveKnownCases - test for invalid parameters");
+
+        // nothing happens
+        KnownCase.saveKnownCases(null, File.createTempFile("test", "hello"));
+        KnownCase.saveKnownCases(new ArrayList<>(), File.createTempFile("test", "hello"));
+        KnownCase.saveKnownCases(null, new File(UtilTest.class.getResource("/data/allKnownCases.csv").toURI()));
 
         System.out.println("testSaveKnownCases - valid parameters");
         File file = new File(UtilTest.class.getResource("/data/allKnownCases.csv").toURI());
@@ -265,7 +270,7 @@ public class KnownCaseTest {
             "Fruta", "Galinha", "Garfo", "Gato", "Girafa", "Grama", "Gritar", "Igreja", "Jacaré", "Jornal", "Lápis",
             "Letra", "Língua", "Livro", "Magro", "Mesa", "Microfone", "Nariz", "Navio", "Nuvem", "Passarinho", "Pastel",
             "Pedra", "Placa", "Plástico", "Porta", "Prato", "Presente", "Rabo", "Refri", "Relógio", "Sapato", "Sapo",
-            "Sofá", "Soprar", "Tênis", "Terra", "Tesoura", "Travesseiro", "Trem", "Vaca", "Ventilador", "Vidro", 
+            "Sofá", "Soprar", "Tênis", "Terra", "Tesoura", "Travesseiro", "Trem", "Vaca", "Ventilador", "Vidro",
             "Zebra", "Zero"});
         assertEquals(84, enableWords.size());
         enableWords.forEach(w -> mapCases.put(w, new ArrayList<>()));
@@ -320,6 +325,20 @@ public class KnownCaseTest {
 
         List<KnownCase> allCases = new LinkedList<>();
         mapCases.values().forEach(val -> allCases.addAll(val));
+
+        final List<String> phonemes = new ArrayList<>();
+
+        allCases.forEach(c -> {
+            c.getPhonemes().forEach(p -> {
+                String rep = p.getPhoneme() + "(" + p.getPosition() + ")";
+                if (!phonemes.contains(rep)) {
+                    phonemes.add(rep);
+                }
+            });
+        });
+
+        phonemes.forEach(p -> System.out.println(p));
+        System.out.println("different pairs: " + phonemes.size());
 
         KnownCase.saveKnownCases(allCases, outAll);
 
