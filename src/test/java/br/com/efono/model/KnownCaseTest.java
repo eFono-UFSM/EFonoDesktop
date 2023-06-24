@@ -343,7 +343,7 @@ public class KnownCaseTest {
         KnownCase.saveKnownCases(allCases, outAll);
 
         // just to print all the files path
-        fail();
+//        fail();
     }
 
 }

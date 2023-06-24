@@ -1,14 +1,14 @@
 package br.com.efono;
 
-import br.com.efono.util.Util;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Arrays;
 import java.util.Properties;
-import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
  * @author João Bolsson (joaovictorbolsson@gmail.com)
@@ -28,12 +28,6 @@ public class Main {
      */
     public static void main(final String[] args) {
         System.out.println("Arguments received: " + Arrays.toString(args));
-
-        if (1 > 0) {
-            // TODO: ainda esta salvando com unicode: {"key1":"[\u2019lu.vẽj̃]","key2":"olaMundinho"}
-            Util.createJSON(StringEscapeUtils.unescapeJava("[’lu.vẽj̃]"), "olaMundinho");
-            return;
-        }
 
         Properties prop = new Properties();
 
@@ -60,17 +54,30 @@ public class Main {
         }
 
         StringBuilder urlBuilder = new StringBuilder("jdbc:mysql://");
-        urlBuilder.append(server).append(":").append(port).append("/").append(database);
+        urlBuilder.append(server).append(":").append(port).append("/").
+                append(database).append("?user=").append(user).append("&password=").append(password);
 
         Connection connection = null;
         System.out.println("Try to connect with database at " + urlBuilder.toString());
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(urlBuilder.toString(), user, password);
+            System.out.println("Trying to get connection");
+            connection = DriverManager.getConnection(urlBuilder.toString());
             System.out.println("Connection is Successful to the database");
-            //            String query = "Insert into student(id,name) values(NULL,'ram')";
-            //            Statement statement = connection.createStatement();
-            //            statement.execute(query);
+            String query = "SELECT "
+                    + "avaliacaopalavra.id_avaliacao, "
+                    + "avaliacaopalavra.transcricao, palavra.palavra, avaliacaopalavra.correto "
+                    + "FROM avaliacaopalavra, palavra WHERE palavra.id_palavra = avaliacaopalavra.id_palavra "
+                    + "AND avaliacaopalavra.transcricao <> 'NULL' AND (correto = 1 OR correto = 0) LIMIT 10";
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                //Display values
+                System.out.print("id_avaliacao: " + rs.getInt("id_avaliacao"));
+                System.out.print(", transcricao: " + rs.getString("transcricao"));
+                System.out.print(", palavra: " + rs.getString("palavra"));
+                System.out.println(", correto: " + rs.getBoolean("correto"));
+            }
         } catch (final ClassNotFoundException | SQLException e) {
             System.out.println("Couldn't connect with the database: " + e);
         }

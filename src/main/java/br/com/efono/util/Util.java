@@ -8,7 +8,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,10 +17,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.lang3.StringEscapeUtils;
-import org.json.simple.JSONObject;
 
 /**
  *
@@ -349,23 +345,5 @@ public class Util {
             return list;
         }
         return Collections.emptyList();
-    }
-
-    @Deprecated
-    public static File createJSON(String value1, String value2) {
-        // {"key1":"[\u2019lu.vẽj̃]","key2":"olaMundinho"}
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("key1", value1);
-        jsonObject.put("key2", value2);
-
-        File file = new File("C:\\Users\\Joao\\Documents\\mestrado\\Java");
-        System.out.println("is directory: " + file.isDirectory());
-        try (FileWriter writer = new FileWriter("C:\\Users\\Joao\\Documents\\mestrado\\Java\\output.json")) {
-            writer.write(jsonObject.toJSONString());
-        } catch (final IOException ex) {
-            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return file;
     }
 }
