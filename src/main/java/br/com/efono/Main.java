@@ -64,28 +64,39 @@ public class Main {
             System.out.println("Trying to get connection");
             connection = DriverManager.getConnection(urlBuilder.toString());
             System.out.println("Connection is Successful to the database");
+        } catch (final ClassNotFoundException | SQLException e) {
+            System.out.println("Couldn't connect with the database: " + e);
+        }
+
+        try {
+            // continue with the application
+            processSimulation(connection);
+        } catch (final SQLException ex) {
+            System.out.println("Couldn't process the simulation: " + ex);
+        }
+    }
+
+    private static void processSimulation(final Connection connection) throws SQLException {
+        if (connection != null) {
             String query = "SELECT "
                     + "avaliacaopalavra.id_avaliacao, "
                     + "avaliacaopalavra.transcricao, palavra.palavra, avaliacaopalavra.correto "
                     + "FROM avaliacaopalavra, palavra WHERE palavra.id_palavra = avaliacaopalavra.id_palavra "
-                    + "AND avaliacaopalavra.transcricao <> 'NULL' AND (correto = 1 OR correto = 0) LIMIT 10";
+                    + "AND avaliacaopalavra.transcricao <> 'NULL' AND (correto = 1 OR correto = 0) AND id_avaliacao = 1";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
+            int lines = 0;
             while (rs.next()) {
                 //Display values
                 System.out.print("id_avaliacao: " + rs.getInt("id_avaliacao"));
                 System.out.print(", transcricao: " + rs.getString("transcricao"));
                 System.out.print(", palavra: " + rs.getString("palavra"));
                 System.out.println(", correto: " + rs.getBoolean("correto"));
+                lines++;
             }
-        } catch (final ClassNotFoundException | SQLException e) {
-            System.out.println("Couldn't connect with the database: " + e);
+            System.out.println("lines: " + lines);
+        } else {
+            System.out.println("Invalid connection given to process simulation.");
         }
-
-        // continue with the application
-        if (connection != null) {
-            // TODO
-        }
-
     }
 }
