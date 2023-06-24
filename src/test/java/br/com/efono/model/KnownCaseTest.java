@@ -39,6 +39,14 @@ public class KnownCaseTest {
     }
 
     /**
+     * Tests constructor behavior when giving a transcription with non identified phonemes.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructWithNonIdentifiedPhonemes() {
+        KnownCase knownCase = new KnownCase("Jacaré", "?aka'??", false);
+    }
+
+    /**
      * Tests KnownCase constructor for wrong cases inserted by the user.
      *
      * @throws URISyntaxException

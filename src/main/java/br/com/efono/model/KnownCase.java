@@ -148,7 +148,7 @@ public class KnownCase {
 
     @Override
     public String toString() {
-        return "KnownCase(word: " + word + " representation: " + representation + ")";
+        return "KnownCase(" + word + " : " + representation + " : correct: " + correct + ")";
     }
 
     /**

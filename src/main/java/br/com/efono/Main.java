@@ -1,5 +1,8 @@
 package br.com.efono;
 
+import br.com.efono.model.Assessment;
+import br.com.efono.model.KnownCase;
+import br.com.efono.util.Util;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -85,6 +88,9 @@ public class Main {
                     + "AND avaliacaopalavra.transcricao <> 'NULL' AND (correto = 1 OR correto = 0) AND id_avaliacao = 1";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
+
+            Assessment assessment = new Assessment();
+
             int lines = 0;
             while (rs.next()) {
                 //Display values
@@ -92,9 +98,26 @@ public class Main {
                 System.out.print(", transcricao: " + rs.getString("transcricao"));
                 System.out.print(", palavra: " + rs.getString("palavra"));
                 System.out.println(", correto: " + rs.getBoolean("correto"));
+
+                try {
+                    KnownCase knownCase = new KnownCase(rs.getString("palavra"),
+                            rs.getString("transcricao"), rs.getBoolean("correto"));
+
+                    knownCase.putPhonemes(Util.getConsonantPhonemes(knownCase.getRepresentation()));
+
+                    assessment.addCase(knownCase);
+                    
+                    System.out.println(knownCase);
+                } catch (final IllegalArgumentException | SQLException e) {
+                    System.out.println("Exception creating known case: " + e);
+                }
+
                 lines++;
             }
-            System.out.println("lines: " + lines);
+            System.out.println("lines read: " + lines + " cases in the assessment: " + assessment.getCases().size());
+            if (lines != 84 && lines != assessment.getCases().size()) {
+                System.out.println("Invalid assessment to do the simulation. All words are required.");
+            }
         } else {
             System.out.println("Invalid connection given to process simulation.");
         }
