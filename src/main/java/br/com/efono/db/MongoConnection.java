@@ -34,7 +34,7 @@ public class MongoConnection {
     }
 
     /**
-     * Connects to the mongo client.
+     * Connects with the mongo client.
      *
      * @param prop Properties with MongoDB credentials.
      */
