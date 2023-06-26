@@ -54,6 +54,25 @@ public class Main {
     }
 
     private static void processSimulation() throws SQLException {
+
+        /**
+         * The first words in the array are the most difficult, according with the statistics in our database. The
+         * number of wrong transcriptions of a word indicates the level of difficult.
+         */
+        final String[] words = new String[]{"Travesseiro", "Biblioteca", "Floresta", "Colher", "Microfone", "Vidro", "Pedra",
+            "Estrela", "Magro", "Dragão", "Escrever", "Flor", "Igreja", "Plástico", "Letra", "Bruxa", "Gritar",
+            "Bicicleta", "Chifre", "Chiclete", "Livro", "Presente", "Refri", "Fralda", "Fruta", "Placa", "Soprar",
+            "Trem", "Cruz", "Grama", "Zebra", "Cobra", "Prato", "Brinco", "Girafa", "Jacaré", "Garfo", "Jornal",
+            "Nariz", "Tesoura", "Passarinho", "Zero", "Ventilador", "Porta", "Relógio", "Nuvem", "Espelho", "Cachorro",
+            "Caixa", "Beijo", "Chinelo", "Língua", "Coelho", "Pastel", "Chapéu", "Folha", "Calça", "Barriga", "Sofá",
+            "Casa", "Bolsa", "Cavalo", "Gato", "Mesa", "Galinha", "Lápis", "Vaca", "Cabelo", "Sapato", "Sapo", "Fogo",
+            "Caminhão", "Faca", "Rabo", "Dente", "Tênis", "Terra", "Navio", "Dado", "Batom", "Cama", "Dedo", "Bebê",
+            "Anel"};
+
+        if (1 > 0) {
+            return;
+        }
+
         // avaliacao 15 está toda correta, vou usar essa agora para fazer a simulação sem muita complexidade
         String query = "SELECT "
                 + "avaliacaopalavra.id_avaliacao, "
