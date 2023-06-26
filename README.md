@@ -12,6 +12,13 @@ mysql.port=22
 mysql.user=root
 mysql.pass=joaoteste
 mysql.database=mydb
+
+# MongoDB credentials
+mongodb.server=localhost
+mongodb.port=27017
+mongodb.user=efono
+mongodb.password=efono1234
+mongodb.database=efono
 ```
 
 Then, copy the file path and pass it as first parameter to main function.

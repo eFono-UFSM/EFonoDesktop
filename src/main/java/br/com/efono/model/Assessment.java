@@ -1,6 +1,7 @@
 package br.com.efono.model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,7 +12,7 @@ import java.util.Objects;
  */
 public class Assessment {
 
-    private final List<KnownCase> cases = new ArrayList<>();
+    private final List<KnownCase> cases = new LinkedList<>();
 
     /**
      * Creates an assessment.

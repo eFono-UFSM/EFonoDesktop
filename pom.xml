@@ -20,6 +20,7 @@
         
         <junit.version>4.13.1</junit.version>
         <jackson.version>2.14.2</jackson.version>
+        <mongodb-driver.version>4.10.0</mongodb-driver.version>
     </properties>
     
     <build>
@@ -95,6 +96,18 @@
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
+            <version>${mongodb-driver.version}</version>
+        </dependency>
+        
+        <!--        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>bson</artifactId>
+            <version>4.10.0</version>
+        </dependency>-->
         
         <!-- Tests -->
         <dependency>
