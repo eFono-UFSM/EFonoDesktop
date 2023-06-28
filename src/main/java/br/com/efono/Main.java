@@ -4,6 +4,7 @@ import br.com.efono.db.MongoConnection;
 import br.com.efono.db.MySQLConnection;
 import br.com.efono.model.Assessment;
 import br.com.efono.model.KnownCase;
+import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.util.SimulationWordsSequence;
 import br.com.efono.util.Util;
 import java.io.FileInputStream;
@@ -90,8 +91,8 @@ public class Main {
         if (lines == 84 && lines == assessment.getCases().size()) {
             SimulationWordsSequence simulation = new SimulationWordsSequence();
 
-            simulation.runSimulation(assessment, new SimulationWordsSequence.HarderWordsFirst());
-            simulation.runSimulation(assessment, new SimulationWordsSequence.EasiestWordsFirst());
+            simulation.runSimulation(assessment, KnownCaseComparator.HardWordsFirst);
+            simulation.runSimulation(assessment, KnownCaseComparator.EasyWordsFirst);
         } else {
             System.out.println("Invalid assessment to do the simulation. All words are required.");
         }

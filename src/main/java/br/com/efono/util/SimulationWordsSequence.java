@@ -2,9 +2,8 @@ package br.com.efono.util;
 
 import br.com.efono.model.Assessment;
 import br.com.efono.model.KnownCase;
+import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.model.Phoneme;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -18,20 +17,6 @@ import java.util.Map;
  */
 public class SimulationWordsSequence {
 
-    /**
-     * The first words in the array are easiest ones, according with the statistics in our database. The number of wrong
-     * transcriptions of a word indicates the level of difficult.
-     */
-    public static final String[] SORTED_WORDS = new String[]{"Anel", "Bebê", "Dedo", "Cama", "Batom", "Dado", "Navio",
-        "Terra", "Tênis", "Dente", "Rabo", "Faca", "Caminhão", "Fogo", "Sapo", "Sapato", "Cabelo", "Vaca", "Lápis",
-        "Galinha", "Mesa", "Gato", "Cavalo", "Bolsa", "Casa", "Sofá", "Barriga", "Calça", "Folha", "Chapéu", "Pastel",
-        "Coelho", "Língua", "Chinelo", "Beijo", "Caixa", "Cachorro", "Espelho", "Nuvem", "Relógio", "Porta",
-        "Ventilador", "Zero", "Passarinho", "Tesoura", "Nariz", "Jornal", "Garfo", "Jacaré", "Girafa", "Brinco",
-        "Prato", "Cobra", "Zebra", "Grama", "Cruz", "Trem", "Soprar", "Placa", "Fruta", "Fralda", "Refri", "Presente",
-        "Livro", "Chiclete", "Chifre", "Bicicleta", "Gritar", "Bruxa", "Letra", "Plástico", "Igreja", "Flor",
-        "Escrever", "Dragão", "Magro", "Estrela", "Pedra", "Vidro", "Microfone", "Colher", "Floresta", "Biblioteca",
-        "Travesseiro"};
-
     // TODO: tests
     /**
      * Runs the simulation with the words sequence in the given assessment.
@@ -39,7 +24,7 @@ public class SimulationWordsSequence {
      * @param assessment Assessment.
      * @param comp Comparator to sort KnownCases or null.
      */
-    public void runSimulation(final Assessment assessment, final Comparator<KnownCase> comp) {
+    public void runSimulation(final Assessment assessment, final KnownCaseComparator comp) {
         System.out.println("-----------------\n"
                 + "Running simulation in assessment with " + assessment.getCases().size()
                 + " cases with " + comp + " comparator");
@@ -47,7 +32,7 @@ public class SimulationWordsSequence {
 
         List<KnownCase> cases = assessment.getCases();
         if (comp != null) {
-            cases.sort(comp);
+            cases.sort(comp.getComparator());
         }
 
         final List<String> wordsRequired = new LinkedList<>();
@@ -124,44 +109,4 @@ public class SimulationWordsSequence {
 
     // TODO: depois, simular a avaliação toda com o mesmo lance da busca binária, mas dessa vez, se o usuário acertou vai para uma mais difícil, se errou para mais fácil e assim por diante.
     // TODO: comparator com indices misturados (busca binaria).
-    /**
-     * Sort KnownCases with harder words first.
-     */
-    public static class HarderWordsFirst implements Comparator<KnownCase> {
-
-        @Override
-        public int compare(final KnownCase o1, final KnownCase o2) {
-            // TODO: ignore case and acentuation
-            int indexOfo1 = Arrays.asList(SORTED_WORDS).indexOf(o1.getWord());
-            int indexOfo2 = Arrays.asList(SORTED_WORDS).indexOf(o2.getWord());
-            return indexOfo2 - indexOfo1;
-        }
-
-        @Override
-        public String toString() {
-            return this.getClass().getSimpleName();
-        }
-
-    }
-
-    /**
-     * Sort KnownCases with easiest words first.
-     */
-    public static class EasiestWordsFirst implements Comparator<KnownCase> {
-
-        @Override
-        public int compare(final KnownCase o1, final KnownCase o2) {
-            // TODO: ignore case and acentuation
-            int indexOfo1 = Arrays.asList(SORTED_WORDS).indexOf(o1.getWord());
-            int indexOfo2 = Arrays.asList(SORTED_WORDS).indexOf(o2.getWord());
-            return indexOfo1 - indexOfo2;
-        }
-
-        @Override
-        public String toString() {
-            return this.getClass().getSimpleName();
-        }
-
-    }
-
 }
