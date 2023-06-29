@@ -45,18 +45,18 @@ public class SimulationInfo {
     public int hashCode() {
         int hash = 7;
         int mapHashCode = 1;
-        
+
         Iterator<Map.Entry<Phoneme, Integer>> it = mapCounter.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<Phoneme, Integer> next = it.next();
             mapHashCode *= 12 + (next.getKey().hashCode() + next.getValue().hashCode());
         }
-        
+
         int listHashCode = 1;
         for (String s : wordsRequired) {
             listHashCode *= 26 + s.hashCode();
         }
-        
+
         hash = 83 * hash + mapHashCode;
         hash = 83 * hash + listHashCode;
         return hash;
@@ -98,4 +98,15 @@ public class SimulationInfo {
 
         return wordsRequired.containsAll(other.wordsRequired) && other.wordsRequired.containsAll(wordsRequired);
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder(getClass().getSimpleName());
+
+        builder.append("counter: [").append(mapCounter.toString()).append("]").
+                append("\nwordsRequired: [").append(wordsRequired.toString()).append("]");
+
+        return builder.toString();
+    }
+
 }

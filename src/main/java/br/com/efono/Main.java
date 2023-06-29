@@ -91,8 +91,8 @@ public class Main {
         if (lines == 84 && lines == assessment.getCases().size()) {
             SimulationWordsSequence simulation = new SimulationWordsSequence();
 
-            simulation.runSimulation(assessment, KnownCaseComparator.HardWordsFirst);
-            simulation.runSimulation(assessment, KnownCaseComparator.EasyWordsFirst);
+            simulation.runSimulation(assessment, KnownCaseComparator.HardWordsFirst, 2);
+            simulation.runSimulation(assessment, KnownCaseComparator.EasyWordsFirst, 2);
         } else {
             System.out.println("Invalid assessment to do the simulation. All words are required.");
         }

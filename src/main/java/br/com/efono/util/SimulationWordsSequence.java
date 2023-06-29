@@ -24,9 +24,11 @@ public class SimulationWordsSequence {
      *
      * @param assessment Assessment.
      * @param comp Comparator to sort KnownCases or null.
+     * @param minimum Number of times that the same phoneme in the same position must be produced to be considered in
+     * the phonetic inventory.
      * @return The information about the simulation.
      */
-    public SimulationInfo runSimulation(final Assessment assessment, final KnownCaseComparator comp) {
+    public static SimulationInfo runSimulation(final Assessment assessment, final KnownCaseComparator comp, final int minimum) {
         System.out.println("-----------------\n"
                 + "Running simulation in assessment with " + assessment.getCases().size()
                 + " cases with " + comp + " comparator");
@@ -51,10 +53,10 @@ public class SimulationWordsSequence {
                 if (mapCounter.containsKey(p)) {
                     count = mapCounter.get(p) + 1;
                 }
+                mapCounter.put(p, count);
 
-                if (count <= 2) { // minumum of tests required
+                if (count <= minimum) { // minumum of tests required
 //                    System.out.println(p + " -> " + count);
-                    mapCounter.put(p, count);
 
                     /**
                      * If this word contains at least one phoneme which wasn't be tested at minimum two times, then the
@@ -78,7 +80,7 @@ public class SimulationWordsSequence {
             while (iterator.hasNext()) {
                 Map.Entry<Phoneme, Integer> next = iterator.next();
 
-                if (next.getValue() < 2) {
+                if (next.getValue() < minimum) {
                     notOk++;
                 } else {
                     ok++;
@@ -94,7 +96,7 @@ public class SimulationWordsSequence {
         while (iterator.hasNext()) {
             Map.Entry<Phoneme, Integer> next = iterator.next();
 
-            if (next.getValue() < 2) {
+            if (next.getValue() < minimum) {
 //                System.out.println("not ok: " + next.getKey() + " -> " + next.getValue());
                 notOk++;
             } else {
@@ -106,7 +108,7 @@ public class SimulationWordsSequence {
         float notOkcent = notOk * 100 / mapCounter.size();
         float okcent = ok * 100 / mapCounter.size();
 
-        System.out.println("less than the required two tests: " + notOkcent + "% at least two tests: " + okcent + "%");
+        System.out.println("phonemes with less than " + minimum + " required tests: " + notOkcent + "% at least two tests: " + okcent + "%");
 //        System.out.println("-------------------------------------------------------------------------");
         return new SimulationInfo(mapCounter, wordsRequired);
     }
