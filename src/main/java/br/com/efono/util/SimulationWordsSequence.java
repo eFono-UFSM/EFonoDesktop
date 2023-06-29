@@ -4,6 +4,7 @@ import br.com.efono.model.Assessment;
 import br.com.efono.model.KnownCase;
 import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.model.Phoneme;
+import br.com.efono.model.SimulationInfo;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -23,8 +24,9 @@ public class SimulationWordsSequence {
      *
      * @param assessment Assessment.
      * @param comp Comparator to sort KnownCases or null.
+     * @return The information about the simulation.
      */
-    public void runSimulation(final Assessment assessment, final KnownCaseComparator comp) {
+    public SimulationInfo runSimulation(final Assessment assessment, final KnownCaseComparator comp) {
         System.out.println("-----------------\n"
                 + "Running simulation in assessment with " + assessment.getCases().size()
                 + " cases with " + comp + " comparator");
@@ -44,6 +46,7 @@ public class SimulationWordsSequence {
             // TODO: adicionar um c.getPhonemesRequired//target. Isso vai ser útil para fazer o PCC-R depois.
 //            System.out.println("\tcase of " + c.getWord() + " phonemes produced: " + c.getPhonemes().size());
             for (Phoneme p : c.getPhonemes()) {
+                // TODO: separar encontros consonantais: bɾ(OCME) -> b(OCME) + ɾ(OCME)
                 int count = 1;
                 if (mapCounter.containsKey(p)) {
                     count = mapCounter.get(p) + 1;
@@ -105,6 +108,7 @@ public class SimulationWordsSequence {
 
         System.out.println("less than the required two tests: " + notOkcent + "% at least two tests: " + okcent + "%");
 //        System.out.println("-------------------------------------------------------------------------");
+        return new SimulationInfo(mapCounter, wordsRequired);
     }
 
     // TODO: depois, simular a avaliação toda com o mesmo lance da busca binária, mas dessa vez, se o usuário acertou vai para uma mais difícil, se errou para mais fácil e assim por diante.
