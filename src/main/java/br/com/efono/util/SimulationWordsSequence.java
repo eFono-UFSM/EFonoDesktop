@@ -49,6 +49,7 @@ public class SimulationWordsSequence {
                 for (Phoneme phoneme : c.getPhonemes()) {
                     final List<Phoneme> list = new ArrayList<>();
 
+                    // TODO: adicionar uma flag no método pra indicar se os encontros consonantais devem ser separados ou não (+1 cenário)
                     // bɾ(OCME) -> b(OCME) + ɾ(OCME)
                     if (phoneme.isConsonantCluster()) {
                         String[] split = phoneme.getPhoneme().split("");
@@ -86,6 +87,7 @@ public class SimulationWordsSequence {
              * calculados a partir dos gabaritos corretos. Aí sim, podemos calcular o PCC-R.
              */
         }
+        // TODO: adicionar comparator nesse objeto
         return new SimulationInfo(mapCounter, wordsRequired);
     }
 

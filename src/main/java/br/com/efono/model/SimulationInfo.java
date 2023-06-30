@@ -103,8 +103,8 @@ public class SimulationInfo {
     public String toString() {
         final StringBuilder builder = new StringBuilder(getClass().getSimpleName());
 
-        builder.append("counter: [").append(mapCounter.toString()).append("]").
-                append("\nwordsRequired: [").append(wordsRequired.toString()).append("]");
+        builder.append(": wordsRequired: ").append(wordsRequired.size()).
+                append(": [").append(wordsRequired.toString()).append("]");
 
         return builder.toString();
     }
