@@ -6,7 +6,6 @@ import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.model.Phoneme;
 import br.com.efono.model.SimulationInfo;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -28,88 +27,51 @@ public class SimulationWordsSequence {
      * the phonetic inventory.
      * @return The information about the simulation.
      */
-    public static SimulationInfo runSimulation(final Assessment assessment, final KnownCaseComparator comp, final int minimum) {
-        System.out.println("-----------------\n"
-                + "Running simulation in assessment with " + assessment.getCases().size()
-                + " cases with " + comp + " comparator");
+    public static SimulationInfo runSimulation(final Assessment assessment, final KnownCaseComparator comp,
+            final int minimum) {
         final Map<Phoneme, Integer> mapCounter = new HashMap<>();
-
-        List<KnownCase> cases = assessment.getCases();
-        if (comp != null) {
-            cases.sort(comp.getComparator());
-        }
-
         final List<String> wordsRequired = new LinkedList<>();
+        if (assessment != null && minimum > 0) {
+            System.out.println("-----------------\n"
+                    + "Running simulation in assessment with " + assessment.getCases().size()+ " cases with " + comp);
 
-        for (KnownCase c : cases) {
-            // TODO: ao inves de "fonemas produzidos" depois vai ser preciso pegar de algum gabarito os "fonemas alvo", pois são esses que estão sendo testados.
-            // os "fonemas produzidos" aqui precisam ser testados no mínimo 2 vezes para serem considerados "adquiridos" no inv. fonético. [esse é o trabalho da simulação]
-            // ou seja, ver qual o impacto que a sequência da avaliação tem sobre o inv. fonético.
-            // TODO: adicionar um c.getPhonemesRequired//target. Isso vai ser útil para fazer o PCC-R depois.
-//            System.out.println("\tcase of " + c.getWord() + " phonemes produced: " + c.getPhonemes().size());
-            for (Phoneme p : c.getPhonemes()) {
-                // TODO: separar encontros consonantais: bɾ(OCME) -> b(OCME) + ɾ(OCME)
-                int count = 1;
-                if (mapCounter.containsKey(p)) {
-                    count = mapCounter.get(p) + 1;
-                }
-                mapCounter.put(p, count);
+            List<KnownCase> cases = assessment.getCases();
+            if (comp != null) {
+                cases.sort(comp.getComparator());
+            }
 
-                if (count <= minimum) { // minumum of tests required
-//                    System.out.println(p + " -> " + count);
+            for (KnownCase c : cases) {
+                // TODO: ao inves de "fonemas produzidos" depois vai ser preciso pegar de algum gabarito os "fonemas alvo", pois são esses que estão sendo testados.
+                // os "fonemas produzidos" aqui precisam ser testados no mínimo 2 vezes para serem considerados "adquiridos" no inv. fonético. [esse é o trabalho da simulação]
+                // ou seja, ver qual o impacto que a sequência da avaliação tem sobre o inv. fonético.
+                // TODO: adicionar um c.getPhonemesRequired//target. Isso vai ser útil para fazer o PCC-R depois.
+                for (Phoneme p : c.getPhonemes()) {
+                    // TODO: separar encontros consonantais: bɾ(OCME) -> b(OCME) + ɾ(OCME)
+                    int count = 1;
+                    if (mapCounter.containsKey(p)) {
+                        count = mapCounter.get(p) + 1;
+                    }
+                    mapCounter.put(p, count);
 
-                    /**
-                     * If this word contains at least one phoneme which wasn't be tested at minimum two times, then the
-                     * word is important and will be "required".
-                     *
-                     * If all the phonemes tested by this word were already tested at minimum 2 times, so the word
-                     * doesn't would need to be here.
-                     */
-//                    System.out.println("word required, " + p + " -> " + count);
-                    if (!wordsRequired.contains(c.getWord())) {
-                        wordsRequired.add(c.getWord());
+                    if (count <= minimum) {
+                        /**
+                         * If this word contains at least one phoneme which wasn't be tested at minimum two times, then
+                         * the word is important and will be "required".
+                         *
+                         * If all the phonemes tested by this word were already tested at minimum 2 times, so the word
+                         * doesn't would need to be here.
+                         */
+                        if (!wordsRequired.contains(c.getWord())) {
+                            wordsRequired.add(c.getWord());
+                        }
                     }
                 }
-//                System.out.println("-----");
             }
-
-            // check map counter
-            Iterator<Map.Entry<Phoneme, Integer>> iterator = mapCounter.entrySet().iterator();
-
-            int notOk = 0, ok = 0;
-            while (iterator.hasNext()) {
-                Map.Entry<Phoneme, Integer> next = iterator.next();
-
-                if (next.getValue() < minimum) {
-                    notOk++;
-                } else {
-                    ok++;
-                }
-            }
-//            System.out.println("phonemes test: not ok: " + notOk + " ok: " + ok);
+            /**
+             * TODO: todos os fonemas produzidos estão em "mapCounter". Os fonemas testados (alvos) deverão ser
+             * calculados a partir dos gabaritos corretos. Aí sim, podemos calcular o PCC-R.
+             */
         }
-
-        System.out.println("Result");
-        Iterator<Map.Entry<Phoneme, Integer>> iterator = mapCounter.entrySet().iterator();
-
-        int notOk = 0, ok = 0;
-        while (iterator.hasNext()) {
-            Map.Entry<Phoneme, Integer> next = iterator.next();
-
-            if (next.getValue() < minimum) {
-//                System.out.println("not ok: " + next.getKey() + " -> " + next.getValue());
-                notOk++;
-            } else {
-                ok++;
-            }
-        }
-
-        System.out.println("words required: " + wordsRequired.size() + ": " + wordsRequired);
-        float notOkcent = notOk * 100 / mapCounter.size();
-        float okcent = ok * 100 / mapCounter.size();
-
-        System.out.println("phonemes with less than " + minimum + " required tests: " + notOkcent + "% at least two tests: " + okcent + "%");
-//        System.out.println("-------------------------------------------------------------------------");
         return new SimulationInfo(mapCounter, wordsRequired);
     }
 

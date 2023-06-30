@@ -28,14 +28,58 @@ public class SimulationWordsSequenceTest {
     private final int minimum = 1;
 
     /**
+     * Tests parameters of {@link SimulationWordsSequence#runSimulation(Assessment, KnownCaseComparator, int)}.
+     */
+    @Test
+    public void testRunSimulationParameters() {
+        System.out.println("testRunSimulationParameters - all invalid");
+        SimulationInfo info = SimulationWordsSequence.runSimulation(null, null, 0);
+
+        assertTrue(info.getMapCounter().isEmpty());
+        assertTrue(info.getWordsRequired().isEmpty());
+
+        System.out.println("testRunSimulationParameters - valid minimum");
+        info = SimulationWordsSequence.runSimulation(null, null, 1);
+
+        assertTrue(info.getMapCounter().isEmpty());
+        assertTrue(info.getWordsRequired().isEmpty());
+
+        // only the comparator can be null, then it'll get the assessment as it is on the database
+        System.out.println("testRunSimulationParameters - null comparator");
+        KnownCase anel = new KnownCase(SORTED_WORDS[0], "anɛw", true, Arrays.asList(
+                new Phoneme("n", Phoneme.POSITION.OM)));
+        info = SimulationWordsSequence.runSimulation(new Assessment(Arrays.asList(anel)), null, 1);
+
+        assertTrue(info.getMapCounter().containsKey(new Phoneme("n", Phoneme.POSITION.OM)));
+        assertTrue(info.getWordsRequired().contains(SORTED_WORDS[0]));
+
+        System.out.println("testRunSimulationParameters - empty assessment");
+        info = SimulationWordsSequence.runSimulation(new Assessment(), null, 1);
+
+        assertTrue(info.getMapCounter().isEmpty());
+        assertTrue(info.getWordsRequired().isEmpty());
+
+        System.out.println("testRunSimulationParameters - null assessment");
+        info = SimulationWordsSequence.runSimulation(null, KnownCaseComparator.EasyWordsFirst, 1);
+
+        assertTrue(info.getMapCounter().isEmpty());
+        assertTrue(info.getWordsRequired().isEmpty());
+
+        System.out.println("testRunSimulationParameters - invalid minimum");
+        info = SimulationWordsSequence.runSimulation(new Assessment(Arrays.asList(anel)),
+                KnownCaseComparator.EasyWordsFirst, 0);
+
+        assertTrue(info.getMapCounter().isEmpty());
+        assertTrue(info.getWordsRequired().isEmpty());
+    }
+
+    /**
      * Tests {@link SimulationWordsSequence#runSimulation(Assessment, KnownCaseComparator, int)}.
      */
     @Test
     public void testRunSimulationEasyFirst() {
-        // TODO: test with null comp
-        // TODO: precisa ver se o "r" é a mesma coisa que o "ɾ" na fonoaudiologia
         /**
-         * The transcription given doesn't matter. Only the phonemes.
+         * The transcription doesn't matter. Only the phonemes.
          */
         KnownCase anel = new KnownCase(SORTED_WORDS[0], "anɛw", true, Arrays.asList(
                 new Phoneme("n", Phoneme.POSITION.OM)));
@@ -100,10 +144,8 @@ public class SimulationWordsSequenceTest {
      */
     @Test
     public void testRunSimulationHardFirst() {
-        // TODO: test with null comp
-        // TODO: precisa ver se o "r" é a mesma coisa que o "ɾ" na fonoaudiologia
         /**
-         * The transcription given doesn't matter. Only the phonemes.
+         * The transcription doesn't matter. Only the phonemes.
          */
         KnownCase anel = new KnownCase(SORTED_WORDS[0], "anɛw", true, Arrays.asList(
                 new Phoneme("n", Phoneme.POSITION.OM)));

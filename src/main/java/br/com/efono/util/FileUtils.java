@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -28,12 +27,9 @@ public class FileUtils {
         if (file != null && separator != null) {
             try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
                 String line;
-                int i = 1;
                 while ((line = reader.readLine()) != null) {
                     if (!line.isBlank()) {
-                        // needs StringEscapeUtils.unescapeJava(line) ?
                         String[] row = line.split(separator);
-                        System.out.println("Row " + (i++) + ": " + Arrays.toString(row));
                         list.add(row);
                     }
                 }
