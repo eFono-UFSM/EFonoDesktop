@@ -5,6 +5,7 @@ import br.com.efono.model.KnownCase;
 import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.model.Phoneme;
 import br.com.efono.model.SimulationInfo;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -33,7 +34,7 @@ public class SimulationWordsSequence {
         final List<String> wordsRequired = new LinkedList<>();
         if (assessment != null && minimum > 0) {
             System.out.println("-----------------\n"
-                    + "Running simulation in assessment with " + assessment.getCases().size()+ " cases with " + comp);
+                    + "Running simulation in assessment with " + assessment.getCases().size() + " cases with " + comp);
 
             List<KnownCase> cases = assessment.getCases();
             if (comp != null) {
@@ -45,24 +46,37 @@ public class SimulationWordsSequence {
                 // os "fonemas produzidos" aqui precisam ser testados no mínimo 2 vezes para serem considerados "adquiridos" no inv. fonético. [esse é o trabalho da simulação]
                 // ou seja, ver qual o impacto que a sequência da avaliação tem sobre o inv. fonético.
                 // TODO: adicionar um c.getPhonemesRequired//target. Isso vai ser útil para fazer o PCC-R depois.
-                for (Phoneme p : c.getPhonemes()) {
-                    // TODO: separar encontros consonantais: bɾ(OCME) -> b(OCME) + ɾ(OCME)
-                    int count = 1;
-                    if (mapCounter.containsKey(p)) {
-                        count = mapCounter.get(p) + 1;
-                    }
-                    mapCounter.put(p, count);
+                for (Phoneme phoneme : c.getPhonemes()) {
+                    final List<Phoneme> list = new ArrayList<>();
 
-                    if (count <= minimum) {
-                        /**
-                         * If this word contains at least one phoneme which wasn't be tested at minimum two times, then
-                         * the word is important and will be "required".
-                         *
-                         * If all the phonemes tested by this word were already tested at minimum 2 times, so the word
-                         * doesn't would need to be here.
-                         */
-                        if (!wordsRequired.contains(c.getWord())) {
-                            wordsRequired.add(c.getWord());
+                    // bɾ(OCME) -> b(OCME) + ɾ(OCME)
+                    if (phoneme.isConsonantCluster()) {
+                        String[] split = phoneme.getPhoneme().split("");
+                        for (String s : split) {
+                            list.add(new Phoneme(s, phoneme.getPosition()));
+                        }
+                    } else {
+                        list.add(phoneme);
+                    }
+
+                    for (Phoneme p : list) {
+                        int count = 1;
+                        if (mapCounter.containsKey(p)) {
+                            count = mapCounter.get(p) + 1;
+                        }
+                        mapCounter.put(p, count);
+
+                        if (count <= minimum) {
+                            /**
+                             * If this word contains at least one phoneme which wasn't be tested at minimum two times,
+                             * then the word is important and will be "required".
+                             *
+                             * If all the phonemes tested by this word were already tested at minimum 2 times, so the
+                             * word doesn't would need to be here.
+                             */
+                            if (!wordsRequired.contains(c.getWord())) {
+                                wordsRequired.add(c.getWord());
+                            }
                         }
                     }
                 }

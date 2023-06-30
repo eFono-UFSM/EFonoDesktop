@@ -19,6 +19,21 @@ public class PhonemeTest {
     }
 
     /**
+     * Tests {@link Phoneme#isConsonantCluster()}.
+     */
+    @Test
+    public void testIsConsonantCluster() {
+        System.out.println("testIsConsonantCluster - false");
+        assertFalse(new Phoneme("k", Phoneme.POSITION.OI).isConsonantCluster());
+
+        System.out.println("testIsConsonantCluster - true");
+        assertTrue(new Phoneme("bɾ", Phoneme.POSITION.OCME).isConsonantCluster());
+
+        System.out.println("testIsConsonantCluster - never must happen, but just in case...");
+        assertTrue(new Phoneme("bɾ", Phoneme.POSITION.OI).isConsonantCluster());
+    }
+
+    /**
      * Tests for integrity.
      */
     @Test

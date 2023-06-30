@@ -12,7 +12,6 @@ import java.util.Map;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import static br.com.efono.model.KnownCaseComparator.Defaults.SORTED_WORDS;
-import org.junit.Ignore;
 
 /**
  *
@@ -206,33 +205,46 @@ public class SimulationWordsSequenceTest {
         assertEquals(expected, result);
     }
 
+    /**
+     * Tests {@link SimulationWordsSequence#runSimulation(Assessment, KnownCaseComparator, int)} for consonant clusters.
+     */
     @Test
-    @Ignore
     public void testRunSimulationConsonantClusters() {
-        // TODO
+        System.out.println("testRunSimulationConsonantClusters - with consonant clusters");
         KnownCase cobra = new KnownCase(SORTED_WORDS[52], "kɔbɾə", true, Arrays.asList(
                 new Phoneme("k", Phoneme.POSITION.OI),
-                new Phoneme("bɾ", Phoneme.POSITION.OCME))); // 52
+                new Phoneme("bɾ", Phoneme.POSITION.OCME)));
+
+        KnownCase fakeCase = new KnownCase(SORTED_WORDS[55], "kɔbɾə", true, Arrays.asList(
+                new Phoneme("k", Phoneme.POSITION.OI),
+                new Phoneme("bɾ", Phoneme.POSITION.OCME)));
 
         KnownCase chifre = new KnownCase(SORTED_WORDS[65], "ʃifɾis", true, Arrays.asList(
                 new Phoneme("ʃ", Phoneme.POSITION.OI),
                 new Phoneme("fɾ", Phoneme.POSITION.OCME),
-                new Phoneme("s", Phoneme.POSITION.CF))); // 65
+                new Phoneme("s", Phoneme.POSITION.CF)));
+        final Assessment assessment = new Assessment(Arrays.asList(cobra, fakeCase, chifre));
 
         final Map<Phoneme, Integer> mapCounterExpected = new HashMap();
-        // TODO: encontros consonantais: bɾ(OCME) -> b(OCME) + ɾ(OCME)
-        mapCounterExpected.put(new Phoneme("b", Phoneme.POSITION.OCME), 1);
-        mapCounterExpected.put(new Phoneme("ɾ", Phoneme.POSITION.OCME), 1);
-        // fɾ(OCME) -> f(OCME) + ɾ(OCME)
+        // cobra: bɾ(OCME) -> b(OCME) + ɾ(OCME)
+        mapCounterExpected.put(new Phoneme("k", Phoneme.POSITION.OI), 2);
+        mapCounterExpected.put(new Phoneme("b", Phoneme.POSITION.OCME), 2);
+        mapCounterExpected.put(new Phoneme("ɾ", Phoneme.POSITION.OCME), 3);
+        // fakeCase: not needed
+        // chifre: fɾ(OCME) -> f(OCME) + ɾ(OCME)
+        mapCounterExpected.put(new Phoneme("ʃ", Phoneme.POSITION.OI), 1);
         mapCounterExpected.put(new Phoneme("f", Phoneme.POSITION.OCME), 1);
-        mapCounterExpected.put(new Phoneme("ɾ", Phoneme.POSITION.OCME), 1);
         mapCounterExpected.put(new Phoneme("s", Phoneme.POSITION.CF), 1);
-        fail();
-    }
 
-    @Test
-    public void test() {
-        assertTrue(true);
+        /**
+         * The insertion order doesn't matter, it's only to have a visual interpretation.
+         */
+        final List<String> wordsRequiredExpected = Arrays.asList(SORTED_WORDS[52], SORTED_WORDS[65]);
+
+        SimulationInfo expected = new SimulationInfo(mapCounterExpected, wordsRequiredExpected);
+        SimulationInfo result = SimulationWordsSequence.runSimulation(assessment, null, minimum);
+
+        assertEquals(expected, result);
     }
 
 }
