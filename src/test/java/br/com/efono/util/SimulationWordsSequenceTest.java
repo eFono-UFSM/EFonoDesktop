@@ -200,7 +200,7 @@ public class SimulationWordsSequenceTest {
 
         SimulationInfo expected = new SimulationInfo(mapCounterExpected, wordsRequiredExpected);
         SimulationInfo result = SimulationWordsSequence.runSimulation(assessment, KnownCaseComparator.HardWordsFirst,
-                minimum);
+                minimum, true);
 
         assertEquals(expected, result);
     }

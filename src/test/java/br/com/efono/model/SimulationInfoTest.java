@@ -100,6 +100,49 @@ public class SimulationInfoTest {
     }
 
     /**
+     * Tests {@link SimulationInfo#equals(java.lang.Object)} when {@link SimulationInfo#SimulationInfo(Map, List,
+     * KnownCaseComparator, boolean)} is used.
+     */
+    @Test
+    public void testEquals2() {
+        final Map<Phoneme, Integer> mapCounterExpected = new HashMap();
+        mapCounterExpected.put(new Phoneme("n", Phoneme.POSITION.OM), 2);
+        mapCounterExpected.put(new Phoneme("ʃ", Phoneme.POSITION.OI), 2);
+
+        SimulationInfo instance = new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"), null, true);
+
+        System.out.println("testEquals2 - all the same but different comparators");
+        assertFalse(instance.equals(new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"),
+                KnownCaseComparator.EasyWordsFirst, true)));
+
+        System.out.println("testEquals2 - all the same but different flags to split consonant clusters");
+        assertFalse(instance.equals(new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"),
+                null, false)));
+
+        System.out.println("testEquals2 - all the same but different non null comparators");
+        instance = new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"),
+                KnownCaseComparator.EasyWordsFirst, true);
+
+        assertFalse(instance.equals(new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"),
+                KnownCaseComparator.HardWordsFirst, true)));
+    }
+
+    /**
+     * Tests {@link SimulationInfo#toString()}.
+     */
+    @Test
+    public void testToString() {
+        final Map<Phoneme, Integer> mapCounterExpected = new HashMap();
+        mapCounterExpected.put(new Phoneme("n", Phoneme.POSITION.OM), 2);
+        mapCounterExpected.put(new Phoneme("ʃ", Phoneme.POSITION.OI), 2);
+
+        System.out.println("testToString - null comparator");
+        SimulationInfo instance = new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"), null, true);
+
+        assertFalse(instance.toString().isBlank());
+    }
+
+    /**
      * Tests {@link SimulationInfo#hashCode()}.
      */
     @Test
@@ -133,7 +176,7 @@ public class SimulationInfoTest {
         otherMap.put(new Phoneme("s", Phoneme.POSITION.CF), 1);
 
         System.out.println("testHashCode - different objects with same hashCode");
-        assertEquals(instance.hashCode(), 
+        assertEquals(instance.hashCode(),
                 new SimulationInfo(otherMap, Arrays.asList("Anel", "Porta", "Casa")).hashCode());
 
         otherMap.clear();
@@ -142,7 +185,7 @@ public class SimulationInfoTest {
         otherMap.put(new Phoneme("l", Phoneme.POSITION.OM), 1);
 
         System.out.println("testHashCode - different hashes");
-        assertNotEquals(instance.hashCode(), 
+        assertNotEquals(instance.hashCode(),
                 new SimulationInfo(otherMap, Arrays.asList("Anel", "Porta", "Casa")).hashCode());
     }
 }

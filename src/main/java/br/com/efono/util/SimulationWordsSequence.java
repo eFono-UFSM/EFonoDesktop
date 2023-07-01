@@ -30,12 +30,26 @@ public class SimulationWordsSequence {
      */
     public static SimulationInfo runSimulation(final Assessment assessment, final KnownCaseComparator comp,
             final int minimum) {
+        return runSimulation(assessment, comp, minimum, true);
+    }
+
+    /**
+     * Runs the simulation with the words sequence in the given assessment.
+     *
+     * @param assessment Assessment.
+     * @param comp Comparator to sort KnownCases or null.
+     * @param minimum Number of times that the same phoneme in the same position must be produced to be considered in
+     * the phonetic inventory.
+     * @param splitConsonantClusters True - this will count the consonant clusters as two phonemes:
+     * <code>bɾ(OCME) -> b(OCME) + ɾ(OCME).</code>. The phoneme ɾ(OCME) can be counted more times in this way, and we
+     * can evaluate more precisely the consonant clusters productions.
+     * @return The information about the simulation.
+     */
+    public static SimulationInfo runSimulation(final Assessment assessment, final KnownCaseComparator comp,
+            final int minimum, boolean splitConsonantClusters) {
         final Map<Phoneme, Integer> mapCounter = new HashMap<>();
         final List<String> wordsRequired = new LinkedList<>();
         if (assessment != null && minimum > 0) {
-            System.out.println("-----------------\n"
-                    + "Running simulation in assessment with " + assessment.getCases().size() + " cases with " + comp);
-
             List<KnownCase> cases = assessment.getCases();
             if (comp != null) {
                 cases.sort(comp.getComparator());
@@ -49,9 +63,8 @@ public class SimulationWordsSequence {
                 for (Phoneme phoneme : c.getPhonemes()) {
                     final List<Phoneme> list = new ArrayList<>();
 
-                    // TODO: adicionar uma flag no método pra indicar se os encontros consonantais devem ser separados ou não (+1 cenário)
                     // bɾ(OCME) -> b(OCME) + ɾ(OCME)
-                    if (phoneme.isConsonantCluster()) {
+                    if (phoneme.isConsonantCluster() && splitConsonantClusters) {
                         String[] split = phoneme.getPhoneme().split("");
                         for (String s : split) {
                             list.add(new Phoneme(s, phoneme.getPosition()));
@@ -87,8 +100,8 @@ public class SimulationWordsSequence {
              * calculados a partir dos gabaritos corretos. Aí sim, podemos calcular o PCC-R.
              */
         }
-        // TODO: adicionar comparator nesse objeto
-        return new SimulationInfo(mapCounter, wordsRequired);
+        // TODO: adicionar assessment aqui
+        return new SimulationInfo(mapCounter, wordsRequired, comp, splitConsonantClusters);
     }
 
     // TODO: depois, simular a avaliação toda com o mesmo lance da busca binária, mas dessa vez, se o usuário acertou vai para uma mais difícil, se errou para mais fácil e assim por diante.

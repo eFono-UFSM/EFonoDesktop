@@ -91,12 +91,20 @@ public class Main {
 
         if (lines == 84 && lines == assessment.getCases().size()) {
             SimulationInfo hardWordsFirst = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.HardWordsFirst, 2);
-            System.out.println("result hardWordsFirst: " + hardWordsFirst);
+                    KnownCaseComparator.HardWordsFirst, 2, true);
+            System.out.println(hardWordsFirst);
+
+            hardWordsFirst = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.HardWordsFirst, 2, false);
+            System.out.println(hardWordsFirst);
 
             SimulationInfo easyWordsFirst = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.EasyWordsFirst, 2);
-            System.out.println("result easyWordsFirst: " + easyWordsFirst);
+                    KnownCaseComparator.EasyWordsFirst, 2, true);
+            System.out.println(easyWordsFirst);
+
+            easyWordsFirst = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.EasyWordsFirst, 2, false);
+            System.out.println(easyWordsFirst);
         } else {
             System.out.println("Invalid assessment to do the simulation. All words are required.");
         }

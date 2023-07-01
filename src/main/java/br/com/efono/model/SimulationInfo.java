@@ -15,6 +15,8 @@ public class SimulationInfo {
 
     private final Map<Phoneme, Integer> mapCounter;
     private final List<String> wordsRequired;
+    private final KnownCaseComparator comp;
+    private final boolean splitConsonantClusters;
 
     /**
      * Default constructor.
@@ -23,8 +25,23 @@ public class SimulationInfo {
      * @param wordsRequired The words required.
      */
     public SimulationInfo(final Map<Phoneme, Integer> mapCounter, final List<String> wordsRequired) {
+        this(mapCounter, wordsRequired, null, true);
+    }
+
+    /**
+     * Default constructor.
+     *
+     * @param mapCounter The map counter.
+     * @param wordsRequired The words required.
+     * @param comp Comparator used in the simulation.
+     * @param splitConsonantClusters True - the consonant clusters were separated in two phonemes counting.
+     */
+    public SimulationInfo(final Map<Phoneme, Integer> mapCounter, final List<String> wordsRequired,
+            final KnownCaseComparator comp, boolean splitConsonantClusters) {
         this.mapCounter = Objects.requireNonNull(mapCounter);
         this.wordsRequired = Objects.requireNonNull(wordsRequired);
+        this.comp = comp;
+        this.splitConsonantClusters = splitConsonantClusters;
     }
 
     /**
@@ -75,7 +92,8 @@ public class SimulationInfo {
         }
         final SimulationInfo other = (SimulationInfo) obj;
 
-        if (mapCounter.size() != other.mapCounter.size()) {
+        if (mapCounter.size() != other.mapCounter.size() || !Objects.equals(comp, other.comp)
+                || splitConsonantClusters != other.splitConsonantClusters) {
             return false;
         }
 
@@ -101,11 +119,16 @@ public class SimulationInfo {
 
     @Override
     public String toString() {
-        final StringBuilder builder = new StringBuilder(getClass().getSimpleName());
+        final StringBuilder builder = new StringBuilder("\n==========================================\n");
 
-        builder.append(": wordsRequired: ").append(wordsRequired.size()).
+        builder.append(getClass().getSimpleName());
+        builder.append("\n------------------------------------------\n");
+        builder.append("comparator: ").append(comp).append("\n");
+        builder.append("split consonant clusters: ").append(splitConsonantClusters).append("\n");
+        builder.append("wordsRequired: ").append(wordsRequired.size()).
                 append(": [").append(wordsRequired.toString()).append("]");
 
+        builder.append("\n------------------------------------------\n");
         return builder.toString();
     }
 
