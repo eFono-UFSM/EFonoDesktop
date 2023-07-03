@@ -15,6 +15,7 @@ public class SimulationInfo {
 
     private final Map<Phoneme, Integer> mapCounter;
     private final List<String> wordsRequired;
+    private final Assessment assessment;
     private final KnownCaseComparator comp;
     private final boolean splitConsonantClusters;
 
@@ -25,7 +26,7 @@ public class SimulationInfo {
      * @param wordsRequired The words required.
      */
     public SimulationInfo(final Map<Phoneme, Integer> mapCounter, final List<String> wordsRequired) {
-        this(mapCounter, wordsRequired, null, true);
+        this(mapCounter, wordsRequired, null, null, true);
     }
 
     /**
@@ -33,14 +34,16 @@ public class SimulationInfo {
      *
      * @param mapCounter The map counter.
      * @param wordsRequired The words required.
+     * @param assessment The assessment source.
      * @param comp Comparator used in the simulation.
      * @param splitConsonantClusters True - the consonant clusters were separated in two phonemes counting.
      */
     public SimulationInfo(final Map<Phoneme, Integer> mapCounter, final List<String> wordsRequired,
-            final KnownCaseComparator comp, boolean splitConsonantClusters) {
+            final Assessment assessment, final KnownCaseComparator comp, boolean splitConsonantClusters) {
         this.mapCounter = Objects.requireNonNull(mapCounter);
         this.wordsRequired = Objects.requireNonNull(wordsRequired);
         this.comp = comp;
+        this.assessment = assessment;
         this.splitConsonantClusters = splitConsonantClusters;
     }
 
@@ -76,6 +79,8 @@ public class SimulationInfo {
 
         hash = 83 * hash + mapHashCode;
         hash = 83 * hash + listHashCode;
+        hash = 83 * hash + Objects.hashCode(this.assessment);
+        hash = 97 * hash + (this.splitConsonantClusters ? 1 : 0);
         return hash;
     }
 
@@ -93,6 +98,7 @@ public class SimulationInfo {
         final SimulationInfo other = (SimulationInfo) obj;
 
         if (mapCounter.size() != other.mapCounter.size() || !Objects.equals(comp, other.comp)
+                || !Objects.equals(assessment, other.assessment)
                 || splitConsonantClusters != other.splitConsonantClusters) {
             return false;
         }
@@ -123,6 +129,7 @@ public class SimulationInfo {
 
         builder.append(getClass().getSimpleName());
         builder.append("\n------------------------------------------\n");
+        builder.append(assessment).append("\n");
         builder.append("comparator: ").append(comp).append("\n");
         builder.append("split consonant clusters: ").append(splitConsonantClusters).append("\n");
         builder.append("wordsRequired: ").append(wordsRequired.size()).

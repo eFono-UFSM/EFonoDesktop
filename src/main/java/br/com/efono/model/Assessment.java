@@ -70,7 +70,11 @@ public class Assessment {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.cases);
+        int casesHash = 1;
+        for (KnownCase c : cases) {
+            casesHash *= 13 + Objects.hash(c);
+        }
+        hash = 89 * hash + casesHash;
         return hash;
     }
 
@@ -87,6 +91,11 @@ public class Assessment {
         }
         final Assessment other = (Assessment) obj;
         return Objects.equals(this.cases, other.cases);
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + " with [" + cases.size() + "] cases";
     }
 
 }

@@ -100,8 +100,7 @@ public class SimulationWordsSequence {
              * calculados a partir dos gabaritos corretos. Aí sim, podemos calcular o PCC-R.
              */
         }
-        // TODO: adicionar assessment aqui
-        return new SimulationInfo(mapCounter, wordsRequired, comp, splitConsonantClusters);
+        return new SimulationInfo(mapCounter, wordsRequired, assessment, comp, splitConsonantClusters);
     }
 
     // TODO: depois, simular a avaliação toda com o mesmo lance da busca binária, mas dessa vez, se o usuário acertou vai para uma mais difícil, se errou para mais fácil e assim por diante.

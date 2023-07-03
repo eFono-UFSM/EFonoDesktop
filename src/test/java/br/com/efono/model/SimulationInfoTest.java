@@ -109,22 +109,34 @@ public class SimulationInfoTest {
         mapCounterExpected.put(new Phoneme("n", Phoneme.POSITION.OM), 2);
         mapCounterExpected.put(new Phoneme("ʃ", Phoneme.POSITION.OI), 2);
 
-        SimulationInfo instance = new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"), null, true);
+        SimulationInfo instance = new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"), null, null, true);
 
         System.out.println("testEquals2 - all the same but different comparators");
-        assertFalse(instance.equals(new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"),
+        assertFalse(instance.equals(new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"), null,
                 KnownCaseComparator.EasyWordsFirst, true)));
 
         System.out.println("testEquals2 - all the same but different flags to split consonant clusters");
-        assertFalse(instance.equals(new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"),
+        assertFalse(instance.equals(new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"), null,
                 null, false)));
 
         System.out.println("testEquals2 - all the same but different non null comparators");
-        instance = new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"),
+        instance = new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"), null,
                 KnownCaseComparator.EasyWordsFirst, true);
 
-        assertFalse(instance.equals(new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"),
+        assertFalse(instance.equals(new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"), null,
                 KnownCaseComparator.HardWordsFirst, true)));
+
+        System.out.println("testEquals2 - all the same but different assessments");
+        Assessment assessment = new Assessment();
+        instance = new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"), assessment,
+                KnownCaseComparator.EasyWordsFirst, true);
+
+        assertFalse(instance.equals(new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"), null,
+                KnownCaseComparator.EasyWordsFirst, true)));
+
+        System.out.println("testEquals2 - all the same");
+        assertTrue(instance.equals(new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"), assessment,
+                KnownCaseComparator.EasyWordsFirst, true)));
     }
 
     /**
@@ -137,7 +149,8 @@ public class SimulationInfoTest {
         mapCounterExpected.put(new Phoneme("ʃ", Phoneme.POSITION.OI), 2);
 
         System.out.println("testToString - null comparator");
-        SimulationInfo instance = new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"), null, true);
+        SimulationInfo instance = new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"), null, null,
+                true);
 
         assertFalse(instance.toString().isBlank());
     }
@@ -187,5 +200,21 @@ public class SimulationInfoTest {
         System.out.println("testHashCode - different hashes");
         assertNotEquals(instance.hashCode(),
                 new SimulationInfo(otherMap, Arrays.asList("Anel", "Porta", "Casa")).hashCode());
+
+        System.out.println("testHashCode - different objects with same assessment");
+        otherMap.clear();
+        otherMap.put(new Phoneme("f", Phoneme.POSITION.OCME), 1);
+        otherMap.put(new Phoneme("ʃ", Phoneme.POSITION.OI), 2);
+        otherMap.put(new Phoneme("l", Phoneme.POSITION.OM), 1);
+        final Assessment assessment = new Assessment();
+        instance = new SimulationInfo(otherMap, Arrays.asList("Carro", "Porta"), assessment,
+                KnownCaseComparator.HardWordsFirst, true);
+
+        assertEquals(instance.hashCode(), new SimulationInfo(new HashMap<>(otherMap), Arrays.asList("Porta", "Carro"),
+                assessment, KnownCaseComparator.HardWordsFirst, true).hashCode());
+
+        System.out.println("testHashCode - same objects with different flag to split consonants");
+        assertNotEquals(instance.hashCode(), new SimulationInfo(new HashMap<>(otherMap), Arrays.asList("Porta", "Carro"),
+                assessment, KnownCaseComparator.HardWordsFirst, false).hashCode());
     }
 }

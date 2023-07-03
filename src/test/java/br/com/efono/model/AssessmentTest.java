@@ -84,9 +84,13 @@ public class AssessmentTest {
         KnownCase knownCase = new KnownCase("Relógio", "[χe’lɔʒu]", true);
         KnownCase otherCase = new KnownCase("Sapato", "[sa’patu]", true);
 
-        System.out.println("testHashCode - different instances but the same object");
+        System.out.println("testHashCode - different instances but the same object: different order");
         Assessment instance = new Assessment(Arrays.asList(knownCase, otherCase));
-        Assessment other = new Assessment(Arrays.asList(knownCase, otherCase));
+        Assessment other = new Assessment(Arrays.asList(otherCase, knownCase));
+        assertEquals(instance.hashCode(), other.hashCode());
+
+        System.out.println("testHashCode - different instances but the same object: same order");
+        other = new Assessment(Arrays.asList(knownCase, otherCase));
         assertEquals(instance.hashCode(), other.hashCode());
 
         System.out.println("testHashCode - different hashes");
