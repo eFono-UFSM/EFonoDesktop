@@ -6,6 +6,7 @@ import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.model.Phoneme;
 import br.com.efono.model.SimulationInfo;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,6 +18,11 @@ import java.util.Map;
  * @version 2023, Jun 26.
  */
 public class SimulationWordsSequence {
+
+    /**
+     * Default value for split consonants parameter.
+     */
+    public static final boolean SPLIT_CONSONANTS = true;
 
     // TODO: tests
     /**
@@ -30,7 +36,7 @@ public class SimulationWordsSequence {
      */
     public static SimulationInfo runSimulation(final Assessment assessment, final KnownCaseComparator comp,
             final int minimum) {
-        return runSimulation(assessment, comp, minimum, true);
+        return runSimulation(assessment, comp, minimum, SPLIT_CONSONANTS);
     }
 
     /**
@@ -51,9 +57,7 @@ public class SimulationWordsSequence {
         final List<String> wordsRequired = new LinkedList<>();
         if (assessment != null && minimum > 0) {
             List<KnownCase> cases = assessment.getCases();
-            if (comp != null) {
-                cases.sort(comp.getComparator());
-            }
+            sortList(cases, comp);
 
             for (KnownCase c : cases) {
                 // TODO: ao inves de "fonemas produzidos" depois vai ser preciso pegar de algum gabarito os "fonemas alvo", pois são esses que estão sendo testados.
@@ -101,6 +105,40 @@ public class SimulationWordsSequence {
              */
         }
         return new SimulationInfo(mapCounter, wordsRequired, assessment, comp, splitConsonantClusters);
+    }
+
+    /**
+     * Sorts the list with cases according with the given comparator.
+     *
+     * @param list List to sort.
+     * @param comp {@link KnownCaseComparator} to use.
+     */
+    public static void sortList(final List<KnownCase> list, final KnownCaseComparator comp) {
+        if (list != null && comp != null) {
+            if (comp.equals(KnownCaseComparator.EasyHardWords)) {
+                // sorting just to have the right indexes inside the list: [easiest, ..., hardest]
+                list.sort(KnownCaseComparator.EasyWordsFirst.getComparator());
+                // all the words
+                final LinkedList<String> words = new LinkedList<>();
+                for (int i = 0; i < list.size(); i++) {
+                    if (!words.contains(list.get(i).getWord())) {
+                        words.add(list.get(i).getWord());
+                    }
+                }
+
+                String[] easyHardWords = KnownCaseComparator.getEasyHardWords(words.toArray(new String[words.size()]));
+                final List<String> wordsSorted = Arrays.asList(easyHardWords);
+
+                list.sort((KnownCase o1, KnownCase o2) -> {
+                    // TODO: ignore case and acentuation
+                    int indexOfo1 = wordsSorted.indexOf(o1.getWord());
+                    int indexOfo2 = wordsSorted.indexOf(o2.getWord());
+                    return indexOfo1 - indexOfo2;
+                });
+            } else {
+                list.sort(comp.getComparator());
+            }
+        }
     }
 
     // TODO: depois, simular a avaliação toda com o mesmo lance da busca binária, mas dessa vez, se o usuário acertou vai para uma mais difícil, se errou para mais fácil e assim por diante.

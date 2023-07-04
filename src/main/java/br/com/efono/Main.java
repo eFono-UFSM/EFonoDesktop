@@ -94,17 +94,21 @@ public class Main {
                     KnownCaseComparator.HardWordsFirst, 2, true);
             System.out.println(hardWordsFirst);
 
-            hardWordsFirst = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.HardWordsFirst, 2, false);
-            System.out.println(hardWordsFirst);
+//            hardWordsFirst = SimulationWordsSequence.runSimulation(assessment,
+//                    KnownCaseComparator.HardWordsFirst, 2, false);
+//            System.out.println(hardWordsFirst);
 
             SimulationInfo easyWordsFirst = SimulationWordsSequence.runSimulation(assessment,
                     KnownCaseComparator.EasyWordsFirst, 2, true);
             System.out.println(easyWordsFirst);
 
-            easyWordsFirst = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.EasyWordsFirst, 2, false);
-            System.out.println(easyWordsFirst);
+//            easyWordsFirst = SimulationWordsSequence.runSimulation(assessment,
+//                    KnownCaseComparator.EasyWordsFirst, 2, false);
+//            System.out.println(easyWordsFirst);
+
+            SimulationInfo easyHardSwitching = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.EasyHardWords, 2, true);
+            System.out.println(easyHardSwitching);
         } else {
             System.out.println("Invalid assessment to do the simulation. All words are required.");
         }

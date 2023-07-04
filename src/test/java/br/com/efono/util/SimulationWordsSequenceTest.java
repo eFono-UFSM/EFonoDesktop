@@ -131,8 +131,10 @@ public class SimulationWordsSequenceTest {
          */
         final List<String> wordsRequiredExpected = Arrays.asList("Anel", "Cabelo", "Gato", "Chinelo", SORTED_WORDS[35]);
 
-        SimulationInfo expected = new SimulationInfo(mapCounterExpected, wordsRequiredExpected);
-        SimulationInfo result = SimulationWordsSequence.runSimulation(assessment, KnownCaseComparator.EasyWordsFirst,
+        KnownCaseComparator comp = KnownCaseComparator.EasyWordsFirst;
+        SimulationInfo expected = new SimulationInfo(mapCounterExpected, wordsRequiredExpected, assessment, comp,
+                SimulationWordsSequence.SPLIT_CONSONANTS);
+        SimulationInfo result = SimulationWordsSequence.runSimulation(assessment, comp,
                 minimum);
 
         assertEquals(expected, result);
@@ -198,8 +200,10 @@ public class SimulationWordsSequenceTest {
          */
         final List<String> wordsRequiredExpected = Arrays.asList(SORTED_WORDS[35], "Chinelo", "Gato");
 
-        SimulationInfo expected = new SimulationInfo(mapCounterExpected, wordsRequiredExpected);
-        SimulationInfo result = SimulationWordsSequence.runSimulation(assessment, KnownCaseComparator.HardWordsFirst,
+        KnownCaseComparator comp = KnownCaseComparator.HardWordsFirst;
+        SimulationInfo expected = new SimulationInfo(mapCounterExpected, wordsRequiredExpected, assessment, comp,
+                SimulationWordsSequence.SPLIT_CONSONANTS);
+        SimulationInfo result = SimulationWordsSequence.runSimulation(assessment, comp,
                 minimum, true);
 
         assertEquals(expected, result);
@@ -241,10 +245,60 @@ public class SimulationWordsSequenceTest {
          */
         final List<String> wordsRequiredExpected = Arrays.asList(SORTED_WORDS[52], SORTED_WORDS[65]);
 
-        SimulationInfo expected = new SimulationInfo(mapCounterExpected, wordsRequiredExpected);
-        SimulationInfo result = SimulationWordsSequence.runSimulation(assessment, null, minimum);
+        KnownCaseComparator comp = null;
+        SimulationInfo expected = new SimulationInfo(mapCounterExpected, wordsRequiredExpected, assessment, comp,
+                SimulationWordsSequence.SPLIT_CONSONANTS);
+        SimulationInfo result = SimulationWordsSequence.runSimulation(assessment, comp, minimum);
 
         assertEquals(expected, result);
+    }
+
+    /**
+     * Tests {@link SimulationWordsSequence#sortList(List, KnownCaseComparator)}.
+     */
+    @Test
+    public void testSortList() {
+        /**
+         * Empty representation. It doesn't matter here.
+         */
+        KnownCase faca = new KnownCase("Faca", "", true);
+        KnownCase dedo = new KnownCase("Dedo", "", true);
+        KnownCase travesseiro = new KnownCase("Travesseiro", "", true);
+        KnownCase terra = new KnownCase("Terra", "", true);
+        KnownCase sapo = new KnownCase("Sapo", "", true);
+
+        List<KnownCase> list = Arrays.asList(faca, dedo, travesseiro, terra, sapo);
+
+        System.out.println("testSortList - EasyWordsFirst");
+        SimulationWordsSequence.sortList(list, KnownCaseComparator.EasyWordsFirst);
+        KnownCase[] expected = new KnownCase[]{dedo, terra, faca, sapo, travesseiro};
+        for (int i = 0; i < list.size(); i++) {
+            assertEquals(expected[i], list.get(i));
+        }
+
+        System.out.println("testSortList - HardWordsFirst");
+        SimulationWordsSequence.sortList(list, KnownCaseComparator.HardWordsFirst);
+        expected = new KnownCase[]{travesseiro, sapo, faca, terra, dedo};
+        for (int i = 0; i < list.size(); i++) {
+            assertEquals(expected[i], list.get(i));
+        }
+
+        System.out.println("testSortList - EasyHardWords");
+        list = Arrays.asList(faca, dedo, travesseiro, terra, sapo);
+        SimulationWordsSequence.sortList(list, KnownCaseComparator.EasyHardWords);
+        expected = new KnownCase[]{dedo, travesseiro, terra, sapo, faca};
+        for (int i = 0; i < list.size(); i++) {
+            assertEquals("Failed in " + i, expected[i], list.get(i));
+        }
+
+        System.out.println("testSortList - EasyHardWords - with repeated words");
+        KnownCase otherDedo = new KnownCase(dedo);
+        list = Arrays.asList(faca, dedo, travesseiro, terra, otherDedo, sapo);
+        SimulationWordsSequence.sortList(list, KnownCaseComparator.EasyHardWords);
+        expected = new KnownCase[]{dedo, otherDedo, travesseiro, terra, sapo, faca};
+        for (int i = 0; i < list.size(); i++) {
+            assertEquals("Failed in " + i, expected[i], list.get(i));
+        }
     }
 
 }

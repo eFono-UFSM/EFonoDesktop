@@ -1,7 +1,10 @@
 package br.com.efono.model;
 
+import br.com.efono.util.SimulationWordsSequence;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  *
@@ -27,6 +30,21 @@ public enum KnownCaseComparator {
         int indexOfo1 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o1.getWord());
         int indexOfo2 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o2.getWord());
         return indexOfo1 - indexOfo2;
+    }),
+    /**
+     * Sort KnownCases by switching between easy/hard words. This will generate a list with words like: <code>easy, hard, easy, hard,
+     * ...</code>. This should be used with {@link SimulationWordsSequence#sortList(List, KnownCaseComparator)}. It
+     * considers all the words in {@link KnownCaseComparator.Defaults#SORTED_WORDS}, so if the given list to sort
+     * doesn't contain all the words, it may presents weird results. To consider only the words in the list and to sort
+     * them like <code>easy, hard, easy</code>, then you should use
+     * {@link SimulationWordsSequence#sortList(List, KnownCaseComparator)}.
+     */
+    EasyHardWords((KnownCase o1, KnownCase o2) -> {
+        // TODO: ignore case and acentuation
+        List<String> list = Arrays.asList(Defaults.EASY_HARD_WORDS);
+        int indexOfo1 = list.indexOf(o1.getWord());
+        int indexOfo2 = list.indexOf(o2.getWord());
+        return indexOfo1 - indexOfo2;
     });
 
     private final Comparator<KnownCase> comp;
@@ -48,6 +66,37 @@ public enum KnownCaseComparator {
     }
 
     /**
+     * Sorts the given array with words like: <code>easy, hard, easy, hard words...</code>
+     *
+     * @param sortedWords Given array to sort.
+     * @return The sorted array.
+     */
+    public static String[] getEasyHardWords(final String[] sortedWords) {
+        final LinkedList<String> easyHardWords = new LinkedList<>();
+
+        int easyIndex = 0;
+        int hardIndex = sortedWords.length - 1;
+
+        // TODO: testes com arrays com tamanho par/impar.
+        /**
+         * This is sorting the sortedWords by <code>easy, hard, easy, hard words...</code>
+         */
+        while (easyHardWords.size() < sortedWords.length && easyIndex < sortedWords.length && hardIndex > 0) {
+            String easy = sortedWords[easyIndex++];
+            String hard = sortedWords[hardIndex--];
+
+            if (!easyHardWords.contains(easy)) {
+                easyHardWords.add(easy);
+            }
+            if (!easyHardWords.contains(hard)) {
+                easyHardWords.add(hard);
+            }
+        }
+
+        return easyHardWords.toArray(new String[easyHardWords.size()]);
+    }
+
+    /**
      * Stores the sorted words by difficult level.
      */
     public static class Defaults {
@@ -65,6 +114,8 @@ public enum KnownCaseComparator {
             "Livro", "Chiclete", "Chifre", "Bicicleta", "Gritar", "Bruxa", "Letra", "Plástico", "Igreja", "Flor",
             "Escrever", "Dragão", "Magro", "Estrela", "Pedra", "Vidro", "Microfone", "Colher", "Floresta", "Biblioteca",
             "Travesseiro"};
+
+        private static final String[] EASY_HARD_WORDS = getEasyHardWords(SORTED_WORDS);
     }
 
 }
