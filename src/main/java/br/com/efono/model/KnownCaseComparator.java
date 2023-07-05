@@ -45,6 +45,9 @@ public enum KnownCaseComparator {
         int indexOfo1 = list.indexOf(o1.getWord());
         int indexOfo2 = list.indexOf(o2.getWord());
         return indexOfo1 - indexOfo2;
+    }),
+    BinaryTree((KnownCase o1, KnownCase o2) -> {
+        return 0;
     });
 
     private final Comparator<KnownCase> comp;

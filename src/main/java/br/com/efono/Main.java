@@ -66,12 +66,6 @@ public class Main {
 
         int lines = 0;
         while (rs.next()) {
-            //Display values
-            System.out.print("id_avaliacao: " + rs.getInt("id_avaliacao"));
-            System.out.print(", transcricao: " + rs.getString("transcricao"));
-            System.out.print(", palavra: " + rs.getString("palavra"));
-            System.out.println(", correto: " + rs.getBoolean("correto"));
-
             try {
                 KnownCase knownCase = new KnownCase(rs.getString("palavra"),
                         rs.getString("transcricao"), rs.getBoolean("correto"));
@@ -80,7 +74,7 @@ public class Main {
 
                 assessment.addCase(knownCase);
 
-                System.out.println(knownCase);
+//                System.out.println(knownCase);
             } catch (final IllegalArgumentException | SQLException e) {
                 System.out.println("Exception creating known case: " + e);
             }
@@ -97,7 +91,6 @@ public class Main {
 //            hardWordsFirst = SimulationWordsSequence.runSimulation(assessment,
 //                    KnownCaseComparator.HardWordsFirst, 2, false);
 //            System.out.println(hardWordsFirst);
-
             SimulationInfo easyWordsFirst = SimulationWordsSequence.runSimulation(assessment,
                     KnownCaseComparator.EasyWordsFirst, 2, true);
             System.out.println(easyWordsFirst);
@@ -105,7 +98,6 @@ public class Main {
 //            easyWordsFirst = SimulationWordsSequence.runSimulation(assessment,
 //                    KnownCaseComparator.EasyWordsFirst, 2, false);
 //            System.out.println(easyWordsFirst);
-
             SimulationInfo easyHardSwitching = SimulationWordsSequence.runSimulation(assessment,
                     KnownCaseComparator.EasyHardWords, 2, true);
             System.out.println(easyHardSwitching);

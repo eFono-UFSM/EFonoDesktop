@@ -115,28 +115,34 @@ public class SimulationWordsSequence {
      */
     public static void sortList(final List<KnownCase> list, final KnownCaseComparator comp) {
         if (list != null && comp != null) {
-            if (comp.equals(KnownCaseComparator.EasyHardWords)) {
-                // sorting just to have the right indexes inside the list: [easiest, ..., hardest]
-                list.sort(KnownCaseComparator.EasyWordsFirst.getComparator());
-                // all the words
-                final LinkedList<String> words = new LinkedList<>();
-                for (int i = 0; i < list.size(); i++) {
-                    if (!words.contains(list.get(i).getWord())) {
-                        words.add(list.get(i).getWord());
+            switch (comp) {
+                case EasyHardWords:
+                    // sorting just to have the right indexes inside the list: [easiest, ..., hardest]
+                    list.sort(KnownCaseComparator.EasyWordsFirst.getComparator());
+                    // all the words
+                    final LinkedList<String> words = new LinkedList<>();
+                    for (int i = 0; i < list.size(); i++) {
+                        if (!words.contains(list.get(i).getWord())) {
+                            words.add(list.get(i).getWord());
+                        }
                     }
-                }
-
-                String[] easyHardWords = KnownCaseComparator.getEasyHardWords(words.toArray(new String[words.size()]));
-                final List<String> wordsSorted = Arrays.asList(easyHardWords);
-
-                list.sort((KnownCase o1, KnownCase o2) -> {
-                    // TODO: ignore case and acentuation
-                    int indexOfo1 = wordsSorted.indexOf(o1.getWord());
-                    int indexOfo2 = wordsSorted.indexOf(o2.getWord());
-                    return indexOfo1 - indexOfo2;
-                });
-            } else {
-                list.sort(comp.getComparator());
+                    String[] easyHardWords = KnownCaseComparator.getEasyHardWords(
+                            words.toArray(new String[words.size()]));
+                    final List<String> wordsSorted = Arrays.asList(easyHardWords);
+                    list.sort((KnownCase o1, KnownCase o2) -> {
+                        // TODO: ignore case and acentuation
+                        int indexOfo1 = wordsSorted.indexOf(o1.getWord());
+                        int indexOfo2 = wordsSorted.indexOf(o2.getWord());
+                        return indexOfo1 - indexOfo2;
+                    });
+                    break;
+                case BinaryTree:
+                    
+                    
+                    break;
+                default:
+                    list.sort(comp.getComparator());
+                    break;
             }
         }
     }
