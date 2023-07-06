@@ -46,8 +46,11 @@ public enum KnownCaseComparator {
         int indexOfo2 = list.indexOf(o2.getWord());
         return indexOfo1 - indexOfo2;
     }),
-    BinaryTree((KnownCase o1, KnownCase o2) -> {
-        return 0;
+    BinaryTreeComparator((KnownCase o1, KnownCase o2) -> {
+        // TODO: ignore case and acentuation
+        int indexOfo1 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o1.getWord());
+        int indexOfo2 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o2.getWord());
+        return indexOfo1 - indexOfo2;
     });
 
     private final Comparator<KnownCase> comp;

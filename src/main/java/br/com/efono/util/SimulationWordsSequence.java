@@ -136,10 +136,6 @@ public class SimulationWordsSequence {
                         return indexOfo1 - indexOfo2;
                     });
                     break;
-                case BinaryTree:
-                    
-                    
-                    break;
                 default:
                     list.sort(comp.getComparator());
                     break;
