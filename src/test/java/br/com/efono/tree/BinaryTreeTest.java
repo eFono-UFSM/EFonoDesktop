@@ -1,10 +1,7 @@
 package br.com.efono.tree;
 
 import br.com.efono.model.KnownCase;
-import br.com.efono.model.KnownCaseComparator;
-import static br.com.efono.model.KnownCaseComparator.Defaults.SORTED_WORDS;
 import br.com.efono.model.Phoneme;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
@@ -18,38 +15,21 @@ import static org.junit.Assert.*;
 public class BinaryTreeTest {
 
     @Test
-    public void test() {
-        assertTrue(true);
+    public void testa() {
+        // TODO: rever a arvore. O certo seria fazer um método que adicione os valores de forma balanceada na árvore
+        int[] treeArray = new int[]{41, 20, 10, 5, 2, 1, 0, 3, 4, 7, 6, 8, 9, 15, 12, 11, 13, 14, 17, 16, 18, 19, 30, 25, 22, 21, 23, 24, 27, 26, 28, 29, 35, 32, 31, 33, 34, 38, 36, 37, 39, 40,
+            62, 51, 46, 43, 41, 44, 45, 48, 47, 49, 50, 56, 53, 52, 54, 55, 59, 57, 58, 60, 61, 72, 67, 64, 63, 65, 66, 69, 68, 70, 71, 77, 74, 73, 75, 76, 80, 78, 79, 82, 81, 83};
 
-        // TODO: filtrar palavras repetidas
-        final List<KnownCase> cases = getCases();
-        final List<String> wordsAdded = new ArrayList<>();
+        BinaryTree<Integer> tree = new BinaryTree<>((final Integer o1, final Integer o2) -> {
+            return o1 - o2;
+        });
 
-        final BinaryTree<KnownCase> tree = new BinaryTree(KnownCaseComparator.BinaryTreeComparator.getComparator());
-
-        int mid = cases.size() / 2;
-        int min = 0;
-        int max = cases.size() - 1;
-        while (wordsAdded.size() < cases.size()) {
-            if (!wordsAdded.contains(SORTED_WORDS[mid])) {
-
-                KnownCase midCase = getCaseFromWord(cases, SORTED_WORDS[mid]);
-                tree.add(midCase);
-                
-                wordsAdded.add(SORTED_WORDS[mid]);
-                
-            }
+        for (int i : treeArray) {
+            tree.add(i);
         }
-        fail();
-    }
+        new BinaryTreePrinter(tree).print(System.out);
 
-    private KnownCase getCaseFromWord(final List<KnownCase> list, final String word) {
-        for (KnownCase c : list) {
-            if (c.getWord().equalsIgnoreCase(word)) {
-                return c;
-            }
-        }
-        return null;
+        fail("Failed just to see printed tree");
     }
 
     /**

@@ -5,13 +5,13 @@ import br.com.efono.model.KnownCase;
 import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.model.Phoneme;
 import br.com.efono.model.SimulationInfo;
+import static br.com.efono.util.Defaults.SORTED_WORDS;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import static br.com.efono.model.KnownCaseComparator.Defaults.SORTED_WORDS;
 
 /**
  *

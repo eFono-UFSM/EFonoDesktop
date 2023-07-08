@@ -1,6 +1,7 @@
 package br.com.efono.tree;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 /**
  *
@@ -10,15 +11,15 @@ import java.util.Comparator;
  */
 public class BinaryTree<E> {
 
-    private Node root;
-    private final Comparator comparator;
+    private Node<E> root;
+    private final Comparator<E> comparator;
 
     /**
      * Creates a binary tree.
      *
      * @param comparator Comparator to compare the nodes.
      */
-    public BinaryTree(final Comparator comparator) {
+    public BinaryTree(final Comparator<E> comparator) {
         this.comparator = comparator;
     }
 
@@ -28,7 +29,7 @@ public class BinaryTree<E> {
      * @param root The root node.
      * @param comparator Comparator to compare the nodes.
      */
-    public BinaryTree(final Node root, final Comparator comparator) {
+    public BinaryTree(final Node<E> root, final Comparator<E> comparator) {
         this.root = root;
         this.comparator = comparator;
     }
@@ -36,7 +37,7 @@ public class BinaryTree<E> {
     /**
      * @return The root node.
      */
-    public Node getRoot() {
+    public Node<E> getRoot() {
         return root;
     }
 
@@ -49,7 +50,30 @@ public class BinaryTree<E> {
         root = addRecursive(root, value);
     }
 
-    private Node addRecursive(final Node current, final E value) {
+    /**
+     * Finds out if the tree contains the given value.
+     *
+     * @param value Value to find.
+     * @return The node itself or null if not found.
+     */
+    public Node<E> getNode(final E value) {
+        return containsNodeRecursive(root, value);
+    }
+
+    private Node<E> containsNodeRecursive(final Node<E> current, final E value) {
+        if (current == null) {
+            return null;
+        }
+        if (Objects.equals(value, current.getValue())) {
+            return current;
+        }
+
+        return comparator.compare(value, current.getValue()) < 0
+                ? containsNodeRecursive(current.getLeft(), value)
+                : containsNodeRecursive(current.getRight(), value);
+    }
+
+    private Node<E> addRecursive(final Node<E> current, final E value) {
         // when the current node is null, we've reached a leaf node and we can insert the new node in that position
         if (current == null) {
             return new Node(value);

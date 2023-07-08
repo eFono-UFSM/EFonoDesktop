@@ -126,7 +126,7 @@ public class SimulationWordsSequence {
                             words.add(list.get(i).getWord());
                         }
                     }
-                    String[] easyHardWords = KnownCaseComparator.getEasyHardWords(
+                    String[] easyHardWords = Defaults.getEasyHardWords(
                             words.toArray(new String[words.size()]));
                     final List<String> wordsSorted = Arrays.asList(easyHardWords);
                     list.sort((KnownCase o1, KnownCase o2) -> {
