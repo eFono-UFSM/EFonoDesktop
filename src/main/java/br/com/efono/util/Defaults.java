@@ -1,5 +1,7 @@
 package br.com.efono.util;
 
+import br.com.efono.tree.BinaryTree;
+import java.util.Arrays;
 import java.util.LinkedList;
 
 /**
@@ -24,6 +26,18 @@ public class Defaults {
         "Travesseiro"};
 
     public static final String[] EASY_HARD_WORDS = getEasyHardWords(SORTED_WORDS);
+
+    public static final BinaryTree<String> TREE = new BinaryTree<>((final String o1, final String o2) -> {
+        int index1 = Arrays.asList(SORTED_WORDS).indexOf(o1);
+        int index2 = Arrays.asList(SORTED_WORDS).indexOf(o2);
+        if (index1 < 0 || index2 < 0) {
+            // this should not happen, because all cases must use some of known words. Just in case...
+            System.out.println("Something is wrong with tree");
+            return 0;
+        }
+
+        return index2 - index1;
+    });
 
     /**
      * Sorts the given array with words like: <code>easy, hard, easy, hard words...</code>

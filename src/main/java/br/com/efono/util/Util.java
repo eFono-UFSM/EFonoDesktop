@@ -1,5 +1,6 @@
 package br.com.efono.util;
 
+import br.com.efono.model.KnownCase;
 import br.com.efono.model.Phoneme;
 import static br.com.efono.model.Phoneme.CONSONANT_CLUSTERS;
 import static br.com.efono.model.Phoneme.SEMI_VOWELS;
@@ -345,5 +346,23 @@ public class Util {
             return list;
         }
         return Collections.emptyList();
+    }
+
+    /**
+     * Gets the case in the list from the given word. Ignore case is used here.
+     *
+     * @param list The list to look in.
+     * @param word The word.
+     * @return The case with the given word or null if the word is not in any case of the list.
+     */
+    public static KnownCase getCaseFromWord(final List<KnownCase> list, final String word) {
+        if (list != null && word != null) {
+            for (KnownCase c : list) {
+                if (c.getWord().equalsIgnoreCase(word)) {
+                    return c;
+                }
+            }
+        }
+        return null;
     }
 }

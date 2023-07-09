@@ -1,7 +1,6 @@
 package br.com.efono.tree;
 
 import java.io.PrintStream;
-import java.util.Objects;
 
 /**
  *
@@ -10,24 +9,13 @@ import java.util.Objects;
  */
 public class BinaryTreePrinter {
 
-    private final BinaryTree tree;
-
-    /**
-     * Creates a binary tree printer.
-     *
-     * @param tree The tree to print.
-     */
-    public BinaryTreePrinter(final BinaryTree tree) {
-        this.tree = Objects.requireNonNull(tree);
-    }
-
-    private String traversePreOrder(final Node root) {
+    private static String traversePreOrder(final Node root) {
         if (root == null) {
             return "";
         }
 
         StringBuilder sb = new StringBuilder();
-        sb.append(root.getValue());
+        sb.append(root.printValue());
 
         String pointerRight = "└──";
         String pointerLeft = (root.getRight() != null) ? "├──" : "└──";
@@ -38,13 +26,13 @@ public class BinaryTreePrinter {
         return sb.toString();
     }
 
-    private void traverseNodes(final StringBuilder sb, final String padding, final String pointer, final Node node,
-            final boolean hasRightSibling) {
+    private static void traverseNodes(final StringBuilder sb, final String padding, final String pointer,
+            final Node node, final boolean hasRightSibling) {
         if (node != null) {
             sb.append("\n");
             sb.append(padding);
             sb.append(pointer);
-            sb.append(node.getValue());
+            sb.append(node.printValue());
 
             StringBuilder paddingBuilder = new StringBuilder(padding);
             if (hasRightSibling) {
@@ -63,11 +51,13 @@ public class BinaryTreePrinter {
     }
 
     /**
-     * Prints the tree.
+     * Prints the tree. The first value is the root. The second branch is left side and the other is the right side of
+     * the binary tree.
      *
+     * @param tree
      * @param os Output stream.
      */
-    public void print(final PrintStream os) {
+    public static void print(final BinaryTree tree, final PrintStream os) {
         os.print(traversePreOrder(tree.getRoot()));
     }
 

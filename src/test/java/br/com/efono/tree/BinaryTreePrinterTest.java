@@ -44,7 +44,7 @@ public class BinaryTreePrinterTest {
         };
         BinaryTree<String> tree = new BinaryTree(root, comp);
 
-        new BinaryTreePrinter(tree).print(System.out);
+        BinaryTreePrinter.print(tree, System.out);
         fail();
     }
 

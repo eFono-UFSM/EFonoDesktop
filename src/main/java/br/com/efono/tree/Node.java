@@ -1,5 +1,8 @@
 package br.com.efono.tree;
 
+import br.com.efono.util.Defaults;
+import java.util.Arrays;
+
 /**
  *
  * @author João Bolsson (joaovictorbolsson@gmail.com)
@@ -60,6 +63,19 @@ public class Node<E> {
      */
     public Node getRight() {
         return right;
+    }
+
+    /**
+     * @return A printed value.
+     */
+    public String printValue() {
+        if (value instanceof String) {
+            int indexOf = Arrays.asList(Defaults.SORTED_WORDS).indexOf(value);
+            if (indexOf >= 0) {
+                return value + "(" + indexOf + ")";
+            }
+        }
+        return value.toString();
     }
 
 }

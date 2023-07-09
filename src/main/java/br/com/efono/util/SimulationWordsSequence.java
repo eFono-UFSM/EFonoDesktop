@@ -5,6 +5,8 @@ import br.com.efono.model.KnownCase;
 import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.model.Phoneme;
 import br.com.efono.model.SimulationInfo;
+import br.com.efono.tree.Node;
+import static br.com.efono.util.Defaults.SORTED_WORDS;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -59,6 +61,9 @@ public class SimulationWordsSequence {
             List<KnownCase> cases = assessment.getCases();
             sortList(cases, comp);
 
+            // TODO: ordenar conforme arvore binária. A prox palavra a ser analisada vai depender se a atual acertou ou não
+            // a primeira palavra deve ser a do meio. a prox vai ser mais facil ou mais dificil de acordo com essa.
+            // se chegar em alguma base, começa a voltar
             for (KnownCase c : cases) {
                 // TODO: ao inves de "fonemas produzidos" depois vai ser preciso pegar de algum gabarito os "fonemas alvo", pois são esses que estão sendo testados.
                 // os "fonemas produzidos" aqui precisam ser testados no mínimo 2 vezes para serem considerados "adquiridos" no inv. fonético. [esse é o trabalho da simulação]
@@ -116,7 +121,7 @@ public class SimulationWordsSequence {
     public static void sortList(final List<KnownCase> list, final KnownCaseComparator comp) {
         if (list != null && comp != null) {
             switch (comp) {
-                case EasyHardWords:
+                case EasyHardWords: {
                     // sorting just to have the right indexes inside the list: [easiest, ..., hardest]
                     list.sort(KnownCaseComparator.EasyWordsFirst.getComparator());
                     // all the words
@@ -136,12 +141,60 @@ public class SimulationWordsSequence {
                         return indexOfo1 - indexOfo2;
                     });
                     break;
+                }
+                case BinaryTreeComparator: {
+                    System.out.println("BinaryTreeComparator");
+                    final List<String> wordsSorted = new LinkedList<>();
+
+                    Node<String> root = Defaults.TREE.getRoot();
+                    addRecursive(root, wordsSorted, list);
+
+                    System.out.println("wordsSorted: " + wordsSorted);
+                    System.out.print("[");
+                    for (String w : wordsSorted) {
+                        System.out.print(Arrays.asList(SORTED_WORDS).indexOf(w) + ", ");
+                    }
+                    System.out.println("]");
+
+                    list.sort((KnownCase o1, KnownCase o2) -> {
+                        // TODO: ignore case and acentuation
+                        int indexOfo1 = wordsSorted.indexOf(o1.getWord());
+                        int indexOfo2 = wordsSorted.indexOf(o2.getWord());
+                        return indexOfo1 - indexOfo2;
+                    });
+                    System.out.println("now, sorted list: " + list);
+                    break;
+                }
                 default:
                     list.sort(comp.getComparator());
                     break;
             }
         }
     }
+
+    // words vai ter a sequencia de palavras que eu vou testar de acordo com os resultados do usuário
+    // node é apenas a árvore já criada e balanceada de acordo com a dificuldade de cada palavra
+    // vai começar no meio (41) e na esqueda vão ter palavras mais fáceis que ela mesma e na direta mais difíceis
+    // com o resultado de cada usuário eu vou ter como saber qual teria sido a sequência ótima para aquela avaliação
+    // mas isso só porque eu JÁ sei que ele acertou ou errou
+    public static void addRecursive(final Node<String> node, final List<String> words, final List<KnownCase> cases) {
+        if (node == null) {
+            return;
+        }
+        String val = node.getValue();
+        System.out.println("addRecursive: " + val);
+        words.add(val);
+
+        KnownCase c = Util.getCaseFromWord(cases, val);
+
+        if (c.isCorrect()) {
+            System.out.println("acertou " + val);
+            addRecursive(node.getRight(), words, cases);
+            addRecursive(node.getLeft(), words, cases);
+        } else {
+            // TODO: e se errou?
+        }
+    }    
 
     // TODO: depois, simular a avaliação toda com o mesmo lance da busca binária, mas dessa vez, se o usuário acertou vai para uma mais difícil, se errou para mais fácil e assim por diante.
     // TODO: comparator com indices misturados (busca binaria).

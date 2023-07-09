@@ -35,6 +35,13 @@ public class BinaryTree<E> {
     }
 
     /**
+     * Clears this tree.
+     */
+    public void clear() {
+        root = null;
+    }
+
+    /**
      * @return The root node.
      */
     public Node<E> getRoot() {

@@ -27,7 +27,7 @@ public class BinaryTreeTest {
         for (int i : treeArray) {
             tree.add(i);
         }
-        new BinaryTreePrinter(tree).print(System.out);
+        BinaryTreePrinter.print(tree, System.out);
 
         fail("Failed just to see printed tree");
     }
