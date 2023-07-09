@@ -187,14 +187,22 @@ public class SimulationWordsSequence {
 
         KnownCase c = Util.getCaseFromWord(cases, val);
 
+        /**
+         * This is one approach: the algorithm keep going right side (harder words) until there is an error from the
+         * user. In this moment, it starts to return and goes to the other side. The recursion makes sure that even if
+         * there was an incorrect production and after that a correct one, the algorithm will increase again the level
+         * of difficult.
+         */
         if (c.isCorrect()) {
             System.out.println("acertou " + val);
             addRecursive(node.getRight(), words, cases);
             addRecursive(node.getLeft(), words, cases);
         } else {
-            // TODO: e se errou?
+            System.out.println("errou " + val);
+            addRecursive(node.getLeft(), words, cases);
+            addRecursive(node.getRight(), words, cases);
         }
-    }    
+    }
 
     // TODO: depois, simular a avaliação toda com o mesmo lance da busca binária, mas dessa vez, se o usuário acertou vai para uma mais difícil, se errou para mais fácil e assim por diante.
     // TODO: comparator com indices misturados (busca binaria).
