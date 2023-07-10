@@ -182,23 +182,35 @@ public class SimulationWordsSequence {
             return;
         }
         String val = node.getValue();
-        System.out.println("addRecursive: " + val);
-        words.add(val);
+        // node vem da arvore binaria com TODAS as palavras que usamos nas avaliações
+        // mas e se uma avaliacao nao tiver todas as palavras? tenta a mais dificil abaixo do node OU SEJA, antes de mandar a lista com os casos
+        // adiciona artificialmente os casos faltantes: no que isso impacta? precisa ser isolado, essa palavra não pode ser adicionada em words
+        // TODO: if (c == null)
 
+        /**
+         * In case of the list has less words than the tree (incomplete assessment) we don't need to add this word at
+         * words list.
+         */
         KnownCase c = Util.getCaseFromWord(cases, val);
+        if (c != null) {
+            System.out.println("addRecursive: " + val);
+            words.add(val);
+        }
 
         /**
          * This is one approach: the algorithm keep going right side (harder words) until there is an error from the
          * user. In this moment, it starts to return and goes to the other side. The recursion makes sure that even if
          * there was an incorrect production and after that a correct one, the algorithm will increase again the level
          * of difficult.
+         *
+         * In the given list has less words than the tree we always go to the right side (harder words).
          */
-        if (c.isCorrect()) {
-            System.out.println("acertou " + val);
+        if (c == null || c.isCorrect()) {
+            System.out.println("direta " + val);
             addRecursive(node.getRight(), words, cases);
             addRecursive(node.getLeft(), words, cases);
         } else {
-            System.out.println("errou " + val);
+            System.out.println("esquerda " + val);
             addRecursive(node.getLeft(), words, cases);
             addRecursive(node.getRight(), words, cases);
         }

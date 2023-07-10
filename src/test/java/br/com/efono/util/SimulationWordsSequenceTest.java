@@ -320,7 +320,7 @@ public class SimulationWordsSequenceTest {
     public void testSortListTree() {
         System.out.println("testSortListTree - all correct cases");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 8, 9};
+        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
         for (int i : arrayIndex) {
             Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
         }
@@ -335,17 +335,18 @@ public class SimulationWordsSequenceTest {
         KnownCase tenis = new KnownCase("Tênis", "[’tenis]", true, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
         KnownCase dente = new KnownCase("Dente", "[’dẽnʧi]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("ʧ", Phoneme.POSITION.OM)));
         KnownCase navio = new KnownCase("Navio", "[na’viw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OI), new Phoneme("v", Phoneme.POSITION.OM)));
+        KnownCase dado = new KnownCase("Dado", "[’dadu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
         KnownCase dedo = new KnownCase("Dedo", "[’dedu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
         KnownCase cama = new KnownCase("Cama", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
         KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
         KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
 
-        final List<KnownCase> list = Arrays.asList(batom, terra, tenis, dente, navio, dedo, cama, anel, bebe);
+        final List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
         list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
         SimulationWordsSequence.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
-        int[] expectedSequence = new int[]{4, 7, 8, 9, 6, 2, 3, 1, 0};
+        int[] expectedSequence = new int[]{4, 7, 8, 9, 6, 5, 2, 3, 1, 0};
         for (int i = 0; i < expectedSequence.length; i++) {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
@@ -357,7 +358,7 @@ public class SimulationWordsSequenceTest {
          * "ativar" isso
          */
         // new int[]{4, 7, 8, 9, 6, 3, 2, 1, 0};
-        fail("just testing");
+        //fail("just testing");
     }
 
     /**
@@ -368,7 +369,7 @@ public class SimulationWordsSequenceTest {
     public void testSortListTree2() {
         System.out.println("testSortListTree2");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 8, 9};
+        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
         for (int i : arrayIndex) {
             Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
         }
@@ -377,23 +378,23 @@ public class SimulationWordsSequenceTest {
         BinaryTreePrinter.print(Defaults.TREE, System.out);
         System.out.println("\n-------------------");
 
-        // todos os casos estao corretos
         KnownCase batom = new KnownCase("Batom", "[ba’tõw]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("t", Phoneme.POSITION.OM)));
         KnownCase terra = new KnownCase("Terra", "[’tɛχə]", false, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("χ", Phoneme.POSITION.OM)));
         KnownCase tenis = new KnownCase("Tênis", "[’tenis]", true, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
         KnownCase dente = new KnownCase("Dente", "[’dẽnʧi]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("ʧ", Phoneme.POSITION.OM)));
         KnownCase navio = new KnownCase("Navio", "[na’viw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OI), new Phoneme("v", Phoneme.POSITION.OM)));
+        KnownCase dado = new KnownCase("Dado", "[’dadu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
         KnownCase dedo = new KnownCase("Dedo", "[’dedu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
         KnownCase cama = new KnownCase("Cama", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
         KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
         KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
 
-        final List<KnownCase> list = Arrays.asList(batom, terra, tenis, dente, navio, dedo, cama, anel, bebe);
+        final List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
         list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
         SimulationWordsSequence.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
-        int[] expectedSequence = new int[]{4, 7, 6, 8, 9, 2, 3, 1, 0};
+        int[] expectedSequence = new int[]{4, 7, 6, 5, 8, 9, 2, 3, 1, 0};
         for (int i = 0; i < expectedSequence.length; i++) {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
@@ -405,7 +406,7 @@ public class SimulationWordsSequenceTest {
          * "ativar" isso
          */
         // new int[]{4, 7, 8, 9, 6, 3, 2, 1, 0};
-        fail("just testing");
+        //fail("just testing");
     }
 
     /**
@@ -414,9 +415,9 @@ public class SimulationWordsSequenceTest {
      */
     @Test
     public void testSortListTree3() {
-        System.out.println("testSortListTree2");
+        System.out.println("testSortListTree3");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 8, 9};
+        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
         for (int i : arrayIndex) {
             Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
         }
@@ -425,23 +426,23 @@ public class SimulationWordsSequenceTest {
         BinaryTreePrinter.print(Defaults.TREE, System.out);
         System.out.println("\n-------------------");
 
-        // todos os casos estao corretos
         KnownCase batom = new KnownCase("Batom", "[ba’tõw]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("t", Phoneme.POSITION.OM)));
         KnownCase terra = new KnownCase("Terra", "[’tɛχə]", false, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("χ", Phoneme.POSITION.OM)));
         KnownCase tenis = new KnownCase("Tênis", "[’tenis]", false, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
         KnownCase dente = new KnownCase("Dente", "[’dẽnʧi]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("ʧ", Phoneme.POSITION.OM)));
         KnownCase navio = new KnownCase("Navio", "[na’viw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OI), new Phoneme("v", Phoneme.POSITION.OM)));
+        KnownCase dado = new KnownCase("Dado", "[’dadu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
         KnownCase dedo = new KnownCase("Dedo", "[’dedu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
         KnownCase cama = new KnownCase("Cama", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
         KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
         KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
 
-        final List<KnownCase> list = Arrays.asList(batom, terra, tenis, dente, navio, dedo, cama, anel, bebe);
+        final List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
         list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
         SimulationWordsSequence.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
-        int[] expectedSequence = new int[]{4, 7, 6, 8, 9, 2, 3, 1, 0};
+        int[] expectedSequence = new int[]{4, 7, 6, 5, 8, 9, 2, 3, 1, 0};
         for (int i = 0; i < expectedSequence.length; i++) {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
@@ -453,7 +454,7 @@ public class SimulationWordsSequenceTest {
          * "ativar" isso
          */
         // new int[]{4, 7, 8, 9, 6, 3, 2, 1, 0};
-        fail("just testing");
+        //fail("just testing");
     }
 
     /**
@@ -465,9 +466,9 @@ public class SimulationWordsSequenceTest {
      */
     @Test
     public void testSortListTree4() {
-        System.out.println("testSortListTree2");
+        System.out.println("testSortListTree4");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 8, 9};
+        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
         for (int i : arrayIndex) {
             Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
         }
@@ -476,23 +477,23 @@ public class SimulationWordsSequenceTest {
         BinaryTreePrinter.print(Defaults.TREE, System.out);
         System.out.println("\n-------------------");
 
-        // todos os casos estao corretos
         KnownCase batom = new KnownCase("Batom", "[ba’tõw]", false, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("t", Phoneme.POSITION.OM)));
         KnownCase terra = new KnownCase("Terra", "[’tɛχə]", false, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("χ", Phoneme.POSITION.OM)));
         KnownCase tenis = new KnownCase("Tênis", "[’tenis]", false, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
         KnownCase dente = new KnownCase("Dente", "[’dẽnʧi]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("ʧ", Phoneme.POSITION.OM)));
         KnownCase navio = new KnownCase("Navio", "[na’viw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OI), new Phoneme("v", Phoneme.POSITION.OM)));
+        KnownCase dado = new KnownCase("Dado", "[’dadu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
         KnownCase dedo = new KnownCase("Dedo", "[’dedu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
         KnownCase cama = new KnownCase("Cama", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
         KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
         KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
 
-        final List<KnownCase> list = Arrays.asList(batom, terra, tenis, dente, navio, dedo, cama, anel, bebe);
+        final List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
         list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
         SimulationWordsSequence.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
-        int[] expectedSequence = new int[]{4, 2, 3, 1, 0, 7, 6, 8, 9};
+        int[] expectedSequence = new int[]{4, 2, 3, 1, 0, 7, 6, 5, 8, 9};
         for (int i = 0; i < expectedSequence.length; i++) {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
@@ -504,7 +505,7 @@ public class SimulationWordsSequenceTest {
          * "ativar" isso
          */
         // new int[]{4, 7, 8, 9, 6, 3, 2, 1, 0};
-        fail("just testing");
+        //fail("just testing");
     }
 
     /**
@@ -516,9 +517,9 @@ public class SimulationWordsSequenceTest {
      */
     @Test
     public void testSortListTree5() {
-        System.out.println("testSortListTree2");
+        System.out.println("testSortListTree5");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 8, 9};
+        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
         for (int i : arrayIndex) {
             Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
         }
@@ -527,23 +528,23 @@ public class SimulationWordsSequenceTest {
         BinaryTreePrinter.print(Defaults.TREE, System.out);
         System.out.println("\n-------------------");
 
-        // todos os casos estao corretos
         KnownCase batom = new KnownCase("Batom", "[ba’tõw]", false, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("t", Phoneme.POSITION.OM)));
         KnownCase terra = new KnownCase("Terra", "[’tɛχə]", false, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("χ", Phoneme.POSITION.OM)));
         KnownCase tenis = new KnownCase("Tênis", "[’tenis]", false, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
         KnownCase dente = new KnownCase("Dente", "[’dẽnʧi]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("ʧ", Phoneme.POSITION.OM)));
         KnownCase navio = new KnownCase("Navio", "[na’viw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OI), new Phoneme("v", Phoneme.POSITION.OM)));
+        KnownCase dado = new KnownCase("Dado", "[’dadu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
         KnownCase dedo = new KnownCase("Dedo", "[’dedu]", false, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
         KnownCase cama = new KnownCase("Cama", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
         KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
         KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
 
-        final List<KnownCase> list = Arrays.asList(batom, terra, tenis, dente, navio, dedo, cama, anel, bebe);
+        final List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
         list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
         SimulationWordsSequence.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
-        int[] expectedSequence = new int[]{4, 2, 1, 0, 3, 7, 6, 8, 9};
+        int[] expectedSequence = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
         for (int i = 0; i < expectedSequence.length; i++) {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
@@ -555,7 +556,173 @@ public class SimulationWordsSequenceTest {
          * "ativar" isso
          */
         // new int[]{4, 7, 8, 9, 6, 3, 2, 1, 0};
-        fail("just testing");
+        //fail("just testing");
+    }
+
+    /**
+     * Tests {@link SimulationWordsSequence#sortList(List, KnownCaseComparator)} with
+     * {@link KnownCaseComparator#BinaryTreeComparator}.
+     *
+     * This test has more words in the tree than the others, and less words in given cases to sort. This simulates what
+     * happens if we use an incomplete assessment which didn't use all the words from the original set.
+     *
+     */
+    @Test
+    public void testSortListTree6() {
+        System.out.println("testSortListTree6 - incomplete evaluation");
+
+        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
+        for (int i : arrayIndex) {
+            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+        }
+
+        System.out.println("-------------------");
+        BinaryTreePrinter.print(Defaults.TREE, System.out);
+        System.out.println("\n-------------------");
+
+        // missing "Terra (7)"
+        KnownCase batom = new KnownCase("Batom", "[ba’tõw]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("t", Phoneme.POSITION.OM)));
+        KnownCase tenis = new KnownCase("Tênis", "[’tenis]", false, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
+        KnownCase dente = new KnownCase("Dente", "[’dẽnʧi]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("ʧ", Phoneme.POSITION.OM)));
+        KnownCase navio = new KnownCase("Navio", "[na’viw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OI), new Phoneme("v", Phoneme.POSITION.OM)));
+        KnownCase dado = new KnownCase("Dado", "[’dadu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
+        KnownCase dedo = new KnownCase("Dedo", "[’dedu]", false, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
+        KnownCase cama = new KnownCase("Cama", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
+        KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
+        KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
+
+        // incomplete evaluation
+        final List<KnownCase> list = Arrays.asList(batom, dado, tenis, dente, navio, dedo, cama, anel, bebe);
+        assertEquals(9, list.size());
+        list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
+        SimulationWordsSequence.sortList(list, KnownCaseComparator.BinaryTreeComparator);
+        assertEquals(9, list.size()); // makes sure that the list size didn't change
+
+        // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
+        int[] expectedSequence = new int[]{4, 8, 9, 6, 5, 2, 1, 0, 3};
+        for (int i = 0; i < expectedSequence.length; i++) {
+            int index = expectedSequence[i];
+            assertEquals(SORTED_WORDS[index], list.get(i).getWord());
+        }
+
+        /**
+         * TODO: outra abordagem: iria ate o mais dificil e quando fosse voltar ele ja acertou uma palavra mais dificil
+         * de antes, então ele procura a mais dificil das mais fáceis... podia adicionar uma flag em algum lugar pra
+         * "ativar" isso
+         */
+        // new int[]{4, 7, 8, 9, 6, 3, 2, 1, 0};
+//        fail("just testing");
+    }
+
+    /**
+     * Tests {@link SimulationWordsSequence#sortList(List, KnownCaseComparator)} with
+     * {@link KnownCaseComparator#BinaryTreeComparator}.
+     *
+     * This test has more words in the tree than the others, and less words in given cases to sort. This simulates what
+     * happens if we use an incomplete assessment which didn't use all the words from the original set.
+     *
+     */
+    @Test
+    public void testSortListTree7() {
+        System.out.println("testSortListTree7 - incomplete evaluation");
+
+        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
+        for (int i : arrayIndex) {
+            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+        }
+
+        System.out.println("-------------------");
+        BinaryTreePrinter.print(Defaults.TREE, System.out);
+        System.out.println("\n-------------------");
+
+        // missing "Terra (7)" and "Navio (6)"
+        KnownCase batom = new KnownCase("Batom", "[ba’tõw]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("t", Phoneme.POSITION.OM)));
+        KnownCase tenis = new KnownCase("Tênis", "[’tenis]", false, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
+        KnownCase dente = new KnownCase("Dente", "[’dẽnʧi]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("ʧ", Phoneme.POSITION.OM)));
+        KnownCase dado = new KnownCase("Dado", "[’dadu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
+        KnownCase dedo = new KnownCase("Dedo", "[’dedu]", false, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
+        KnownCase cama = new KnownCase("Cama", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
+        KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
+        KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
+
+        // incomplete evaluation
+        final List<KnownCase> list = Arrays.asList(batom, dado, tenis, dente, dedo, cama, anel, bebe);
+        assertEquals(8, list.size());
+        list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
+        SimulationWordsSequence.sortList(list, KnownCaseComparator.BinaryTreeComparator);
+        assertEquals(8, list.size()); // makes sure that the list size didn't change
+
+        // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
+        int[] expectedSequence = new int[]{4, 8, 9, 5, 2, 1, 0, 3};
+        for (int i = 0; i < expectedSequence.length; i++) {
+            int index = expectedSequence[i];
+            assertEquals(SORTED_WORDS[index], list.get(i).getWord());
+        }
+
+        /**
+         * TODO: outra abordagem: iria ate o mais dificil e quando fosse voltar ele ja acertou uma palavra mais dificil
+         * de antes, então ele procura a mais dificil das mais fáceis... podia adicionar uma flag em algum lugar pra
+         * "ativar" isso
+         */
+        // new int[]{4, 7, 8, 9, 6, 3, 2, 1, 0};
+//        fail("just testing");
+    }
+
+    /**
+     * Tests {@link SimulationWordsSequence#sortList(List, KnownCaseComparator)} with
+     * {@link KnownCaseComparator#BinaryTreeComparator}.
+     *
+     * This test has more words in the tree than the others, and less words in given cases to sort. This simulates what
+     * happens if we use an incomplete assessment which didn't use all the words from the original set.
+     *
+     */
+    @Test
+    public void testSortListTree8() {
+        System.out.println("testSortListTree8 - incomplete evaluation");
+
+        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
+        for (int i : arrayIndex) {
+            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+        }
+
+        System.out.println("-------------------");
+        BinaryTreePrinter.print(Defaults.TREE, System.out);
+        System.out.println("\n-------------------");
+
+        // missing "Terra (7)" and "Navio (6)" and "Dedo (2)"
+        KnownCase batom = new KnownCase("Batom", "[ba’tõw]", false, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("t", Phoneme.POSITION.OM)));
+        KnownCase tenis = new KnownCase("Tênis", "[’tenis]", false, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
+        KnownCase dente = new KnownCase("Dente", "[’dẽnʧi]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("ʧ", Phoneme.POSITION.OM)));
+        KnownCase dado = new KnownCase("Dado", "[’dadu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
+        KnownCase cama = new KnownCase("Cama", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
+        KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
+        KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
+
+        // incomplete evaluation
+        final List<KnownCase> list = Arrays.asList(batom, dado, tenis, dente, cama, anel, bebe);
+        assertEquals(7, list.size());
+        list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
+        SimulationWordsSequence.sortList(list, KnownCaseComparator.BinaryTreeComparator);
+        assertEquals(7, list.size()); // makes sure that the list size didn't change
+
+        // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
+        int[] expectedSequence = new int[]{4, 3, 1, 0, 8, 9, 5};
+        for (int i = 0; i < expectedSequence.length; i++) {
+            int index = expectedSequence[i];
+            assertEquals(SORTED_WORDS[index], list.get(i).getWord());
+        }
+
+        /**
+         * TODO: outra abordagem: iria ate o mais dificil e quando fosse voltar ele ja acertou uma palavra mais dificil
+         * de antes, então ele procura a mais dificil das mais fáceis... podia adicionar uma flag em algum lugar pra
+         * "ativar" isso. O mesmo valeria para caso o usuário erre alguma palavra difícil. 
+         * 
+         * Caso contrário: Ao invés dele ir voltando e
+         * ir para as mais difíceis, volta todas para as mais fáceis e depois faz por último as difíceis.
+         */
+        // new int[]{4, 7, 8, 9, 6, 5, 3, 2, 1, 0};
+        // new int[]{4, 7, 6, 5, 2, 3, 1, 0, 8, 9}; // errou 7 (Caso contrário)
+//        fail("just testing");
     }
 
     /**
