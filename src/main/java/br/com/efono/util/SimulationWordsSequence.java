@@ -6,7 +6,6 @@ import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.model.Phoneme;
 import br.com.efono.model.SimulationInfo;
 import br.com.efono.tree.Node;
-import static br.com.efono.util.Defaults.SORTED_WORDS;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -143,18 +142,10 @@ public class SimulationWordsSequence {
                     break;
                 }
                 case BinaryTreeComparator: {
-                    System.out.println("BinaryTreeComparator");
                     final List<String> wordsSorted = new LinkedList<>();
 
                     Node<String> root = Defaults.TREE.getRoot();
                     addRecursive(root, wordsSorted, list);
-
-                    System.out.println("wordsSorted: " + wordsSorted);
-                    System.out.print("[");
-                    for (String w : wordsSorted) {
-                        System.out.print(Arrays.asList(SORTED_WORDS).indexOf(w) + ", ");
-                    }
-                    System.out.println("]");
 
                     list.sort((KnownCase o1, KnownCase o2) -> {
                         // TODO: ignore case and acentuation
@@ -162,7 +153,6 @@ public class SimulationWordsSequence {
                         int indexOfo2 = wordsSorted.indexOf(o2.getWord());
                         return indexOfo1 - indexOfo2;
                     });
-                    System.out.println("now, sorted list: " + list);
                     break;
                 }
                 default:
@@ -213,6 +203,58 @@ public class SimulationWordsSequence {
             System.out.println("esquerda " + val);
             addRecursive(node.getLeft(), words, cases);
             addRecursive(node.getRight(), words, cases);
+        }
+    }
+
+    /**
+     * Gets the best first words sequence from the given cases.
+     *
+     * @param node The root node of the tree of words in the complete set.
+     * @param words The list to keep the words sequence.
+     * @param cases The list with cases to analyze. This usually comes from assessments.
+     */
+    public static void getBestFirstWords(final Node<String> node, final LinkedList<String> words, final List<KnownCase> cases) {
+        if (node == null || node.isVisited()) {
+            return;
+        }
+        node.setVisited(true);
+        String val = node.getValue();
+        // node vem da arvore binaria com TODAS as palavras que usamos nas avaliações
+        // mas e se uma avaliacao nao tiver todas as palavras? tenta a mais dificil abaixo do node OU SEJA, antes de mandar a lista com os casos
+        // adiciona artificialmente os casos faltantes: no que isso impacta? precisa ser isolado, essa palavra não pode ser adicionada em words
+        // TODO: if (c == null)
+
+        /**
+         * In case of the list has less words than the tree (incomplete assessment) we don't need to add this word at
+         * words list.
+         */
+        KnownCase c = Util.getCaseFromWord(cases, val);
+        if (c != null) {
+            words.add(val);
+        }
+
+        /**
+         * This is one approach: the algorithm keep going to the right side (harder words) until there is an error from
+         * the user. In this moment, it starts to return and goes to the other side. The recursion makes sure that even
+         * if there was an incorrect production and after that a correct one, the algorithm will increase again the
+         * level of difficult.
+         *
+         * In the given list has less words than the tree we always go to the right side (harder words).
+         */
+        if (c == null || c.isCorrect()) {
+            System.out.println(val + " direta");
+            getBestFirstWords(node.getRight(), words, cases);
+            // makes sure that it goes until the last leaf
+            if (node.getRight() == null) {
+                getBestFirstWords(node.getLeft(), words, cases);
+            }
+        } else {
+            System.out.println(val + " esquerda");
+            getBestFirstWords(node.getLeft(), words, cases);
+            // makes sure that it goes until the last leaf
+            if (node.getLeft() == null) {
+                getBestFirstWords(node.getRight(), words, cases);
+            }
         }
     }
 

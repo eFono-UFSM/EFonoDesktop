@@ -9,6 +9,7 @@ import br.com.efono.tree.BinaryTreePrinter;
 import static br.com.efono.util.Defaults.SORTED_WORDS;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import org.junit.Test;
@@ -715,14 +716,94 @@ public class SimulationWordsSequenceTest {
         /**
          * TODO: outra abordagem: iria ate o mais dificil e quando fosse voltar ele ja acertou uma palavra mais dificil
          * de antes, então ele procura a mais dificil das mais fáceis... podia adicionar uma flag em algum lugar pra
-         * "ativar" isso. O mesmo valeria para caso o usuário erre alguma palavra difícil. 
-         * 
-         * Caso contrário: Ao invés dele ir voltando e
-         * ir para as mais difíceis, volta todas para as mais fáceis e depois faz por último as difíceis.
+         * "ativar" isso. O mesmo valeria para caso o usuário erre alguma palavra difícil.
+         *
+         * Caso contrário: Ao invés dele ir voltando e ir para as mais difíceis, volta todas para as mais fáceis e
+         * depois faz por último as difíceis.
          */
         // new int[]{4, 7, 8, 9, 6, 5, 3, 2, 1, 0};
         // new int[]{4, 7, 6, 5, 2, 3, 1, 0, 8, 9}; // errou 7 (Caso contrário)
 //        fail("just testing");
+    }
+
+    /**
+     * Tests {@link SimulationWordsSequence#getBestFirstWords(Node, LinkedList, List)}.
+     */
+    @Test
+    public void testGetBestFirstWords() {
+        System.out.println("testGetBestFirstWords - complete evaluation");
+
+        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
+        for (int i : arrayIndex) {
+            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+        }
+
+        System.out.println("-------------------");
+        BinaryTreePrinter.print(Defaults.TREE, System.out);
+        System.out.println("\n-------------------");
+
+        KnownCase batom = new KnownCase("Batom", "[ba’tõw]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("t", Phoneme.POSITION.OM)));
+        KnownCase terra = new KnownCase("Terra", "[’tɛχə]", false, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("χ", Phoneme.POSITION.OM)));
+        KnownCase tenis = new KnownCase("Tênis", "[’tenis]", false, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
+        KnownCase dente = new KnownCase("Dente", "[’dẽnʧi]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("ʧ", Phoneme.POSITION.OM)));
+        KnownCase navio = new KnownCase("Navio", "[na’viw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OI), new Phoneme("v", Phoneme.POSITION.OM)));
+        KnownCase dado = new KnownCase("Dado", "[’dadu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
+        KnownCase dedo = new KnownCase("Dedo", "[’dedu]", false, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
+        KnownCase cama = new KnownCase("Cama", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
+        KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
+        KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
+
+        final List<KnownCase> listCases = Arrays.asList(batom, terra, navio, dedo, dado, tenis, dente, cama, anel, bebe);
+        final LinkedList<String> result = new LinkedList<>();
+        SimulationWordsSequence.getBestFirstWords(Defaults.TREE.getRoot(), result, listCases);
+
+        // the indexes
+        int[] expectedSequence = new int[]{4, 7, 6, 5};
+        assertEquals(expectedSequence.length, result.size());
+        for (int i = 0; i < expectedSequence.length; i++) {
+            int index = expectedSequence[i];
+            assertEquals(SORTED_WORDS[index], result.get(i));
+        }
+    }
+    
+    /**
+     * Tests {@link SimulationWordsSequence#getBestFirstWords(Node, LinkedList, List)}.
+     */
+    @Test
+    public void testGetBestFirstWords2() {
+        System.out.println("testGetBestFirstWords - incomplete evaluation");
+
+        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
+        for (int i : arrayIndex) {
+            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+        }
+
+        System.out.println("-------------------");
+        BinaryTreePrinter.print(Defaults.TREE, System.out);
+        System.out.println("\n-------------------");
+
+        // missing Terra(7)
+        KnownCase batom = new KnownCase("Batom", "[ba’tõw]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("t", Phoneme.POSITION.OM)));
+        KnownCase tenis = new KnownCase("Tênis", "[’tenis]", false, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
+        KnownCase dente = new KnownCase("Dente", "[’dẽnʧi]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("ʧ", Phoneme.POSITION.OM)));
+        KnownCase navio = new KnownCase("Navio", "[na’viw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OI), new Phoneme("v", Phoneme.POSITION.OM)));
+        KnownCase dado = new KnownCase("Dado", "[’dadu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
+        KnownCase dedo = new KnownCase("Dedo", "[’dedu]", false, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
+        KnownCase cama = new KnownCase("Cama", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
+        KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
+        KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
+
+        final List<KnownCase> listCases = Arrays.asList(batom, navio, dedo, dado, tenis, dente, cama, anel, bebe);
+        final LinkedList<String> result = new LinkedList<>();
+        SimulationWordsSequence.getBestFirstWords(Defaults.TREE.getRoot(), result, listCases);
+
+        // the indexes
+        int[] expectedSequence = new int[]{4, 8, 9};
+        assertEquals(expectedSequence.length, result.size());
+        for (int i = 0; i < expectedSequence.length; i++) {
+            int index = expectedSequence[i];
+            assertEquals(SORTED_WORDS[index], result.get(i));
+        }
     }
 
     /**

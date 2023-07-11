@@ -15,6 +15,8 @@ public class Node<E> {
     private Node left;
     private Node right;
 
+    private boolean visited = false;
+
     /**
      * Creates a node with the given value.
      *
@@ -24,6 +26,22 @@ public class Node<E> {
         this.value = value;
         right = null;
         left = null;
+    }
+
+    /**
+     * Sets a flag that indicates that this node was already visited.
+     *
+     * @param visited True - the node was visited, otherwise - false.
+     */
+    public void setVisited(boolean visited) {
+        this.visited = visited;
+    }
+
+    /**
+     * @return True - the node was visited, otherwise - false.
+     */
+    public boolean isVisited() {
+        return visited;
     }
 
     /**
