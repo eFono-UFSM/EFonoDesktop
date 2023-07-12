@@ -321,10 +321,16 @@ public class SimulationWordsSequenceTest {
     public void testSortListTree() {
         System.out.println("testSortListTree - all correct cases");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
-        for (int i : arrayIndex) {
-            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+//        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
+//        for (int i : arrayIndex) {
+//            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+//        }
+
+        final List<String> words = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            words.add(Defaults.SORTED_WORDS[i]);
         }
+        Defaults.TREE.init(words.toArray(new String[0]));
 
         System.out.println("-------------------");
         BinaryTreePrinter.print(Defaults.TREE, System.out);
@@ -347,7 +353,7 @@ public class SimulationWordsSequenceTest {
         SimulationWordsSequence.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
-        int[] expectedSequence = new int[]{4, 7, 8, 9, 6, 5, 2, 3, 1, 0};
+        int[] expectedSequence = new int[]{4, 7, 8, 9, 5, 6, 2, 3, 1, 0};
         for (int i = 0; i < expectedSequence.length; i++) {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
@@ -370,10 +376,11 @@ public class SimulationWordsSequenceTest {
     public void testSortListTree2() {
         System.out.println("testSortListTree2");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
-        for (int i : arrayIndex) {
-            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+        final List<String> words = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            words.add(Defaults.SORTED_WORDS[i]);
         }
+        Defaults.TREE.init(words.toArray(new String[0]));
 
         System.out.println("-------------------");
         BinaryTreePrinter.print(Defaults.TREE, System.out);
@@ -395,7 +402,7 @@ public class SimulationWordsSequenceTest {
         SimulationWordsSequence.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
-        int[] expectedSequence = new int[]{4, 7, 6, 5, 8, 9, 2, 3, 1, 0};
+        int[] expectedSequence = new int[]{4, 7, 5, 6, 8, 9, 2, 3, 1, 0};
         for (int i = 0; i < expectedSequence.length; i++) {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
@@ -418,10 +425,11 @@ public class SimulationWordsSequenceTest {
     public void testSortListTree3() {
         System.out.println("testSortListTree3");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
-        for (int i : arrayIndex) {
-            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+        final List<String> words = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            words.add(Defaults.SORTED_WORDS[i]);
         }
+        Defaults.TREE.init(words.toArray(new String[0]));
 
         System.out.println("-------------------");
         BinaryTreePrinter.print(Defaults.TREE, System.out);
@@ -443,7 +451,7 @@ public class SimulationWordsSequenceTest {
         SimulationWordsSequence.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
-        int[] expectedSequence = new int[]{4, 7, 6, 5, 8, 9, 2, 3, 1, 0};
+        int[] expectedSequence = new int[]{4, 7, 5, 6, 8, 9, 2, 3, 1, 0};
         for (int i = 0; i < expectedSequence.length; i++) {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
@@ -469,10 +477,11 @@ public class SimulationWordsSequenceTest {
     public void testSortListTree4() {
         System.out.println("testSortListTree4");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
-        for (int i : arrayIndex) {
-            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+        final List<String> words = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            words.add(Defaults.SORTED_WORDS[i]);
         }
+        Defaults.TREE.init(words.toArray(new String[0]));
 
         System.out.println("-------------------");
         BinaryTreePrinter.print(Defaults.TREE, System.out);
@@ -494,7 +503,7 @@ public class SimulationWordsSequenceTest {
         SimulationWordsSequence.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
-        int[] expectedSequence = new int[]{4, 2, 3, 1, 0, 7, 6, 5, 8, 9};
+        int[] expectedSequence = new int[]{4, 2, 3, 1, 0, 7, 5, 6, 8, 9};
         for (int i = 0; i < expectedSequence.length; i++) {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
@@ -520,10 +529,11 @@ public class SimulationWordsSequenceTest {
     public void testSortListTree5() {
         System.out.println("testSortListTree5");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
-        for (int i : arrayIndex) {
-            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+        final List<String> words = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            words.add(Defaults.SORTED_WORDS[i]);
         }
+        Defaults.TREE.init(words.toArray(new String[0]));
 
         System.out.println("-------------------");
         BinaryTreePrinter.print(Defaults.TREE, System.out);
@@ -545,7 +555,7 @@ public class SimulationWordsSequenceTest {
         SimulationWordsSequence.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
-        int[] expectedSequence = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
+        int[] expectedSequence = new int[]{4, 2, 1, 0, 3, 7, 5, 6, 8, 9};
         for (int i = 0; i < expectedSequence.length; i++) {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
@@ -572,10 +582,11 @@ public class SimulationWordsSequenceTest {
     public void testSortListTree6() {
         System.out.println("testSortListTree6 - incomplete evaluation");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
-        for (int i : arrayIndex) {
-            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+        final List<String> words = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            words.add(Defaults.SORTED_WORDS[i]);
         }
+        Defaults.TREE.init(words.toArray(new String[0]));
 
         System.out.println("-------------------");
         BinaryTreePrinter.print(Defaults.TREE, System.out);
@@ -600,7 +611,7 @@ public class SimulationWordsSequenceTest {
         assertEquals(9, list.size()); // makes sure that the list size didn't change
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
-        int[] expectedSequence = new int[]{4, 8, 9, 6, 5, 2, 1, 0, 3};
+        int[] expectedSequence = new int[]{4, 8, 9, 5, 6, 2, 1, 0, 3};
         for (int i = 0; i < expectedSequence.length; i++) {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
@@ -627,10 +638,11 @@ public class SimulationWordsSequenceTest {
     public void testSortListTree7() {
         System.out.println("testSortListTree7 - incomplete evaluation");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
-        for (int i : arrayIndex) {
-            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+        final List<String> words = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            words.add(Defaults.SORTED_WORDS[i]);
         }
+        Defaults.TREE.init(words.toArray(new String[0]));
 
         System.out.println("-------------------");
         BinaryTreePrinter.print(Defaults.TREE, System.out);
@@ -681,10 +693,11 @@ public class SimulationWordsSequenceTest {
     public void testSortListTree8() {
         System.out.println("testSortListTree8 - incomplete evaluation");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
-        for (int i : arrayIndex) {
-            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+        final List<String> words = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            words.add(Defaults.SORTED_WORDS[i]);
         }
+        Defaults.TREE.init(words.toArray(new String[0]));
 
         System.out.println("-------------------");
         BinaryTreePrinter.print(Defaults.TREE, System.out);
@@ -733,10 +746,11 @@ public class SimulationWordsSequenceTest {
     public void testGetBestFirstWords() {
         System.out.println("testGetBestFirstWords - complete evaluation");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
-        for (int i : arrayIndex) {
-            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+        final List<String> words = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            words.add(Defaults.SORTED_WORDS[i]);
         }
+        Defaults.TREE.init(words.toArray(new String[0]));
 
         System.out.println("-------------------");
         BinaryTreePrinter.print(Defaults.TREE, System.out);
@@ -758,14 +772,14 @@ public class SimulationWordsSequenceTest {
         SimulationWordsSequence.getBestFirstWords(Defaults.TREE.getRoot(), result, listCases);
 
         // the indexes
-        int[] expectedSequence = new int[]{4, 7, 6, 5};
+        int[] expectedSequence = new int[]{4, 7, 5, 6};
         assertEquals(expectedSequence.length, result.size());
         for (int i = 0; i < expectedSequence.length; i++) {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], result.get(i));
         }
     }
-    
+
     /**
      * Tests {@link SimulationWordsSequence#getBestFirstWords(Node, LinkedList, List)}.
      */
@@ -773,10 +787,11 @@ public class SimulationWordsSequenceTest {
     public void testGetBestFirstWords2() {
         System.out.println("testGetBestFirstWords - incomplete evaluation");
 
-        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
-        for (int i : arrayIndex) {
-            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
+        final List<String> words = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            words.add(Defaults.SORTED_WORDS[i]);
         }
+        Defaults.TREE.init(words.toArray(new String[0]));
 
         System.out.println("-------------------");
         BinaryTreePrinter.print(Defaults.TREE, System.out);

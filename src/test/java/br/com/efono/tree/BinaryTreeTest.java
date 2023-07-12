@@ -8,7 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
@@ -44,15 +43,31 @@ public class BinaryTreeTest {
             words.add(Defaults.SORTED_WORDS[i]);
         }
         tree.init(words.toArray(new String[0]));
+        assertEquals(words.size(), tree.getValues().size());
 
         System.out.println("print tree now");
         BinaryTreePrinter.print(tree, System.out);
 
+        System.out.println("testInit - insertion order");
+        // insertion order:
+        int[] insertionOrderExpected = new int[]{4, 2, 1, 0, 3, 7, 5, 6, 8, 9};
+        List<String> values = tree.getValues();
+        assertEquals(insertionOrderExpected.length, values.size());
+        for (int i = 0; i < values.size(); i++) {
+            String expected = Defaults.SORTED_WORDS[insertionOrderExpected[i]];
+            assertEquals(expected, values.get(i));
+        }
+
         assertEquals(Defaults.SORTED_WORDS[4], tree.getRoot().getValue());
         assertEquals(Defaults.SORTED_WORDS[2], tree.getRoot().getLeft().getValue());
         assertEquals(Defaults.SORTED_WORDS[1], tree.getRoot().getLeft().getLeft().getValue());
+        assertEquals(Defaults.SORTED_WORDS[0], tree.getRoot().getLeft().getLeft().getLeft().getValue());
+        assertEquals(Defaults.SORTED_WORDS[3], tree.getRoot().getLeft().getRight().getValue());
         assertEquals(Defaults.SORTED_WORDS[7], tree.getRoot().getRight().getValue());
         assertEquals(Defaults.SORTED_WORDS[8], tree.getRoot().getRight().getRight().getValue());
+        assertEquals(Defaults.SORTED_WORDS[9], tree.getRoot().getRight().getRight().getRight().getValue());
+        assertEquals(Defaults.SORTED_WORDS[5], tree.getRoot().getRight().getLeft().getValue());
+        assertEquals(Defaults.SORTED_WORDS[6], tree.getRoot().getRight().getLeft().getRight().getValue());
 
         System.out.println("testInit - tree with more elements");
         words.clear();
@@ -60,44 +75,43 @@ public class BinaryTreeTest {
             words.add(Defaults.SORTED_WORDS[i]);
         }
         tree.init(words.toArray(new String[0]));
-
+        assertEquals(words.size(), tree.getValues().size());
         System.out.println("print tree now");
         BinaryTreePrinter.print(tree, System.out);
 
-        if (1 > 0) {
-            fail("Just testing");
+        System.out.println("testInit - insertion order");
+        // insertion order:
+        insertionOrderExpected = new int[]{7, 3, 1, 0, 2, 5, 4, 6, 11, 9, 8, 10, 13, 12, 14};
+        values = tree.getValues();
+        assertEquals(insertionOrderExpected.length, values.size());
+        for (int i = 0; i < values.size(); i++) {
+            String expected = Defaults.SORTED_WORDS[insertionOrderExpected[i]];
+            assertEquals(expected, values.get(i));
         }
+
+        assertEquals(Defaults.SORTED_WORDS[7], tree.getRoot().getValue());
+        assertEquals(Defaults.SORTED_WORDS[3], tree.getRoot().getLeft().getValue());
+        assertEquals(Defaults.SORTED_WORDS[1], tree.getRoot().getLeft().getLeft().getValue());
+        assertEquals(Defaults.SORTED_WORDS[0], tree.getRoot().getLeft().getLeft().getLeft().getValue());
+        assertEquals(Defaults.SORTED_WORDS[2], tree.getRoot().getLeft().getLeft().getRight().getValue());
+        assertEquals(Defaults.SORTED_WORDS[5], tree.getRoot().getLeft().getRight().getValue());
+        assertEquals(Defaults.SORTED_WORDS[4], tree.getRoot().getLeft().getRight().getLeft().getValue());
+        assertEquals(Defaults.SORTED_WORDS[6], tree.getRoot().getLeft().getRight().getRight().getValue());
+        assertEquals(Defaults.SORTED_WORDS[11], tree.getRoot().getRight().getValue());
+        assertEquals(Defaults.SORTED_WORDS[9], tree.getRoot().getRight().getLeft().getValue());
+        assertEquals(Defaults.SORTED_WORDS[8], tree.getRoot().getRight().getLeft().getLeft().getValue());
+        assertEquals(Defaults.SORTED_WORDS[10], tree.getRoot().getRight().getLeft().getRight().getValue());
+        assertEquals(Defaults.SORTED_WORDS[13], tree.getRoot().getRight().getRight().getValue());
+        assertEquals(Defaults.SORTED_WORDS[12], tree.getRoot().getRight().getRight().getLeft().getValue());
+        assertEquals(Defaults.SORTED_WORDS[14], tree.getRoot().getRight().getRight().getRight().getValue());
 
         System.out.println("testInit - complete tree");
-        tree.clear();
         tree.init(Defaults.SORTED_WORDS);
+        assertEquals(Defaults.SORTED_WORDS.length, tree.getValues().size());
 
         BinaryTreePrinter.print(tree, System.out);
 
-        assertEquals(Defaults.SORTED_WORDS[41], tree.getRoot().getValue());
-        assertEquals(Defaults.SORTED_WORDS[20], tree.getRoot().getLeft().getValue());
-        assertEquals(Defaults.SORTED_WORDS[10], tree.getRoot().getLeft().getLeft().getValue());
-        assertEquals(Defaults.SORTED_WORDS[62], tree.getRoot().getRight().getValue());
-        assertEquals(Defaults.SORTED_WORDS[72], tree.getRoot().getRight().getRight().getValue());
-    }
-
-    @Test
-    @Ignore
-    public void testa() {
-        // TODO: rever a arvore. O certo seria fazer um método que adicione os valores de forma balanceada na árvore
-        int[] treeArray = new int[]{41, 20, 10, 5, 2, 1, 0, 3, 4, 7, 6, 8, 9, 15, 12, 11, 13, 14, 17, 16, 18, 19, 30, 25, 22, 21, 23, 24, 27, 26, 28, 29, 35, 32, 31, 33, 34, 38, 36, 37, 39, 40,
-            62, 51, 46, 43, 41, 44, 45, 48, 47, 49, 50, 56, 53, 52, 54, 55, 59, 57, 58, 60, 61, 72, 67, 64, 63, 65, 66, 69, 68, 70, 71, 77, 74, 73, 75, 76, 80, 78, 79, 82, 81, 83};
-
-        BinaryTree<Integer> tree = new BinaryTree<>((final Integer o1, final Integer o2) -> {
-            return o1 - o2;
-        });
-
-        for (int i : treeArray) {
-            tree.add(i);
-        }
-        BinaryTreePrinter.print(tree, System.out);
-
-        fail("Failed just to see printed tree");
+        fail("ok");
     }
 
     /**

@@ -28,6 +28,13 @@ public class BinaryTree<E> {
     }
 
     /**
+     * @return A copy of the values.
+     */
+    public List<E> getValues() {
+        return new ArrayList<>(values);
+    }
+
+    /**
      * Init this tree with an array of values. This will created a balanced tree: the value in the middle of the array
      * will be the root node. Values in left of this one will be at its left as well; the same is true for values in the
      * right side.
