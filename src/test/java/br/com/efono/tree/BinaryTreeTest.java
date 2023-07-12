@@ -17,6 +17,9 @@ import org.junit.Ignore;
  */
 public class BinaryTreeTest {
 
+    /**
+     * Tests the use of the methods {@link Math#ceil(double)} and {@link Math#floor(double)}.
+     */
     @Test
     public void testRound() {
         int min = 0, max = 83;
@@ -36,7 +39,6 @@ public class BinaryTreeTest {
     public void testInit() {
         System.out.println("testInit");
         final BinaryTree<String> tree = new BinaryTree<>(Defaults.DEFAULT_WORDS_COMPARATOR);
-//        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
         final List<String> words = new LinkedList<>();
         for (int i = 0; i < 10; i++) {
             words.add(Defaults.SORTED_WORDS[i]);
@@ -51,6 +53,16 @@ public class BinaryTreeTest {
         assertEquals(Defaults.SORTED_WORDS[1], tree.getRoot().getLeft().getLeft().getValue());
         assertEquals(Defaults.SORTED_WORDS[7], tree.getRoot().getRight().getValue());
         assertEquals(Defaults.SORTED_WORDS[8], tree.getRoot().getRight().getRight().getValue());
+
+        System.out.println("testInit - tree with more elements");
+        words.clear();
+        for (int i = 0; i < 15; i++) {
+            words.add(Defaults.SORTED_WORDS[i]);
+        }
+        tree.init(words.toArray(new String[0]));
+
+        System.out.println("print tree now");
+        BinaryTreePrinter.print(tree, System.out);
 
         if (1 > 0) {
             fail("Just testing");
