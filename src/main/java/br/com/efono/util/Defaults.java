@@ -2,6 +2,7 @@ package br.com.efono.util;
 
 import br.com.efono.tree.BinaryTree;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 /**
@@ -25,9 +26,15 @@ public class Defaults {
         "Escrever", "Dragão", "Magro", "Estrela", "Pedra", "Vidro", "Microfone", "Colher", "Floresta", "Biblioteca",
         "Travesseiro"};
 
+    /**
+     * An array with words in the given words order: <code>easiest, hardest, 2º easiest, 2º hardest, ...</code>.
+     */
     public static final String[] EASY_HARD_WORDS = getEasyHardWords(SORTED_WORDS);
 
-    public static final BinaryTree<String> TREE = new BinaryTree<>((final String o1, final String o2) -> {
+    /**
+     * Default words comparator. The easier words will be at the beginning, and the harder ones will be at the end.
+     */
+    public static final Comparator<String> DEFAULT_WORDS_COMPARATOR = (final String o1, final String o2) -> {
         int index1 = Arrays.asList(SORTED_WORDS).indexOf(o1);
         int index2 = Arrays.asList(SORTED_WORDS).indexOf(o2);
         if (index1 < 0 || index2 < 0) {
@@ -37,7 +44,12 @@ public class Defaults {
         }
 
         return index2 - index1;
-    });
+    };
+
+    /**
+     * The default binary tree used in simulations.
+     */
+    public static final BinaryTree<String> TREE = new BinaryTree<>(DEFAULT_WORDS_COMPARATOR);
 
     /**
      * Sorts the given array with words like: <code>easy, hard, easy, hard words...</code>

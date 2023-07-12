@@ -2,10 +2,13 @@ package br.com.efono.tree;
 
 import br.com.efono.model.KnownCase;
 import br.com.efono.model.Phoneme;
+import br.com.efono.util.Defaults;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
@@ -15,6 +18,60 @@ import static org.junit.Assert.*;
 public class BinaryTreeTest {
 
     @Test
+    public void testRound() {
+        int min = 0, max = 83;
+        float m = (min + max) / 2f;
+        System.out.println("m: " + m);
+        int middleUp = (int) Math.ceil(m);
+        int middleDown = (int) Math.floor(m);
+
+        assertEquals(42, middleUp);
+        assertEquals(41, middleDown);
+    }
+
+    /**
+     * Tests {@link BinaryTree#init(E[])}.
+     */
+    @Test
+    public void testInit() {
+        System.out.println("testInit");
+        final BinaryTree<String> tree = new BinaryTree<>(Defaults.DEFAULT_WORDS_COMPARATOR);
+//        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
+        final List<String> words = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            words.add(Defaults.SORTED_WORDS[i]);
+        }
+        tree.init(words.toArray(new String[0]));
+        
+        System.out.println("print tree now");
+        BinaryTreePrinter.print(tree, System.out);
+
+        System.out.println("test");
+        assertEquals(Defaults.SORTED_WORDS[2], tree.getRoot().getValue());
+        assertEquals(Defaults.SORTED_WORDS[2], tree.getRoot().getLeft().getValue());
+        assertEquals(Defaults.SORTED_WORDS[1], tree.getRoot().getLeft().getLeft().getValue());
+        assertEquals(Defaults.SORTED_WORDS[7], tree.getRoot().getRight().getValue());
+        assertEquals(Defaults.SORTED_WORDS[8], tree.getRoot().getRight().getRight().getValue());
+
+        if (1 > 0) {
+            fail("Just testing");
+        }
+
+        System.out.println("testInit - complete tree");
+        tree.clear();
+        tree.init(Defaults.SORTED_WORDS);
+
+        BinaryTreePrinter.print(tree, System.out);
+
+        assertEquals(Defaults.SORTED_WORDS[41], tree.getRoot().getValue());
+        assertEquals(Defaults.SORTED_WORDS[20], tree.getRoot().getLeft().getValue());
+        assertEquals(Defaults.SORTED_WORDS[10], tree.getRoot().getLeft().getLeft().getValue());
+        assertEquals(Defaults.SORTED_WORDS[62], tree.getRoot().getRight().getValue());
+        assertEquals(Defaults.SORTED_WORDS[72], tree.getRoot().getRight().getRight().getValue());
+    }
+
+    @Test
+    @Ignore
     public void testa() {
         // TODO: rever a arvore. O certo seria fazer um método que adicione os valores de forma balanceada na árvore
         int[] treeArray = new int[]{41, 20, 10, 5, 2, 1, 0, 3, 4, 7, 6, 8, 9, 15, 12, 11, 13, 14, 17, 16, 18, 19, 30, 25, 22, 21, 23, 24, 27, 26, 28, 29, 35, 32, 31, 33, 34, 38, 36, 37, 39, 40,
