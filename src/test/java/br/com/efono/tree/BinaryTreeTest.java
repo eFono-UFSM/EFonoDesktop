@@ -42,12 +42,11 @@ public class BinaryTreeTest {
             words.add(Defaults.SORTED_WORDS[i]);
         }
         tree.init(words.toArray(new String[0]));
-        
+
         System.out.println("print tree now");
         BinaryTreePrinter.print(tree, System.out);
 
-        System.out.println("test");
-        assertEquals(Defaults.SORTED_WORDS[2], tree.getRoot().getValue());
+        assertEquals(Defaults.SORTED_WORDS[4], tree.getRoot().getValue());
         assertEquals(Defaults.SORTED_WORDS[2], tree.getRoot().getLeft().getValue());
         assertEquals(Defaults.SORTED_WORDS[1], tree.getRoot().getLeft().getLeft().getValue());
         assertEquals(Defaults.SORTED_WORDS[7], tree.getRoot().getRight().getValue());

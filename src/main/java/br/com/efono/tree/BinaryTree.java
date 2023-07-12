@@ -38,40 +38,44 @@ public class BinaryTree<E> {
         System.out.println("Init binary tree with values: " + Arrays.toString(values));
 
         if (values != null) {
+            this.values.clear();
             int min = 0;
             int max = values.length - 1;
 
             float m = (min + max) / 2f;
             int middle = (int) Math.floor(m);
 
-            add(root, min, middle, max, values);
+            add(min, middle, max, values);
 
+            System.out.println("Values in insertion order: " + this.values);
+            System.out.println("Ok, now init the tree");
             root = null;
             for (E val : this.values) {
                 add(val);
             }
-            this.values.clear();
         }
+        System.out.println("Tree initialized!");
     }
 
-    private void add(final Node n, int min, int middle, int max, final E[] values) {
+    private void add(int min, int middle, int max, final E[] values) {
         E val = values[middle];
         if (this.values.contains(val)) {
             // the value is already in the tree
             return;
         }
+        this.values.add(val);
 
-        Node node = n;
-        if (node == null) {
-            this.values.add(val);
-            node = addRecursive(n, val); // adds in the tree
-        }
-
+        /**
+         * TODO: precisa ver se TODOS os valores adicionados à esquerda/direta vão ser arrendondados de acordo com o nó
+         * atual ou de acordo com o nó principal. Testar com o caso de 0...14 pra ver como fica a arvore.
+         */
+        // adiciona na esquerda
         int current = (int) Math.floor((min + middle) / 2f);
-        add(node.getLeft(), min, current, middle, values);
+        add(min, current, middle, values);
 
+        // adiciona na direta
         current = (int) Math.ceil((middle + max) / 2f);
-        add(node.getRight(), middle, current, max, values);
+        add(middle, current, max, values);
     }
 
     /**
@@ -132,9 +136,9 @@ public class BinaryTree<E> {
     }
 
     private Node<E> addRecursive(final Node<E> current, final E value) {
-        System.out.println("addRecursive " + value);
         // when the current node is null, we've reached a leaf node and we can insert the new node in that position
         if (current == null) {
+            System.out.println("addRecursive " + value);
             return new Node(value);
         }
 
