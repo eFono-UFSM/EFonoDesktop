@@ -60,9 +60,6 @@ public class SimulationWordsSequence {
             List<KnownCase> cases = assessment.getCases();
             sortList(cases, comp);
 
-            // TODO: ordenar conforme arvore binária. A prox palavra a ser analisada vai depender se a atual acertou ou não
-            // a primeira palavra deve ser a do meio. a prox vai ser mais facil ou mais dificil de acordo com essa.
-            // se chegar em alguma base, começa a voltar
             for (KnownCase c : cases) {
                 // TODO: ao inves de "fonemas produzidos" depois vai ser preciso pegar de algum gabarito os "fonemas alvo", pois são esses que estão sendo testados.
                 // os "fonemas produzidos" aqui precisam ser testados no mínimo 2 vezes para serem considerados "adquiridos" no inv. fonético. [esse é o trabalho da simulação]
@@ -147,7 +144,15 @@ public class SimulationWordsSequence {
                     Node<String> root = Defaults.TREE.getRoot();
                     addRecursive(root, insertionOrder, list);
 
-                    // sort the as insertion order in the tree
+                    /**
+                     * Sorts the list as insertion order in the tree. This means that the first word will be the middle
+                     * word in the tree (root node) and the next one will always be easier or harder than the previous
+                     * one according with the result from the user. The numbers represents the words indexes at
+                     * {@link Defaults#SORTED_WORDS}. Example: the case (41) was incorrect, so the next case to be
+                     * analyzed will be 20 (easier than 41); the case (20) was correct, so the next will be 31 (harder
+                     * than 20 and easier than 41); and so on. When the algorithm arrive in some leaf node, it starts to
+                     * returning back to parents nodes and visit the ones in the other side of its node parent.
+                     */
                     list.sort((KnownCase o1, KnownCase o2) -> {
                         // TODO: ignore case and acentuation
                         int indexOfo1 = insertionOrder.indexOf(o1.getWord());
@@ -193,7 +198,7 @@ public class SimulationWordsSequence {
          * there was an incorrect production and after that a correct one, the algorithm will increase again the level
          * of difficult.
          *
-         * In the given list has less words than the tree we always go to the right side (harder words).
+         * If the given list has less words than the tree, we always go to the right side (harder words).
          */
         if (c == null || c.isCorrect()) {
             addRecursive(node.getRight(), words, cases);
@@ -240,14 +245,12 @@ public class SimulationWordsSequence {
          * In the given list has less words than the tree we always go to the right side (harder words).
          */
         if (c == null || c.isCorrect()) {
-            System.out.println(val + " direta");
             getBestFirstWords(node.getRight(), words, cases);
             // makes sure that it goes until the last leaf
             if (node.getRight() == null) {
                 getBestFirstWords(node.getLeft(), words, cases);
             }
         } else {
-            System.out.println(val + " esquerda");
             getBestFirstWords(node.getLeft(), words, cases);
             // makes sure that it goes until the last leaf
             if (node.getLeft() == null) {
