@@ -1,0 +1,19 @@
+@startuml
+top to bottom direction
+
+(Batom4) --> (Dedo2)
+(Batom4) --> (Terra7)
+Dedo2 ---> (Bebe1)
+Dedo2 ---> (Cama3)
+Bebe1 ---> (Anel0)
+
+Terra7 ---> (Dado5)
+Terra7 ---> (Tenis8)
+
+Dado5 ---> (esquerda)
+Dado5 ---> (Navio6)
+
+Tenis8 ---> (esquerda)
+Tenis8 ---> (Dente9)
+
+@enduml

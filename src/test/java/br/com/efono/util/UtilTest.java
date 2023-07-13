@@ -5,6 +5,7 @@ import br.com.efono.model.Phoneme;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
@@ -493,6 +494,33 @@ public class UtilTest {
 
             assertArrayEquals(expected.toArray(), result.toArray());
         }
+    }
+
+    /**
+     * Tests {@link Util#getCaseFromWord(List, String)}.
+     */
+    @Test
+    public void testGetCaseFromWord() {
+        System.out.println("testGetCaseFromWord - invalid parameters");
+        assertNull(Util.getCaseFromWord(null, null));
+        assertNull(Util.getCaseFromWord(null, "batom"));
+        assertNull(Util.getCaseFromWord(new ArrayList<>(), null));
+        assertNull(Util.getCaseFromWord(new ArrayList<>(), "batom"));
+
+        KnownCase batom = new KnownCase("Batom", "[ba’tõw]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("t", Phoneme.POSITION.OM)));
+        KnownCase dedo = new KnownCase("Dedo", "[’dedu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
+        KnownCase cama = new KnownCase("Cama", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
+
+        assertNull(Util.getCaseFromWord(Arrays.asList(batom, dedo, cama), "terra"));
+
+        System.out.println("testGetCaseFromWord - ignoreCase");
+        assertEquals(dedo, Util.getCaseFromWord(Arrays.asList(batom, dedo, cama), "dedo"));
+        assertEquals(dedo, Util.getCaseFromWord(Arrays.asList(batom, dedo, cama), "DEDO"));
+        assertEquals(dedo, Util.getCaseFromWord(Arrays.asList(batom, dedo, cama), "Dedo"));
+
+        System.out.println("testGetCaseFromWord - should not happen, just in case");
+        KnownCase emptyCase = new KnownCase("  ", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
+        assertEquals(emptyCase, Util.getCaseFromWord(Arrays.asList(batom, dedo, cama, emptyCase), "  "));
     }
 
 }
