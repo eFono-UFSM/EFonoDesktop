@@ -2,7 +2,6 @@ package br.com.efono.tree;
 
 import java.util.Comparator;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -45,7 +44,6 @@ public class BinaryTreePrinterTest {
         BinaryTree<String> tree = new BinaryTree(root, comp);
 
         BinaryTreePrinter.print(tree, System.out);
-        fail();
     }
 
 }

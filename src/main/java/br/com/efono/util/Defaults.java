@@ -60,26 +60,27 @@ public class Defaults {
     public static String[] getEasyHardWords(final String[] sortedWords) {
         final LinkedList<String> easyHardWords = new LinkedList<>();
 
-        int easyIndex = 0;
-        int hardIndex = sortedWords.length - 1;
+        if (sortedWords != null) {
+            int easyIndex = 0;
+            int hardIndex = sortedWords.length - 1;
 
-        // TODO: testes com arrays com tamanho par/impar.
-        /**
-         * This is sorting the sortedWords by <code>easy, hard, easy, hard words...</code>
-         */
-        while (easyHardWords.size() < sortedWords.length && easyIndex < sortedWords.length && hardIndex > 0) {
-            String easy = sortedWords[easyIndex++];
-            String hard = sortedWords[hardIndex--];
+            /**
+             * This is sorting the sortedWords by <code>easy, hard, easy, hard words...</code>
+             */
+            while (easyHardWords.size() < sortedWords.length && easyIndex < sortedWords.length && hardIndex >= easyIndex) {
+                String easy = sortedWords[easyIndex++];
+                String hard = sortedWords[hardIndex--];
 
-            if (!easyHardWords.contains(easy)) {
-                easyHardWords.add(easy);
-            }
-            if (!easyHardWords.contains(hard)) {
-                easyHardWords.add(hard);
+                if (!easyHardWords.contains(easy)) {
+                    easyHardWords.add(easy);
+                }
+                if (!easyHardWords.contains(hard)) {
+                    easyHardWords.add(hard);
+                }
             }
         }
 
-        return easyHardWords.toArray(new String[easyHardWords.size()]);
+        return easyHardWords.toArray(new String[0]);
     }
 
 }
