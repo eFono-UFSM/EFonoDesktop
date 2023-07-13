@@ -320,12 +320,6 @@ public class SimulationWordsSequenceTest {
     @Test
     public void testSortListTree() {
         System.out.println("testSortListTree - all correct cases");
-
-//        int[] arrayIndex = new int[]{4, 2, 1, 0, 3, 7, 6, 5, 8, 9};
-//        for (int i : arrayIndex) {
-//            Defaults.TREE.add(Defaults.SORTED_WORDS[i]);
-//        }
-
         final List<String> words = new LinkedList<>();
         for (int i = 0; i < 10; i++) {
             words.add(Defaults.SORTED_WORDS[i]);
@@ -358,14 +352,6 @@ public class SimulationWordsSequenceTest {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
         }
-
-        /**
-         * TODO: outra abordagem: iria ate o mais dificil e quando fosse voltar ele ja acertou uma palavra mais dificil
-         * de antes, então ele procura a mais dificil das mais fáceis... podia adicionar uma flag em algum lugar pra
-         * "ativar" isso
-         */
-        // new int[]{4, 7, 8, 9, 6, 3, 2, 1, 0};
-        //fail("just testing");
     }
 
     /**
@@ -407,14 +393,6 @@ public class SimulationWordsSequenceTest {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
         }
-
-        /**
-         * TODO: outra abordagem: iria ate o mais dificil e quando fosse voltar ele ja acertou uma palavra mais dificil
-         * de antes, então ele procura a mais dificil das mais fáceis... podia adicionar uma flag em algum lugar pra
-         * "ativar" isso
-         */
-        // new int[]{4, 7, 8, 9, 6, 3, 2, 1, 0};
-        //fail("just testing");
     }
 
     /**
@@ -456,14 +434,6 @@ public class SimulationWordsSequenceTest {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
         }
-
-        /**
-         * TODO: outra abordagem: iria ate o mais dificil e quando fosse voltar ele ja acertou uma palavra mais dificil
-         * de antes, então ele procura a mais dificil das mais fáceis... podia adicionar uma flag em algum lugar pra
-         * "ativar" isso
-         */
-        // new int[]{4, 7, 8, 9, 6, 3, 2, 1, 0};
-        //fail("just testing");
     }
 
     /**
@@ -508,14 +478,6 @@ public class SimulationWordsSequenceTest {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
         }
-
-        /**
-         * TODO: outra abordagem: iria ate o mais dificil e quando fosse voltar ele ja acertou uma palavra mais dificil
-         * de antes, então ele procura a mais dificil das mais fáceis... podia adicionar uma flag em algum lugar pra
-         * "ativar" isso
-         */
-        // new int[]{4, 7, 8, 9, 6, 3, 2, 1, 0};
-        //fail("just testing");
     }
 
     /**
@@ -560,14 +522,6 @@ public class SimulationWordsSequenceTest {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
         }
-
-        /**
-         * TODO: outra abordagem: iria ate o mais dificil e quando fosse voltar ele ja acertou uma palavra mais dificil
-         * de antes, então ele procura a mais dificil das mais fáceis... podia adicionar uma flag em algum lugar pra
-         * "ativar" isso
-         */
-        // new int[]{4, 7, 8, 9, 6, 3, 2, 1, 0};
-        //fail("just testing");
     }
 
     /**
@@ -616,14 +570,6 @@ public class SimulationWordsSequenceTest {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
         }
-
-        /**
-         * TODO: outra abordagem: iria ate o mais dificil e quando fosse voltar ele ja acertou uma palavra mais dificil
-         * de antes, então ele procura a mais dificil das mais fáceis... podia adicionar uma flag em algum lugar pra
-         * "ativar" isso
-         */
-        // new int[]{4, 7, 8, 9, 6, 3, 2, 1, 0};
-//        fail("just testing");
     }
 
     /**
@@ -671,14 +617,6 @@ public class SimulationWordsSequenceTest {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
         }
-
-        /**
-         * TODO: outra abordagem: iria ate o mais dificil e quando fosse voltar ele ja acertou uma palavra mais dificil
-         * de antes, então ele procura a mais dificil das mais fáceis... podia adicionar uma flag em algum lugar pra
-         * "ativar" isso
-         */
-        // new int[]{4, 7, 8, 9, 6, 3, 2, 1, 0};
-//        fail("just testing");
     }
 
     /**
@@ -725,18 +663,6 @@ public class SimulationWordsSequenceTest {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
         }
-
-        /**
-         * TODO: outra abordagem: iria ate o mais dificil e quando fosse voltar ele ja acertou uma palavra mais dificil
-         * de antes, então ele procura a mais dificil das mais fáceis... podia adicionar uma flag em algum lugar pra
-         * "ativar" isso. O mesmo valeria para caso o usuário erre alguma palavra difícil.
-         *
-         * Caso contrário: Ao invés dele ir voltando e ir para as mais difíceis, volta todas para as mais fáceis e
-         * depois faz por último as difíceis.
-         */
-        // new int[]{4, 7, 8, 9, 6, 5, 3, 2, 1, 0};
-        // new int[]{4, 7, 6, 5, 2, 3, 1, 0, 8, 9}; // errou 7 (Caso contrário)
-//        fail("just testing");
     }
 
     /**
