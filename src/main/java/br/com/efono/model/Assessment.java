@@ -11,13 +11,24 @@ import java.util.Objects;
  */
 public class Assessment {
 
+    private final int id;
+
     private final List<KnownCase> cases = new LinkedList<>();
 
     /**
      * Creates an assessment.
      */
     public Assessment() {
-        // empty
+        id = -1; // non identified
+    }
+
+    /**
+     * Creates an assessment.
+     *
+     * @param id Assessment id in database.
+     */
+    public Assessment(final int id) {
+        this.id = id;
     }
 
     /**
@@ -26,6 +37,7 @@ public class Assessment {
      * @param cases Cases in the assessment.
      */
     public Assessment(final List<KnownCase> cases) {
+        this();
         this.cases.addAll(cases);
     }
 
@@ -75,6 +87,7 @@ public class Assessment {
             casesHash *= 13 + Objects.hash(c);
         }
         hash = 89 * hash + casesHash;
+        hash = 89 * hash + id;
         return hash;
     }
 
@@ -90,12 +103,12 @@ public class Assessment {
             return false;
         }
         final Assessment other = (Assessment) obj;
-        return Objects.equals(this.cases, other.cases);
+        return Objects.equals(this.cases, other.cases) && this.id == other.id;
     }
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + " with [" + cases.size() + "] cases";
+        return getClass().getSimpleName() + "(" + id + ") with [" + cases.size() + "] cases";
     }
 
 }

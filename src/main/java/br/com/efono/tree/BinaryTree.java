@@ -145,7 +145,6 @@ public class BinaryTree<E> {
     private Node<E> addRecursive(final Node<E> current, final E value) {
         // when the current node is null, we've reached a leaf node and we can insert the new node in that position
         if (current == null) {
-            System.out.println("addRecursive " + value);
             return new Node(value);
         }
 

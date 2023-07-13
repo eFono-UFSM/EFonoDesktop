@@ -13,7 +13,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
 /**
@@ -57,59 +59,72 @@ public class Main {
     }
 
     private static void processSimulation() throws SQLException {
-        // avaliacao 15 está toda correta, vou usar essa agora para fazer a simulação sem muita complexidade
-        String query = "SELECT "
-                + "avaliacaopalavra.id_avaliacao, "
-                + "avaliacaopalavra.transcricao, palavra.palavra, avaliacaopalavra.correto "
-                + "FROM avaliacaopalavra, palavra WHERE palavra.id_palavra = avaliacaopalavra.id_palavra "
-                + "AND avaliacaopalavra.transcricao <> 'NULL' AND (correto = 1 OR correto = 0) AND id_avaliacao = 15";
-        ResultSet rs = MySQLConnection.getInstance().executeQuery(query);
+        final List<Assessment> assessments = new ArrayList<>();
 
-        Assessment assessment = new Assessment();
+        String queryAssessmentId = "SELECT DISTINCT id_avaliacao FROM avaliacaopalavra LIMIT 10;";
+        ResultSet idsResult = MySQLConnection.getInstance().executeQuery(queryAssessmentId);
+        while (idsResult.next()) {
+            int id = idsResult.getInt("id_avaliacao");
 
-        int lines = 0;
-        while (rs.next()) {
-            try {
-                KnownCase knownCase = new KnownCase(rs.getString("palavra"),
-                        rs.getString("transcricao"), rs.getBoolean("correto"));
+            // avaliacao 15 está toda correta, vou usar essa agora para fazer a simulação sem muita complexidade
+            String query = "SELECT "
+                    + "avaliacaopalavra.id_avaliacao, "
+                    + "avaliacaopalavra.transcricao, palavra.palavra, avaliacaopalavra.correto "
+                    + "FROM avaliacaopalavra, palavra WHERE palavra.id_palavra = avaliacaopalavra.id_palavra "
+                    + "AND avaliacaopalavra.transcricao <> 'NULL' AND (correto = 1 OR correto = 0) "
+                    + "AND id_avaliacao = " + id;
+            ResultSet rs = MySQLConnection.getInstance().executeQuery(query);
+            Assessment assessment = new Assessment(id);
 
-                knownCase.putPhonemes(Util.getConsonantPhonemes(knownCase.getRepresentation()));
+            while (rs.next()) {
+                try {
+                    KnownCase knownCase = new KnownCase(rs.getString("palavra"),
+                            rs.getString("transcricao"), rs.getBoolean("correto"));
 
-                assessment.addCase(knownCase);
+                    knownCase.putPhonemes(Util.getConsonantPhonemes(knownCase.getRepresentation()));
 
-//                System.out.println(knownCase);
-            } catch (final IllegalArgumentException | SQLException e) {
-                System.out.println("Exception creating known case: " + e);
+                    assessment.addCase(knownCase);
+                } catch (final IllegalArgumentException | SQLException e) {
+                    System.out.println("Exception creating known case: " + e);
+                }
             }
-
-            lines++;
+            assessments.add(assessment);
         }
-        System.out.println("lines read: " + lines + " cases in the assessment: " + assessment.getCases().size());
 
-        if (lines == 84 && lines == assessment.getCases().size()) {
-            SimulationInfo hardWordsFirst = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.HardWordsFirst, 2, true);
-            System.out.println(hardWordsFirst);
+        final List<SimulationInfo> infos = new ArrayList<>();
+
+        for (Assessment assessment : assessments) {
+            // TODO: remover esses casos já na consulta, melhor desempenho
+            if (assessment.getCases().size() >= Defaults.SORTED_WORDS.length / 2) {
+                System.out.println(assessment);
+                
+                SimulationInfo hardWordsFirst = SimulationWordsSequence.runSimulation(assessment,
+                        KnownCaseComparator.HardWordsFirst, 2, true);
+                System.out.println(hardWordsFirst);
+                infos.add(hardWordsFirst);
 
 //            hardWordsFirst = SimulationWordsSequence.runSimulation(assessment,
 //                    KnownCaseComparator.HardWordsFirst, 2, false);
 //            System.out.println(hardWordsFirst);
-            SimulationInfo easyWordsFirst = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.EasyWordsFirst, 2, true);
-            System.out.println(easyWordsFirst);
+                SimulationInfo easyWordsFirst = SimulationWordsSequence.runSimulation(assessment,
+                        KnownCaseComparator.EasyWordsFirst, 2, true);
+                System.out.println(easyWordsFirst);
+                infos.add(easyWordsFirst);
 
 //            easyWordsFirst = SimulationWordsSequence.runSimulation(assessment,
 //                    KnownCaseComparator.EasyWordsFirst, 2, false);
 //            System.out.println(easyWordsFirst);
-            SimulationInfo easyHardSwitching = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.EasyHardWords, 2, true);
-            System.out.println(easyHardSwitching);
+                SimulationInfo easyHardSwitching = SimulationWordsSequence.runSimulation(assessment,
+                        KnownCaseComparator.EasyHardWords, 2, true);
+                System.out.println(easyHardSwitching);
 
-            SimulationInfo binaryTreeSimulation = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.BinaryTreeComparator, 2, true);
-            System.out.println(binaryTreeSimulation);
-        } else {
-            System.out.println("Invalid assessment to do the simulation. All words are required.");
+                infos.add(easyHardSwitching);
+
+                SimulationInfo binaryTreeSimulation = SimulationWordsSequence.runSimulation(assessment,
+                        KnownCaseComparator.BinaryTreeComparator, 2, true);
+                System.out.println(binaryTreeSimulation);
+                infos.add(binaryTreeSimulation);
+            }
         }
     }
 }
