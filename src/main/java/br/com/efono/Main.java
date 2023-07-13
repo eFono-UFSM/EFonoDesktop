@@ -6,6 +6,7 @@ import br.com.efono.model.Assessment;
 import br.com.efono.model.KnownCase;
 import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.model.SimulationInfo;
+import br.com.efono.util.Defaults;
 import br.com.efono.util.SimulationWordsSequence;
 import br.com.efono.util.Util;
 import java.io.FileInputStream;
@@ -44,6 +45,8 @@ public class Main {
 
         MySQLConnection.getInstance().connect(prop);
         MongoConnection.getInstance().connect(prop);
+
+        Defaults.TREE.init(Defaults.SORTED_WORDS);
 
         try {
             // continue with the application
@@ -101,6 +104,10 @@ public class Main {
             SimulationInfo easyHardSwitching = SimulationWordsSequence.runSimulation(assessment,
                     KnownCaseComparator.EasyHardWords, 2, true);
             System.out.println(easyHardSwitching);
+
+            SimulationInfo binaryTreeSimulation = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.BinaryTreeComparator, 2, true);
+            System.out.println(binaryTreeSimulation);
         } else {
             System.out.println("Invalid assessment to do the simulation. All words are required.");
         }

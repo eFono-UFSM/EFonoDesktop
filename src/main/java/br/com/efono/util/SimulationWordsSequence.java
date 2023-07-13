@@ -142,15 +142,16 @@ public class SimulationWordsSequence {
                     break;
                 }
                 case BinaryTreeComparator: {
-                    final List<String> wordsSorted = new LinkedList<>();
+                    final List<String> insertionOrder = new LinkedList<>();
 
                     Node<String> root = Defaults.TREE.getRoot();
-                    addRecursive(root, wordsSorted, list);
+                    addRecursive(root, insertionOrder, list);
 
+                    // sort the as insertion order in the tree
                     list.sort((KnownCase o1, KnownCase o2) -> {
                         // TODO: ignore case and acentuation
-                        int indexOfo1 = wordsSorted.indexOf(o1.getWord());
-                        int indexOfo2 = wordsSorted.indexOf(o2.getWord());
+                        int indexOfo1 = insertionOrder.indexOf(o1.getWord());
+                        int indexOfo2 = insertionOrder.indexOf(o2.getWord());
                         return indexOfo1 - indexOfo2;
                     });
                     break;
@@ -183,7 +184,6 @@ public class SimulationWordsSequence {
          */
         KnownCase c = Util.getCaseFromWord(cases, val);
         if (c != null) {
-            System.out.println("addRecursive: " + val);
             words.add(val);
         }
 
@@ -196,11 +196,9 @@ public class SimulationWordsSequence {
          * In the given list has less words than the tree we always go to the right side (harder words).
          */
         if (c == null || c.isCorrect()) {
-            System.out.println("direta " + val);
             addRecursive(node.getRight(), words, cases);
             addRecursive(node.getLeft(), words, cases);
         } else {
-            System.out.println("esquerda " + val);
             addRecursive(node.getLeft(), words, cases);
             addRecursive(node.getRight(), words, cases);
         }

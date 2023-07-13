@@ -111,7 +111,7 @@ public class BinaryTreeTest {
 
         BinaryTreePrinter.print(tree, System.out);
 
-        fail("ok");
+//        fail("ok");
     }
 
     /**

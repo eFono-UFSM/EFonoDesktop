@@ -135,7 +135,7 @@ public class SimulationInfo {
         builder.append("wordsRequired: ").append(wordsRequired.size()).
                 append(": [").append(wordsRequired.toString()).append("]");
 
-        builder.append("\n------------------------------------------\n");
+        builder.append("\n------------------------------------------");
         return builder.toString();
     }
 
