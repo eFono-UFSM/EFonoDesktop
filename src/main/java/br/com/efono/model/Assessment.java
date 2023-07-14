@@ -11,6 +11,11 @@ import java.util.Objects;
  */
 public class Assessment {
 
+    /**
+     * Non identified assessment. This should be used only for tests.
+     */
+    public static final int DEFAULT_ID = -1;
+
     private final int id;
 
     private final List<KnownCase> cases = new LinkedList<>();
@@ -19,7 +24,7 @@ public class Assessment {
      * Creates an assessment.
      */
     public Assessment() {
-        id = -1; // non identified
+        id = DEFAULT_ID; // non identified
     }
 
     /**
@@ -29,6 +34,9 @@ public class Assessment {
      */
     public Assessment(final int id) {
         this.id = id;
+        if (id < 0) {
+            throw new IllegalArgumentException("Non identified assessment is not allowed here.");
+        }
     }
 
     /**
@@ -39,6 +47,13 @@ public class Assessment {
     public Assessment(final List<KnownCase> cases) {
         this();
         this.cases.addAll(cases);
+    }
+
+    /**
+     * @return The assessment id.
+     */
+    public int getId() {
+        return id;
     }
 
     /**

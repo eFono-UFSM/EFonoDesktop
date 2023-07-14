@@ -61,6 +61,13 @@ public class SimulationInfo {
         return wordsRequired;
     }
 
+    /**
+     * @return The assessment.
+     */
+    public Assessment getAssessment() {
+        return assessment;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
