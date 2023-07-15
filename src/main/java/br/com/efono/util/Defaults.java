@@ -1,6 +1,7 @@
 package br.com.efono.util;
 
 import br.com.efono.tree.BinaryTree;
+import java.text.Normalizer;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -81,6 +82,46 @@ public class Defaults {
         }
 
         return easyHardWords.toArray(new String[0]);
+    }
+
+    /**
+     * Finds the index of the given word in the array {@link Defaults#SORTED_WORDS}. If <code>(word == null)</code> then
+     * <code>-1</code> will be returned even if there is a null element in the array.
+     *
+     * @param word Word to find the index.
+     * @return The index of the given word or -1 if not found.
+     */
+    public static int findIndexOf(final String word) {
+        return findIndexOf(word, SORTED_WORDS);
+    }
+
+    /**
+     * Finds the index of the given word in the given array. If <code>(word == null)</code> then
+     * <code>-1</code> will be returned even if there is a null element in the array.
+     *
+     * @param word Word to find the index.
+     * @param words The source array.
+     * @return The index of the given word or -1 if not found.
+     */
+    public static int findIndexOf(final String word, final String[] words) {
+        if (word != null && words != null) {
+            for (int i = 0; i < words.length; i++) {
+                String w = removeAccents(words[i]);
+
+                if (w != null && w.equalsIgnoreCase(removeAccents(word))) {
+                    return i;
+                }
+            }
+        }
+        System.out.println("The word " + word + " is not in our database. Someone is looking for it.");
+        return -1;
+    }
+
+    private static String removeAccents(final String input) {
+        if (input != null) {
+            return Normalizer.normalize(input, Normalizer.Form.NFKD).replaceAll("\\p{M}", "");
+        }
+        return null;
     }
 
 }

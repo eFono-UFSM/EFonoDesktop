@@ -47,6 +47,24 @@ public class KnownCaseTest {
     }
 
     /**
+     * Tests constructor behavior when given special words.
+     */
+    @Test
+    public void testConstructorSpecialCases() {
+        String[] words = new String[]{"Teste", "Jacare", "JACARÉ", "JACARE", "JAcAre"};
+
+        List<KnownCase> list = new LinkedList<>();
+        for (String w : words) {
+            try {
+                list.add(new KnownCase(w, "representation", true));
+            } catch (final IllegalArgumentException e) {
+                System.out.println("Exception: " + e);
+            }
+        }
+        assertEquals(4, list.size());
+    }
+
+    /**
      * Tests KnownCase constructor for wrong cases inserted by the user.
      *
      * @throws URISyntaxException

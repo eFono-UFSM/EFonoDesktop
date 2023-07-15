@@ -92,8 +92,6 @@ public class Main {
 
             while (rs.next()) {
                 try {
-                    // TODO: teste Exception creating known case: java.lang.IllegalArgumentException: Non identified phonemes are now allowed in a Known Case.
-                    // nao pode adicionar esse caso na lista da avaliacao: ignora oq vem do banco
                     KnownCase knownCase = new KnownCase(rs.getString("palavra"),
                             rs.getString("transcricao"), rs.getBoolean("correto"));
 

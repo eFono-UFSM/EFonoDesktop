@@ -17,7 +17,10 @@ public enum KnownCaseComparator {
      * Sort KnownCases with harder words first.
      */
     HardWordsFirst((final KnownCase o1, final KnownCase o2) -> {
-        // TODO: ignore case and acentuation
+        /**
+         * The constructor of {@link KnownCase} already guarantee that will have only known words - which means: words
+         * from our database (SORTED_WORDS).
+         */
         int indexOfo1 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o1.getWord());
         int indexOfo2 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o2.getWord());
         return indexOfo2 - indexOfo1;
@@ -26,7 +29,6 @@ public enum KnownCaseComparator {
      * Sort KnownCases with easiest words first.
      */
     EasyWordsFirst((KnownCase o1, KnownCase o2) -> {
-        // TODO: ignore case and acentuation
         int indexOfo1 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o1.getWord());
         int indexOfo2 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o2.getWord());
         return indexOfo1 - indexOfo2;
@@ -40,14 +42,12 @@ public enum KnownCaseComparator {
      * {@link SimulationWordsSequence#sortList(List, KnownCaseComparator)}.
      */
     EasyHardWords((KnownCase o1, KnownCase o2) -> {
-        // TODO: ignore case and acentuation
         List<String> list = Arrays.asList(Defaults.EASY_HARD_WORDS);
         int indexOfo1 = list.indexOf(o1.getWord());
         int indexOfo2 = list.indexOf(o2.getWord());
         return indexOfo1 - indexOfo2;
     }),
     BinaryTreeComparator((KnownCase o1, KnownCase o2) -> {
-        // TODO: ignore case and acentuation
         int indexOfo1 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o1.getWord());
         int indexOfo2 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o2.getWord());
         return indexOfo1 - indexOfo2;

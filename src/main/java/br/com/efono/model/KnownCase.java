@@ -1,5 +1,6 @@
 package br.com.efono.model;
 
+import br.com.efono.util.Defaults;
 import br.com.efono.util.FileUtils;
 import br.com.efono.util.Util;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,6 +20,12 @@ import java.util.Objects;
  */
 public class KnownCase {
 
+    /**
+     * The only 'word' that is not in our database that is allowed here. This is necessary because JSON mapper needs an
+     * empty constructor.
+     */
+    private static final String EMPTY_CASE = "empty-case".hashCode() + "";
+
     @JsonProperty(value = "word")
     private final String word;
 
@@ -35,7 +42,7 @@ public class KnownCase {
      * Default constructor.
      */
     public KnownCase() {
-        this("", "", false);
+        this(EMPTY_CASE, "", false);
     }
 
     /**
@@ -59,6 +66,13 @@ public class KnownCase {
      */
     public KnownCase(final String word, final String representation, boolean correct, final List<Phoneme> phonemes) {
         this.word = Objects.requireNonNull(word);
+        if (!EMPTY_CASE.equals(this.word)) {
+            int index = Defaults.findIndexOf(this.word);
+            if (index < 0) {
+                throw new IllegalArgumentException("The word [" + this.word
+                        + "] is not in our database, so we can't work with it.");
+            }
+        }
         this.representation = Util.cleanTranscription(Objects.requireNonNull(representation));
         if (this.representation.contains("?")) {
             throw new IllegalArgumentException("Non identified phonemes are now allowed in a Known Case.");
