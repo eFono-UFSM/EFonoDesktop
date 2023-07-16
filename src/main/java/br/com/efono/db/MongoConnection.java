@@ -5,6 +5,7 @@ import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoException;
 import com.mongodb.ServerApi;
 import com.mongodb.ServerApiVersion;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
@@ -90,8 +91,9 @@ public class MongoConnection {
      * @param collectionName The collection name.
      * @param filters The filters (combined with AND only: filter1 AND filter2 AND ...).
      * @param fieldsToReturn Fields to return in the query result.
+     * @return The documents found.
      */
-    public void executeQuery(final String collectionName, final Map<String, Object> filters, final List<String> fieldsToReturn) {
+    public FindIterable<Document> executeQuery(final String collectionName, final Map<String, Object> filters, final List<String> fieldsToReturn) {
         if (database != null && collectionName != null) {
             MongoCollection<Document> collection = database.getCollection(collectionName);
             List<Bson> listFilters = new ArrayList<>();
@@ -114,8 +116,9 @@ public class MongoConnection {
             Bson filter = Filters.and(listFilters);
             Bson projection = Projections.fields(listProjections);
 
-            collection.find(filter).projection(projection).forEach(doc -> System.out.println(doc.toJson()));
+            return collection.find(filter).projection(projection);
         }
+        return null;
     }
 
     /**

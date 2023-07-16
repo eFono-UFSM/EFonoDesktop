@@ -5,11 +5,16 @@ import br.com.efono.db.MySQLConnection;
 import br.com.efono.model.Assessment;
 import br.com.efono.model.KnownCase;
 import br.com.efono.model.KnownCaseComparator;
+import br.com.efono.model.Phoneme;
 import br.com.efono.model.SimulationInfo;
 import br.com.efono.model.Statistics;
 import br.com.efono.util.Defaults;
 import br.com.efono.util.SimulationWordsSequence;
 import br.com.efono.util.Util;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.client.FindIterable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -24,6 +29,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import org.bson.Document;
 
 /**
  * @author João Bolsson (joaovictorbolsson@gmail.com)
@@ -60,15 +66,67 @@ public class Main {
         /*
         TODO: criar um map estático para cada palavra apontando para uma lista de "fonemas alvos". Isso vai ser útil para fazer o PCC-R depois.
          */
-        Arrays.asList(Defaults.SORTED_WORDS).forEach(w -> {
-            
-        });
-
         Map<String, Object> filters = new HashMap<>();
         filters.put("correct", true);
-        filters.put("word", "Anel");
 
-        MongoConnection.getInstance().executeQuery("knowncases", filters, Arrays.asList("word", "phonemes"));
+        ObjectMapper objectMapper = new ObjectMapper();
+        Arrays.asList(Defaults.SORTED_WORDS).forEach(w -> {
+            filters.put("word", w);
+            FindIterable<Document> result = MongoConnection.getInstance().executeQuery("knowncases", filters,
+                    null);
+
+            // correct known cases for word <w>
+            final List<KnownCase> correctCases = new ArrayList<>();
+
+            if (result != null) {
+                result.forEach(doc -> {
+                    try {
+                        KnownCase val = objectMapper.readValue(doc.toJson(), new TypeReference<KnownCase>() {
+                        });
+                        correctCases.add(val);
+                    } catch (final JsonProcessingException ex) {
+                        System.out.println("Error while parsing doc " + doc.toJson() + ":\n " + ex);
+                    }
+                });
+            }
+            
+            // TODO: testes nesse trecho
+
+            // building the target phonemes for the word
+            final List<Phoneme> target = new ArrayList<>();
+            if (!correctCases.isEmpty()) {
+                /**
+                 * The target phonemes will be the ones which are in all the correct cases for the word, that is the
+                 * reason we only need the first case here.
+                 */
+                KnownCase firstCase = correctCases.get(0);
+                firstCase.getPhonemes().forEach(p -> {
+                    if (!target.contains(p)) {
+                        // count in how many cases this phoneme is 
+                        int count = 0;
+                        for (KnownCase k : correctCases) {
+                            if (k.getPhonemes().contains(p)) {
+                                count++;
+                            }
+                        }
+
+                        if (count == correctCases.size()) {
+                            target.add(p);
+                        }
+                    }
+                });
+            }
+
+            Defaults.TARGET_PHONEMES.put(w, target);
+        });
+
+        System.out.println("Target phonemes for each word: ");
+        Iterator<Map.Entry<String, List<Phoneme>>> iterator = Defaults.TARGET_PHONEMES.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<String, List<Phoneme>> next = iterator.next();
+            System.out.println(next.getKey() + " -> " + next.getValue());
+        }
 
         if (1 > 0) {
             System.out.println("just testing");

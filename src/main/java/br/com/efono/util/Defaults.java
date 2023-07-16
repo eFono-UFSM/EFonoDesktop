@@ -60,7 +60,7 @@ public class Defaults {
      * The key is the word and the value is the target phonemes for this word. This should be initialized with data from
      * our base.
      */
-    public static final Map<String, List<Phoneme>> mapTargetPhonemes = new HashMap<>();
+    public static final Map<String, List<Phoneme>> TARGET_PHONEMES = new HashMap<>();
 
     /**
      * Sorts the given array with words like: <code>easy, hard, easy, hard words...</code>

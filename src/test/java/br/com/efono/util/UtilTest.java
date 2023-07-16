@@ -517,10 +517,11 @@ public class UtilTest {
         assertEquals(dedo, Util.getCaseFromWord(Arrays.asList(batom, dedo, cama), "dedo"));
         assertEquals(dedo, Util.getCaseFromWord(Arrays.asList(batom, dedo, cama), "DEDO"));
         assertEquals(dedo, Util.getCaseFromWord(Arrays.asList(batom, dedo, cama), "Dedo"));
+    }
 
-        System.out.println("testGetCaseFromWord - should not happen, just in case");
+    @Test(expected = IllegalArgumentException.class)
+    public void testEmptyConstructor() {
         KnownCase emptyCase = new KnownCase("  ", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
-        assertEquals(emptyCase, Util.getCaseFromWord(Arrays.asList(batom, dedo, cama, emptyCase), "  "));
     }
 
 }
