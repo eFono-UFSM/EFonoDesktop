@@ -7,7 +7,13 @@ import com.mongodb.ServerApi;
 import com.mongodb.ServerApiVersion;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Projections;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 import org.bson.BsonDocument;
 import org.bson.BsonInt64;
@@ -75,6 +81,40 @@ public class MongoConnection {
             System.out.println(me);
             mongoClient = null;
             database = null;
+        }
+    }
+
+    /**
+     * Executes a query in mongo db.
+     *
+     * @param collectionName The collection name.
+     * @param filters The filters (combined with AND only: filter1 AND filter2 AND ...).
+     * @param fieldsToReturn Fields to return in the query result.
+     */
+    public void executeQuery(final String collectionName, final Map<String, Object> filters, final List<String> fieldsToReturn) {
+        if (database != null && collectionName != null) {
+            MongoCollection<Document> collection = database.getCollection(collectionName);
+            List<Bson> listFilters = new ArrayList<>();
+            List<Bson> listProjections = new ArrayList<>();
+
+            if (filters != null) {
+                filters.forEach((k, v) -> {
+                    listFilters.add(Filters.eq(k, v));
+                });
+            }
+            if (fieldsToReturn != null && !fieldsToReturn.isEmpty()) {
+                fieldsToReturn.forEach((p) -> {
+                    listProjections.add(Projections.include(p));
+                });
+            }
+
+            // exclude _id from the result: we don't need it here
+            listProjections.add(Projections.excludeId());
+
+            Bson filter = Filters.and(listFilters);
+            Bson projection = Projections.fields(listProjections);
+
+            collection.find(filter).projection(projection).forEach(doc -> System.out.println(doc.toJson()));
         }
     }
 

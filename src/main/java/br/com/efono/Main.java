@@ -57,6 +57,24 @@ public class Main {
         MySQLConnection.getInstance().connect(prop);
         MongoConnection.getInstance().connect(prop);
 
+        /*
+        TODO: criar um map estático para cada palavra apontando para uma lista de "fonemas alvos". Isso vai ser útil para fazer o PCC-R depois.
+         */
+        Arrays.asList(Defaults.SORTED_WORDS).forEach(w -> {
+            
+        });
+
+        Map<String, Object> filters = new HashMap<>();
+        filters.put("correct", true);
+        filters.put("word", "Anel");
+
+        MongoConnection.getInstance().executeQuery("knowncases", filters, Arrays.asList("word", "phonemes"));
+
+        if (1 > 0) {
+            System.out.println("just testing");
+            return;
+        }
+
         Defaults.TREE.init(Defaults.SORTED_WORDS);
 
         File output = null;

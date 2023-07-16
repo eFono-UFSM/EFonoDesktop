@@ -1,10 +1,14 @@
 package br.com.efono.util;
 
+import br.com.efono.model.Phoneme;
 import br.com.efono.tree.BinaryTree;
 import java.text.Normalizer;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -53,6 +57,12 @@ public class Defaults {
     public static final BinaryTree<String> TREE = new BinaryTree<>(DEFAULT_WORDS_COMPARATOR);
 
     /**
+     * The key is the word and the value is the target phonemes for this word. This should be initialized with data from
+     * our base.
+     */
+    public static final Map<String, List<Phoneme>> mapTargetPhonemes = new HashMap<>();
+
+    /**
      * Sorts the given array with words like: <code>easy, hard, easy, hard words...</code>
      *
      * @param sortedWords Given array to sort.
@@ -96,8 +106,8 @@ public class Defaults {
     }
 
     /**
-     * Finds the index of the given word in the given array. If <code>(word == null)</code> then
-     * <code>-1</code> will be returned even if there is a null element in the array.
+     * Finds the index of the given word in the given array. If <code>(word == null)</code> then <code>-1</code> will be
+     * returned even if there is a null element in the array.
      *
      * @param word Word to find the index.
      * @param words The source array.
