@@ -72,10 +72,6 @@ public class BinaryTree<E> {
         }
         this.values.add(val);
 
-        /**
-         * TODO: precisa ver se TODOS os valores adicionados à esquerda/direta vão ser arrendondados de acordo com o nó
-         * atual ou de acordo com o nó principal. Testar com o caso de 0...14 pra ver como fica a arvore.
-         */
         // adiciona na esquerda
         int current = (int) Math.floor((min + middle) / 2f);
         add(min, current, middle, values);

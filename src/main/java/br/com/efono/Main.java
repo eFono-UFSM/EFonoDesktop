@@ -156,15 +156,30 @@ public class Main {
         while (it.hasNext()) {
             Map.Entry<KnownCaseComparator, Statistics> next = it.next();
 
-            File file = new File(parent, next.getKey().name() + "-counter.csv");
-            try (PrintWriter out = new PrintWriter(file)) {
+            File fileWordsCounter = new File(parent, next.getKey().name() + "-counter.csv");
+            try (PrintWriter out = new PrintWriter(fileWordsCounter)) {
                 out.print(next.getValue().exportCSV());
-                System.out.println("File at: " + file);
+                System.out.println("File at: " + fileWordsCounter);
             } catch (final FileNotFoundException ex) {
                 System.out.println("Couldn't write into file: " + ex);
             }
 
-//            System.out.println(next.getValue());
+            File fileWordsFrequency = new File(parent, next.getKey().name() + "-wordsFrequency.csv");
+            try (PrintWriter out = new PrintWriter(fileWordsFrequency)) {
+                out.print(next.getValue().exportWordsFrequencyCSV());
+                System.out.println("File at: " + fileWordsFrequency);
+            } catch (final FileNotFoundException ex) {
+                System.out.println("Couldn't write into file: " + ex);
+            }
+        }
+
+        List<Statistics> listAll = new ArrayList<>(m.values());
+        File fileWordsFrequencyAll = new File(parent, "AllScenarios-wordsFrequency.csv");
+        try (PrintWriter out = new PrintWriter(fileWordsFrequencyAll)) {
+            out.print(Statistics.exportAllWordsFrequencyCSV(listAll));
+            System.out.println("File at: " + fileWordsFrequencyAll);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
         }
     }
 }

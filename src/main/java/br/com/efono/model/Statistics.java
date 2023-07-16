@@ -16,9 +16,16 @@ public class Statistics {
 
     /**
      * The key is the number of words required and the value is how many times this number was required for this
-     * KnownCaseComparator.
+     * KnownCaseComparator. This helps helps us to understand the best number of words that should be available in an
+     * instrument of phonological assessment.
      */
     private final Map<Integer, Integer> mapWordsRequired = new HashMap<>();
+
+    /**
+     * The key is the word required and the value is the number of times this words was required. This will helps us to
+     * understand what words should be in an instrument of phonological assessment.
+     */
+    private final Map<String, Integer> mapWordsCounter = new HashMap<>();
     private final KnownCaseComparator comp;
 
     /**
@@ -48,6 +55,15 @@ public class Statistics {
                 mapWordsRequired.put(countWordsRequired, 0);
             }
 
+            List<String> wordsRequired = info.getWordsRequired();
+            for (String w : wordsRequired) {
+                if (!mapWordsCounter.containsKey(w)) {
+                    mapWordsCounter.put(w, 0);
+                }
+                Integer currentVal = mapWordsCounter.get(w);
+                mapWordsCounter.put(w, currentVal + 1);
+            }
+
             Integer val = mapWordsRequired.get(countWordsRequired);
             mapWordsRequired.put(countWordsRequired, val + 1);
         }
@@ -67,6 +83,52 @@ public class Statistics {
             str.append(next.getKey()).append(",").append(next.getValue()).append("\n");
         }
         return str.toString();
+    }
+    
+    /**
+     * Export the statistics of words frequency to CSV format.
+     *
+     * @return The CSV.
+     */
+    public String exportWordsFrequencyCSV() {
+        StringBuilder str = new StringBuilder("word,frequency\n");
+
+        Iterator<Map.Entry<String, Integer>> it = mapWordsCounter.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, Integer> next = it.next();
+            str.append(next.getKey()).append(",").append(next.getValue()).append("\n");
+        }
+        return str.toString();
+    }
+    
+    /**
+     * Export the statistics of words frequency of all the statistics in the list to CSV format.
+     * @param list List with statistics.
+     * @return The CSV.
+     */
+    public static String exportAllWordsFrequencyCSV(final List<Statistics> list) {
+        Map<String, Integer> mapCounter = new HashMap<>();
+        for (Statistics s : list) {
+            if (mapCounter.isEmpty()) {
+                mapCounter.putAll(s.mapWordsCounter);
+            } else {
+                Iterator<Map.Entry<String, Integer>> it = s.mapWordsCounter.entrySet().iterator();
+                while (it.hasNext()) {
+                    Map.Entry<String, Integer> next = it.next();
+                    mapCounter.put(next.getKey(), mapCounter.get(next.getKey()) + next.getValue());
+                }
+            }
+        }
+        
+        StringBuilder str = new StringBuilder("word,frequency\n");
+
+        Iterator<Map.Entry<String, Integer>> it = mapCounter.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, Integer> next = it.next();
+            str.append(next.getKey()).append(",").append(next.getValue()).append("\n");
+        }
+        return str.toString();
+        
     }
 
     @Override

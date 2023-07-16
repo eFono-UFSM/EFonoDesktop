@@ -87,7 +87,7 @@ public class SimulationWordsSequence {
 
                         if (count <= minimum) {
                             /**
-                             * If this word contains at least one phoneme which wasn't be tested at minimum two times,
+                             * If this word contains at least one phoneme which was not tested at minimum two times,
                              * then the word is important and will be "required".
                              *
                              * If all the phonemes tested by this word were already tested at minimum 2 times, so the
