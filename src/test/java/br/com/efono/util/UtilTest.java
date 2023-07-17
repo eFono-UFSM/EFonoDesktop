@@ -524,4 +524,76 @@ public class UtilTest {
         KnownCase emptyCase = new KnownCase("  ", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
     }
 
+    /**
+     * Tests {@link Util#getTargetPhonemes(List)}.
+     */
+    @Test
+    public void testGetTargetPhonemes() {
+        System.out.println("testGetTargetPhonemes - parameters");
+        assertTrue(Util.getTargetPhonemes(null).isEmpty());
+        assertTrue(Util.getTargetPhonemes(new ArrayList<>()).isEmpty());
+
+        System.out.println("testGetTargetPhonemes - real case");
+        KnownCase passarinho = new KnownCase("Passarinho", "[pasa’ɾiɲo]", true, Arrays.asList(
+                new Phoneme("p", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("ɾ", Phoneme.POSITION.OM),
+                new Phoneme("ɲ", Phoneme.POSITION.OM)));
+
+        KnownCase passaro = new KnownCase("Passarinho", "[pasa’ɾiɲo]", true, Arrays.asList(
+                new Phoneme("p", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("ɾ", Phoneme.POSITION.OM)));
+
+        List<Phoneme> expected = Arrays.asList(
+                new Phoneme("p", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("ɾ", Phoneme.POSITION.OM));
+
+        assertEquals(expected, Util.getTargetPhonemes(Arrays.asList(passarinho, passaro)));
+        assertEquals(expected, Util.getTargetPhonemes(Arrays.asList(passaro, passarinho)));
+
+        System.out.println("testGetTargetPhonemes - other tests");
+        /**
+         * Only the phonemes matters, all the other parameters here are useless.
+         */
+        KnownCase test = new KnownCase("Cama", "test", false, Arrays.asList(
+                new Phoneme("a", Phoneme.POSITION.OI),
+                new Phoneme("b", Phoneme.POSITION.OM),
+                new Phoneme("c", Phoneme.POSITION.OM)));
+
+        KnownCase test2 = new KnownCase("Cama", "test", true, Arrays.asList(
+                new Phoneme("a", Phoneme.POSITION.OI),
+                new Phoneme("b", Phoneme.POSITION.OM),
+                new Phoneme("c", Phoneme.POSITION.OM),
+                new Phoneme("d", Phoneme.POSITION.OM)));
+
+        KnownCase test3 = new KnownCase("Cama", "test", false, Arrays.asList(
+                new Phoneme("d", Phoneme.POSITION.OI),
+                new Phoneme("e", Phoneme.POSITION.OM),
+                new Phoneme("f", Phoneme.POSITION.OM),
+                new Phoneme("g", Phoneme.POSITION.OM)));
+
+        System.out.println("testGetTargetPhonemes - no common phonemes");
+        assertTrue(Util.getTargetPhonemes(Arrays.asList(test, test2, test3)).isEmpty());
+        assertTrue(Util.getTargetPhonemes(Arrays.asList(test, test3, test2)).isEmpty());
+        assertTrue(Util.getTargetPhonemes(Arrays.asList(test2, test, test3)).isEmpty());
+        assertTrue(Util.getTargetPhonemes(Arrays.asList(test2, test3, test)).isEmpty());
+        assertTrue(Util.getTargetPhonemes(Arrays.asList(test3, test, test2)).isEmpty());
+        assertTrue(Util.getTargetPhonemes(Arrays.asList(test3, test2, test)).isEmpty());
+
+        expected = Arrays.asList(
+                new Phoneme("a", Phoneme.POSITION.OI),
+                new Phoneme("b", Phoneme.POSITION.OM),
+                new Phoneme("c", Phoneme.POSITION.OM));
+        System.out.println("testGetTargetPhonemes - common phonemes");
+
+        assertEquals(expected, Util.getTargetPhonemes(Arrays.asList(test, test2)));
+        assertEquals(expected, Util.getTargetPhonemes(Arrays.asList(test2, test)));
+
+        System.out.println("testGetTargetPhonemes - no common phoneme");
+        assertTrue(Util.getTargetPhonemes(Arrays.asList(test2, test3)).isEmpty());
+        assertTrue(Util.getTargetPhonemes(Arrays.asList(test3, test2)).isEmpty());
+    }
+
 }

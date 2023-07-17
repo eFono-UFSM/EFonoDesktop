@@ -63,9 +63,6 @@ public class Main {
         MySQLConnection.getInstance().connect(prop);
         MongoConnection.getInstance().connect(prop);
 
-        /*
-        TODO: criar um map estático para cada palavra apontando para uma lista de "fonemas alvos". Isso vai ser útil para fazer o PCC-R depois.
-         */
         Map<String, Object> filters = new HashMap<>();
         filters.put("correct", true);
 
@@ -89,35 +86,9 @@ public class Main {
                     }
                 });
             }
-            
-            // TODO: testes nesse trecho
 
             // building the target phonemes for the word
-            final List<Phoneme> target = new ArrayList<>();
-            if (!correctCases.isEmpty()) {
-                /**
-                 * The target phonemes will be the ones which are in all the correct cases for the word, that is the
-                 * reason we only need the first case here.
-                 */
-                KnownCase firstCase = correctCases.get(0);
-                firstCase.getPhonemes().forEach(p -> {
-                    if (!target.contains(p)) {
-                        // count in how many cases this phoneme is 
-                        int count = 0;
-                        for (KnownCase k : correctCases) {
-                            if (k.getPhonemes().contains(p)) {
-                                count++;
-                            }
-                        }
-
-                        if (count == correctCases.size()) {
-                            target.add(p);
-                        }
-                    }
-                });
-            }
-
-            Defaults.TARGET_PHONEMES.put(w, target);
+            Defaults.TARGET_PHONEMES.put(w, Util.getTargetPhonemes(correctCases));
         });
 
         System.out.println("Target phonemes for each word: ");
