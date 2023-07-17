@@ -1,5 +1,6 @@
 package br.com.efono.model;
 
+import br.com.efono.util.Defaults;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -124,6 +125,37 @@ public class Assessment {
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" + id + ") with [" + cases.size() + "] cases";
+    }
+
+    /**
+     * Gets the PCC-R value for this simulation according with the assessment. The PCC-R value indicates the level of
+     * disorder according with the number of correct productions divided by the total of expected productions. Example:
+     * if the subject was exposed to 10 target phonemes in the assessment and then spoke correctly only 5: the PCC-R
+     * value will 0.5 indicating a High level of disorder. Reference: "Shriberg et al. (1997) The speech disorders
+     * classification system (sdcs). Journal of Speech, Language and Hearing Research, 40(4):723–740."
+     *
+     * @return The PCC-R value between 0 and 1.
+     */
+    public double getPCCR() {
+        double totalExpected = 0d;
+        double correctProductions = 0d;
+
+        for (KnownCase c : cases) {
+            /**
+             * We can do TARGET_PHONEMES.get(c.getWord()) here because KnownCase doesn't allow words that is not in
+             * Defaults#SORTED_WORDS. Even if there is a difference in accentuation, for example, those cases will be
+             * treated and use the related word from Defaults#SORTED_WORDS.
+             */
+            List<Phoneme> targetPhonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
+            totalExpected += targetPhonemes.size();
+            correctProductions += c.getCorrectProductions(targetPhonemes).size();
+        }
+
+        if (totalExpected == 0) {
+            return 0;
+        }
+
+        return correctProductions / totalExpected;
     }
 
 }

@@ -1,5 +1,6 @@
 package br.com.efono.model;
 
+import br.com.efono.util.Defaults;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -117,6 +118,60 @@ public class AssessmentTest {
         instance.clear();
         assertEquals(2, list.size());
         assertEquals(0, instance.getCases().size());
+    }
+    
+    /**
+     * Tests {@link Assessment#getPCCR()}.
+     */
+    @Test
+    public void testGetPCCR() {
+        System.out.println("testGetPCCR - valid assessment");
+        KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(
+                new Phoneme("n", Phoneme.POSITION.OM))); // correto
+
+        KnownCase batom = new KnownCase("Batom", "[ba’tõw]", true, Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("k", Phoneme.POSITION.OM))); // substituiu 't' por 'k'
+
+        KnownCase bicicleta = new KnownCase("Bicicleta", "[bisi’klɛtə]", true, Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("kl", Phoneme.POSITION.OCME), // omitiu 's'
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        KnownCase biblioteca = new KnownCase("Biblioteca", "[biblio’tɛkə]", true, Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("k", Phoneme.POSITION.OM),
+                new Phoneme("r", Phoneme.POSITION.CF))); // acrescentou 'r'
+
+        final Assessment assessment = new Assessment(Arrays.asList(anel, batom, bicicleta, biblioteca));
+
+        Defaults.TARGET_PHONEMES.put("Anel", Arrays.asList(
+                new Phoneme("n", Phoneme.POSITION.OM)));
+
+        Defaults.TARGET_PHONEMES.put("Batom", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        Defaults.TARGET_PHONEMES.put("Bicicleta", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        Defaults.TARGET_PHONEMES.put("Biblioteca", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        // 11 produções esperadas
+        // corretas: 9
+        assertEquals(0.81, assessment.getPCCR(), 0.01);
+        
+        System.out.println("empty assessment");
+        assertEquals(0, new Assessment().getPCCR(), 0.01);
     }
 
 }
