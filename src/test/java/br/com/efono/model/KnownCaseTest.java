@@ -372,4 +372,73 @@ public class KnownCaseTest {
 //        fail();
     }
 
+    /**
+     * Tests {@link KnownCase#getCorrectProductions(List)}.
+     */
+    @Test
+    public void testGetCorrectProductions() {
+        System.out.println("testGetCorrectProductions - parameters");
+        KnownCase instance = new KnownCase("Bicicleta", "[bisi’klɛtə]", true, Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        assertTrue(instance.getCorrectProductions(null).isEmpty());
+        assertTrue(instance.getCorrectProductions(new ArrayList<>()).isEmpty());
+
+        // TODO: revisar esses testes: PCC-R
+        System.out.println("testGetCorrectProductions - the instance phonemes - all correct productions");
+        List<Phoneme> expected = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM));
+
+        assertEquals(expected, instance.getCorrectProductions(instance.getPhonemes()));
+
+        System.out.println("testGetCorrectProductions - instance has more phonemes than expected: variants of correct cases");
+        List<Phoneme> targetPhonemes = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("kl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM));
+
+        assertEquals(targetPhonemes, instance.getCorrectProductions(targetPhonemes));
+
+        System.out.println("testGetCorrectProductions - instance has more phonemes than expected: incorrect cases");
+        targetPhonemes = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("t", Phoneme.POSITION.OM));
+
+        assertEquals(targetPhonemes, instance.getCorrectProductions(targetPhonemes));
+
+        System.out.println("testGetCorrectProductions - instance has less phonemes than expected: omission cases");
+        targetPhonemes = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("r", Phoneme.POSITION.OM));
+
+        expected = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM));
+
+        assertEquals(expected, instance.getCorrectProductions(targetPhonemes));
+
+        System.out.println("testGetCorrectProductions - instance has same number of target phonemes: substituition cases");
+        targetPhonemes = Arrays.asList(
+                new Phoneme("d", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME),
+                new Phoneme("p", Phoneme.POSITION.OM));
+
+        expected = Arrays.asList(
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME));
+        assertEquals(expected, instance.getCorrectProductions(targetPhonemes));
+    }
+
 }

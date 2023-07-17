@@ -126,6 +126,23 @@ public class KnownCase {
         this.phonemes.clear();
         this.phonemes.addAll(phonemes);
     }
+    
+    /**
+     * Gets a list with the correct productions bases on the list of target phonemes for the word of this KnownCase.
+     * @param targetPhonemes A list of target phonemes for the word of this instance.
+     * @return A list with correct productions.
+     */
+    public List<Phoneme> getCorrectProductions(final List<Phoneme> targetPhonemes) {
+        final List<Phoneme> correctProd = new ArrayList<>();
+        if (targetPhonemes != null) {
+            targetPhonemes.forEach(p -> {
+                if (this.phonemes.contains(p)) {
+                    correctProd.add(p);
+                }
+            });
+        }
+        return correctProd;
+    }
 
     /**
      * @return If the transcription represents a correct pronunciation or not.
