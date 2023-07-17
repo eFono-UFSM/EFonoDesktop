@@ -1,5 +1,6 @@
 package br.com.efono.model;
 
+import br.com.efono.util.Defaults;
 import br.com.efono.util.Util;
 import br.com.efono.util.UtilTest;
 import java.io.File;
@@ -136,6 +137,16 @@ public class KnownCaseTest {
     @Test(expected = NullPointerException.class)
     public void testConstructPhonemes() {
         new KnownCase("anel", "", false, null);
+    }
+    
+    /**
+     * Tests construct for null representation.
+     */
+    @Test
+    public void testConstructTreatWord() {
+        KnownCase instance = new KnownCase("anél", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
+        assertEquals(Defaults.SORTED_WORDS[0], instance.getWord());
+        assertEquals("Anel", instance.getWord());
     }
 
     /**

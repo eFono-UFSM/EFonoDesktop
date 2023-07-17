@@ -69,7 +69,7 @@ public class DefaultsTest {
         System.out.println("testFindIndexOf - variants of some word that is in our database: all must be recognized");
         String[] words = new String[]{"Jacare", "JACARÉ", "Jacaré", "JACARE", "JAcAre"};
         for (String w : words) {
-            assertTrue("Failed in try to find the word " + w, Defaults.findIndexOf(w) >= 0);
+            assertEquals("Failed in try to find the word " + w, 48, Defaults.findIndexOf(w));
         }
     }
 

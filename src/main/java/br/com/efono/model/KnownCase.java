@@ -65,14 +65,17 @@ public class KnownCase {
      * @param phonemes Only consonant phonemes in the transcription.
      */
     public KnownCase(final String word, final String representation, boolean correct, final List<Phoneme> phonemes) {
-        this.word = Objects.requireNonNull(word);
-        if (!EMPTY_CASE.equals(this.word)) {
-            int index = Defaults.findIndexOf(this.word);
+        String w = Objects.requireNonNull(word);
+        if (!EMPTY_CASE.equals(w)) {
+            int index = Defaults.findIndexOf(w, Defaults.SORTED_WORDS);
             if (index < 0) {
-                throw new IllegalArgumentException("The word [" + this.word
+                throw new IllegalArgumentException("The word [" + w
                         + "] is not in our database, so we can't work with it.");
             }
+            // treating the word, avoid wrong comparisons
+            w = Defaults.SORTED_WORDS[index];
         }
+        this.word = w;
         this.representation = Util.cleanTranscription(Objects.requireNonNull(representation));
         if (this.representation.contains("?")) {
             throw new IllegalArgumentException("Non identified phonemes are now allowed in a Known Case.");
