@@ -7,6 +7,7 @@ import br.com.efono.model.Phoneme;
 import br.com.efono.model.SimulationInfo;
 import br.com.efono.tree.BinaryTreePrinter;
 import static br.com.efono.util.Defaults.SORTED_WORDS;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -663,6 +664,69 @@ public class SimulationWordsSequenceTest {
             int index = expectedSequence[i];
             assertEquals(SORTED_WORDS[index], list.get(i).getWord());
         }
+    }
+
+    /**
+     * Tests {@link SimulationWordsSequence#getWordsRequired(List, boolean, int)}.
+     */
+    @Test
+    public void testGetWordsRequired() {
+        System.out.println("testGetWordsRequired - invalid parameters");
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, null, true, 0).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, new HashMap<>(), true, 0).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, null, false, 0).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, new HashMap<>(),false, 0).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, null, true, -1).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, new HashMap<>(),true, -1).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), null, true, 0).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), new HashMap<>(), true, 0).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), null, false, 0).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), new HashMap<>(), false, 0).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), null, false, 1).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), new HashMap<>(), false, 1).isEmpty());
+
+        System.out.println("testGetWordsRequired - valid cases");
+        KnownCase batom = new KnownCase("Batom", "[ba’tõw]", false, Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+        KnownCase biblioteca = new KnownCase("Biblioteca", "[biblio’tɛkə]", true, Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("kɾ", Phoneme.POSITION.OCME)));
+        KnownCase bicicleta = new KnownCase("Bicicleta", "[bisi’klɛtə]", true, Arrays.asList(
+                new Phoneme("kl", Phoneme.POSITION.OCME))); // nao precisa
+        // tanto faz a transcrição aqui, o que importa são os fonemas
+        KnownCase jacare = new KnownCase("Jacaré", "[batata]", true, Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        List<KnownCase> list = Arrays.asList(batom, biblioteca, bicicleta, jacare);
+
+        final Map<Phoneme, Integer> mapCounter = new HashMap<>();
+        
+        List<String> expected = Arrays.asList("Batom", "Biblioteca"); // we don't need Bicicleta, because we already have k(OCME) and l(OCME).
+        List<String> result = SimulationWordsSequence.getWordsRequired(list, mapCounter, true, 1);
+        assertTrue(expected.containsAll(result));
+        assertTrue(result.containsAll(expected));
+        assertEquals(expected, result);
+
+        System.out.println("testGetWordsRequired - not splitting consonant clusters");
+        expected = Arrays.asList("Batom", "Biblioteca", "Bicicleta"); // now, we need Bicicleta, because "kl" doesnt not repeat.
+        result = SimulationWordsSequence.getWordsRequired(list,mapCounter, false, 1);
+        assertTrue(expected.containsAll(result));
+        assertTrue(result.containsAll(expected));
+        assertEquals(expected, result);
+
+        System.out.println("testGetWordsRequired - changing the order");
+        list = Arrays.asList(jacare, bicicleta, biblioteca, batom);
+
+        expected = Arrays.asList("Jacaré", "Bicicleta", "Biblioteca");
+        result = SimulationWordsSequence.getWordsRequired(list,mapCounter, true, 1);
+        assertTrue(expected.containsAll(result));
+        assertTrue(result.containsAll(expected));
+        assertEquals(expected, result);
     }
 
     /**

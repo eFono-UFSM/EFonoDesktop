@@ -59,6 +59,37 @@ public class SimulationWordsSequence {
             List<KnownCase> cases = assessment.getCases();
             sortList(cases, comp);
 
+            wordsRequired.addAll(getWordsRequired(cases, mapCounter, splitConsonantClusters, minimum));
+            /**
+             * TODO: todos os fonemas produzidos estão em "mapCounter". Os fonemas testados (alvos) deverão ser
+             * calculados a partir dos gabaritos corretos. Aí sim, podemos calcular o PCC-R.
+             */
+        }
+        return new SimulationInfo(mapCounter, wordsRequired, assessment, comp, splitConsonantClusters);
+    }
+
+    /**
+     * Gets the words required according with criteria: a word that contains at least one phoneme which was not tested
+     * at minimum of <code>minimum</code> times, then that word is important and will be in the required list.The words
+     * are analyzed according with the order in the <code>cases</code> list, so changing the order of the array can
+     * reproduce different results.
+     *
+     * @param cases The cases to analyze.
+     * @param mapCounter A map only to count how many times each phoneme was tested, according with the criteria bellow.
+     * @param splitConsonantClusters True - the consonant clusters will be transformed into 2 consonants phonemes. Ex.:
+     * bɾ(OCME) -> b(OCME) + ɾ(OCME). False - keep the consonant phonemes as they are. Letting this flag with false
+     * possibly will return more words because it's more difficult to find the phoneme bɾ(OCME) in the cases, but
+     * r(OCME) can appear in many others consonant clusters, an b(OCME) as well (br, bl).
+     * @param minimum The minimum of times that each phoneme must be tested in order to be considered in the phonetic
+     * inventory. Higher values can return more required words.
+     * @return A list with the required words, according with the criteria above.
+     */
+    public static List<String> getWordsRequired(final List<KnownCase> cases, final Map<Phoneme, Integer> mapCounter,
+            boolean splitConsonantClusters, final int minimum) {
+        final List<String> wordsRequired = new LinkedList<>();
+
+        if (cases != null && mapCounter != null) {
+            mapCounter.clear();
             for (KnownCase c : cases) {
                 // TODO: ao inves de "fonemas produzidos" depois vai ser preciso pegar de algum gabarito os "fonemas alvo", pois são esses que estão sendo testados.
                 // os "fonemas produzidos" aqui precisam ser testados no mínimo 2 vezes para serem considerados "adquiridos" no inv. fonético. [esse é o trabalho da simulação]
@@ -86,8 +117,8 @@ public class SimulationWordsSequence {
 
                         if (count <= minimum) {
                             /**
-                             * If this word contains at least one phoneme which was not tested at minimum two times,
-                             * then the word is important and will be "required".
+                             * If this word contains at least one phoneme which was not tested at minimum of times, then
+                             * the word is important and will be "required".
                              *
                              * If all the phonemes tested by this word were already tested at minimum 2 times, so the
                              * word doesn't would need to be here.
@@ -99,12 +130,9 @@ public class SimulationWordsSequence {
                     }
                 }
             }
-            /**
-             * TODO: todos os fonemas produzidos estão em "mapCounter". Os fonemas testados (alvos) deverão ser
-             * calculados a partir dos gabaritos corretos. Aí sim, podemos calcular o PCC-R.
-             */
         }
-        return new SimulationInfo(mapCounter, wordsRequired, assessment, comp, splitConsonantClusters);
+
+        return wordsRequired;
     }
 
     /**

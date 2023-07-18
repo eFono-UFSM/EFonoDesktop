@@ -21,6 +21,8 @@
         <junit.version>4.13.1</junit.version>
         <jackson.version>2.14.2</jackson.version>
         <mongodb-driver.version>4.10.0</mongodb-driver.version>
+        
+        <jacoco.plugin.version>0.8.10</jacoco.plugin.version>
     </properties>
     
     <build>
@@ -61,6 +63,53 @@
                                 <requireJavaVersion>
                                     <version>${enforcer.jdk-version}</version>
                                 </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco.plugin.version}</version>
+                <configuration>
+                    <excludes combine.children="append">
+                        <exclude>br/com/efono/db/MongoConnection.class</exclude>
+                        <exclude>br/com/efono/db/MySQLConnection</exclude>
+                    </excludes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>jacoco-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <phase>verify</phase>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>INSTRUCTION</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.70</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
                             </rules>
                         </configuration>
                     </execution>
