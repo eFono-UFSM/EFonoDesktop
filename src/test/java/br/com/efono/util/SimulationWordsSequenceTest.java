@@ -10,6 +10,7 @@ import static br.com.efono.util.Defaults.SORTED_WORDS;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -217,7 +218,7 @@ public class SimulationWordsSequenceTest {
         SimulationInfo expected = new SimulationInfo(mapCounterExpected, wordsRequiredExpected, assessment, comp,
                 SimulationWordsSequence.SPLIT_CONSONANTS);
         SimulationInfo result = SimulationWordsSequence.runSimulation(assessment, comp,
-                minimum, true);
+                minimum, true, true);
 
         assertEquals(expected, result);
     }
@@ -672,18 +673,18 @@ public class SimulationWordsSequenceTest {
     @Test
     public void testGetWordsRequired() {
         System.out.println("testGetWordsRequired - invalid parameters");
-        assertTrue(SimulationWordsSequence.getWordsRequired(null, null, true, 0).isEmpty());
-        assertTrue(SimulationWordsSequence.getWordsRequired(null, new HashMap<>(), true, 0).isEmpty());
-        assertTrue(SimulationWordsSequence.getWordsRequired(null, null, false, 0).isEmpty());
-        assertTrue(SimulationWordsSequence.getWordsRequired(null, new HashMap<>(),false, 0).isEmpty());
-        assertTrue(SimulationWordsSequence.getWordsRequired(null, null, true, -1).isEmpty());
-        assertTrue(SimulationWordsSequence.getWordsRequired(null, new HashMap<>(),true, -1).isEmpty());
-        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), null, true, 0).isEmpty());
-        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), new HashMap<>(), true, 0).isEmpty());
-        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), null, false, 0).isEmpty());
-        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), new HashMap<>(), false, 0).isEmpty());
-        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), null, false, 1).isEmpty());
-        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), new HashMap<>(), false, 1).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, null, true, 0, true).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, new HashMap<>(), true, 0, true).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, null, false, 0, true).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, new HashMap<>(), false, 0, true).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, null, true, -1, true).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, new HashMap<>(), true, -1, true).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), null, true, 0, true).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), new HashMap<>(), true, 0, true).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), null, false, 0, true).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), new HashMap<>(), false, 0, true).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), null, false, 1, true).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), new HashMap<>(), false, 1, true).isEmpty());
 
         System.out.println("testGetWordsRequired - valid cases");
         KnownCase batom = new KnownCase("Batom", "[ba’tõw]", false, Arrays.asList(
@@ -704,17 +705,40 @@ public class SimulationWordsSequenceTest {
 
         List<KnownCase> list = Arrays.asList(batom, biblioteca, bicicleta, jacare);
 
+        final Map<Phoneme, Integer> expectedMapCounter = new HashMap<>();
+        expectedMapCounter.put(new Phoneme("b", Phoneme.POSITION.OI), 3);
+        expectedMapCounter.put(new Phoneme("t", Phoneme.POSITION.OM), 4);
+        expectedMapCounter.put(new Phoneme("b", Phoneme.POSITION.OCME), 1);
+        expectedMapCounter.put(new Phoneme("l", Phoneme.POSITION.OCME), 2);
+        expectedMapCounter.put(new Phoneme("k", Phoneme.POSITION.OCME), 2);
+        expectedMapCounter.put(new Phoneme("ɾ", Phoneme.POSITION.OCME), 1);
+
         final Map<Phoneme, Integer> mapCounter = new HashMap<>();
-        
+
         List<String> expected = Arrays.asList("Batom", "Biblioteca"); // we don't need Bicicleta, because we already have k(OCME) and l(OCME).
-        List<String> result = SimulationWordsSequence.getWordsRequired(list, mapCounter, true, 1);
+        List<String> result = SimulationWordsSequence.getWordsRequired(list, mapCounter, true, 1, true);
         assertTrue(expected.containsAll(result));
         assertTrue(result.containsAll(expected));
         assertEquals(expected, result);
 
+        assertEquals(expectedMapCounter.size(), mapCounter.size());
+        assertTrue(mapCounter.keySet().containsAll(expectedMapCounter.keySet()));
+        Iterator<Map.Entry<Phoneme, Integer>> it = expectedMapCounter.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Phoneme, Integer> next = it.next();
+            assertEquals(next.getValue(), mapCounter.get(next.getKey()));
+        }
+
         System.out.println("testGetWordsRequired - not splitting consonant clusters");
-        expected = Arrays.asList("Batom", "Biblioteca", "Bicicleta"); // now, we need Bicicleta, because "kl" doesnt not repeat.
-        result = SimulationWordsSequence.getWordsRequired(list,mapCounter, false, 1);
+        expectedMapCounter.clear();
+        expectedMapCounter.put(new Phoneme("b", Phoneme.POSITION.OI), 3);
+        expectedMapCounter.put(new Phoneme("t", Phoneme.POSITION.OM), 4);
+        expectedMapCounter.put(new Phoneme("bl", Phoneme.POSITION.OCME), 1);
+        expectedMapCounter.put(new Phoneme("kɾ", Phoneme.POSITION.OCME), 1);
+        expectedMapCounter.put(new Phoneme("kl", Phoneme.POSITION.OCME), 1);
+
+        expected = Arrays.asList("Batom", "Biblioteca", "Bicicleta"); // now, we need Bicicleta, because "kl" does not repeat.
+        result = SimulationWordsSequence.getWordsRequired(list, mapCounter, false, 1, true);
         assertTrue(expected.containsAll(result));
         assertTrue(result.containsAll(expected));
         assertEquals(expected, result);
@@ -723,7 +747,7 @@ public class SimulationWordsSequenceTest {
         list = Arrays.asList(jacare, bicicleta, biblioteca, batom);
 
         expected = Arrays.asList("Jacaré", "Bicicleta", "Biblioteca");
-        result = SimulationWordsSequence.getWordsRequired(list,mapCounter, true, 1);
+        result = SimulationWordsSequence.getWordsRequired(list, mapCounter, true, 1, true);
         assertTrue(expected.containsAll(result));
         assertTrue(result.containsAll(expected));
         assertEquals(expected, result);

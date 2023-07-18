@@ -1,5 +1,7 @@
 package br.com.efono.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +47,17 @@ public class SimulationInfo {
         this.comp = comp;
         this.assessment = assessment;
         this.splitConsonantClusters = splitConsonantClusters;
+    }
+
+    /**
+     * Default constructor.
+     *
+     * @param assessment The assessment source.
+     * @param comp Comparator used in the simulation.
+     * @param splitConsonantClusters True - the consonant clusters were separated in two phonemes counting.
+     */
+    public SimulationInfo(final Assessment assessment, final KnownCaseComparator comp, boolean splitConsonantClusters) {
+        this(new HashMap<>(), new ArrayList<>(), assessment, comp, splitConsonantClusters);
     }
 
     /**

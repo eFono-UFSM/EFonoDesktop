@@ -99,11 +99,6 @@ public class Main {
             System.out.println(next.getKey() + " -> " + next.getValue());
         }
 
-        if (1 > 0) {
-            System.out.println("just testing");
-            return;
-        }
-
         Defaults.TREE.init(Defaults.SORTED_WORDS);
 
         File output = null;
@@ -129,69 +124,89 @@ public class Main {
 
             // avaliacao 15 está toda correta, vou usar essa agora para fazer a simulação sem muita complexidade
             String query = "SELECT "
-                    + "avaliacaopalavra.id_avaliacao, "
+                    + "avaliacaopalavra.id_avaliacao, avaliacaopalavra.id_palavra, "
                     + "avaliacaopalavra.transcricao, palavra.palavra, avaliacaopalavra.correto "
                     + "FROM avaliacaopalavra, palavra WHERE palavra.id_palavra = avaliacaopalavra.id_palavra "
                     + "AND avaliacaopalavra.transcricao <> 'NULL' AND (correto = 1 OR correto = 0) "
                     + "AND id_avaliacao = " + id;
             ResultSet rs = MySQLConnection.getInstance().executeQuery(query);
+
+            List<Integer> wordsIDs = new ArrayList<>();
+
             Assessment assessment = new Assessment(id);
 
             while (rs.next()) {
-                try {
-                    KnownCase knownCase = new KnownCase(rs.getString("palavra"),
-                            rs.getString("transcricao"), rs.getBoolean("correto"));
+                // TODO: revisar dados, ver diferenças do arquivo csv com os casos atuais e o original. Alguns casos estão errados no banco e precisam ser consertados.
+                if (!wordsIDs.contains(rs.getInt("id_palavra"))) {
+                    wordsIDs.add(rs.getInt("id_palavra"));
+                    try {
+                        KnownCase knownCase = new KnownCase(rs.getString("palavra"),
+                                rs.getString("transcricao"), rs.getBoolean("correto"));
 
-                    knownCase.putPhonemes(Util.getConsonantPhonemes(knownCase.getRepresentation()));
+                        knownCase.putPhonemes(Util.getConsonantPhonemes(knownCase.getRepresentation()));
 
-                    assessment.addCase(knownCase);
-                } catch (final IllegalArgumentException | SQLException e) {
-                    System.out.println("Exception creating known case: " + e);
+                        assessment.addCase(knownCase);
+                    } catch (final IllegalArgumentException | SQLException e) {
+                        System.out.println("Exception creating known case: " + e);
+                    }
+                } else {
+                    System.out.println("Ignoring case with repeated word " + rs.getInt("id_palavra") + " in assessment " + id);
                 }
             }
-            assessments.add(assessment);
+            if (assessment.getCases().size() == Defaults.SORTED_WORDS.length) {
+                assessments.add(assessment);
+            } else {
+                System.out.println("Assessment " + assessment.getId() + " has less than " + Defaults.SORTED_WORDS.length + " valid cases, so it'll discarted");
+            }
         }
 
-        final Map<KnownCaseComparator, Statistics> m = new HashMap<>();
-        m.put(KnownCaseComparator.HardWordsFirst, new Statistics(KnownCaseComparator.HardWordsFirst));
-        m.put(KnownCaseComparator.EasyWordsFirst, new Statistics(KnownCaseComparator.EasyWordsFirst));
-        m.put(KnownCaseComparator.EasyHardWords, new Statistics(KnownCaseComparator.EasyHardWords));
-        m.put(KnownCaseComparator.BinaryTreeComparator, new Statistics(KnownCaseComparator.BinaryTreeComparator));
+        final Map<KnownCaseComparator, Statistics> mapPhoneticInventory = new HashMap<>();
+        mapPhoneticInventory.put(KnownCaseComparator.HardWordsFirst, new Statistics(KnownCaseComparator.HardWordsFirst));
+        mapPhoneticInventory.put(KnownCaseComparator.EasyWordsFirst, new Statistics(KnownCaseComparator.EasyWordsFirst));
+        mapPhoneticInventory.put(KnownCaseComparator.EasyHardWords, new Statistics(KnownCaseComparator.EasyHardWords));
+        mapPhoneticInventory.put(KnownCaseComparator.BinaryTreeComparator, new Statistics(KnownCaseComparator.BinaryTreeComparator));
 
+        final Map<KnownCaseComparator, Statistics> mapPCCR = new HashMap<>();
+        mapPCCR.put(KnownCaseComparator.HardWordsFirst, new Statistics(KnownCaseComparator.HardWordsFirst));
+        mapPCCR.put(KnownCaseComparator.EasyWordsFirst, new Statistics(KnownCaseComparator.EasyWordsFirst));
+        mapPCCR.put(KnownCaseComparator.EasyHardWords, new Statistics(KnownCaseComparator.EasyHardWords));
+        mapPCCR.put(KnownCaseComparator.BinaryTreeComparator, new Statistics(KnownCaseComparator.BinaryTreeComparator));
+
+        System.out.println("Running simulation with " + assessments.size() + " complete assessments");
         for (Assessment assessment : assessments) {
             // TODO: remover esses casos já na consulta, melhor desempenho
             if (assessment.getCases().size() >= Defaults.SORTED_WORDS.length / 2) {
-//                System.out.println(assessment);
+                SimulationInfo hardWordsFirstPhonInv = SimulationWordsSequence.runSimulation(assessment,
+                        KnownCaseComparator.HardWordsFirst, 2, true, true);
+                SimulationInfo hardWordsFirstPCCR = SimulationWordsSequence.runSimulation(assessment,
+                        KnownCaseComparator.HardWordsFirst, 2, true, false);
 
-                SimulationInfo hardWordsFirst = SimulationWordsSequence.runSimulation(assessment,
-                        KnownCaseComparator.HardWordsFirst, 2, true);
-//                System.out.println(hardWordsFirst);
+                mapPhoneticInventory.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirstPhonInv);
+                mapPCCR.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirstPCCR);
 
-                m.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirst);
+                SimulationInfo easyWordsFirstPhonInv = SimulationWordsSequence.runSimulation(assessment,
+                        KnownCaseComparator.EasyWordsFirst, 2, true, true);
+                SimulationInfo easyWordsFirstPCCR = SimulationWordsSequence.runSimulation(assessment,
+                        KnownCaseComparator.EasyWordsFirst, 2, true, false);
 
-//            hardWordsFirst = SimulationWordsSequence.runSimulation(assessment,
-//                    KnownCaseComparator.HardWordsFirst, 2, false);
-//            System.out.println(hardWordsFirst);
-                SimulationInfo easyWordsFirst = SimulationWordsSequence.runSimulation(assessment,
-                        KnownCaseComparator.EasyWordsFirst, 2, true);
-//                System.out.println(easyWordsFirst);
+                mapPhoneticInventory.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirstPhonInv);
+                mapPCCR.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirstPCCR);
 
-                m.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirst);
+                SimulationInfo easyHardSwitchingPhonInv = SimulationWordsSequence.runSimulation(assessment,
+                        KnownCaseComparator.EasyHardWords, 2, true, true);
+                SimulationInfo easyHardSwitchingPCCR = SimulationWordsSequence.runSimulation(assessment,
+                        KnownCaseComparator.EasyHardWords, 2, true, false);
 
-//            easyWordsFirst = SimulationWordsSequence.runSimulation(assessment,
-//                    KnownCaseComparator.EasyWordsFirst, 2, false);
-//            System.out.println(easyWordsFirst);
-                SimulationInfo easyHardSwitching = SimulationWordsSequence.runSimulation(assessment,
-                        KnownCaseComparator.EasyHardWords, 2, true);
-//                System.out.println(easyHardSwitching);
+                mapPhoneticInventory.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitchingPhonInv);
+                mapPCCR.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitchingPCCR);
 
-                m.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitching);
+                SimulationInfo binaryTreeSimulationPhonInv = SimulationWordsSequence.runSimulation(assessment,
+                        KnownCaseComparator.BinaryTreeComparator, 2, true, true);
+                SimulationInfo binaryTreeSimulationPCCR = SimulationWordsSequence.runSimulation(assessment,
+                        KnownCaseComparator.BinaryTreeComparator, 2, true, false);
 
-                SimulationInfo binaryTreeSimulation = SimulationWordsSequence.runSimulation(assessment,
-                        KnownCaseComparator.BinaryTreeComparator, 2, true);
-//                System.out.println(binaryTreeSimulation);
-
-                m.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulation);
+                mapPhoneticInventory.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPhonInv);
+                mapPCCR.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPCCR);
             }
         }
 
@@ -199,11 +214,11 @@ public class Main {
         parent.mkdir();
 
         System.out.println("Output directory with simulation statistics: " + parent);
-        Iterator<Map.Entry<KnownCaseComparator, Statistics>> it = m.entrySet().iterator();
+        Iterator<Map.Entry<KnownCaseComparator, Statistics>> it = mapPhoneticInventory.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<KnownCaseComparator, Statistics> next = it.next();
 
-            File fileWordsCounter = new File(parent, next.getKey().name() + "-counter.csv");
+            File fileWordsCounter = new File(parent, "PhoneticInventory-" + next.getKey().name() + "-counter.csv");
             try (PrintWriter out = new PrintWriter(fileWordsCounter)) {
                 out.print(next.getValue().exportCSV());
                 System.out.println("File at: " + fileWordsCounter);
@@ -211,7 +226,7 @@ public class Main {
                 System.out.println("Couldn't write into file: " + ex);
             }
 
-            File fileWordsFrequency = new File(parent, next.getKey().name() + "-wordsFrequency.csv");
+            File fileWordsFrequency = new File(parent, "PhoneticInventory-" + next.getKey().name() + "-wordsFrequency.csv");
             try (PrintWriter out = new PrintWriter(fileWordsFrequency)) {
                 out.print(next.getValue().exportWordsFrequencyCSV());
                 System.out.println("File at: " + fileWordsFrequency);
@@ -220,7 +235,28 @@ public class Main {
             }
         }
 
-        List<Statistics> listAll = new ArrayList<>(m.values());
+        it = mapPCCR.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<KnownCaseComparator, Statistics> next = it.next();
+
+            File fileWordsCounter = new File(parent, "PCCR-" + next.getKey().name() + "-counter.csv");
+            try (PrintWriter out = new PrintWriter(fileWordsCounter)) {
+                out.print(next.getValue().exportCSV());
+                System.out.println("File at: " + fileWordsCounter);
+            } catch (final FileNotFoundException ex) {
+                System.out.println("Couldn't write into file: " + ex);
+            }
+
+            File fileWordsFrequency = new File(parent, "PCCR-" + next.getKey().name() + "-wordsFrequency.csv");
+            try (PrintWriter out = new PrintWriter(fileWordsFrequency)) {
+                out.print(next.getValue().exportWordsFrequencyCSV());
+                System.out.println("File at: " + fileWordsFrequency);
+            } catch (final FileNotFoundException ex) {
+                System.out.println("Couldn't write into file: " + ex);
+            }
+        }
+
+        List<Statistics> listAll = new ArrayList<>(mapPhoneticInventory.values());
         File fileWordsFrequencyAll = new File(parent, "AllScenarios-wordsFrequency.csv");
         try (PrintWriter out = new PrintWriter(fileWordsFrequencyAll)) {
             out.print(Statistics.exportAllWordsFrequencyCSV(listAll));
