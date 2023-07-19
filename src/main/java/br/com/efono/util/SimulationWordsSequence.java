@@ -123,37 +123,38 @@ public class SimulationWordsSequence {
                     phonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
                 }
 
-                for (Phoneme phoneme : phonemes) {
-                    final List<Phoneme> list = new ArrayList<>();
-
+                final List<Phoneme> list = new ArrayList<>();
+                phonemes.forEach(phoneme -> {
                     // bɾ(OCME) -> b(OCME) + ɾ(OCME)
                     if (phoneme.isConsonantCluster() && splitConsonantClusters) {
                         String[] split = phoneme.getPhoneme().split("");
                         for (String s : split) {
+                            // repeated phonemes are allowed here, because we wanna count
                             list.add(new Phoneme(s, phoneme.getPosition()));
                         }
                     } else {
+                        // repeated phonemes are allowed
                         list.add(phoneme);
                     }
+                });
 
-                    for (Phoneme p : list) {
-                        int count = 1;
-                        if (mapCounter.containsKey(p)) {
-                            count = mapCounter.get(p) + 1;
-                        }
-                        mapCounter.put(p, count);
+                for (Phoneme p : list) {
+                    int count = 1;
+                    if (mapCounter.containsKey(p)) {
+                        count = mapCounter.get(p) + 1;
+                    }
+                    mapCounter.put(p, count);
 
-                        if (count <= minimum) {
-                            /**
-                             * If this word contains at least one phoneme which was not tested at minimum of times, then
-                             * the word is important and will be "required".
-                             *
-                             * If all the phonemes tested by this word were already tested at minimum 2 times, so the
-                             * word doesn't would need to be here.
-                             */
-                            if (!wordsRequired.contains(c.getWord())) {
-                                wordsRequired.add(c.getWord());
-                            }
+                    if (count <= minimum) {
+                        /**
+                         * If this word contains at least one phoneme which was not tested at minimum of times, then the
+                         * word is important and will be "required".
+                         *
+                         * If all the phonemes tested by this word were already tested at minimum 2 times, so the word
+                         * doesn't would need to be here.
+                         */
+                        if (!wordsRequired.contains(c.getWord())) {
+                            wordsRequired.add(c.getWord());
                         }
                     }
                 }
