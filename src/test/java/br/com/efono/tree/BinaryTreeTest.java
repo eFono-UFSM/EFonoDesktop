@@ -30,6 +30,23 @@ public class BinaryTreeTest {
         assertEquals(42, middleUp);
         assertEquals(41, middleDown);
     }
+    
+    /**
+     * Tests {@link BinaryTreePrinter#printUML(Node)}.
+     */
+    @Test
+    public void testPrintUML() {
+        System.out.println("testPrintUML");
+        final BinaryTree<String> tree = new BinaryTree<>(Defaults.DEFAULT_WORDS_COMPARATOR);
+        final List<String> words = new LinkedList<>();
+        for (int i = 0; i < 10; i++) {
+            words.add(Defaults.SORTED_WORDS[i]);
+        }
+        tree.init(words.toArray(new String[0]));
+        
+        System.out.println("print UML now");
+        BinaryTreePrinter.printUML(tree.getRoot());
+    }
 
     /**
      * Tests {@link BinaryTree#init(E[])}.

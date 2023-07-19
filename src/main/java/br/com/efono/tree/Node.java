@@ -90,7 +90,7 @@ public class Node<E> {
         if (value instanceof String) {
             int indexOf = Arrays.asList(Defaults.SORTED_WORDS).indexOf(value);
             if (indexOf >= 0) {
-                return value + "(" + indexOf + ")";
+                return value + " [" + indexOf + "]";
             }
         }
         return value.toString();

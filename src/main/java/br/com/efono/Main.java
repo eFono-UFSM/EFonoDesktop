@@ -8,6 +8,7 @@ import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.model.Phoneme;
 import br.com.efono.model.SimulationInfo;
 import br.com.efono.model.Statistics;
+import br.com.efono.tree.BinaryTreePrinter;
 import br.com.efono.util.Defaults;
 import br.com.efono.util.SimulationWordsSequence;
 import br.com.efono.util.Util;
@@ -101,6 +102,20 @@ public class Main {
 
         Defaults.TREE.init(Defaults.SORTED_WORDS);
 
+        System.out.println("-------------------");
+
+        System.out.println(
+                "@startuml\n"
+                + "top to bottom direction");
+
+        BinaryTreePrinter.printUML(Defaults.TREE.getRoot());
+        
+        System.out.println("@enduml");
+        System.out.println("\n-------------------");
+
+        if (1 > 0) {
+            return;
+        }
         File output = null;
         if (parent != null && !parent.isBlank()) {
             output = new File(parent);

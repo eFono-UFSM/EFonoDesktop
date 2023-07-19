@@ -1,19 +1,14 @@
 @startuml
 top to bottom direction
 
-(Batom4) --> (Dedo2)
-(Batom4) --> (Terra7)
-Dedo2 ---> (Bebe1)
-Dedo2 ---> (Cama3)
-Bebe1 ---> (Anel0)
-
-Terra7 ---> (Dado5)
-Terra7 ---> (Tenis8)
-
-Dado5 ---> (esquerda)
-Dado5 ---> (Navio6)
-
-Tenis8 ---> (esquerda)
-Tenis8 ---> (Dente9)
+(Batom [4]) --> (Dedo [2]) : left
+(Batom [4]) --> (Terra [7]) : right
+(Dedo [2]) --> (Bebê [1]) : left
+(Dedo [2]) --> (Cama [3]) : right
+(Bebê [1]) --> (Anel [0]) : left
+(Terra [7]) --> (Dado [5]) : left
+(Terra [7]) --> (Tênis [8]) : right
+(Dado [5]) --> (Navio [6]) : right
+(Tênis [8]) --> (Dente [9]) : right
 
 @enduml

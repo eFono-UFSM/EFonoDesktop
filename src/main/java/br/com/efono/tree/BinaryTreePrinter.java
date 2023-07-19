@@ -61,4 +61,33 @@ public class BinaryTreePrinter {
         os.print(traversePreOrder(tree.getRoot()));
     }
 
+    /**
+     * Prints the content of a Plant UML diagram.
+     *
+     * @param root Root node.
+     */
+    public static void printUML(final Node root) {
+        /*
+        Start the file with:
+        @startuml
+top to bottom direction
+         */
+        if (root != null) {
+            if (root.getLeft() != null) {
+                System.out.println("(" + root.printValue() + ") --> (" + root.getLeft().printValue() + ") : L");
+            }
+
+            if (root.getRight() != null) {
+                System.out.println("(" + root.printValue() + ") --> (" + root.getRight().printValue() + ") : R");
+            }
+
+            printUML(root.getLeft());
+            printUML(root.getRight());
+        }
+
+        /*
+        @enduml
+         */
+    }
+
 }
