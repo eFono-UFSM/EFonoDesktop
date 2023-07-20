@@ -102,12 +102,7 @@ public class SimulationWordsSequence {
         // TODO: vai pegar somente as palavras que estão nos casos e não considerando todas as palavras do conjunto
         if (cases != null && mapCounter != null) {
             mapCounter.clear();
-            for (KnownCase c : cases) {
-                // TODO: ao inves de "fonemas produzidos" depois vai ser preciso pegar de algum gabarito os "fonemas alvo", pois são esses que estão sendo testados.
-                // os "fonemas produzidos" aqui precisam ser testados no mínimo 2 vezes para serem considerados "adquiridos" no inv. fonético. [esse é o trabalho da simulação]
-                // ou seja, ver qual o impacto que a sequência da avaliação tem sobre o inv. fonético.
-                // TODO: adicionar um c.getPhonemesRequired//target. Isso vai ser útil para fazer o PCC-R depois.
-
+            cases.forEach(c -> {
                 /**
                  * c.getPhonemes() contains all the produced phonemes, so it's useful for us to get the phonetic
                  * inventory information. For a phoneme to be considered in phonetic inventory it must be produced a
@@ -158,7 +153,7 @@ public class SimulationWordsSequence {
                         }
                     }
                 }
-            }
+            });
         }
 
         return wordsRequired;

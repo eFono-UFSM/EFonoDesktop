@@ -64,7 +64,7 @@ public class TreeUtils {
      * @param words The list to keep the words sequence.
      * @param cases The list with cases to analyze. This usually comes from assessments.
      */
-    public static void getBestFirstWords(final Node<String> node, final LinkedList<String> words, 
+    public static void getFirstWords(final Node<String> node, final LinkedList<String> words, 
             final List<KnownCase> cases) {
         if (node == null || node.isVisited()) {
             return;
@@ -82,16 +82,16 @@ public class TreeUtils {
         }
 
         if (c == null || c.isCorrect()) {
-            getBestFirstWords(node.getRight(), words, cases);
+            getFirstWords(node.getRight(), words, cases);
             // makes sure that it goes until the last leaf
             if (node.getRight() == null) {
-                getBestFirstWords(node.getLeft(), words, cases);
+                getFirstWords(node.getLeft(), words, cases);
             }
         } else {
-            getBestFirstWords(node.getLeft(), words, cases);
+            getFirstWords(node.getLeft(), words, cases);
             // makes sure that it goes until the last leaf
             if (node.getLeft() == null) {
-                getBestFirstWords(node.getRight(), words, cases);
+                getFirstWords(node.getRight(), words, cases);
             }
         }
     }

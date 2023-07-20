@@ -93,10 +93,10 @@ public class TreeUtilsTest {
     }
 
     /**
-     * Tests {@link TreeUtils#getBestFirstWords(Node, LinkedList, List)}.
+     * Tests {@link TreeUtils#getFirstWords(Node, LinkedList, List)}.
      */
     @Test
-    public void testGetBestFirstWords() {
+    public void testGetFirstWords() {
         System.out.println("testGetBestFirstWords - complete evaluation");
 
         final List<String> words = new LinkedList<>();
@@ -122,7 +122,7 @@ public class TreeUtilsTest {
 
         final List<KnownCase> listCases = Arrays.asList(batom, terra, navio, dedo, dado, tenis, dente, cama, anel, bebe);
         final LinkedList<String> result = new LinkedList<>();
-        TreeUtils.getBestFirstWords(Defaults.TREE.getRoot(), result, listCases);
+        TreeUtils.getFirstWords(Defaults.TREE.getRoot(), result, listCases);
 
         // the indexes
         int[] expectedSequence = new int[]{4, 7, 5, 6};
@@ -134,10 +134,10 @@ public class TreeUtilsTest {
     }
 
     /**
-     * Tests {@link TreeUtils#getBestFirstWords(Node, LinkedList, List)}.
+     * Tests {@link TreeUtils#getFirstWords(Node, LinkedList, List)}.
      */
     @Test
-    public void testGetBestFirstWords2() {
+    public void testGetFirstWords2() {
         System.out.println("testGetBestFirstWords - incomplete evaluation");
 
         final List<String> words = new LinkedList<>();
@@ -163,7 +163,7 @@ public class TreeUtilsTest {
 
         final List<KnownCase> listCases = Arrays.asList(batom, navio, dedo, dado, tenis, dente, cama, anel, bebe);
         final LinkedList<String> result = new LinkedList<>();
-        TreeUtils.getBestFirstWords(Defaults.TREE.getRoot(), result, listCases);
+        TreeUtils.getFirstWords(Defaults.TREE.getRoot(), result, listCases);
 
         // the indexes
         int[] expectedSequence = new int[]{4, 8, 9};

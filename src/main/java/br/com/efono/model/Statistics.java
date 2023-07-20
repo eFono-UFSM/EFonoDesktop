@@ -1,8 +1,11 @@
 package br.com.efono.model;
 
+import br.com.efono.tree.BinaryTree;
+import br.com.efono.tree.TreeUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +15,7 @@ import java.util.Map;
  */
 public class Statistics {
 
-    private final List<Integer> assessments = new ArrayList<>();
+    private final List<Assessment> assessments = new ArrayList<>();
 
     /**
      * The key is the number of words required and the value is how many times this number was required for this
@@ -43,12 +46,12 @@ public class Statistics {
      * @param info Simulation info to extract statistics.
      */
     public void extractStatistics(final SimulationInfo info) {
-        if (!assessments.contains(info.getAssessment().getId())) {
+        if (!constainsAssessment(info.getAssessment().getId())) {
             if (info.getAssessment().getId() < 1) {
                 System.out.println("Warning: this assessment is not from database, I'll do statistics anyway");
             }
 
-            assessments.add(info.getAssessment().getId());
+            assessments.add(info.getAssessment());
 
             int countWordsRequired = info.getWordsRequired().size();
             if (!mapWordsRequired.containsKey(countWordsRequired)) {
@@ -69,6 +72,10 @@ public class Statistics {
         }
     }
 
+    private boolean constainsAssessment(final int id) {
+        return assessments.stream().anyMatch(a -> (a.getId() == id));
+    }
+
     /**
      * Export this statistics to CSV format.
      *
@@ -84,7 +91,7 @@ public class Statistics {
         }
         return str.toString();
     }
-    
+
     /**
      * Export the statistics of words frequency to CSV format.
      *
@@ -100,9 +107,24 @@ public class Statistics {
         }
         return str.toString();
     }
-    
+
+    public String exportPCCR_CSV(final BinaryTree<String> tree) {
+        StringBuilder str = new StringBuilder("region,pcc-r\n");
+        assessments.forEach(a -> {
+            final LinkedList<String> words = new LinkedList<>();
+
+            tree.resetVisited(tree.getRoot());
+            
+            TreeUtils.getFirstWords(tree.getRoot(), words, a.getCases());
+
+            str.append(words.getLast()).append(",").append(a.getPCCR()).append("\n");
+        });
+        return str.toString();
+    }
+
     /**
      * Export the statistics of words frequency of all the statistics in the list to CSV format.
+     *
      * @param list List with statistics.
      * @return The CSV.
      */
@@ -115,11 +137,17 @@ public class Statistics {
                 Iterator<Map.Entry<String, Integer>> it = s.mapWordsCounter.entrySet().iterator();
                 while (it.hasNext()) {
                     Map.Entry<String, Integer> next = it.next();
-                    mapCounter.put(next.getKey(), mapCounter.get(next.getKey()) + next.getValue());
+
+                    int count = 0;
+                    if (mapCounter.containsKey(next.getKey())) {
+                        count = mapCounter.get(next.getKey());
+                    }
+
+                    mapCounter.put(next.getKey(), count + next.getValue());
                 }
             }
         }
-        
+
         StringBuilder str = new StringBuilder("word,frequency\n");
 
         Iterator<Map.Entry<String, Integer>> it = mapCounter.entrySet().iterator();
@@ -128,13 +156,13 @@ public class Statistics {
             str.append(next.getKey()).append(",").append(next.getValue()).append("\n");
         }
         return str.toString();
-        
+
     }
 
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder("Statistics[\n");
-        if (assessments.contains(Assessment.DEFAULT_ID)) {
+        if (constainsAssessment(Assessment.DEFAULT_ID)) {
             str.append("[WARN] This statistics is not reliable: assessments outside from dabatase are being used\n");
         }
         str.append("\tcomparator: ").append(comp.name()).append("\n");

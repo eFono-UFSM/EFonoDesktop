@@ -63,6 +63,14 @@ public class BinaryTree<E> {
         }
         System.out.println("Tree initialized!");
     }
+    
+    public void resetVisited(final Node node) {
+        if (node != null) {
+            node.setVisited(false);
+            resetVisited(node.getLeft());
+            resetVisited(node.getRight());
+        }
+    }
 
     private void add(int min, int middle, int max, final E[] values) {
         E val = values[middle];

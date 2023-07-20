@@ -109,13 +109,10 @@ public class Main {
                 + "top to bottom direction");
 
         BinaryTreePrinter.printUML(Defaults.TREE.getRoot());
-        
+
         System.out.println("@enduml");
         System.out.println("\n-------------------");
 
-        if (1 > 0) {
-            return;
-        }
         File output = null;
         if (parent != null && !parent.isBlank()) {
             output = new File(parent);
@@ -254,7 +251,7 @@ public class Main {
         while (it.hasNext()) {
             Map.Entry<KnownCaseComparator, Statistics> next = it.next();
 
-            File fileWordsCounter = new File(parent, "PCCR-" + next.getKey().name() + "-counter.csv");
+            File fileWordsCounter = new File(parent, "PhonemesTested-" + next.getKey().name() + "-counter.csv");
             try (PrintWriter out = new PrintWriter(fileWordsCounter)) {
                 out.print(next.getValue().exportCSV());
                 System.out.println("File at: " + fileWordsCounter);
@@ -262,13 +259,21 @@ public class Main {
                 System.out.println("Couldn't write into file: " + ex);
             }
 
-            File fileWordsFrequency = new File(parent, "PCCR-" + next.getKey().name() + "-wordsFrequency.csv");
+            File fileWordsFrequency = new File(parent, "PhonemesTested-" + next.getKey().name() + "-wordsFrequency.csv");
             try (PrintWriter out = new PrintWriter(fileWordsFrequency)) {
                 out.print(next.getValue().exportWordsFrequencyCSV());
                 System.out.println("File at: " + fileWordsFrequency);
             } catch (final FileNotFoundException ex) {
                 System.out.println("Couldn't write into file: " + ex);
             }
+        }
+
+        File filePCCR_Regions = new File(parent, "PCCR-BinaryTreeComparator.csv");
+        try (PrintWriter out = new PrintWriter(filePCCR_Regions)) {
+            out.print(mapPCCR.get(KnownCaseComparator.BinaryTreeComparator).exportPCCR_CSV(Defaults.TREE));
+            System.out.println("File at: " + filePCCR_Regions);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
         }
 
         List<Statistics> listAll = new ArrayList<>(mapPhoneticInventory.values());
