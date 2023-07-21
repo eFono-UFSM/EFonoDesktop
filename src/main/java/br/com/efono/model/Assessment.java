@@ -141,14 +141,18 @@ public class Assessment {
         double correctProductions = 0d;
 
         for (KnownCase c : cases) {
-            /**
-             * We can do TARGET_PHONEMES.get(c.getWord()) here because KnownCase doesn't allow words that is not in
-             * Defaults#SORTED_WORDS. Even if there is a difference in accentuation, for example, those cases will be
-             * treated and use the related word from Defaults#SORTED_WORDS.
-             */
-            List<Phoneme> targetPhonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
             totalProductions += c.getPhonemes().size();
-            correctProductions += c.getCorrectProductions(targetPhonemes).size();
+            if (c.isCorrect()) {
+                correctProductions += c.getPhonemes().size();
+            } else {
+                /**
+                 * We can do TARGET_PHONEMES.get(c.getWord()) here because KnownCase doesn't allow words that is not in
+                 * Defaults#SORTED_WORDS. Even if there is a difference in accentuation, for example, those cases will
+                 * be treated and use the related word from Defaults#SORTED_WORDS.
+                 */
+                List<Phoneme> targetPhonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
+                correctProductions += c.getCorrectProductions(targetPhonemes).size();
+            }
         }
 
         if (totalProductions == 0) {

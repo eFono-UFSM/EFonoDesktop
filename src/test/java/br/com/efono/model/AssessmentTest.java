@@ -129,16 +129,16 @@ public class AssessmentTest {
         KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(
                 new Phoneme("n", Phoneme.POSITION.OM))); // correto
 
-        KnownCase batom = new KnownCase("Batom", "[ba’tõw]", true, Arrays.asList(
+        KnownCase batom = new KnownCase("Batom", "[ba’tõw]", false, Arrays.asList(
                 new Phoneme("b", Phoneme.POSITION.OI),
                 new Phoneme("k", Phoneme.POSITION.OM))); // substituiu 't' por 'k'
 
-        KnownCase bicicleta = new KnownCase("Bicicleta", "[bisi’klɛtə]", true, Arrays.asList(
+        KnownCase bicicleta = new KnownCase("Bicicleta", "[bisi’klɛtə]", false, Arrays.asList(
                 new Phoneme("b", Phoneme.POSITION.OI),
                 new Phoneme("kl", Phoneme.POSITION.OCME), // omitiu 's'
                 new Phoneme("t", Phoneme.POSITION.OM)));
 
-        KnownCase biblioteca = new KnownCase("Biblioteca", "[biblio’tɛkə]", true, Arrays.asList(
+        KnownCase biblioteca = new KnownCase("Biblioteca", "[biblio’tɛkə]", false, Arrays.asList(
                 new Phoneme("b", Phoneme.POSITION.OI),
                 new Phoneme("bl", Phoneme.POSITION.OCME),
                 new Phoneme("t", Phoneme.POSITION.OM),
