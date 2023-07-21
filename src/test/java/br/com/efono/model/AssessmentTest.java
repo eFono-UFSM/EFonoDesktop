@@ -119,7 +119,7 @@ public class AssessmentTest {
         assertEquals(2, list.size());
         assertEquals(0, instance.getCases().size());
     }
-    
+
     /**
      * Tests {@link Assessment#getPCCR()}.
      */
@@ -166,10 +166,10 @@ public class AssessmentTest {
                 new Phoneme("t", Phoneme.POSITION.OM),
                 new Phoneme("k", Phoneme.POSITION.OM)));
 
-        // 11 produções esperadas
+        // 11 produções totais
         // corretas: 9
         assertEquals(0.81, assessment.getPCCR(), 0.01);
-        
+
         System.out.println("empty assessment");
         assertEquals(0, new Assessment().getPCCR(), 0.01);
     }

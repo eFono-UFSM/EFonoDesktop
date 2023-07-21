@@ -137,7 +137,7 @@ public class Assessment {
      * @return The PCC-R value between 0 and 1.
      */
     public double getPCCR() {
-        double totalExpected = 0d;
+        double totalProductions = 0d;
         double correctProductions = 0d;
 
         for (KnownCase c : cases) {
@@ -147,16 +147,15 @@ public class Assessment {
              * treated and use the related word from Defaults#SORTED_WORDS.
              */
             List<Phoneme> targetPhonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
-            // TODO: aqui seriam as produções totais e não somente os fonemas alvos.
-            totalExpected += targetPhonemes.size();
+            totalProductions += c.getPhonemes().size();
             correctProductions += c.getCorrectProductions(targetPhonemes).size();
         }
 
-        if (totalExpected == 0) {
+        if (totalProductions == 0) {
             return 0;
         }
 
-        return correctProductions / totalExpected;
+        return correctProductions / totalProductions;
     }
 
 }
