@@ -3,6 +3,7 @@ package br.com.efono.model;
 import br.com.efono.tree.BinaryTree;
 import br.com.efono.tree.TreeUtils;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -108,16 +109,56 @@ public class Statistics {
         return str.toString();
     }
 
+    /**
+     * Exporting PCC-R results about regions of PCC-R to CSV. First, we calculate the PCC-R following the traditional
+     * method: computing all correct productions from an assessment and dividing for all the productions. In the second
+     * part we try to predict what will be the disorder degree based only on the results of the first 7 words spoken in
+     * the assessment with binary tree approach.
+     * 
+     * @see FullTree.puml
+     *
+     * @param tree The balanced tree with words in the assessment instrument.
+     * @return A CSV with the results.
+     */
     public String exportPCCR_CSV(final BinaryTree<String> tree) {
-        StringBuilder str = new StringBuilder("region,pcc-r\n");
+        Map<String, String[]> mapRegionsPCCR = new HashMap<>();
+        mapRegionsPCCR.put("Low", new String[]{"Travesseiro", "Colher", "Estrela", "Dragão", "Igreja", "Letra", "Chifre", "Livro"});
+        mapRegionsPCCR.put("Low-Moderate", new String[]{"Refri", "Fruta", "Cruz", "Zebra", "Brinco", "Jacaré", "Tesoura", "Zero"});
+        mapRegionsPCCR.put("Moderate-High", new String[]{"Porta", "Nuvem", "Beijo", "Língua", "Chapéu", "Calça", "Bolsa", "Gato"});
+        mapRegionsPCCR.put("High", new String[]{"Galinha", "Vaca", "Fogo", "Faca", "Dente", "Terra", "Cama", "Anel"});
+
+        StringBuilder str = new StringBuilder("region,pcc-r Value,result,expected,same degree\n");
         assessments.forEach(a -> {
             final LinkedList<String> words = new LinkedList<>();
 
             tree.resetVisited(tree.getRoot());
-            
+
             TreeUtils.getFirstWords(tree.getRoot(), words, a.getCases());
 
-            str.append(words.getLast()).append(",").append(a.getPCCR()).append("\n");
+            double pccr = a.getPCCR();
+            String resultDegree;
+            if (pccr >= .85) {
+                resultDegree = "Low";
+            } else if (pccr >= .65 && pccr < .85) {
+                resultDegree = "Low-Moderate";
+            } else if (pccr >= .5 && pccr < .65) {
+                resultDegree = "Moderate-High";
+            } else {
+                resultDegree = "High";
+            }
+
+            String expectedDegree = "NOT_FOUND";
+            Iterator<Map.Entry<String, String[]>> it = mapRegionsPCCR.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<String, String[]> next = it.next();
+                if (Arrays.asList(next.getValue()).contains(words.getLast())) {
+                    expectedDegree = next.getKey();
+                    break;
+                }
+            }
+
+            str.append(words.getLast()).append(",").append(pccr).append(",").append(resultDegree).append(",").
+                    append(expectedDegree).append(",").append((resultDegree.equals(expectedDegree))).append("\n");
         });
         return str.toString();
     }

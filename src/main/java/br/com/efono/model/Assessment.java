@@ -147,6 +147,7 @@ public class Assessment {
              * treated and use the related word from Defaults#SORTED_WORDS.
              */
             List<Phoneme> targetPhonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
+            // TODO: aqui seriam as produções totais e não somente os fonemas alvos.
             totalExpected += targetPhonemes.size();
             correctProductions += c.getCorrectProductions(targetPhonemes).size();
         }

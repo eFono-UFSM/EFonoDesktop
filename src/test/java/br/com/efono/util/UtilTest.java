@@ -124,7 +124,6 @@ public class UtilTest {
         readTranscriptions = Util.readTranscriptions(invalid);
         assertTrue(readTranscriptions.isEmpty());
 
-        // TODO: inserir no arquivo txt outras variantes, com unicode
         String expected = "[’lu.vẽj̃]";
         System.out.println("testReadTranscriptions - all variants of " + expected);
         File file = new File(UtilTest.class.getResource("/data/transcriptions.txt").toURI());

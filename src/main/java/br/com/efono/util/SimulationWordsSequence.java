@@ -56,6 +56,7 @@ public class SimulationWordsSequence {
     public static SimulationInfo runSimulation(final Assessment assessment, final KnownCaseComparator comp,
             final int minimum, boolean splitConsonantClusters, final boolean phoneticInventory) {
         if (assessment != null && minimum > 0) {
+            // TODO: testes no mapCounter: não estou usando esse mapa no momento, somente as palavras, mas seria bom já ter isso validado
             final Map<Phoneme, Integer> mapCounter = new HashMap<>();
 
             List<KnownCase> cases = assessment.getCases();
@@ -218,6 +219,4 @@ public class SimulationWordsSequence {
         }
     }
 
-    // TODO: depois, simular a avaliação toda com o mesmo lance da busca binária, mas dessa vez, se o usuário acertou vai para uma mais difícil, se errou para mais fácil e assim por diante.
-    // TODO: comparator com indices misturados (busca binaria).
 }

@@ -398,7 +398,6 @@ public class KnownCaseTest {
         assertTrue(instance.getCorrectProductions(null).isEmpty());
         assertTrue(instance.getCorrectProductions(new ArrayList<>()).isEmpty());
 
-        // TODO: revisar esses testes: PCC-R
         System.out.println("testGetCorrectProductions - the instance phonemes - all correct productions");
         List<Phoneme> expected = Arrays.asList(
                 new Phoneme("b", Phoneme.POSITION.OI),

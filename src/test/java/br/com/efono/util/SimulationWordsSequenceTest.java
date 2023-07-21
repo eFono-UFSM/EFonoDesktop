@@ -19,7 +19,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 
 /**
- * TODO: diagramas com as arvores desses testes
  *
  * @author João Bolsson (joaovictorbolsson@gmail.com)
  * @version 2023, Jun 28.

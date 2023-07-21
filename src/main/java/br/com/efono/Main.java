@@ -148,7 +148,6 @@ public class Main {
             Assessment assessment = new Assessment(id);
 
             while (rs.next()) {
-                // TODO: revisar dados, ver diferenças do arquivo csv com os casos atuais e o original. Alguns casos estão errados no banco e precisam ser consertados.
                 if (!wordsIDs.contains(rs.getInt("id_palavra"))) {
                     wordsIDs.add(rs.getInt("id_palavra"));
                     try {
@@ -226,48 +225,53 @@ public class Main {
         parent.mkdir();
 
         System.out.println("Output directory with simulation statistics: " + parent);
-        Iterator<Map.Entry<KnownCaseComparator, Statistics>> it = mapPhoneticInventory.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<KnownCaseComparator, Statistics> next = it.next();
+        if (1 < 0) {
+            Iterator<Map.Entry<KnownCaseComparator, Statistics>> it = mapPhoneticInventory.entrySet().iterator();
 
-            File fileWordsCounter = new File(parent, "PhoneticInventory-" + next.getKey().name() + "-counter.csv");
-            try (PrintWriter out = new PrintWriter(fileWordsCounter)) {
-                out.print(next.getValue().exportCSV());
-                System.out.println("File at: " + fileWordsCounter);
-            } catch (final FileNotFoundException ex) {
-                System.out.println("Couldn't write into file: " + ex);
+            while (it.hasNext()) {
+                Map.Entry<KnownCaseComparator, Statistics> next = it.next();
+
+                File fileWordsCounter = new File(parent, "PhoneticInventory-" + next.getKey().name() + "-counter.csv");
+                try (PrintWriter out = new PrintWriter(fileWordsCounter)) {
+                    out.print(next.getValue().exportCSV());
+                    System.out.println("File at: " + fileWordsCounter);
+                } catch (final FileNotFoundException ex) {
+                    System.out.println("Couldn't write into file: " + ex);
+                }
+
+                File fileWordsFrequency = new File(parent, "PhoneticInventory-" + next.getKey().name() + "-wordsFrequency.csv");
+                try (PrintWriter out = new PrintWriter(fileWordsFrequency)) {
+                    out.print(next.getValue().exportWordsFrequencyCSV());
+                    System.out.println("File at: " + fileWordsFrequency);
+                } catch (final FileNotFoundException ex) {
+                    System.out.println("Couldn't write into file: " + ex);
+                }
             }
 
-            File fileWordsFrequency = new File(parent, "PhoneticInventory-" + next.getKey().name() + "-wordsFrequency.csv");
-            try (PrintWriter out = new PrintWriter(fileWordsFrequency)) {
-                out.print(next.getValue().exportWordsFrequencyCSV());
-                System.out.println("File at: " + fileWordsFrequency);
-            } catch (final FileNotFoundException ex) {
-                System.out.println("Couldn't write into file: " + ex);
+            it = mapPCCR.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<KnownCaseComparator, Statistics> next = it.next();
+
+                File fileWordsCounter = new File(parent, "PhonemesTested-" + next.getKey().name() + "-counter.csv");
+                try (PrintWriter out = new PrintWriter(fileWordsCounter)) {
+                    out.print(next.getValue().exportCSV());
+                    System.out.println("File at: " + fileWordsCounter);
+                } catch (final FileNotFoundException ex) {
+                    System.out.println("Couldn't write into file: " + ex);
+                }
+
+                File fileWordsFrequency = new File(parent, "PhonemesTested-" + next.getKey().name() + "-wordsFrequency.csv");
+                try (PrintWriter out = new PrintWriter(fileWordsFrequency)) {
+                    out.print(next.getValue().exportWordsFrequencyCSV());
+                    System.out.println("File at: " + fileWordsFrequency);
+                } catch (final FileNotFoundException ex) {
+                    System.out.println("Couldn't write into file: " + ex);
+                }
             }
+        } else {
+            System.out.println("Ignoring counters");
         }
-
-        it = mapPCCR.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<KnownCaseComparator, Statistics> next = it.next();
-
-            File fileWordsCounter = new File(parent, "PhonemesTested-" + next.getKey().name() + "-counter.csv");
-            try (PrintWriter out = new PrintWriter(fileWordsCounter)) {
-                out.print(next.getValue().exportCSV());
-                System.out.println("File at: " + fileWordsCounter);
-            } catch (final FileNotFoundException ex) {
-                System.out.println("Couldn't write into file: " + ex);
-            }
-
-            File fileWordsFrequency = new File(parent, "PhonemesTested-" + next.getKey().name() + "-wordsFrequency.csv");
-            try (PrintWriter out = new PrintWriter(fileWordsFrequency)) {
-                out.print(next.getValue().exportWordsFrequencyCSV());
-                System.out.println("File at: " + fileWordsFrequency);
-            } catch (final FileNotFoundException ex) {
-                System.out.println("Couldn't write into file: " + ex);
-            }
-        }
-
+        
         File filePCCR_Regions = new File(parent, "PCCR-BinaryTreeComparator.csv");
         try (PrintWriter out = new PrintWriter(filePCCR_Regions)) {
             out.print(mapPCCR.get(KnownCaseComparator.BinaryTreeComparator).exportPCCR_CSV(Defaults.TREE));
