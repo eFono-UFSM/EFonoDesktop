@@ -667,11 +667,11 @@ public class SimulationWordsSequenceTest {
     }
 
     /**
-     * Tests {@link SimulationWordsSequence#getWordsRequired(List, boolean, int)}.
+     * Tests {@link SimulationWordsSequence#getWordsRequired(List, Map, boolean, int, boolean)} for phonetic inventory.
      */
     @Test
-    public void testGetWordsRequired() {
-        System.out.println("testGetWordsRequired - invalid parameters");
+    public void testGetWordsRequiredPhoneticInventory() {
+        System.out.println("testGetWordsRequiredPhoneticInventory - invalid parameters");
         assertTrue(SimulationWordsSequence.getWordsRequired(null, null, true, 0, true).isEmpty());
         assertTrue(SimulationWordsSequence.getWordsRequired(null, new HashMap<>(), true, 0, true).isEmpty());
         assertTrue(SimulationWordsSequence.getWordsRequired(null, null, false, 0, true).isEmpty());
@@ -685,7 +685,7 @@ public class SimulationWordsSequenceTest {
         assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), null, false, 1, true).isEmpty());
         assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), new HashMap<>(), false, 1, true).isEmpty());
 
-        System.out.println("testGetWordsRequired - valid cases");
+        System.out.println("testGetWordsRequiredPhoneticInventory - valid cases");
         KnownCase batom = new KnownCase("Batom", "[ba’tõw]", false, Arrays.asList(
                 new Phoneme("b", Phoneme.POSITION.OI),
                 new Phoneme("t", Phoneme.POSITION.OM)));
@@ -728,7 +728,7 @@ public class SimulationWordsSequenceTest {
             assertEquals(next.getValue(), mapCounter.get(next.getKey()));
         }
 
-        System.out.println("testGetWordsRequired - not splitting consonant clusters");
+        System.out.println("testGetWordsRequiredPhoneticInventory - not splitting consonant clusters");
         expectedMapCounter.clear();
         expectedMapCounter.put(new Phoneme("b", Phoneme.POSITION.OI), 3);
         expectedMapCounter.put(new Phoneme("t", Phoneme.POSITION.OM), 4);
@@ -742,7 +742,16 @@ public class SimulationWordsSequenceTest {
         assertTrue(result.containsAll(expected));
         assertEquals(expected, result);
 
-        System.out.println("testGetWordsRequired - changing the order");
+        assertEquals(expectedMapCounter.size(), mapCounter.size());
+        assertTrue(mapCounter.keySet().containsAll(expectedMapCounter.keySet()));
+
+        it = expectedMapCounter.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Phoneme, Integer> next = it.next();
+            assertEquals(next.getValue(), mapCounter.get(next.getKey()));
+        }
+
+        System.out.println("testGetWordsRequiredPhoneticInventory - changing the order");
         list = Arrays.asList(jacare, bicicleta, biblioteca, batom);
 
         expected = Arrays.asList("Jacaré", "Bicicleta", "Biblioteca");
@@ -753,96 +762,100 @@ public class SimulationWordsSequenceTest {
     }
 
     /**
-     * @return An assessment with real cases and all correct.
+     * Tests {@link SimulationWordsSequence#getWordsRequired(List, Map, boolean, int, boolean)} for PCC-R.
      */
-    private Assessment getTestAssessment() {
-        KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
-        KnownCase barriga = new KnownCase("Barriga", "[ba’χigə]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("χ", Phoneme.POSITION.OM), new Phoneme("g", Phoneme.POSITION.OM)));
-        KnownCase batom = new KnownCase("Batom", "[ba’tõw]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("t", Phoneme.POSITION.OM)));
-        KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
-        KnownCase beijo = new KnownCase("Beijo", "[’beʒo]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("ʒ", Phoneme.POSITION.OM)));
-        KnownCase biblioteca = new KnownCase("Biblioteca", "[biblio’tɛkə]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("bl", Phoneme.POSITION.OCME), new Phoneme("t", Phoneme.POSITION.OM), new Phoneme("k", Phoneme.POSITION.OM)));
-        KnownCase bicicleta = new KnownCase("Bicicleta", "[bisi’klɛtə]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("s", Phoneme.POSITION.OM), new Phoneme("kl", Phoneme.POSITION.OCME), new Phoneme("t", Phoneme.POSITION.OM)));
-        KnownCase bolsa = new KnownCase("Bolsa", "[’bowsə]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("s", Phoneme.POSITION.OM)));
-        KnownCase brinco = new KnownCase("Brinco", "[’bɾĩnko]", true, Arrays.asList(new Phoneme("bɾ", Phoneme.POSITION.OCI), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("k", Phoneme.POSITION.OM)));
-        KnownCase bruxa = new KnownCase("Bruxa", "[’bɾuʃə]", true, Arrays.asList(new Phoneme("bɾ", Phoneme.POSITION.OCI), new Phoneme("ʃ", Phoneme.POSITION.OM)));
-        KnownCase cabelo = new KnownCase("Cabelo", "[ka’belu]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM), new Phoneme("l", Phoneme.POSITION.OM)));
-        KnownCase cachorro = new KnownCase("Cachorro", "[ka’ʃoχo]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("ʃ", Phoneme.POSITION.OM), new Phoneme("χ", Phoneme.POSITION.OM)));
-        KnownCase caixa = new KnownCase("Caixa", "[’kaʃə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("ʃ", Phoneme.POSITION.OM)));
-        KnownCase calca = new KnownCase("Calça", "[’kawsə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("s", Phoneme.POSITION.OM)));
-        KnownCase cama = new KnownCase("Cama", "[’kəmə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM)));
-        KnownCase caminhão = new KnownCase("Caminhão", "[kami’ɲəw]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("m", Phoneme.POSITION.OM), new Phoneme("ɲ", Phoneme.POSITION.OM)));
-        KnownCase casa = new KnownCase("Casa", "[‘kazə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("z", Phoneme.POSITION.OM)));
-        KnownCase cavalo = new KnownCase("Cavalo", "[ka’valu]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("v", Phoneme.POSITION.OM), new Phoneme("l", Phoneme.POSITION.OM)));
-        KnownCase chapeu = new KnownCase("Chapéu", "[ʃa’pɛw]", true, Arrays.asList(new Phoneme("ʃ", Phoneme.POSITION.OI), new Phoneme("p", Phoneme.POSITION.OM)));
-        KnownCase chiclete = new KnownCase("Chiclete", "[ʃi’klƐte]", true, Arrays.asList(new Phoneme("ʃ", Phoneme.POSITION.OI), new Phoneme("kl", Phoneme.POSITION.OCME), new Phoneme("t", Phoneme.POSITION.OM)));
-        KnownCase chifre = new KnownCase("Chifre", "[’ʃifɾi]", true, Arrays.asList(new Phoneme("ʃ", Phoneme.POSITION.OI), new Phoneme("fɾ", Phoneme.POSITION.OCME)));
-        KnownCase chinelo = new KnownCase("Chinelo", "[ʃi’nɛlu]", true, Arrays.asList(new Phoneme("ʃ", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.OM), new Phoneme("l", Phoneme.POSITION.OM)));
-        KnownCase cobra = new KnownCase("Cobra", "[’kɔbɾə]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("bɾ", Phoneme.POSITION.OCME)));
-        KnownCase coelho = new KnownCase("Coelho", "[ko’eʎo]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("ʎ", Phoneme.POSITION.OM)));
-        KnownCase colher = new KnownCase("Colher", "[ko’ʎɛɾ]", true, Arrays.asList(new Phoneme("k", Phoneme.POSITION.OI), new Phoneme("ʎ", Phoneme.POSITION.OM), new Phoneme("ɾ", Phoneme.POSITION.CF)));
-        KnownCase cruz = new KnownCase("Cruz", "[’kɾus]", true, Arrays.asList(new Phoneme("kɾ", Phoneme.POSITION.OCI), new Phoneme("s", Phoneme.POSITION.CF)));
-        KnownCase dado = new KnownCase("Dado", "[’dadu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
-        KnownCase dedo = new KnownCase("Dedo", "[’dedu]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("d", Phoneme.POSITION.OM)));
-        KnownCase dente = new KnownCase("Dente", "[’dẽnʧi]", true, Arrays.asList(new Phoneme("d", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("ʧ", Phoneme.POSITION.OM)));
-        KnownCase dragao = new KnownCase("Dragão", "[dɾa’gəw]", true, Arrays.asList(new Phoneme("dɾ", Phoneme.POSITION.OCI), new Phoneme("g", Phoneme.POSITION.OM)));
-        KnownCase escrever = new KnownCase("Escrever", "[eskɾe’ve]", true, Arrays.asList(new Phoneme("s", Phoneme.POSITION.CM), new Phoneme("kɾ", Phoneme.POSITION.OCME), new Phoneme("v", Phoneme.POSITION.OM)));
-        KnownCase espelho = new KnownCase("Espelho", "[is’peʎo]", true, Arrays.asList(new Phoneme("s", Phoneme.POSITION.CM), new Phoneme("p", Phoneme.POSITION.OM), new Phoneme("ʎ", Phoneme.POSITION.OM)));
-        KnownCase estrela = new KnownCase("Estrela", "[is’tɾelə]", true, Arrays.asList(new Phoneme("s", Phoneme.POSITION.CM), new Phoneme("tɾ", Phoneme.POSITION.OCME), new Phoneme("l", Phoneme.POSITION.OM)));
-        KnownCase faca = new KnownCase("Faca", "[’fakə]", true, Arrays.asList(new Phoneme("f", Phoneme.POSITION.OI), new Phoneme("k", Phoneme.POSITION.OM)));
-        KnownCase flor = new KnownCase("Flor", "['floɾ]", true, Arrays.asList(new Phoneme("fl", Phoneme.POSITION.OCI), new Phoneme("ɾ", Phoneme.POSITION.CF)));
-        KnownCase floresta = new KnownCase("Floresta", "[flo’ɾɛstə]", true, Arrays.asList(new Phoneme("fl", Phoneme.POSITION.OCI), new Phoneme("ɾ", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CM), new Phoneme("t", Phoneme.POSITION.OM)));
-        KnownCase fogo = new KnownCase("Fogo", "[’fogo]", true, Arrays.asList(new Phoneme("f", Phoneme.POSITION.OI), new Phoneme("g", Phoneme.POSITION.OM)));
-        KnownCase folha = new KnownCase("Folha", "[‘foʎə]", true, Arrays.asList(new Phoneme("f", Phoneme.POSITION.OI), new Phoneme("ʎ", Phoneme.POSITION.OM)));
-        KnownCase fralda = new KnownCase("Fralda", "[’fɾawdə]", true, Arrays.asList(new Phoneme("fɾ", Phoneme.POSITION.OCI), new Phoneme("d", Phoneme.POSITION.OM)));
-        KnownCase fruta = new KnownCase("Fruta", "[’fɾutəs]", true, Arrays.asList(new Phoneme("fɾ", Phoneme.POSITION.OCI), new Phoneme("t", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
-        KnownCase galinha = new KnownCase("Galinha", "[ga’liɲə]", true, Arrays.asList(new Phoneme("g", Phoneme.POSITION.OI), new Phoneme("l", Phoneme.POSITION.OM), new Phoneme("ɲ", Phoneme.POSITION.OM)));
-        KnownCase garfo = new KnownCase("Garfo", "[’gaɾfu]", true, Arrays.asList(new Phoneme("g", Phoneme.POSITION.OI), new Phoneme("ɾ", Phoneme.POSITION.CM), new Phoneme("f", Phoneme.POSITION.OM)));
-        KnownCase gato = new KnownCase("Gato", "[’gatu]", true, Arrays.asList(new Phoneme("g", Phoneme.POSITION.OI), new Phoneme("t", Phoneme.POSITION.OM)));
-        KnownCase girafa = new KnownCase("Girafa", "[ʒi’ɾafə]", true, Arrays.asList(new Phoneme("ʒ", Phoneme.POSITION.OI), new Phoneme("ɾ", Phoneme.POSITION.OM), new Phoneme("f", Phoneme.POSITION.OM)));
-        KnownCase grama = new KnownCase("Grama", "[’gɾəmə]", true, Arrays.asList(new Phoneme("gɾ", Phoneme.POSITION.OCI), new Phoneme("m", Phoneme.POSITION.OM)));
-        KnownCase gritar = new KnownCase("Gritar", "[gɾi’ta]", true, Arrays.asList(new Phoneme("gɾ", Phoneme.POSITION.OCI), new Phoneme("t", Phoneme.POSITION.OM)));
-        KnownCase igreja = new KnownCase("Igreja", "[i’gɾeʒə]", true, Arrays.asList(new Phoneme("gɾ", Phoneme.POSITION.OCME), new Phoneme("ʒ", Phoneme.POSITION.OM)));
-        KnownCase jacare = new KnownCase("Jacaré", "[ʒaka’ɾɛ]", true, Arrays.asList(new Phoneme("ʒ", Phoneme.POSITION.OI), new Phoneme("k", Phoneme.POSITION.OM), new Phoneme("ɾ", Phoneme.POSITION.OM)));
-        KnownCase jornal = new KnownCase("Jornal", "[ʒoɾ’naw]", true, Arrays.asList(new Phoneme("ʒ", Phoneme.POSITION.OI), new Phoneme("ɾ", Phoneme.POSITION.CM), new Phoneme("n", Phoneme.POSITION.OM)));
-        KnownCase letra = new KnownCase("Letra", "[’letɾəs]", true, Arrays.asList(new Phoneme("l", Phoneme.POSITION.OI), new Phoneme("tɾ", Phoneme.POSITION.OCME), new Phoneme("s", Phoneme.POSITION.CF)));
-        KnownCase livro = new KnownCase("Livro", "[’livɾo]", true, Arrays.asList(new Phoneme("l", Phoneme.POSITION.OI), new Phoneme("vɾ", Phoneme.POSITION.OCME)));
-        KnownCase lapis = new KnownCase("Lápis", "[’lapis]", true, Arrays.asList(new Phoneme("l", Phoneme.POSITION.OI), new Phoneme("p", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
-        KnownCase lingua = new KnownCase("Língua", "[’lĩngʷa]", true, Arrays.asList(new Phoneme("l", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("gʷ", Phoneme.POSITION.OM)));
-        KnownCase magro = new KnownCase("Magro", "[’magɾu]", true, Arrays.asList(new Phoneme("m", Phoneme.POSITION.OI), new Phoneme("gɾ", Phoneme.POSITION.OCME)));
-        KnownCase mesa = new KnownCase("Mesa", "[’mezə]", true, Arrays.asList(new Phoneme("m", Phoneme.POSITION.OI), new Phoneme("z", Phoneme.POSITION.OM)));
-        KnownCase microfone = new KnownCase("Microfone", "[mikɾo’foni]", true, Arrays.asList(new Phoneme("m", Phoneme.POSITION.OI), new Phoneme("kɾ", Phoneme.POSITION.OCME), new Phoneme("f", Phoneme.POSITION.OM), new Phoneme("n", Phoneme.POSITION.OM)));
-        KnownCase nariz = new KnownCase("Nariz", "[na’ɾis]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OI), new Phoneme("ɾ", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
-        KnownCase navio = new KnownCase("Navio", "[na’viw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OI), new Phoneme("v", Phoneme.POSITION.OM)));
-        KnownCase nuvem = new KnownCase("Nuvem", "[’nuvẽj̃s]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OI), new Phoneme("v", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
-        KnownCase passarinho = new KnownCase("Passarinho", "[pasa’ɾiɲo]", true, Arrays.asList(new Phoneme("p", Phoneme.POSITION.OI), new Phoneme("s", Phoneme.POSITION.OM), new Phoneme("ɾ", Phoneme.POSITION.OM), new Phoneme("ɲ", Phoneme.POSITION.OM)));
-        KnownCase pastel = new KnownCase("Pastel", "[pas’tɛw]", true, Arrays.asList(new Phoneme("p", Phoneme.POSITION.OI), new Phoneme("s", Phoneme.POSITION.CM), new Phoneme("t", Phoneme.POSITION.OM)));
-        KnownCase pedra = new KnownCase("Pedra", "[’pɛdɾə]", true, Arrays.asList(new Phoneme("p", Phoneme.POSITION.OI), new Phoneme("dɾ", Phoneme.POSITION.OCME)));
-        KnownCase placa = new KnownCase("Placa", "[’plakə]", true, Arrays.asList(new Phoneme("pl", Phoneme.POSITION.OCI), new Phoneme("k", Phoneme.POSITION.OM)));
-        KnownCase plastico = new KnownCase("Plástico", "[’plasʧiko]", true, Arrays.asList(new Phoneme("pl", Phoneme.POSITION.OCI), new Phoneme("s", Phoneme.POSITION.CM), new Phoneme("ʧ", Phoneme.POSITION.OM), new Phoneme("k", Phoneme.POSITION.OM)));
-        KnownCase porta = new KnownCase("Porta", "[’pɔɾtə]", true, Arrays.asList(new Phoneme("p", Phoneme.POSITION.OI), new Phoneme("ɾ", Phoneme.POSITION.CM), new Phoneme("t", Phoneme.POSITION.OM)));
-        KnownCase prato = new KnownCase("Prato", "[’pɾato]", true, Arrays.asList(new Phoneme("pɾ", Phoneme.POSITION.OCI), new Phoneme("t", Phoneme.POSITION.OM)));
-        KnownCase presente = new KnownCase("Presente", "[pɾe’zẽnʧi]", true, Arrays.asList(new Phoneme("pɾ", Phoneme.POSITION.OCI), new Phoneme("z", Phoneme.POSITION.OM), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("ʧ", Phoneme.POSITION.OM)));
-        KnownCase rabo = new KnownCase("Rabo", "[’χabu]", true, Arrays.asList(new Phoneme("χ", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
-        KnownCase refri = new KnownCase("Refri", "[χe’fɾi]", true, Arrays.asList(new Phoneme("χ", Phoneme.POSITION.OI), new Phoneme("fɾ", Phoneme.POSITION.OCME)));
-        KnownCase relogio = new KnownCase("Relógio", "[χe’lɔʒu]", true, Arrays.asList(new Phoneme("χ", Phoneme.POSITION.OI), new Phoneme("l", Phoneme.POSITION.OM), new Phoneme("ʒ", Phoneme.POSITION.OM)));
-        KnownCase sapato = new KnownCase("Sapato", "[sa’pato]", true, Arrays.asList(new Phoneme("s", Phoneme.POSITION.OI), new Phoneme("p", Phoneme.POSITION.OM), new Phoneme("t", Phoneme.POSITION.OM)));
-        KnownCase sapo = new KnownCase("Sapo", "[’sapu]", true, Arrays.asList(new Phoneme("s", Phoneme.POSITION.OI), new Phoneme("p", Phoneme.POSITION.OM)));
-        KnownCase sofa = new KnownCase("Sofá", "[so’fa]", true, Arrays.asList(new Phoneme("s", Phoneme.POSITION.OI), new Phoneme("f", Phoneme.POSITION.OM)));
-        KnownCase soprar = new KnownCase("Soprar", "[so’pɾaɾ]", true, Arrays.asList(new Phoneme("s", Phoneme.POSITION.OI), new Phoneme("pɾ", Phoneme.POSITION.OCME), new Phoneme("ɾ", Phoneme.POSITION.CF)));
-        KnownCase terra = new KnownCase("Terra", "[’tɛχə]", true, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("χ", Phoneme.POSITION.OM)));
-        KnownCase tesoura = new KnownCase("Tesoura", "[ʧi’zoɾə]", true, Arrays.asList(new Phoneme("ʧ", Phoneme.POSITION.OI), new Phoneme("z", Phoneme.POSITION.OM), new Phoneme("ɾ", Phoneme.POSITION.OM)));
-        KnownCase travesseiro = new KnownCase("Travesseiro", "[tɾave’seɾo]", true, Arrays.asList(new Phoneme("tɾ", Phoneme.POSITION.OCI), new Phoneme("v", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.OM), new Phoneme("ɾ", Phoneme.POSITION.OM)));
-        KnownCase trem = new KnownCase("Trem", "[’tɾẽj̃]", true, Arrays.asList(new Phoneme("tɾ", Phoneme.POSITION.OCI)));
-        KnownCase tenis = new KnownCase("Tênis", "[’tenis]", true, Arrays.asList(new Phoneme("t", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.OM), new Phoneme("s", Phoneme.POSITION.CF)));
-        KnownCase vaca = new KnownCase("Vaca", "[’vakə]", true, Arrays.asList(new Phoneme("v", Phoneme.POSITION.OI), new Phoneme("k", Phoneme.POSITION.OM)));
-        KnownCase ventilador = new KnownCase("Ventilador", "[vẽnʧila’doɾ]", true, Arrays.asList(new Phoneme("v", Phoneme.POSITION.OI), new Phoneme("n", Phoneme.POSITION.CM), new Phoneme("ʧ", Phoneme.POSITION.OM), new Phoneme("l", Phoneme.POSITION.OM), new Phoneme("d", Phoneme.POSITION.OM), new Phoneme("ɾ", Phoneme.POSITION.CF)));
-        KnownCase vidro = new KnownCase("Vidro", "[vi’dɾu]", true, Arrays.asList(new Phoneme("v", Phoneme.POSITION.OI), new Phoneme("dɾ", Phoneme.POSITION.OCME)));
-        KnownCase zebra = new KnownCase("Zebra", "[’zebɾə]", true, Arrays.asList(new Phoneme("z", Phoneme.POSITION.OI), new Phoneme("bɾ", Phoneme.POSITION.OCME)));
-        KnownCase zero = new KnownCase("Zero", "[’zɛɾu]", true, Arrays.asList(new Phoneme("z", Phoneme.POSITION.OI), new Phoneme("ɾ", Phoneme.POSITION.OM)));
-        Assessment test = new Assessment(Arrays.asList(anel, barriga, batom, bebe, beijo, biblioteca, bicicleta, bolsa, brinco, bruxa, cabelo, cachorro, caixa, calca, cama, caminhão, casa, cavalo, chapeu, chiclete, chifre, chinelo, cobra, coelho, colher, cruz, dado, dedo, dente, dragao, escrever, espelho, estrela, faca, flor, floresta, fogo, folha, fralda, fruta, galinha, garfo, gato, girafa, grama, gritar, igreja, jacare, jornal, letra, livro, lapis, lingua, magro, mesa, microfone, nariz, navio, nuvem, passarinho, pastel, pedra, placa, plastico, porta, prato, presente, rabo, refri, relogio, sapato, sapo, sofa, soprar, terra, tesoura, travesseiro, trem, tenis, vaca, ventilador, vidro, zebra, zero));
+    @Test
+    public void testGetWordsRequiredPCCR() {
+        System.out.println("testGetWordsRequiredPCCR - invalid parameters");
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, null, true, 0, false).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, new HashMap<>(), true, 0, false).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, null, false, 0, false).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, new HashMap<>(), false, 0, false).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, null, true, -1, false).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(null, new HashMap<>(), true, -1, false).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), null, true, 0, false).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), new HashMap<>(), true, 0, false).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), null, false, 0, false).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), new HashMap<>(), false, 0, false).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), null, false, 1, false).isEmpty());
+        assertTrue(SimulationWordsSequence.getWordsRequired(new ArrayList<>(), new HashMap<>(), false, 1, false).isEmpty());
 
-        return test;
+        System.out.println("testGetWordsRequiredPCCR - valid cases");
+        KnownCase batom = new KnownCase("Batom", "[ba’tõw]", false, Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+        KnownCase biblioteca = new KnownCase("Biblioteca", "[biblio’tɛkə]", true, Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("kɾ", Phoneme.POSITION.OCME)));
+        KnownCase bicicleta = new KnownCase("Bicicleta", "[bisi’klɛtə]", true, Arrays.asList(
+                new Phoneme("kl", Phoneme.POSITION.OCME))); // nao precisa
+        // tanto faz a transcrição aqui, o que importa são os fonemas
+        KnownCase jacare = new KnownCase("Jacaré", "[batata]", true, Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        // target phonemes for each word
+        Defaults.TARGET_PHONEMES.put("Batom", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("s", Phoneme.POSITION.OM))); // testing another phoneme
+
+        // all phonemes from Bicicleta were already tested in Batom
+        Defaults.TARGET_PHONEMES.put("Bicicleta", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        Defaults.TARGET_PHONEMES.put("Biblioteca", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        // all phonemes from Jacaré were already tested in Batom
+        Defaults.TARGET_PHONEMES.put("Jacaré", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        List<KnownCase> list = Arrays.asList(batom, biblioteca, bicicleta, jacare);
+
+        // how many times each phoneme was tested
+        final Map<Phoneme, Integer> expectedMapCounter = new HashMap<>();
+        expectedMapCounter.put(new Phoneme("b", Phoneme.POSITION.OI), 4);
+        expectedMapCounter.put(new Phoneme("t", Phoneme.POSITION.OM), 5);
+        expectedMapCounter.put(new Phoneme("b", Phoneme.POSITION.OCME), 1);
+        expectedMapCounter.put(new Phoneme("l", Phoneme.POSITION.OCME), 1);
+        expectedMapCounter.put(new Phoneme("k", Phoneme.POSITION.OM), 1);
+        expectedMapCounter.put(new Phoneme("s", Phoneme.POSITION.OM), 2);
+
+        final Map<Phoneme, Integer> mapCounter = new HashMap<>();
+
+        List<String> expected = Arrays.asList("Batom", "Biblioteca");
+        List<String> result = SimulationWordsSequence.getWordsRequired(list, mapCounter, true, 1, false);
+        assertTrue(expected.containsAll(result));
+        assertTrue(result.containsAll(expected));
+        assertEquals(expected, result);
+
+        assertEquals(expectedMapCounter.size(), mapCounter.size());
+        assertTrue(mapCounter.keySet().containsAll(expectedMapCounter.keySet()));
+        Iterator<Map.Entry<Phoneme, Integer>> it = expectedMapCounter.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Phoneme, Integer> next = it.next();
+            assertEquals(next.getValue(), mapCounter.get(next.getKey()));
+        }
+
+        System.out.println("testGetWordsRequiredPCCR - changing the order");
+        list = Arrays.asList(jacare, bicicleta, biblioteca, batom);
+
+        expected = Arrays.asList("Jacaré", "Bicicleta", "Biblioteca");
+        result = SimulationWordsSequence.getWordsRequired(list, mapCounter, true, 1, false);
+        assertTrue(expected.containsAll(result));
+        assertTrue(result.containsAll(expected));
+        assertEquals(expected, result);
     }
 
 }

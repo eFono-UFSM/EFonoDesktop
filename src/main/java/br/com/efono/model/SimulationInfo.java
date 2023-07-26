@@ -1,6 +1,8 @@
 package br.com.efono.model;
 
+import br.com.efono.util.Defaults;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -151,7 +153,7 @@ public class SimulationInfo {
         builder.append("\n------------------------------------------\n");
         builder.append(assessment).append("\n");
         if (assessment != null) {
-            builder.append("PCC-R: ").append(assessment.getPCCR()).append("\n");
+            builder.append("PCC-R: ").append(assessment.getPCCR(Arrays.asList(Defaults.SORTED_WORDS))).append("\n");
         }
         builder.append("comparator: ").append(comp).append("\n");
         builder.append("split consonant clusters: ").append(splitConsonantClusters).append("\n");

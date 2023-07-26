@@ -2,6 +2,8 @@ package br.com.efono.model;
 
 import br.com.efono.tree.BinaryTree;
 import br.com.efono.tree.TreeUtils;
+import br.com.efono.util.Defaults;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -114,7 +116,7 @@ public class Statistics {
      * method: computing all correct productions from an assessment and dividing for all the productions. In the second
      * part we try to predict what will be the disorder degree based only on the results of the first 7 words spoken in
      * the assessment with binary tree approach.
-     * 
+     *
      * @see FullTree.puml
      *
      * @param tree The balanced tree with words in the assessment instrument.
@@ -127,7 +129,15 @@ public class Statistics {
         mapRegionsPCCR.put("Moderate-High", new String[]{"Porta", "Nuvem", "Beijo", "Língua", "Chapéu", "Calça", "Bolsa", "Gato"});
         mapRegionsPCCR.put("High", new String[]{"Galinha", "Vaca", "Fogo", "Faca", "Dente", "Terra", "Cama", "Anel"});
 
-        StringBuilder str = new StringBuilder("region,pcc-r Value,result,expected,same degree\n");
+        // 55 words from Algorithm for Selecting Words to Compose Phonological Assessments
+        String[] words55 = new String[]{"Jornal", "Tênis", "Cruz", "Mesa", "Tesoura", "Bebê", "Cachorro", "Terra", "Rabo",
+            "Dragão", "Língua", "Chiclete", "Gritar", "Porta", "Refri", "Dado", "Igreja", "Relógio", "Cobra", "Zebra",
+            "Brinco", "Placa", "Plástico", "Vaca", "Soprar", "Travesseiro", "Escrever", "Bruxa", "Zero", "Dedo",
+            "Fralda", "Estrela", "Espelho", "Flor", "Faca", "Fogo", "Girafa", "Garfo", "Sofá", "Trem", "Vidro", "Sapo",
+            "Livro", "Magro", "Pedra", "Nuvem", "Galinha", "Grama", "Chapéu", "Navio", "Caixa", "Letra", "Chifre",
+            "Folha", "Cama"};
+
+        StringBuilder str = new StringBuilder("region,PCC-R 84w,PCC-R 55w,PCC-R 7w,expected 7w,same degree[expected 7w-84w]\n");
         assessments.forEach(a -> {
             final LinkedList<String> words = new LinkedList<>();
 
@@ -135,17 +145,8 @@ public class Statistics {
 
             TreeUtils.getFirstWords(tree.getRoot(), words, a.getCases());
 
-            double pccr = a.getPCCR();
-            String resultDegree;
-            if (pccr >= .85) {
-                resultDegree = "Low";
-            } else if (pccr >= .65 && pccr < .85) {
-                resultDegree = "Low-Moderate";
-            } else if (pccr >= .5 && pccr < .65) {
-                resultDegree = "Moderate-High";
-            } else {
-                resultDegree = "High";
-            }
+            double pccrAll = a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS));
+            String resultDegree = getDegree(pccrAll);
 
             String expectedDegree = "NOT_FOUND";
             Iterator<Map.Entry<String, String[]>> it = mapRegionsPCCR.entrySet().iterator();
@@ -157,10 +158,30 @@ public class Statistics {
                 }
             }
 
-            str.append(words.getLast()).append(",").append(pccr).append(",").append(resultDegree).append(",").
-                    append(expectedDegree).append(",").append((resultDegree.equals(expectedDegree))).append("\n");
+            double pccrFirstWords = a.getPCCR(words);
+            double pccr55Words = a.getPCCR(Arrays.asList(words55));
+//            String result7w = getDegree(pccrFirstWords);
+
+            DecimalFormat df = new DecimalFormat("#.##");
+            str.append(words.getLast()).append(",").
+                    append(df.format(pccrAll).replaceAll(",", ".")).append(",").
+                    append(df.format(pccr55Words).replaceAll(",", ".")).append(",").
+                    append(df.format(pccrFirstWords).replaceAll(",", ".")).append(",").
+                    append(expectedDegree).append(",").
+                    append((resultDegree.equals(expectedDegree))).append("\n");
         });
         return str.toString();
+    }
+
+    private String getDegree(final double pccr) {
+        if (pccr >= .85) {
+            return "Low";
+        } else if (pccr >= .65 && pccr < .85) {
+            return "Low-Moderate";
+        } else if (pccr >= .5 && pccr < .65) {
+            return "Moderate-High";
+        }
+        return "High";
     }
 
     /**

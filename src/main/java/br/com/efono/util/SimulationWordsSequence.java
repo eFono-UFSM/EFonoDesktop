@@ -56,7 +56,6 @@ public class SimulationWordsSequence {
     public static SimulationInfo runSimulation(final Assessment assessment, final KnownCaseComparator comp,
             final int minimum, boolean splitConsonantClusters, final boolean phoneticInventory) {
         if (assessment != null && minimum > 0) {
-            // TODO: testes no mapCounter: não estou usando esse mapa no momento, somente as palavras, mas seria bom já ter isso validado
             final Map<Phoneme, Integer> mapCounter = new HashMap<>();
 
             List<KnownCase> cases = assessment.getCases();
@@ -100,7 +99,7 @@ public class SimulationWordsSequence {
             boolean splitConsonantClusters, final int minimum, final boolean phoneticInventory) {
         final List<String> wordsRequired = new LinkedList<>();
 
-        // TODO: vai pegar somente as palavras que estão nos casos e não considerando todas as palavras do conjunto
+        // TODO: vai pegar somente as palavras que estão nos casos e não considerando todas as palavras do conjunto. Como estou trabalhando apenas com avaliações completas, isso não é um problema agora
         if (cases != null && mapCounter != null) {
             mapCounter.clear();
             cases.forEach(c -> {

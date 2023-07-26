@@ -128,35 +128,39 @@ public class Assessment {
     }
 
     /**
-     * Gets the PCC-R value for this simulation according with the assessment. The PCC-R value indicates the level of
+     * Gets the PCC-R value for this simulation according with the assessment.The PCC-R value indicates the level of
      * disorder according with the number of correct productions divided by the total of expected productions. Example:
      * if the subject was exposed to 10 target phonemes in the assessment and then spoke correctly only 5: the PCC-R
      * value will 0.5 indicating a High level of disorder. Reference: "Shriberg et al. (1997) The speech disorders
      * classification system (sdcs). Journal of Speech, Language and Hearing Research, 40(4):723–740."
      *
-     * @return The PCC-R value between 0 and 1.
+     * @param words The words to compute PCC-R.
+     * @return The PCC-R value between 0 and 1 or -1 if the assessment is not valid.
      */
-    public double getPCCR() {
+    public double getPCCR(final List<String> words) {
         double totalProductions = 0d;
         double correctProductions = 0d;
 
         for (KnownCase c : cases) {
-            totalProductions += c.getPhonemes().size();
-            if (c.isCorrect()) {
-                correctProductions += c.getPhonemes().size();
-            } else {
-                /**
-                 * We can do TARGET_PHONEMES.get(c.getWord()) here because KnownCase doesn't allow words that is not in
-                 * Defaults#SORTED_WORDS. Even if there is a difference in accentuation, for example, those cases will
-                 * be treated and use the related word from Defaults#SORTED_WORDS.
-                 */
-                List<Phoneme> targetPhonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
-                correctProductions += c.getCorrectProductions(targetPhonemes).size();
+            if (words.contains(c.getWord())) {
+                totalProductions += c.getPhonemes().size();
+                if (c.isCorrect()) {
+                    correctProductions += c.getPhonemes().size();
+                } else {
+                    /**
+                     * We can do TARGET_PHONEMES.get(c.getWord()) here because KnownCase doesn't allow words that is not
+                     * in Defaults#SORTED_WORDS. Even if there is a difference in accentuation, for example, those cases
+                     * will be treated and use the related word from Defaults#SORTED_WORDS.
+                     */
+                    List<Phoneme> targetPhonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
+                    correctProductions += c.getCorrectProductions(targetPhonemes).size();
+                }
             }
         }
 
+        // TODO: tests
         if (totalProductions == 0) {
-            return 0;
+            return -1;
         }
 
         return correctProductions / totalProductions;

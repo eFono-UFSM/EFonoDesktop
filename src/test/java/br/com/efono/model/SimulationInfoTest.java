@@ -1,5 +1,7 @@
 package br.com.efono.model;
 
+import br.com.efono.util.Defaults;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -29,6 +31,30 @@ public class SimulationInfoTest {
     @Test(expected = NullPointerException.class)
     public void testConstruct2() {
         SimulationInfo instance = new SimulationInfo(new HashMap<>(), null);
+    }
+
+    @Test
+    public void testWords() {
+        List<String> nonRepeated = new ArrayList<>();
+        String[] words = new String[]{"Jornal", "Tênis", "Cruz", "Mesa", "Tesoura", "Bebê", "Cachorro", "Terra", "Rabo",
+            "Dragão", "Língua", "Chiclete", "Gritar", "Porta", "Refri", "Dado", "Igreja", "Relógio", "Cobra", "Zebra",
+            "Brinco", "Placa", "Plástico", "Vaca", "Soprar", "Travesseiro", "Escrever", "Bruxa", "Zero", "Dedo",
+            "Fralda", "Estrela", "Espelho", "Flor", "Faca", "Fogo", "Girafa", "Garfo", "Sofá", "Trem", "Vidro", "Sapo",
+            "Livro", "Magro", "Pedra", "Nuvem", "Galinha", "Grama", "Chapéu", "Navio", "Caixa", "Letra", "Chifre",
+            "Folha", "Cama"};
+        for (String w : words) {
+            assertTrue(Arrays.asList(Defaults.SORTED_WORDS).contains(w));
+            if (!nonRepeated.contains(w)) {
+                nonRepeated.add(w);
+            } else {
+                fail("repetida: " + w);
+            }
+        }
+
+        assertEquals(nonRepeated.size(), words.length);
+
+        // 55 words from ICEIS 2023 - Algorithm for Selecting Words to Compose Phonological Assessments 
+        assertEquals(55, words.length);
     }
 
     /**

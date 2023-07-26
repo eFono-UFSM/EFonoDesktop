@@ -185,40 +185,37 @@ public class Main {
 
         System.out.println("Running simulation with " + assessments.size() + " complete assessments");
         for (Assessment assessment : assessments) {
-            // TODO: remover esses casos já na consulta, melhor desempenho
-            if (assessment.getCases().size() >= Defaults.SORTED_WORDS.length / 2) {
-                SimulationInfo hardWordsFirstPhonInv = SimulationWordsSequence.runSimulation(assessment,
-                        KnownCaseComparator.HardWordsFirst, 2, true, true);
-                SimulationInfo hardWordsFirstPCCR = SimulationWordsSequence.runSimulation(assessment,
-                        KnownCaseComparator.HardWordsFirst, 2, true, false);
+            SimulationInfo hardWordsFirstPhonInv = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.HardWordsFirst, 2, true, true);
+            SimulationInfo hardWordsFirstPCCR = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.HardWordsFirst, 2, true, false);
 
-                mapPhoneticInventory.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirstPhonInv);
-                mapPCCR.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirstPCCR);
+            mapPhoneticInventory.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirstPhonInv);
+            mapPCCR.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirstPCCR);
 
-                SimulationInfo easyWordsFirstPhonInv = SimulationWordsSequence.runSimulation(assessment,
-                        KnownCaseComparator.EasyWordsFirst, 2, true, true);
-                SimulationInfo easyWordsFirstPCCR = SimulationWordsSequence.runSimulation(assessment,
-                        KnownCaseComparator.EasyWordsFirst, 2, true, false);
+            SimulationInfo easyWordsFirstPhonInv = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.EasyWordsFirst, 2, true, true);
+            SimulationInfo easyWordsFirstPCCR = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.EasyWordsFirst, 2, true, false);
 
-                mapPhoneticInventory.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirstPhonInv);
-                mapPCCR.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirstPCCR);
+            mapPhoneticInventory.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirstPhonInv);
+            mapPCCR.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirstPCCR);
 
-                SimulationInfo easyHardSwitchingPhonInv = SimulationWordsSequence.runSimulation(assessment,
-                        KnownCaseComparator.EasyHardWords, 2, true, true);
-                SimulationInfo easyHardSwitchingPCCR = SimulationWordsSequence.runSimulation(assessment,
-                        KnownCaseComparator.EasyHardWords, 2, true, false);
+            SimulationInfo easyHardSwitchingPhonInv = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.EasyHardWords, 2, true, true);
+            SimulationInfo easyHardSwitchingPCCR = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.EasyHardWords, 2, true, false);
 
-                mapPhoneticInventory.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitchingPhonInv);
-                mapPCCR.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitchingPCCR);
+            mapPhoneticInventory.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitchingPhonInv);
+            mapPCCR.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitchingPCCR);
 
-                SimulationInfo binaryTreeSimulationPhonInv = SimulationWordsSequence.runSimulation(assessment,
-                        KnownCaseComparator.BinaryTreeComparator, 2, true, true);
-                SimulationInfo binaryTreeSimulationPCCR = SimulationWordsSequence.runSimulation(assessment,
-                        KnownCaseComparator.BinaryTreeComparator, 2, true, false);
+            SimulationInfo binaryTreeSimulationPhonInv = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.BinaryTreeComparator, 2, true, true);
+            SimulationInfo binaryTreeSimulationPCCR = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.BinaryTreeComparator, 2, true, false);
 
-                mapPhoneticInventory.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPhonInv);
-                mapPCCR.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPCCR);
-            }
+            mapPhoneticInventory.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPhonInv);
+            mapPCCR.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPCCR);
         }
 
         File parent = new File(outputDirectory, "output-simulations");
@@ -271,7 +268,7 @@ public class Main {
         } else {
             System.out.println("Ignoring counters");
         }
-        
+
         File filePCCR_Regions = new File(parent, "PCCR-BinaryTreeComparator.csv");
         try (PrintWriter out = new PrintWriter(filePCCR_Regions)) {
             out.print(mapPCCR.get(KnownCaseComparator.BinaryTreeComparator).exportPCCR_CSV(Defaults.TREE));

@@ -1,6 +1,7 @@
 package br.com.efono.model;
 
 import br.com.efono.util.Defaults;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -121,7 +122,7 @@ public class AssessmentTest {
     }
 
     /**
-     * Tests {@link Assessment#getPCCR()}.
+     * Tests {@link Assessment#getPCCR(List)}.
      */
     @Test
     public void testGetPCCR() {
@@ -168,10 +169,15 @@ public class AssessmentTest {
 
         // 11 produções totais
         // corretas: 9
-        assertEquals(0.81, assessment.getPCCR(), 0.01);
+        double resultPCCR = assessment.getPCCR(Arrays.asList("Anel", "Batom", "Bicicleta", "Biblioteca"));
+        assertEquals(0.818, resultPCCR, 0.001);
 
-        System.out.println("empty assessment");
-        assertEquals(0, new Assessment().getPCCR(), 0.01);
+        DecimalFormat df = new DecimalFormat("#.##");
+        assertEquals("0.82", df.format(resultPCCR).replaceAll(",", "."));
+
+//        TODO:
+//        System.out.println("incomplete assessment");
+//        assertEquals(-1, assessment.getPCCR(Arrays.asList(Defaults.SORTED_WORDS)), 0.01);
     }
 
 }
