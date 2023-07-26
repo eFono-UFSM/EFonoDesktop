@@ -137,7 +137,7 @@ public class Statistics {
             "Livro", "Magro", "Pedra", "Nuvem", "Galinha", "Grama", "Chapéu", "Navio", "Caixa", "Letra", "Chifre",
             "Folha", "Cama"};
 
-        StringBuilder str = new StringBuilder("region,PCC-R 84w,PCC-R 55w,PCC-R 7w,expected 7w,same degree[expected 7w-84w]\n");
+        StringBuilder str = new StringBuilder("region,PCC-R 84w,degree 84w,PCC-R 55w,degree 55w,PCC-R 7w,degree 7w,expected degree 7w\n");
         assessments.forEach(a -> {
             final LinkedList<String> words = new LinkedList<>();
 
@@ -146,7 +146,7 @@ public class Statistics {
             TreeUtils.getFirstWords(tree.getRoot(), words, a.getCases());
 
             double pccrAll = a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS));
-            String resultDegree = getDegree(pccrAll);
+            String degreeAll = getDegree(pccrAll);
 
             String expectedDegree = "NOT_FOUND";
             Iterator<Map.Entry<String, String[]>> it = mapRegionsPCCR.entrySet().iterator();
@@ -160,15 +160,19 @@ public class Statistics {
 
             double pccrFirstWords = a.getPCCR(words);
             double pccr55Words = a.getPCCR(Arrays.asList(words55));
-//            String result7w = getDegree(pccrFirstWords);
+            String degree55w = getDegree(pccr55Words);
+            String degree7w = getDegree(pccrFirstWords);
 
             DecimalFormat df = new DecimalFormat("#.##");
             str.append(words.getLast()).append(",").
                     append(df.format(pccrAll).replaceAll(",", ".")).append(",").
+                    append(degreeAll).append(",").
                     append(df.format(pccr55Words).replaceAll(",", ".")).append(",").
+                    append(degree55w).append(",").
                     append(df.format(pccrFirstWords).replaceAll(",", ".")).append(",").
+                    append(degree7w).append(",").
                     append(expectedDegree).append(",").
-                    append((resultDegree.equals(expectedDegree))).append("\n");
+                    append("\n");
         });
         return str.toString();
     }

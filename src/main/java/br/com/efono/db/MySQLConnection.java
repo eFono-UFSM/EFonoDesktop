@@ -64,7 +64,6 @@ public class MySQLConnection {
      */
     public ResultSet executeQuery(final String query) throws SQLException {
         if (connection != null && !connection.isClosed()) {
-            System.out.println("Executing query " + query);
             Statement statement = connection.createStatement();
             return statement.executeQuery(query);
         }
