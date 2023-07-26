@@ -1,25 +1,42 @@
 package br.com.efono;
 
+import br.com.efono.db.MongoConnection;
+import br.com.efono.db.MySQLConnection;
+import br.com.efono.model.Assessment;
+import br.com.efono.model.KnownCase;
+import br.com.efono.model.KnownCaseComparator;
+import br.com.efono.model.Phoneme;
+import br.com.efono.model.SimulationInfo;
+import br.com.efono.model.Statistics;
+import br.com.efono.tree.BinaryTreePrinter;
+import br.com.efono.util.Defaults;
+import br.com.efono.util.SimulationWordsSequence;
+import br.com.efono.util.Util;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.mongodb.client.FindIterable;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
+import org.bson.Document;
 
 /**
  * @author João Bolsson (joaovictorbolsson@gmail.com)
  * @version 2023, May 28.
  */
 public class Main {
-
-    private static final String DEFAULT_SERVER = "localhost";
-    private static final String DEFAULT_PORT = "3306";
-    private static final String DEFAULT_USER = "root";
-    private static final String DEFAULT_DATABASE = "demo_java";
 
     /**
      * Show application.
@@ -29,63 +46,244 @@ public class Main {
     public static void main(final String[] args) {
         System.out.println("Arguments received: " + Arrays.toString(args));
 
-        Properties prop = new Properties();
+        final Properties prop = new Properties();
 
-        String server = DEFAULT_SERVER;
-        String port = DEFAULT_PORT;
-        String database = DEFAULT_DATABASE;
-        String user = DEFAULT_USER;
-        String password = "";
-
+        String parent = "";
         if (args != null && args.length >= 1) {
             try {
                 String configPath = args[0];
 
+                parent = new File(configPath).getParent();
                 System.out.println("Reading config file at " + configPath);
                 prop.load(new FileInputStream(configPath));
-                server = prop.getProperty("mysql.server", "");
-                port = prop.getProperty("mysql.port", "");
-                user = prop.getProperty("mysql.user", "");
-                password = prop.getProperty("mysql.password", "");
-                database = prop.getProperty("mysql.database", "");
             } catch (final IOException e) {
                 System.out.println("Couldn't read properties file: " + e);
             }
         }
 
-        StringBuilder urlBuilder = new StringBuilder("jdbc:mysql://");
-        urlBuilder.append(server).append(":").append(port).append("/").
-                append(database).append("?user=").append(user).append("&password=").append(password);
+        MySQLConnection.getInstance().connect(prop);
+        MongoConnection.getInstance().connect(prop);
 
-        Connection connection = null;
-        System.out.println("Try to connect with database at " + urlBuilder.toString());
+        Map<String, Object> filters = new HashMap<>();
+        filters.put("correct", true);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        Arrays.asList(Defaults.SORTED_WORDS).forEach(w -> {
+            filters.put("word", w);
+            FindIterable<Document> result = MongoConnection.getInstance().executeQuery("knowncases", filters,
+                    null);
+
+            // correct known cases for word <w>
+            final List<KnownCase> correctCases = new ArrayList<>();
+
+            if (result != null) {
+                result.forEach(doc -> {
+                    try {
+                        KnownCase val = objectMapper.readValue(doc.toJson(), new TypeReference<KnownCase>() {
+                        });
+                        correctCases.add(val);
+                    } catch (final JsonProcessingException ex) {
+                        System.out.println("Error while parsing doc " + doc.toJson() + ":\n " + ex);
+                    }
+                });
+            }
+
+            // building the target phonemes for the word
+            Defaults.TARGET_PHONEMES.put(w, Util.getTargetPhonemes(correctCases));
+        });
+
+        System.out.println("Target phonemes for each word: ");
+        Iterator<Map.Entry<String, List<Phoneme>>> iterator = Defaults.TARGET_PHONEMES.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<String, List<Phoneme>> next = iterator.next();
+            System.out.println(next.getKey() + " -> " + next.getValue());
+        }
+
+        Defaults.TREE.init(Defaults.SORTED_WORDS);
+
+        System.out.println("-------------------");
+
+        System.out.println(
+                "@startuml\n"
+                + "top to bottom direction");
+
+        BinaryTreePrinter.printUML(Defaults.TREE.getRoot());
+
+        System.out.println("@enduml");
+        System.out.println("\n-------------------");
+
+        File output = null;
+        if (parent != null && !parent.isBlank()) {
+            output = new File(parent);
+        }
+
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println("Trying to get connection");
-            connection = DriverManager.getConnection(urlBuilder.toString());
-            System.out.println("Connection is Successful to the database");
+            // continue with the application
+            processSimulation(output);
+        } catch (final SQLException ex) {
+            System.out.println("Couldn't process the simulation: " + ex);
+        }
+    }
+
+    private static void processSimulation(final File outputDirectory) throws SQLException {
+        final List<Assessment> assessments = new ArrayList<>();
+
+        String queryAssessmentId = "SELECT DISTINCT id_avaliacao FROM avaliacaopalavra";
+        ResultSet idsResult = MySQLConnection.getInstance().executeQuery(queryAssessmentId);
+        while (idsResult.next()) {
+            int id = idsResult.getInt("id_avaliacao");
+
+            // avaliacao 15 está toda correta, vou usar essa agora para fazer a simulação sem muita complexidade
             String query = "SELECT "
-                    + "avaliacaopalavra.id_avaliacao, "
+                    + "avaliacaopalavra.id_avaliacao, avaliacaopalavra.id_palavra, "
                     + "avaliacaopalavra.transcricao, palavra.palavra, avaliacaopalavra.correto "
                     + "FROM avaliacaopalavra, palavra WHERE palavra.id_palavra = avaliacaopalavra.id_palavra "
-                    + "AND avaliacaopalavra.transcricao <> 'NULL' AND (correto = 1 OR correto = 0) LIMIT 10";
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(query);
+                    + "AND avaliacaopalavra.transcricao <> 'NULL' AND (correto = 1 OR correto = 0) "
+                    + "AND id_avaliacao = " + id;
+            ResultSet rs = MySQLConnection.getInstance().executeQuery(query);
+
+            List<Integer> wordsIDs = new ArrayList<>();
+
+            Assessment assessment = new Assessment(id);
+
             while (rs.next()) {
-                //Display values
-                System.out.print("id_avaliacao: " + rs.getInt("id_avaliacao"));
-                System.out.print(", transcricao: " + rs.getString("transcricao"));
-                System.out.print(", palavra: " + rs.getString("palavra"));
-                System.out.println(", correto: " + rs.getBoolean("correto"));
+                if (!wordsIDs.contains(rs.getInt("id_palavra"))) {
+                    wordsIDs.add(rs.getInt("id_palavra"));
+                    try {
+                        KnownCase knownCase = new KnownCase(rs.getString("palavra"),
+                                rs.getString("transcricao"), rs.getBoolean("correto"));
+
+                        knownCase.putPhonemes(Util.getConsonantPhonemes(knownCase.getRepresentation()));
+
+                        assessment.addCase(knownCase);
+                    } catch (final IllegalArgumentException | SQLException e) {
+                        System.out.println("Exception creating known case: " + e);
+                    }
+                } else {
+                    System.out.println("Ignoring case with repeated word " + rs.getInt("id_palavra") + " in assessment " + id);
+                }
             }
-        } catch (final ClassNotFoundException | SQLException e) {
-            System.out.println("Couldn't connect with the database: " + e);
+            if (assessment.getCases().size() == Defaults.SORTED_WORDS.length) {
+                assessments.add(assessment);
+            } else {
+                System.out.println("Assessment " + assessment.getId() + " has less than " + Defaults.SORTED_WORDS.length + " valid cases, so it'll discarted");
+            }
         }
 
-        // continue with the application
-        if (connection != null) {
-            // TODO
+        final Map<KnownCaseComparator, Statistics> mapPhoneticInventory = new HashMap<>();
+        mapPhoneticInventory.put(KnownCaseComparator.HardWordsFirst, new Statistics(KnownCaseComparator.HardWordsFirst));
+        mapPhoneticInventory.put(KnownCaseComparator.EasyWordsFirst, new Statistics(KnownCaseComparator.EasyWordsFirst));
+        mapPhoneticInventory.put(KnownCaseComparator.EasyHardWords, new Statistics(KnownCaseComparator.EasyHardWords));
+        mapPhoneticInventory.put(KnownCaseComparator.BinaryTreeComparator, new Statistics(KnownCaseComparator.BinaryTreeComparator));
+
+        final Map<KnownCaseComparator, Statistics> mapPCCR = new HashMap<>();
+        mapPCCR.put(KnownCaseComparator.HardWordsFirst, new Statistics(KnownCaseComparator.HardWordsFirst));
+        mapPCCR.put(KnownCaseComparator.EasyWordsFirst, new Statistics(KnownCaseComparator.EasyWordsFirst));
+        mapPCCR.put(KnownCaseComparator.EasyHardWords, new Statistics(KnownCaseComparator.EasyHardWords));
+        mapPCCR.put(KnownCaseComparator.BinaryTreeComparator, new Statistics(KnownCaseComparator.BinaryTreeComparator));
+
+        System.out.println("Running simulation with " + assessments.size() + " complete assessments");
+        for (Assessment assessment : assessments) {
+            SimulationInfo hardWordsFirstPhonInv = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.HardWordsFirst, 2, true, true);
+            SimulationInfo hardWordsFirstPCCR = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.HardWordsFirst, 2, true, false);
+
+            mapPhoneticInventory.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirstPhonInv);
+            mapPCCR.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirstPCCR);
+
+            SimulationInfo easyWordsFirstPhonInv = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.EasyWordsFirst, 2, true, true);
+            SimulationInfo easyWordsFirstPCCR = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.EasyWordsFirst, 2, true, false);
+
+            mapPhoneticInventory.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirstPhonInv);
+            mapPCCR.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirstPCCR);
+
+            SimulationInfo easyHardSwitchingPhonInv = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.EasyHardWords, 2, true, true);
+            SimulationInfo easyHardSwitchingPCCR = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.EasyHardWords, 2, true, false);
+
+            mapPhoneticInventory.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitchingPhonInv);
+            mapPCCR.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitchingPCCR);
+
+            SimulationInfo binaryTreeSimulationPhonInv = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.BinaryTreeComparator, 2, true, true);
+            SimulationInfo binaryTreeSimulationPCCR = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.BinaryTreeComparator, 2, true, false);
+
+            mapPhoneticInventory.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPhonInv);
+            mapPCCR.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPCCR);
         }
 
+        File parent = new File(outputDirectory, "output-simulations");
+        parent.mkdir();
+
+        System.out.println("Output directory with simulation statistics: " + parent);
+        if (1 < 0) {
+            Iterator<Map.Entry<KnownCaseComparator, Statistics>> it = mapPhoneticInventory.entrySet().iterator();
+
+            while (it.hasNext()) {
+                Map.Entry<KnownCaseComparator, Statistics> next = it.next();
+
+                File fileWordsCounter = new File(parent, "PhoneticInventory-" + next.getKey().name() + "-counter.csv");
+                try (PrintWriter out = new PrintWriter(fileWordsCounter)) {
+                    out.print(next.getValue().exportCSV());
+                    System.out.println("File at: " + fileWordsCounter);
+                } catch (final FileNotFoundException ex) {
+                    System.out.println("Couldn't write into file: " + ex);
+                }
+
+                File fileWordsFrequency = new File(parent, "PhoneticInventory-" + next.getKey().name() + "-wordsFrequency.csv");
+                try (PrintWriter out = new PrintWriter(fileWordsFrequency)) {
+                    out.print(next.getValue().exportWordsFrequencyCSV());
+                    System.out.println("File at: " + fileWordsFrequency);
+                } catch (final FileNotFoundException ex) {
+                    System.out.println("Couldn't write into file: " + ex);
+                }
+            }
+
+            it = mapPCCR.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<KnownCaseComparator, Statistics> next = it.next();
+
+                File fileWordsCounter = new File(parent, "PhonemesTested-" + next.getKey().name() + "-counter.csv");
+                try (PrintWriter out = new PrintWriter(fileWordsCounter)) {
+                    out.print(next.getValue().exportCSV());
+                    System.out.println("File at: " + fileWordsCounter);
+                } catch (final FileNotFoundException ex) {
+                    System.out.println("Couldn't write into file: " + ex);
+                }
+
+                File fileWordsFrequency = new File(parent, "PhonemesTested-" + next.getKey().name() + "-wordsFrequency.csv");
+                try (PrintWriter out = new PrintWriter(fileWordsFrequency)) {
+                    out.print(next.getValue().exportWordsFrequencyCSV());
+                    System.out.println("File at: " + fileWordsFrequency);
+                } catch (final FileNotFoundException ex) {
+                    System.out.println("Couldn't write into file: " + ex);
+                }
+            }
+        } else {
+            System.out.println("Ignoring counters");
+        }
+
+        File filePCCR_Regions = new File(parent, "PCCR-BinaryTreeComparator.csv");
+        try (PrintWriter out = new PrintWriter(filePCCR_Regions)) {
+            out.print(mapPCCR.get(KnownCaseComparator.BinaryTreeComparator).exportPCCR_CSV(Defaults.TREE));
+            System.out.println("File at: " + filePCCR_Regions);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
+
+        List<Statistics> listAll = new ArrayList<>(mapPhoneticInventory.values());
+        File fileWordsFrequencyAll = new File(parent, "AllScenarios-wordsFrequency.csv");
+        try (PrintWriter out = new PrintWriter(fileWordsFrequencyAll)) {
+            out.print(Statistics.exportAllWordsFrequencyCSV(listAll));
+            System.out.println("File at: " + fileWordsFrequencyAll);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package br.com.efono.model;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -114,6 +115,13 @@ public class Phoneme {
         }
         this.phoneme = phoneme;
         this.position = position;
+    }
+
+    /**
+     * @return True - the phoneme is a consonant cluster, otherwise: false.
+     */
+    public boolean isConsonantCluster() {
+        return Arrays.asList(CONSONANT_CLUSTERS).contains(phoneme);
     }
 
     /**

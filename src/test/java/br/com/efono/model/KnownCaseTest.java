@@ -1,5 +1,6 @@
 package br.com.efono.model;
 
+import br.com.efono.util.Defaults;
 import br.com.efono.util.Util;
 import br.com.efono.util.UtilTest;
 import java.io.File;
@@ -36,6 +37,32 @@ public class KnownCaseTest {
         File invalid = new File(resDir, "invalid.json");
         List<KnownCase> cases = KnownCase.loadFile(invalid);
         assertTrue(cases.isEmpty());
+    }
+
+    /**
+     * Tests constructor behavior when giving a transcription with non identified phonemes.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testConstructWithNonIdentifiedPhonemes() {
+        KnownCase knownCase = new KnownCase("Jacaré", "?aka'??", false);
+    }
+
+    /**
+     * Tests constructor behavior when given special words.
+     */
+    @Test
+    public void testConstructorSpecialCases() {
+        String[] words = new String[]{"Teste", "Jacare", "JACARÉ", "JACARE", "JAcAre"};
+
+        List<KnownCase> list = new LinkedList<>();
+        for (String w : words) {
+            try {
+                list.add(new KnownCase(w, "representation", true));
+            } catch (final IllegalArgumentException e) {
+                System.out.println("Exception: " + e);
+            }
+        }
+        assertEquals(4, list.size());
     }
 
     /**
@@ -110,6 +137,16 @@ public class KnownCaseTest {
     @Test(expected = NullPointerException.class)
     public void testConstructPhonemes() {
         new KnownCase("anel", "", false, null);
+    }
+    
+    /**
+     * Tests construct for null representation.
+     */
+    @Test
+    public void testConstructTreatWord() {
+        KnownCase instance = new KnownCase("anél", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
+        assertEquals(Defaults.SORTED_WORDS[0], instance.getWord());
+        assertEquals("Anel", instance.getWord());
     }
 
     /**
@@ -344,6 +381,74 @@ public class KnownCaseTest {
 
         // just to print all the files path
 //        fail();
+    }
+
+    /**
+     * Tests {@link KnownCase#getCorrectProductions(List)}.
+     */
+    @Test
+    public void testGetCorrectProductions() {
+        System.out.println("testGetCorrectProductions - parameters");
+        KnownCase instance = new KnownCase("Bicicleta", "[bisi’klɛtə]", true, Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        assertTrue(instance.getCorrectProductions(null).isEmpty());
+        assertTrue(instance.getCorrectProductions(new ArrayList<>()).isEmpty());
+
+        System.out.println("testGetCorrectProductions - the instance phonemes - all correct productions");
+        List<Phoneme> expected = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM));
+
+        assertEquals(expected, instance.getCorrectProductions(instance.getPhonemes()));
+
+        System.out.println("testGetCorrectProductions - instance has more phonemes than expected: variants of correct cases");
+        List<Phoneme> targetPhonemes = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("kl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM));
+
+        assertEquals(targetPhonemes, instance.getCorrectProductions(targetPhonemes));
+
+        System.out.println("testGetCorrectProductions - instance has more phonemes than expected: incorrect cases");
+        targetPhonemes = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("t", Phoneme.POSITION.OM));
+
+        assertEquals(targetPhonemes, instance.getCorrectProductions(targetPhonemes));
+
+        System.out.println("testGetCorrectProductions - instance has less phonemes than expected: omission cases");
+        targetPhonemes = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("r", Phoneme.POSITION.OM));
+
+        expected = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM));
+
+        assertEquals(expected, instance.getCorrectProductions(targetPhonemes));
+
+        System.out.println("testGetCorrectProductions - instance has same number of target phonemes: substituition cases");
+        targetPhonemes = Arrays.asList(
+                new Phoneme("d", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME),
+                new Phoneme("p", Phoneme.POSITION.OM));
+
+        expected = Arrays.asList(
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME));
+        assertEquals(expected, instance.getCorrectProductions(targetPhonemes));
     }
 
 }

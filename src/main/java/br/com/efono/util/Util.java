@@ -1,5 +1,6 @@
 package br.com.efono.util;
 
+import br.com.efono.model.KnownCase;
 import br.com.efono.model.Phoneme;
 import static br.com.efono.model.Phoneme.CONSONANT_CLUSTERS;
 import static br.com.efono.model.Phoneme.SEMI_VOWELS;
@@ -345,5 +346,56 @@ public class Util {
             return list;
         }
         return Collections.emptyList();
+    }
+
+    /**
+     * Gets the case in the list from the given word. Ignore case is used here.
+     *
+     * @param list The list to look in.
+     * @param word The word.
+     * @return The case with the given word or null if the word is not in any case of the list.
+     */
+    public static KnownCase getCaseFromWord(final List<KnownCase> list, final String word) {
+        if (list != null && word != null) {
+            for (KnownCase c : list) {
+                if (c.getWord().equalsIgnoreCase(word)) {
+                    return c;
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Gets the target phonemes from the cases. The target phonemes will be the ones which are in all the given cases.
+     *
+     * @param cases Cases to look for target phonemes.
+     * @return The target phonemes.
+     */
+    public static List<Phoneme> getTargetPhonemes(final List<KnownCase> cases) {
+        final List<Phoneme> target = new ArrayList<>();
+        if (cases != null && !cases.isEmpty()) {
+            /**
+             * The target phonemes will be the ones which are in all the given cases, that is the reason we only need
+             * the first case here.
+             */
+            KnownCase firstCase = cases.get(0);
+            firstCase.getPhonemes().forEach(p -> {
+                if (!target.contains(p)) {
+                    // count in how many cases this phoneme is 
+                    int count = 0;
+                    for (KnownCase k : cases) {
+                        if (k.getPhonemes().contains(p)) {
+                            count++;
+                        }
+                    }
+
+                    if (count == cases.size()) {
+                        target.add(p);
+                    }
+                }
+            });
+        }
+        return target;
     }
 }

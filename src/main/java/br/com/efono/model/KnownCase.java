@@ -1,5 +1,6 @@
 package br.com.efono.model;
 
+import br.com.efono.util.Defaults;
 import br.com.efono.util.FileUtils;
 import br.com.efono.util.Util;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -19,6 +20,12 @@ import java.util.Objects;
  */
 public class KnownCase {
 
+    /**
+     * The only 'word' that is not in our database that is allowed here. This is necessary because JSON mapper needs an
+     * empty constructor.
+     */
+    private static final String EMPTY_CASE = "empty-case".hashCode() + "";
+
     @JsonProperty(value = "word")
     private final String word;
 
@@ -35,7 +42,7 @@ public class KnownCase {
      * Default constructor.
      */
     public KnownCase() {
-        this("", "", false);
+        this(EMPTY_CASE, "", false);
     }
 
     /**
@@ -58,7 +65,17 @@ public class KnownCase {
      * @param phonemes Only consonant phonemes in the transcription.
      */
     public KnownCase(final String word, final String representation, boolean correct, final List<Phoneme> phonemes) {
-        this.word = Objects.requireNonNull(word);
+        String w = Objects.requireNonNull(word);
+        if (!EMPTY_CASE.equals(w)) {
+            int index = Defaults.findIndexOf(w, Defaults.SORTED_WORDS);
+            if (index < 0) {
+                throw new IllegalArgumentException("The word [" + w
+                        + "] is not in our database, so we can't work with it.");
+            }
+            // treating the word, avoid wrong comparisons
+            w = Defaults.SORTED_WORDS[index];
+        }
+        this.word = w;
         this.representation = Util.cleanTranscription(Objects.requireNonNull(representation));
         if (this.representation.contains("?")) {
             throw new IllegalArgumentException("Non identified phonemes are now allowed in a Known Case.");
@@ -112,6 +129,23 @@ public class KnownCase {
         this.phonemes.clear();
         this.phonemes.addAll(phonemes);
     }
+    
+    /**
+     * Gets a list with the correct productions bases on the list of target phonemes for the word of this KnownCase.
+     * @param targetPhonemes A list of target phonemes for the word of this instance.
+     * @return A list with correct productions.
+     */
+    public List<Phoneme> getCorrectProductions(final List<Phoneme> targetPhonemes) {
+        final List<Phoneme> correctProd = new ArrayList<>();
+        if (targetPhonemes != null) {
+            targetPhonemes.forEach(p -> {
+                if (this.phonemes.contains(p)) {
+                    correctProd.add(p);
+                }
+            });
+        }
+        return correctProd;
+    }
 
     /**
      * @return If the transcription represents a correct pronunciation or not.
@@ -148,7 +182,7 @@ public class KnownCase {
 
     @Override
     public String toString() {
-        return "KnownCase(word: " + word + " representation: " + representation + ")";
+        return "KnownCase(" + word + " : " + representation + " : correct: " + correct + ")";
     }
 
     /**
