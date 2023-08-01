@@ -8,6 +8,7 @@ import br.com.efono.model.SimulationInfo;
 import br.com.efono.tree.TreeUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -71,6 +72,142 @@ public class SimulationWordsSequence {
             return new SimulationInfo(mapCounter, wordsRequired, assessment, comp, splitConsonantClusters);
         }
         return new SimulationInfo(assessment, comp, splitConsonantClusters);
+    }
+
+    // todo: adicionar esse mecanismo com as 7 palavras, serão mais, mas pode melhorar a precisão na hora de advinhar o PCC-R
+    public static SimulationInfo runSimulation2(final Assessment assessment, final KnownCaseComparator comp,
+            final int minimum, boolean splitConsonantClusters) {
+        if (assessment != null && minimum > 0) {
+            final Map<Phoneme, Integer> mapCounter = new HashMap<>();
+
+            List<KnownCase> cases = assessment.getCases();
+            sortList(cases, comp);
+
+            final List<String> wordsRequired = new LinkedList<>();
+
+            if (cases != null) {
+                mapCounter.clear();
+                cases.forEach(c -> {
+                    List<Phoneme> phonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
+
+                    final List<Phoneme> list = new ArrayList<>();
+                    phonemes.forEach(phoneme -> {
+                        // bɾ(OCME) -> b(OCME) + ɾ(OCME)
+                        if (phoneme.isConsonantCluster() && splitConsonantClusters) {
+                            String[] split = phoneme.getPhoneme().split("");
+                            for (String s : split) {
+                                // repeated phonemes are allowed here, because we wanna count
+                                list.add(new Phoneme(s, phoneme.getPosition()));
+                            }
+                        } else {
+                            // repeated phonemes are allowed
+                            list.add(phoneme);
+                        }
+                    });
+
+                    List<Phoneme> toBeTested = new LinkedList<>();
+
+                    for (Phoneme p : list) {
+                        int count = 1;
+                        if (mapCounter.containsKey(p)) {
+                            count = mapCounter.get(p) + 1;
+                        }
+                        mapCounter.put(p, count);
+
+                        if (count <= minimum && !wordsRequired.contains(c.getWord())) {
+                            wordsRequired.add(c.getWord());
+                            toBeTested.add(p);
+                        }
+                    }
+
+                    List<String> nextWords = getNextWords(toBeTested, splitConsonantClusters);
+
+                    testNextWords(nextWords, cases, minimum, splitConsonantClusters, mapCounter, wordsRequired);
+                });
+            }
+
+            return new SimulationInfo(mapCounter, wordsRequired, assessment, comp, splitConsonantClusters);
+        }
+        return new SimulationInfo(assessment, comp, splitConsonantClusters);
+    }
+
+    private static void testNextWords(final List<String> nextWords, final List<KnownCase> cases, final int minimum,
+            boolean splitConsonantClusters, final Map<Phoneme, Integer> mapCounter, final List<String> wordsRequired) {
+        cases.forEach(c -> {
+            if (nextWords.contains(c.getWord())) {
+                List<Phoneme> phonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
+
+                final List<Phoneme> list = new ArrayList<>();
+                phonemes.forEach(phoneme -> {
+                    // bɾ(OCME) -> b(OCME) + ɾ(OCME)
+                    if (phoneme.isConsonantCluster() && splitConsonantClusters) {
+                        String[] split = phoneme.getPhoneme().split("");
+                        for (String s : split) {
+                            // repeated phonemes are allowed here, because we wanna count
+                            list.add(new Phoneme(s, phoneme.getPosition()));
+                        }
+                    } else {
+                        // repeated phonemes are allowed
+                        list.add(phoneme);
+                    }
+                });
+
+                for (Phoneme p : list) {
+                    int count = 1;
+                    if (mapCounter.containsKey(p)) {
+                        count = mapCounter.get(p) + 1;
+                    }
+                    mapCounter.put(p, count);
+
+                    if (count <= minimum && !wordsRequired.contains(c.getWord())) {
+                        wordsRequired.add(c.getWord());
+                    }
+                }
+            }
+        });
+    }
+
+    /**
+     * Gets all the words that contains the phonemes in the given list.
+     *
+     * @param toBeTested Phonemes to be tested.
+     * @param splitConsonantClusters True - this will count the consonant clusters as two phonemes:
+     * <code>bɾ(OCME) -> b(OCME) + ɾ(OCME).</code>. The phoneme ɾ(OCME) can be counted more times in this way, and we
+     * can evaluate more precisely the consonant clusters productions.
+     * @return A list with all the words that contains the phonemes in the given list.
+     */
+    public static List<String> getNextWords(final List<Phoneme> toBeTested, final boolean splitConsonantClusters) {
+        List<String> nextWords = new LinkedList<>();
+        Iterator<Map.Entry<String, List<Phoneme>>> it = Defaults.TARGET_PHONEMES.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, List<Phoneme>> next = it.next();
+            List<Phoneme> value = next.getValue();
+
+            List<Phoneme> phon = new ArrayList<>();
+            value.forEach(phoneme -> {
+                // bɾ(OCME) -> b(OCME) + ɾ(OCME)
+                if (phoneme.isConsonantCluster() && splitConsonantClusters) {
+                    String[] split = phoneme.getPhoneme().split("");
+                    for (String s : split) {
+                        // repeated phonemes are allowed here, because we wanna count
+                        phon.add(new Phoneme(s, phoneme.getPosition()));
+                    }
+                } else {
+                    // repeated phonemes are allowed
+                    phon.add(phoneme);
+                }
+            });
+
+            for (Phoneme p : toBeTested) {
+                // TODO: aqui vai pegar TODAS as palavras que contém esses fonemas, e não apenas 1 ou 2 necessárias pra testar o mínimo de vezes necessárias
+                if (phon.contains(p) && !nextWords.contains(next.getKey())) {
+                    nextWords.add(next.getKey());
+                    break;
+                }
+            }
+        }
+
+        return nextWords;
     }
 
     /**

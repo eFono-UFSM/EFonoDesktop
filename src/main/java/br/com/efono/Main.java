@@ -183,6 +183,8 @@ public class Main {
         mapPCCR.put(KnownCaseComparator.EasyHardWords, new Statistics(KnownCaseComparator.EasyHardWords));
         mapPCCR.put(KnownCaseComparator.BinaryTreeComparator, new Statistics(KnownCaseComparator.BinaryTreeComparator));
 
+        Statistics statisticsExtended = new Statistics(KnownCaseComparator.BinaryTreeComparatorExtended);
+
         System.out.println("Running simulation with " + assessments.size() + " complete assessments");
         for (Assessment assessment : assessments) {
             SimulationInfo hardWordsFirstPhonInv = SimulationWordsSequence.runSimulation(assessment,
@@ -216,6 +218,11 @@ public class Main {
 
             mapPhoneticInventory.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPhonInv);
             mapPCCR.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPCCR);
+
+            SimulationInfo binaryTreeExtended = SimulationWordsSequence.runSimulation2(assessment,
+                    KnownCaseComparator.BinaryTreeComparator, 2, true);
+
+            statisticsExtended.extractStatistics(binaryTreeExtended);
         }
 
         File parent = new File(outputDirectory, "output-simulations");
@@ -269,19 +276,31 @@ public class Main {
             System.out.println("Ignoring counters");
         }
 
-        File filePCCR_Regions = new File(parent, "PCCR-BinaryTreeComparator.csv");
-        try (PrintWriter out = new PrintWriter(filePCCR_Regions)) {
-            out.print(mapPCCR.get(KnownCaseComparator.BinaryTreeComparator).exportPCCR_CSV(Defaults.TREE));
-            System.out.println("File at: " + filePCCR_Regions);
-        } catch (final FileNotFoundException ex) {
-            System.out.println("Couldn't write into file: " + ex);
+        if (1 < 0) {
+            File filePCCR_Regions = new File(parent, "PCCR-BinaryTreeComparator.csv");
+            try (PrintWriter out = new PrintWriter(filePCCR_Regions)) {
+                out.print(mapPCCR.get(KnownCaseComparator.BinaryTreeComparator).exportPCCR_CSV(Defaults.TREE));
+                System.out.println("File at: " + filePCCR_Regions);
+            } catch (final FileNotFoundException ex) {
+                System.out.println("Couldn't write into file: " + ex);
+            }
+
+            List<Statistics> listAll = new ArrayList<>(mapPhoneticInventory.values());
+            File fileWordsFrequencyAll = new File(parent, "AllScenarios-wordsFrequency.csv");
+            try (PrintWriter out = new PrintWriter(fileWordsFrequencyAll)) {
+                out.print(Statistics.exportAllWordsFrequencyCSV(listAll));
+                System.out.println("File at: " + fileWordsFrequencyAll);
+            } catch (final FileNotFoundException ex) {
+                System.out.println("Couldn't write into file: " + ex);
+            }
+        } else {
+            System.out.println("Ignoring PCC-R files");
         }
 
-        List<Statistics> listAll = new ArrayList<>(mapPhoneticInventory.values());
-        File fileWordsFrequencyAll = new File(parent, "AllScenarios-wordsFrequency.csv");
-        try (PrintWriter out = new PrintWriter(fileWordsFrequencyAll)) {
-            out.print(Statistics.exportAllWordsFrequencyCSV(listAll));
-            System.out.println("File at: " + fileWordsFrequencyAll);
+        File fileBinaryExtended = new File(parent, "BinaryTreeComparatorExtended.csv");
+        try (PrintWriter out = new PrintWriter(fileBinaryExtended)) {
+            out.print(statisticsExtended.exportCSV());
+            System.out.println("File at: " + fileBinaryExtended);
         } catch (final FileNotFoundException ex) {
             System.out.println("Couldn't write into file: " + ex);
         }

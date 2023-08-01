@@ -37,6 +37,7 @@ public class SimulationWordsSequenceTest {
     @Before
     public void beforeMethod() {
         Defaults.TREE.clear();
+        Defaults.TARGET_PHONEMES.clear();
     }
 
     /**
@@ -856,6 +857,75 @@ public class SimulationWordsSequenceTest {
         assertTrue(expected.containsAll(result));
         assertTrue(result.containsAll(expected));
         assertEquals(expected, result);
+    }
+
+    /**
+     * Tests {@link SimulationWordsSequence#getNextWords(List, boolean)}.
+     */
+    @Test
+    public void testGetNextWords() {
+        System.out.println("testGetNextWords - parameters");
+        assertTrue(SimulationWordsSequence.getNextWords(null, true).isEmpty());
+        assertTrue(SimulationWordsSequence.getNextWords(null, false).isEmpty());
+        assertTrue(SimulationWordsSequence.getNextWords(new ArrayList<>(), true).isEmpty());
+
+        List<Phoneme> toBeTested = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("b", Phoneme.POSITION.OCME),
+                new Phoneme("l", Phoneme.POSITION.OCME));
+
+        Defaults.TARGET_PHONEMES.put("Anel", Arrays.asList(
+                new Phoneme("n", Phoneme.POSITION.OM)));
+
+        Defaults.TARGET_PHONEMES.put("Batom", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        Defaults.TARGET_PHONEMES.put("Bicicleta", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        Defaults.TARGET_PHONEMES.put("Biblioteca", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        System.out.println("testGetNextWords - splitting consonant clusters");
+        List<String> result = SimulationWordsSequence.getNextWords(toBeTested, true);
+        assertEquals(3, result.size());
+        assertTrue(result.containsAll(Arrays.asList("Batom", "Bicicleta", "Biblioteca")));
+
+        Defaults.TARGET_PHONEMES.clear();
+        Defaults.TARGET_PHONEMES.put("Anel", Arrays.asList(
+                new Phoneme("n", Phoneme.POSITION.OM)));
+
+        Defaults.TARGET_PHONEMES.put("Batom", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        Defaults.TARGET_PHONEMES.put("Bicicleta", Arrays.asList(
+                new Phoneme("s", Phoneme.POSITION.OM),
+                new Phoneme("kl", Phoneme.POSITION.OCME)));
+
+        Defaults.TARGET_PHONEMES.put("Biblioteca", Arrays.asList(
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+        
+        System.out.println("testGetNextWords - without splitting consonant clusters");
+        toBeTested = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("b", Phoneme.POSITION.OCME),
+                new Phoneme("l", Phoneme.POSITION.OCME),
+                new Phoneme("kl", Phoneme.POSITION.OCME));
+
+        result = SimulationWordsSequence.getNextWords(toBeTested, false);
+        assertEquals(2, result.size());
+        assertTrue(result.containsAll(Arrays.asList("Batom", "Bicicleta")));
     }
 
 }
