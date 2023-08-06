@@ -6,11 +6,14 @@ import br.com.efono.util.Defaults;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * @author João Bolsson (joaovictorbolsson@gmail.com)
@@ -112,6 +115,68 @@ public class Statistics {
     }
 
     /**
+     * Exports the statistics of words frequency with PCC-R.
+     *
+     * @return The CSV.
+     */
+    public String exportWordsFrequencyPCCR() {
+        int max = 0;
+        Integer mostRepeatedFrequency = 0;
+        Iterator<Map.Entry<Integer, Integer>> it = mapWordsRequired.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Integer, Integer> next = it.next();
+            if (next.getValue() > max) {
+                max = next.getValue();
+                mostRepeatedFrequency = next.getKey();
+            }
+        }
+
+        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+        ArrayList<Integer> list = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : mapWordsCounter.entrySet()) {
+            list.add(entry.getValue());
+        }
+        Collections.sort(list);
+        for (int num : list) {
+            for (Entry<String, Integer> entry : mapWordsCounter.entrySet()) {
+                if (entry.getValue().equals(num)) {
+                    sortedMap.put(entry.getKey(), num);
+                }
+            }
+        }
+
+        List<String> sortedWords = new LinkedList<>(sortedMap.keySet());
+
+        final List<String> words = new ArrayList<>();
+        for (int i = sortedWords.size() - 1; i >= 0; i--) {
+            words.add(sortedWords.get(i));
+            if (words.size() == mostRepeatedFrequency) {
+                break;
+            }
+        }
+
+        final StringBuilder str = new StringBuilder("wordsFrequency,PCCR,degree,PCC-R 84w,degree 84w,equals degree\n");
+        assessments.forEach(a -> {
+            double pccrAll = a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS));
+            double pccrSelectedWords = a.getPCCR(words);
+
+            String degreeAll = getDegree(pccrAll);
+            String degreeSelectedWords = getDegree(pccrSelectedWords);
+
+            DecimalFormat df = new DecimalFormat("#.##");
+            str.append(words.size()).append(",").
+                    append(df.format(pccrSelectedWords).replaceAll(",", ".")).append(",").
+                    append(degreeSelectedWords).append(",").
+                    append(df.format(pccrAll).replaceAll(",", ".")).append(",").
+                    append(degreeAll).append(",").
+                    append(degreeSelectedWords.equals(degreeAll) ? "TRUE" : "FALSE").
+                    append("\n");
+        });
+
+        return str.toString();
+    }
+
+    /**
      * Exporting PCC-R results about regions of PCC-R to CSV. First, we calculate the PCC-R following the traditional
      * method: computing all correct productions from an assessment and dividing for all the productions. In the second
      * part we try to predict what will be the disorder degree based only on the results of the first 7 words spoken in
@@ -137,16 +202,12 @@ public class Statistics {
             "Livro", "Magro", "Pedra", "Nuvem", "Galinha", "Grama", "Chapéu", "Navio", "Caixa", "Letra", "Chifre",
             "Folha", "Cama"};
 
-        StringBuilder str = new StringBuilder("region,PCC-R 84w,degree 84w,PCC-R 55w,degree 55w,PCC-R 7w,degree 7w,expected degree 7w\n");
+        StringBuilder str = new StringBuilder("region,PCC-R 84w,degree 84w,PCC-R 55w,degree 55w,custom words,PCC-R custom,expected custom,degree custom,words-in-blocks,PCC-R blocks,degree blocks,blocks vs 84w\n");
         assessments.forEach(a -> {
             final LinkedList<String> words = new LinkedList<>();
-
             tree.resetVisited(tree.getRoot());
 
             TreeUtils.getFirstWords(tree.getRoot(), words, a.getCases());
-
-            double pccrAll = a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS));
-            String degreeAll = getDegree(pccrAll);
 
             String expectedDegree = "NOT_FOUND";
             Iterator<Map.Entry<String, String[]>> it = mapRegionsPCCR.entrySet().iterator();
@@ -158,10 +219,21 @@ public class Statistics {
                 }
             }
 
+            final LinkedList<String> blocksOfWords = new LinkedList<>();
+            words.forEach(w -> {
+                blocksOfWords.add(w);
+                blocksOfWords.addAll(Defaults.SIMILAR_WORDS.get(w));
+            });
+
+            double pccrAll = a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS));
+            double pccrBlocksOfWords = a.getPCCR(blocksOfWords);
             double pccrFirstWords = a.getPCCR(words);
             double pccr55Words = a.getPCCR(Arrays.asList(words55));
+
+            String degreeAll = getDegree(pccrAll);
             String degree55w = getDegree(pccr55Words);
-            String degree7w = getDegree(pccrFirstWords);
+            String degreeCustom = getDegree(pccrFirstWords);
+            String degreeBlocks = getDegree(pccrBlocksOfWords);
 
             DecimalFormat df = new DecimalFormat("#.##");
             str.append(words.getLast()).append(",").
@@ -169,9 +241,14 @@ public class Statistics {
                     append(degreeAll).append(",").
                     append(df.format(pccr55Words).replaceAll(",", ".")).append(",").
                     append(degree55w).append(",").
+                    append(String.valueOf(words.size())).append(",").
                     append(df.format(pccrFirstWords).replaceAll(",", ".")).append(",").
-                    append(degree7w).append(",").
+                    append(degreeCustom).append(",").
                     append(expectedDegree).append(",").
+                    append(String.valueOf(blocksOfWords.size())).append(",").
+                    append(df.format(pccrBlocksOfWords).replaceAll(",", ".")).append(",").
+                    append(degreeBlocks).append(",").
+                    append(degreeBlocks.equals(degreeAll) ? "TRUE" : "FALSE").
                     append("\n");
         });
         return str.toString();

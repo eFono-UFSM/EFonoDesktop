@@ -63,6 +63,11 @@ public class Defaults {
     public static final Map<String, List<Phoneme>> TARGET_PHONEMES = new HashMap<>();
 
     /**
+     * The key is the word and the value is the most difficult words that have the same phonemes in the key.
+     */
+    public static final Map<String, List<String>> SIMILAR_WORDS = new HashMap<>();
+
+    /**
      * Sorts the given array with words like: <code>easy, hard, easy, hard words...</code>
      *
      * @param sortedWords Given array to sort.
