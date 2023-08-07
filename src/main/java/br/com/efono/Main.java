@@ -162,6 +162,67 @@ public class Main {
     private static void processSimulation(final File outputDirectory) throws SQLException {
         final List<Assessment> assessments = new ArrayList<>();
 
+        String queryWordsDifficult = "select palavra.palavra, count(avaliacaopalavra.id_palavra) AS errors FROM palavra, avaliacaopalavra WHERE palavra.id_palavra = avaliacaopalavra.id_palavra AND correto = 0 GROUP BY palavra";
+        ResultSet result = MySQLConnection.getInstance().executeQuery(queryWordsDifficult);
+
+        StringBuilder str = new StringBuilder("word,wordSize,errors\n");
+
+        Map<Integer, Integer> mapSizeErrors = new HashMap<>();
+        Map<Integer, Integer> mapSizes = new HashMap<>();
+
+        while (result.next()) {
+            String word = result.getString("palavra");
+
+            if (!mapSizes.containsKey(word.length())) {
+                mapSizes.put(word.length(), 1);
+            } else {
+                mapSizes.put(word.length(), mapSizes.get(word.length()) + 1);
+            }
+
+            if (!mapSizeErrors.containsKey(word.length())) {
+                mapSizeErrors.put(word.length(), 0);
+            }
+
+            mapSizeErrors.put(word.length(), mapSizeErrors.get(word.length()) + result.getInt("errors"));
+
+            String tamanho = String.valueOf(word.length());
+            String errors = String.valueOf(result.getInt("errors"));
+
+            str.append(word).append(",").append(tamanho).append(",").append(errors).append("\n");
+        }
+
+        File parent = new File(outputDirectory, "output-simulations");
+        parent.mkdir();
+
+        System.out.println("Output directory with simulation statistics: " + parent);
+
+        File fileWordsDifficult = new File(parent, "wordsDifficult.csv");
+        try (PrintWriter out = new PrintWriter(fileWordsDifficult)) {
+            out.print(str.toString());
+            System.out.println("File at: " + fileWordsDifficult);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
+
+        str = new StringBuilder("wordSize,errors\n");
+        Iterator<Map.Entry<Integer, Integer>> iterator = mapSizeErrors.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, Integer> next = iterator.next();
+
+            // valores normalizados: divide pela quantidade de palavras que tem o mesmo tamanho
+            int errors = next.getValue() / mapSizes.get(next.getKey());
+
+            str.append(next.getKey()).append(",").append(errors).append("\n");
+        }
+
+        File fileWordsSizeErrors = new File(parent, "wordsSizeErrors.csv");
+        try (PrintWriter out = new PrintWriter(fileWordsSizeErrors)) {
+            out.print(str.toString());
+            System.out.println("File at: " + fileWordsSizeErrors);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
+
         String queryAssessmentId = "SELECT DISTINCT id_avaliacao FROM avaliacaopalavra";
         ResultSet idsResult = MySQLConnection.getInstance().executeQuery(queryAssessmentId);
         while (idsResult.next()) {
@@ -258,15 +319,11 @@ public class Main {
             statisticsExtended.extractStatistics(binaryTreeExtended);
         }
 
-        File parent = new File(outputDirectory, "output-simulations");
-        parent.mkdir();
-
-        System.out.println("Output directory with simulation statistics: " + parent);
         Iterator<Map.Entry<KnownCaseComparator, Statistics>> it = mapPhoneticInventory.entrySet().iterator();
 
         while (it.hasNext()) {
             Map.Entry<KnownCaseComparator, Statistics> next = it.next();
-            
+
             File file = new File(parent, "PhoneticInventory-" + next.getKey().name() + "-allInfo.csv");
             try (PrintWriter out = new PrintWriter(file)) {
                 out.print(next.getValue().exportAllCSV());
@@ -274,30 +331,6 @@ public class Main {
             } catch (final FileNotFoundException ex) {
                 System.out.println("Couldn't write into file: " + ex);
             }
-
-//            File fileWordsCounter = new File(parent, "PhoneticInventory-" + next.getKey().name() + "-wordsRequiredCounter.csv");
-//            try (PrintWriter out = new PrintWriter(fileWordsCounter)) {
-//                out.print(next.getValue().exportCSV());
-//                System.out.println("File at: " + fileWordsCounter);
-//            } catch (final FileNotFoundException ex) {
-//                System.out.println("Couldn't write into file: " + ex);
-//            }
-//
-//            File fileWordsFrequency = new File(parent, "PhoneticInventory-" + next.getKey().name() + "-wordsFrequency.csv");
-//            try (PrintWriter out = new PrintWriter(fileWordsFrequency)) {
-//                out.print(next.getValue().exportWordsFrequencyCSV());
-//                System.out.println("File at: " + fileWordsFrequency);
-//            } catch (final FileNotFoundException ex) {
-//                System.out.println("Couldn't write into file: " + ex);
-//            }
-//
-//            File fileWordsPCCR = new File(parent, "PhoneticInventory-" + next.getKey().name() + "-wordsFrequencyPCCR.csv");
-//            try (PrintWriter out = new PrintWriter(fileWordsPCCR)) {
-//                out.print(next.getValue().exportWordsFrequencyPCCR());
-//                System.out.println("File at: " + fileWordsPCCR);
-//            } catch (final FileNotFoundException ex) {
-//                System.out.println("Couldn't write into file: " + ex);
-//            }
         }
 
         // TODO: acho melhor usar esses arquivos aqui: fonemas foram testados no mínimo 2x com essas palavras
@@ -305,7 +338,7 @@ public class Main {
         it = mapPCCR.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<KnownCaseComparator, Statistics> next = it.next();
-            
+
             File file = new File(parent, "PhonemesTested-" + next.getKey().name() + "-allInfo.csv");
             try (PrintWriter out = new PrintWriter(file)) {
                 out.print(next.getValue().exportAllCSV());
@@ -313,30 +346,6 @@ public class Main {
             } catch (final FileNotFoundException ex) {
                 System.out.println("Couldn't write into file: " + ex);
             }
-
-//            File fileWordsCounter = new File(parent, "PhonemesTested-" + next.getKey().name() + "-wordsRequiredCounter.csv");
-//            try (PrintWriter out = new PrintWriter(fileWordsCounter)) {
-//                out.print(next.getValue().exportCSV());
-//                System.out.println("File at: " + fileWordsCounter);
-//            } catch (final FileNotFoundException ex) {
-//                System.out.println("Couldn't write into file: " + ex);
-//            }
-//
-//            File fileWordsFrequency = new File(parent, "PhonemesTested-" + next.getKey().name() + "-wordsFrequency.csv");
-//            try (PrintWriter out = new PrintWriter(fileWordsFrequency)) {
-//                out.print(next.getValue().exportWordsFrequencyCSV());
-//                System.out.println("File at: " + fileWordsFrequency);
-//            } catch (final FileNotFoundException ex) {
-//                System.out.println("Couldn't write into file: " + ex);
-//            }
-//
-//            File fileWordsPCCR = new File(parent, "PhonemesTested-" + next.getKey().name() + "-wordsFrequencyPCCR.csv");
-//            try (PrintWriter out = new PrintWriter(fileWordsPCCR)) {
-//                out.print(next.getValue().exportWordsFrequencyPCCR());
-//                System.out.println("File at: " + fileWordsPCCR);
-//            } catch (final FileNotFoundException ex) {
-//                System.out.println("Couldn't write into file: " + ex);
-//            }
         }
 
         File filePCCR_Regions = new File(parent, "PCCR-BinaryTreeComparator.csv");
