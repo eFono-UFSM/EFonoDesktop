@@ -255,6 +255,7 @@ public class SimulationWordsSequence {
                     phonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
                 }
 
+                // TODO: metodo aqui
                 final List<Phoneme> list = new ArrayList<>();
                 phonemes.forEach(phoneme -> {
                     // bɾ(OCME) -> b(OCME) + ɾ(OCME)

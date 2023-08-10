@@ -271,6 +271,12 @@ public class Main {
         mapPhoneticInventory.put(KnownCaseComparator.EasyHardWords, new Statistics(KnownCaseComparator.EasyHardWords));
         mapPhoneticInventory.put(KnownCaseComparator.BinaryTreeComparator, new Statistics(KnownCaseComparator.BinaryTreeComparator));
 
+        final Map<KnownCaseComparator, Statistics> mapPhoneticInventoryNoSplitClusters = new HashMap<>();
+        mapPhoneticInventoryNoSplitClusters.put(KnownCaseComparator.HardWordsFirst, new Statistics(KnownCaseComparator.HardWordsFirst));
+        mapPhoneticInventoryNoSplitClusters.put(KnownCaseComparator.EasyWordsFirst, new Statistics(KnownCaseComparator.EasyWordsFirst));
+        mapPhoneticInventoryNoSplitClusters.put(KnownCaseComparator.EasyHardWords, new Statistics(KnownCaseComparator.EasyHardWords));
+        mapPhoneticInventoryNoSplitClusters.put(KnownCaseComparator.BinaryTreeComparator, new Statistics(KnownCaseComparator.BinaryTreeComparator));
+
         final Map<KnownCaseComparator, Statistics> mapPCCR = new HashMap<>();
         mapPCCR.put(KnownCaseComparator.HardWordsFirst, new Statistics(KnownCaseComparator.HardWordsFirst));
         mapPCCR.put(KnownCaseComparator.EasyWordsFirst, new Statistics(KnownCaseComparator.EasyWordsFirst));
@@ -278,53 +284,82 @@ public class Main {
         mapPCCR.put(KnownCaseComparator.BinaryTreeComparator, new Statistics(KnownCaseComparator.BinaryTreeComparator));
 
         Statistics statisticsExtended = new Statistics(KnownCaseComparator.BinaryTreeComparatorExtended);
+        Statistics statisticsExtendedNoSplit = new Statistics(KnownCaseComparator.BinaryTreeComparatorExtended);
 
         System.out.println("Running simulation with " + assessments.size() + " complete assessments");
         for (Assessment assessment : assessments) {
             SimulationInfo hardWordsFirstPhonInv = SimulationWordsSequence.runSimulation(assessment,
                     KnownCaseComparator.HardWordsFirst, 2, true, true);
+            SimulationInfo hardWordsFirstPhonInvNoSplit = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.HardWordsFirst, 2, false, true);
             SimulationInfo hardWordsFirstPCCR = SimulationWordsSequence.runSimulation(assessment,
                     KnownCaseComparator.HardWordsFirst, 2, true, false);
 
             mapPhoneticInventory.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirstPhonInv);
+            mapPhoneticInventoryNoSplitClusters.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirstPhonInvNoSplit);
             mapPCCR.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirstPCCR);
 
             SimulationInfo easyWordsFirstPhonInv = SimulationWordsSequence.runSimulation(assessment,
                     KnownCaseComparator.EasyWordsFirst, 2, true, true);
+            SimulationInfo easyWordsFirstPhonInvNoSplit = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.EasyWordsFirst, 2, false, true);
             SimulationInfo easyWordsFirstPCCR = SimulationWordsSequence.runSimulation(assessment,
                     KnownCaseComparator.EasyWordsFirst, 2, true, false);
 
             mapPhoneticInventory.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirstPhonInv);
+            mapPhoneticInventoryNoSplitClusters.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirstPhonInvNoSplit);
             mapPCCR.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirstPCCR);
 
             SimulationInfo easyHardSwitchingPhonInv = SimulationWordsSequence.runSimulation(assessment,
                     KnownCaseComparator.EasyHardWords, 2, true, true);
+            SimulationInfo easyHardSwitchingPhonInvNoSplit = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.EasyHardWords, 2, false, true);
             SimulationInfo easyHardSwitchingPCCR = SimulationWordsSequence.runSimulation(assessment,
                     KnownCaseComparator.EasyHardWords, 2, true, false);
 
             mapPhoneticInventory.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitchingPhonInv);
+            mapPhoneticInventoryNoSplitClusters.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitchingPhonInvNoSplit);
             mapPCCR.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitchingPCCR);
 
             SimulationInfo binaryTreeSimulationPhonInv = SimulationWordsSequence.runSimulation(assessment,
                     KnownCaseComparator.BinaryTreeComparator, 2, true, true);
+            SimulationInfo binaryTreeSimulationPhonInvNoSplit = SimulationWordsSequence.runSimulation(assessment,
+                    KnownCaseComparator.BinaryTreeComparator, 2, false, true);
             SimulationInfo binaryTreeSimulationPCCR = SimulationWordsSequence.runSimulation(assessment,
                     KnownCaseComparator.BinaryTreeComparator, 2, true, false);
 
             mapPhoneticInventory.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPhonInv);
+            mapPhoneticInventoryNoSplitClusters.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPhonInvNoSplit);
             mapPCCR.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPCCR);
 
+            // blocos de palavras
             SimulationInfo binaryTreeExtended = SimulationWordsSequence.runSimulation2(assessment,
                     KnownCaseComparator.BinaryTreeComparator, 2, true);
+            SimulationInfo binaryTreeExtendedNoSplit = SimulationWordsSequence.runSimulation2(assessment,
+                    KnownCaseComparator.BinaryTreeComparator, 2, false);
 
             statisticsExtended.extractStatistics(binaryTreeExtended);
+            statisticsExtendedNoSplit.extractStatistics(binaryTreeExtendedNoSplit);
         }
 
         Iterator<Map.Entry<KnownCaseComparator, Statistics>> it = mapPhoneticInventory.entrySet().iterator();
-
         while (it.hasNext()) {
             Map.Entry<KnownCaseComparator, Statistics> next = it.next();
 
-            File file = new File(parent, "PhoneticInventory-" + next.getKey().name() + "-allInfo.csv");
+            File file = new File(parent, next.getKey().name() + "-Inv.csv");
+            try (PrintWriter out = new PrintWriter(file)) {
+                out.print(next.getValue().exportAllCSV());
+                System.out.println("File at: " + file);
+            } catch (final FileNotFoundException ex) {
+                System.out.println("Couldn't write into file: " + ex);
+            }
+        }
+
+        it = mapPhoneticInventoryNoSplitClusters.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<KnownCaseComparator, Statistics> next = it.next();
+
+            File file = new File(parent, next.getKey().name() + "-Inv-noSplit.csv");
             try (PrintWriter out = new PrintWriter(file)) {
                 out.print(next.getValue().exportAllCSV());
                 System.out.println("File at: " + file);
@@ -339,13 +374,29 @@ public class Main {
         while (it.hasNext()) {
             Map.Entry<KnownCaseComparator, Statistics> next = it.next();
 
-            File file = new File(parent, "PhonemesTested-" + next.getKey().name() + "-allInfo.csv");
+            File file = new File(parent, next.getKey().name() + "-Test.csv");
             try (PrintWriter out = new PrintWriter(file)) {
                 out.print(next.getValue().exportAllCSV());
                 System.out.println("File at: " + file);
             } catch (final FileNotFoundException ex) {
                 System.out.println("Couldn't write into file: " + ex);
             }
+        }
+
+        File fileBinaryExtended = new File(parent, "BinaryTreeComparatorExtended.csv");
+        try (PrintWriter out = new PrintWriter(fileBinaryExtended)) {
+            out.print(statisticsExtended.exportAllCSV());
+            System.out.println("File at: " + fileBinaryExtended);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
+
+        File fileBinaryExtendedNoSplit = new File(parent, "BinaryTreeComparatorExtended-noSplit.csv");
+        try (PrintWriter out = new PrintWriter(fileBinaryExtendedNoSplit)) {
+            out.print(statisticsExtendedNoSplit.exportAllCSV());
+            System.out.println("File at: " + fileBinaryExtendedNoSplit);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
         }
 
         File filePCCR_Regions = new File(parent, "PCCR-BinaryTreeComparator.csv");
@@ -361,14 +412,6 @@ public class Main {
         try (PrintWriter out = new PrintWriter(fileWordsFrequencyAll)) {
             out.print(Statistics.exportAllWordsFrequencyCSV(listAll));
             System.out.println("File at: " + fileWordsFrequencyAll);
-        } catch (final FileNotFoundException ex) {
-            System.out.println("Couldn't write into file: " + ex);
-        }
-
-        File fileBinaryExtended = new File(parent, "BinaryTreeComparatorExtended.csv");
-        try (PrintWriter out = new PrintWriter(fileBinaryExtended)) {
-            out.print(statisticsExtended.exportCSV());
-            System.out.println("File at: " + fileBinaryExtended);
         } catch (final FileNotFoundException ex) {
             System.out.println("Couldn't write into file: " + ex);
         }
