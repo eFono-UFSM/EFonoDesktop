@@ -1,6 +1,8 @@
 package br.com.efono.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -149,6 +151,23 @@ public class Phoneme {
      */
     public void setPosition(final POSITION position) {
         this.position = position;
+    }
+
+    /**
+     * Splits all the phonemes into single character phonemes.
+     *
+     * @return A list with phonemes.
+     */
+    public List<Phoneme> splitPhonemes() {
+        final List<Phoneme> list = new ArrayList<>();
+        // bɾ(OCME) -> b(OCME) + ɾ(OCME)
+        String[] split = phoneme.split("");
+        for (String s : split) {
+            // repeated phonemes are allowed here, because we wanna count
+            list.add(new Phoneme(s, position));
+        }
+
+        return list;
     }
 
     @Override

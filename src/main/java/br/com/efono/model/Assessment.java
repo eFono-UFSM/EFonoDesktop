@@ -1,6 +1,7 @@
 package br.com.efono.model;
 
 import br.com.efono.util.Defaults;
+import br.com.efono.util.NoRepeatList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -164,6 +165,53 @@ public class Assessment {
         }
 
         return correctProductions / totalProductions;
+    }
+
+    /**
+     * Analyzes all the consonant clusters produced by the subject with the assessment.
+     *
+     * For example: if we have a word with <br>
+     * Medial Complex Onset(bl)<br>
+     * Medial Complex Onset(kl)<br>
+     *
+     * we can test if the subject can reproduce Medial Complex Onset(kl). If true, than we had inferred that the subject
+     * can reproduce a consonant cluster based on the reproduction of two others clusters.
+     */
+    public void analyzeConsonantClusters() {
+        /**
+         * Contains a list with the parts of the already produced consonant clusters.
+         */
+        final List<Phoneme> splittedProductions = new NoRepeatList<>();
+        final List<Phoneme> consonantClustersProduced = new NoRepeatList<>();
+        final List<Phoneme> inferredPhonemes = new NoRepeatList<>();
+        final List<Phoneme> notInferredPhonemes = new NoRepeatList<>();
+        final List<String> possibleDiscartedWords = new NoRepeatList<>();
+
+        cases.forEach(c -> {
+            c.getPhonemes().stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
+                consonantClustersProduced.add(p);
+
+                System.out.println(c.getWord() + " -> " + p);
+                List<Phoneme> splitPhonemes = p.splitPhonemes();
+
+                if (!notInferredPhonemes.contains(p) && splittedProductions.containsAll(splitPhonemes)) {
+                    System.out.println(p + " inferred" + " discard: " + c.getWord());
+                    inferredPhonemes.add(p);
+                    possibleDiscartedWords.add(c.getWord());
+                } else {
+                    System.out.println(p + " not inferred");
+                    notInferredPhonemes.add(p);
+                }
+                splitPhonemes.forEach(e -> splittedProductions.add(e));
+            });
+        });
+
+        System.out.println("real produced consonant clusters: [" + consonantClustersProduced.size() + "]: " + consonantClustersProduced);
+        System.out.println("infered consonant clusters: [" + inferredPhonemes.size() + "]: " + inferredPhonemes);
+        System.out.println("not infered consonant clusters: [" + notInferredPhonemes.size() + "]: " + notInferredPhonemes);
+
+        System.out.println("words to be discarted: [" + possibleDiscartedWords.size() + "]: " + possibleDiscartedWords);
+
     }
 
 }

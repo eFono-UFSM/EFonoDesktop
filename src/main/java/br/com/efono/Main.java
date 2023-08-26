@@ -151,6 +151,11 @@ public class Main {
             output = new File(parent);
         }
 
+        if (1 > 0) {
+            analysisConsonantClusters(output);
+            return;
+        }
+        
         try {
             // continue with the application
             processSimulation(output);
@@ -159,9 +164,73 @@ public class Main {
         }
     }
 
-    private static void processSimulation(final File outputDirectory) throws SQLException {
+    private static List<Assessment> getAssessmentsFromDB() {
         final List<Assessment> assessments = new ArrayList<>();
+        String queryAssessmentId = "SELECT DISTINCT id_avaliacao FROM avaliacaopalavra where id_avaliacao = 15";
+        ResultSet idsResult;
+        try {
+            idsResult = MySQLConnection.getInstance().executeQuery(queryAssessmentId);
+            while (idsResult.next()) {
+                int id = idsResult.getInt("id_avaliacao");
 
+                // avaliacao 15 está toda correta, vou usar essa agora para fazer a simulação sem muita complexidade
+                String query = "SELECT "
+                        + "avaliacaopalavra.id_avaliacao, avaliacaopalavra.id_palavra, "
+                        + "avaliacaopalavra.transcricao, palavra.palavra, avaliacaopalavra.correto "
+                        + "FROM avaliacaopalavra, palavra WHERE palavra.id_palavra = avaliacaopalavra.id_palavra "
+                        + "AND avaliacaopalavra.transcricao <> 'NULL' AND (correto = 1 OR correto = 0) "
+                        + "AND id_avaliacao = " + id;
+                ResultSet rs = MySQLConnection.getInstance().executeQuery(query);
+
+                List<Integer> wordsIDs = new ArrayList<>();
+
+                Assessment assessment = new Assessment(id);
+
+                while (rs.next()) {
+                    if (!wordsIDs.contains(rs.getInt("id_palavra"))) {
+                        wordsIDs.add(rs.getInt("id_palavra"));
+                        try {
+                            KnownCase knownCase = new KnownCase(rs.getString("palavra"),
+                                    rs.getString("transcricao"), rs.getBoolean("correto"));
+
+                            knownCase.putPhonemes(Util.getConsonantPhonemes(knownCase.getRepresentation()));
+
+                            assessment.addCase(knownCase);
+                        } catch (final IllegalArgumentException | SQLException e) {
+                            System.out.println("Exception creating known case: " + e);
+                        }
+                    } else {
+                        System.out.println("Ignoring case with repeated word " + rs.getInt("id_palavra") + " in assessment " + id);
+                    }
+                }
+                if (assessment.getCases().size() == Defaults.SORTED_WORDS.length) {
+                    assessments.add(assessment);
+                } else {
+                    System.out.println("Assessment " + assessment.getId() + " has less than " + Defaults.SORTED_WORDS.length + " valid cases, so it'll discarted");
+                }
+            }
+        } catch (final SQLException ex) {
+            System.out.println("Exception while getting assessments from db: " + ex);
+        }
+        return assessments;
+    }
+
+    private static void analysisConsonantClusters(final File outputDirectory) {
+        System.out.println("--------------------------------------");
+        System.out.println("Analyzing Consonant Clusters");
+        System.out.println("--------------------------------------");
+        final List<Assessment> assessments = getAssessmentsFromDB();
+        if (!assessments.isEmpty()) {
+            Assessment a = assessments.get(0);
+            
+            a.analyzeConsonantClusters();
+        } else {
+            System.out.println("This was not expected: no assessment returned from db.");
+        }
+
+    }
+
+    private static void processSimulation(final File outputDirectory) throws SQLException {
         String queryWordsDifficult = "select palavra.palavra, count(avaliacaopalavra.id_palavra) AS errors FROM palavra, avaliacaopalavra WHERE palavra.id_palavra = avaliacaopalavra.id_palavra AND correto = 0 GROUP BY palavra";
         ResultSet result = MySQLConnection.getInstance().executeQuery(queryWordsDifficult);
 
@@ -223,47 +292,7 @@ public class Main {
             System.out.println("Couldn't write into file: " + ex);
         }
 
-        String queryAssessmentId = "SELECT DISTINCT id_avaliacao FROM avaliacaopalavra";
-        ResultSet idsResult = MySQLConnection.getInstance().executeQuery(queryAssessmentId);
-        while (idsResult.next()) {
-            int id = idsResult.getInt("id_avaliacao");
-
-            // avaliacao 15 está toda correta, vou usar essa agora para fazer a simulação sem muita complexidade
-            String query = "SELECT "
-                    + "avaliacaopalavra.id_avaliacao, avaliacaopalavra.id_palavra, "
-                    + "avaliacaopalavra.transcricao, palavra.palavra, avaliacaopalavra.correto "
-                    + "FROM avaliacaopalavra, palavra WHERE palavra.id_palavra = avaliacaopalavra.id_palavra "
-                    + "AND avaliacaopalavra.transcricao <> 'NULL' AND (correto = 1 OR correto = 0) "
-                    + "AND id_avaliacao = " + id;
-            ResultSet rs = MySQLConnection.getInstance().executeQuery(query);
-
-            List<Integer> wordsIDs = new ArrayList<>();
-
-            Assessment assessment = new Assessment(id);
-
-            while (rs.next()) {
-                if (!wordsIDs.contains(rs.getInt("id_palavra"))) {
-                    wordsIDs.add(rs.getInt("id_palavra"));
-                    try {
-                        KnownCase knownCase = new KnownCase(rs.getString("palavra"),
-                                rs.getString("transcricao"), rs.getBoolean("correto"));
-
-                        knownCase.putPhonemes(Util.getConsonantPhonemes(knownCase.getRepresentation()));
-
-                        assessment.addCase(knownCase);
-                    } catch (final IllegalArgumentException | SQLException e) {
-                        System.out.println("Exception creating known case: " + e);
-                    }
-                } else {
-                    System.out.println("Ignoring case with repeated word " + rs.getInt("id_palavra") + " in assessment " + id);
-                }
-            }
-            if (assessment.getCases().size() == Defaults.SORTED_WORDS.length) {
-                assessments.add(assessment);
-            } else {
-                System.out.println("Assessment " + assessment.getId() + " has less than " + Defaults.SORTED_WORDS.length + " valid cases, so it'll discarted");
-            }
-        }
+        final List<Assessment> assessments = getAssessmentsFromDB();
 
         final Map<KnownCaseComparator, Statistics> mapPhoneticInventory = new HashMap<>();
         mapPhoneticInventory.put(KnownCaseComparator.HardWordsFirst, new Statistics(KnownCaseComparator.HardWordsFirst));
