@@ -143,7 +143,7 @@ public class Main {
             Defaults.SIMILAR_WORDS.put(w, similarWords);
             // TODO: não preciso de todas as palavras, só de 4 ou 5 pra testar os mesmos fonemas dela
             // mesmo assim, se cada palavra tiver 4 fonemas, vão ser 24 palavras ou 28 (6x4, 7x4). Será que melhora a precisão do PCC-R?
-            System.out.println(w + " count phonemes: [" + countPhonemes.size() + "]" + "->SimilarWords[" + similarWords.size() + "]: " + similarWords + " count phonemes: [" + countPhonemes.size() + "]");
+            System.out.println(w + "->SimilarWords[" + similarWords.size() + "]: " + similarWords);
         });
 
         File output = null;
@@ -383,6 +383,7 @@ public class Main {
             }
         }
 
+        // TODO: esse arquivo eu nem to usando, e o metodo runSimulation2 precisa ser melhorado
         File fileBinaryExtended = new File(parent, "BinaryTreeComparatorExtended.csv");
         try (PrintWriter out = new PrintWriter(fileBinaryExtended)) {
             out.print(statisticsExtended.exportAllCSV());
