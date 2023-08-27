@@ -7,7 +7,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
@@ -593,6 +595,191 @@ public class UtilTest {
         System.out.println("testGetTargetPhonemes - no common phoneme");
         assertTrue(Util.getTargetPhonemes(Arrays.asList(test2, test3)).isEmpty());
         assertTrue(Util.getTargetPhonemes(Arrays.asList(test3, test2)).isEmpty());
+    }
+
+    /**
+     * Tests {@link Util#getInferredPhonemes(java.util.Map)}.
+     */
+    @Test
+    public void testGetInferredPhonemes() {
+        System.out.println("testGetInferredPhonemes 0 - no phoneme inferred");
+
+        final Map<String, List<Phoneme>> map = new LinkedHashMap<>();
+        map.put("Biblioteca", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        map.put("Fralda", Arrays.asList(
+                new Phoneme("fɾ", Phoneme.POSITION.OCI), // nao da para inferir novos fonemas pois está em OCI
+                new Phoneme("d", Phoneme.POSITION.OM)));
+
+        List<Phoneme> result = Util.getInferredPhonemes(map, Arrays.asList("Biblioteca", "Fralda"));
+        assertTrue("Result: " + result, result.isEmpty());
+
+        System.out.println("testGetInferredPhonemes 1 - infering new valid consonant clusters");
+        map.clear();
+        map.put("Chifre", Arrays.asList(
+                new Phoneme("ʃ", Phoneme.POSITION.OI),
+                new Phoneme("fɾ", Phoneme.POSITION.OCME))); // mesma posição que "bl"
+
+        map.put("Biblioteca", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        List<Phoneme> expected = Arrays.asList(
+                new Phoneme("bɾ", Phoneme.POSITION.OCME),
+                new Phoneme("fl", Phoneme.POSITION.OCME));
+
+        result = Util.getInferredPhonemes(map, Arrays.asList("Chifre", "Biblioteca"));
+        assertEquals(expected.size(), result.size());
+        assertTrue(expected.containsAll(result));
+
+        System.out.println("testGetInferredPhonemes 2 - same previous test (1), but now with another word in the map");
+        map.clear();
+        map.put("Chifre", Arrays.asList(
+                new Phoneme("ʃ", Phoneme.POSITION.OI),
+                new Phoneme("fɾ", Phoneme.POSITION.OCME))); // mesma posição que "bl"
+
+        map.put("Biblioteca", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        /**
+         * Mustn't interfere in the expected result. At the moment of reading this word and its phonemes, the phoneme
+         * "br(OCME)" will be already inferred by the algorithm. So this word must not have impact on the result (could
+         * be discarded in the future after a more complex analysis).
+         */
+        map.put("Zebra", Arrays.asList(
+                new Phoneme("z", Phoneme.POSITION.OI),
+                new Phoneme("bɾ", Phoneme.POSITION.OCME)));
+
+        expected = Arrays.asList(
+                new Phoneme("bɾ", Phoneme.POSITION.OCME),
+                new Phoneme("fl", Phoneme.POSITION.OCME));
+
+        result = Util.getInferredPhonemes(map, Arrays.asList("Chifre", "Biblioteca", "Zebra"));
+        assertEquals(expected.size(), result.size());
+        assertTrue(expected.containsAll(result));
+
+        // the order of words in the list matters
+        System.out.println("testGetInferredPhonemes 3 - infering new valid consonant clusters");
+        map.clear();
+        map.put("Chifre", Arrays.asList(
+                new Phoneme("ʃ", Phoneme.POSITION.OI),
+                new Phoneme("fl", Phoneme.POSITION.OCME))); // changed to "fl" so we can test
+
+        map.put("Biblioteca", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        map.put("Zebra", Arrays.asList(
+                new Phoneme("z", Phoneme.POSITION.OI),
+                new Phoneme("bɾ", Phoneme.POSITION.OCME)));
+
+        expected = Arrays.asList(
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("fɾ", Phoneme.POSITION.OCME));
+
+        result = Util.getInferredPhonemes(map, Arrays.asList("Zebra", "Chifre", "Biblioteca"));
+        assertEquals(expected.size(), result.size());
+        assertTrue(expected.containsAll(result));
+
+        System.out.println("testGetInferredPhonemes 4 - same as previous (3) but adding a new word");
+        map.clear();
+        // won't have impact in inferred phonemes
+        map.put("Fralda", Arrays.asList(
+                new Phoneme("fɾ", Phoneme.POSITION.OCI), // nao da para inferir novos fonemas pois está em OCI
+                new Phoneme("d", Phoneme.POSITION.OM)));
+
+        map.put("Zebra", Arrays.asList(
+                new Phoneme("z", Phoneme.POSITION.OI),
+                new Phoneme("bɾ", Phoneme.POSITION.OCME)));
+
+        map.put("Chifre", Arrays.asList(
+                new Phoneme("ʃ", Phoneme.POSITION.OI),
+                new Phoneme("fl", Phoneme.POSITION.OCME))); // changed to "fl" so we can test
+
+        map.put("Biblioteca", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        // won't have impact in inferred phonemes
+        map.put("Refri", Arrays.asList(
+                new Phoneme("χ", Phoneme.POSITION.OI),
+                new Phoneme("fɾ", Phoneme.POSITION.OCME)));
+
+        expected = Arrays.asList(
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("fɾ", Phoneme.POSITION.OCME));
+
+        result = Util.getInferredPhonemes(map, Arrays.asList("Fralda", "Zebra", "Chifre", "Biblioteca", "Refri"));
+        assertEquals(expected.size(), result.size());
+        assertTrue(expected.containsAll(result));
+
+        System.out.println("testGetInferredPhonemes 5 - same as previous (4) but adding a new word");
+        map.clear();
+        // won't have impact in inferred phonemes
+        map.put("Fralda", Arrays.asList(
+                new Phoneme("fɾ", Phoneme.POSITION.OCI), // nao da para inferir novos fonemas pois está em OCI
+                new Phoneme("d", Phoneme.POSITION.OM)));
+
+        map.put("Zebra", Arrays.asList(
+                new Phoneme("z", Phoneme.POSITION.OI),
+                new Phoneme("bɾ", Phoneme.POSITION.OCME)));
+
+        map.put("Refri", Arrays.asList(
+                new Phoneme("χ", Phoneme.POSITION.OI),
+                new Phoneme("fɾ", Phoneme.POSITION.OCME)));
+
+        map.put("Chifre", Arrays.asList(
+                new Phoneme("ʃ", Phoneme.POSITION.OI),
+                new Phoneme("fl", Phoneme.POSITION.OCME))); // changed to "fl" so we can test
+
+        map.put("Biblioteca", Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("bl", Phoneme.POSITION.OCME),
+                new Phoneme("t", Phoneme.POSITION.OM),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        expected = Arrays.asList(
+                new Phoneme("bl", Phoneme.POSITION.OCME));
+
+        result = Util.getInferredPhonemes(map, Arrays.asList("Fralda", "Zebra", "Refri", "Chifre", "Biblioteca"));
+        assertEquals(expected.size(), result.size());
+        assertTrue(expected.containsAll(result));
+        
+        System.out.println("testGetInferredPhonemes 6 - skip non inferred phoneme and map doesn't contain a word");
+        map.clear();
+        map.put("Fralda", Arrays.asList(
+                new Phoneme("fɾ", Phoneme.POSITION.OCI),
+                new Phoneme("d", Phoneme.POSITION.OM)));
+        
+        map.put("Placa", Arrays.asList(
+                new Phoneme("pl", Phoneme.POSITION.OCI),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+        
+        map.put("Fruta", Arrays.asList(
+                new Phoneme("fɾ", Phoneme.POSITION.OCI),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        expected = Arrays.asList(
+                new Phoneme("pɾ", Phoneme.POSITION.OCI),
+                new Phoneme("fl", Phoneme.POSITION.OCI));
+
+        // the map doesn't contain "Beijo", but shouldn't have impact in the method.
+        result = Util.getInferredPhonemes(map, Arrays.asList("Fralda", "Beijo", "Placa", "Fruta"));
+        assertEquals(expected.size(), result.size());
+        assertTrue(expected.containsAll(result));
     }
 
 }

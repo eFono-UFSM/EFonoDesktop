@@ -398,4 +398,90 @@ public class Util {
         }
         return target;
     }
+
+    /**
+     * Gets a list with inferred phonemes by splitting other consonant clusters.
+     *
+     * For example: if the user could reproduce words with <br>
+     * Medial Complex Onset(bl)<br>
+     * Medial Complex Onset(kɾ)<br>
+     *
+     * We can infer that he is capable of reproduce two other consonant clusters:
+     *
+     * Medial Complex Onset(bɾ)<br>
+     * Medial Complex Onset(kl)<br>
+     *
+     * In this case, this method will return {Medial Complex Onset(bɾ), Medial Complex Onset(kl)}.
+     *
+     * @param map A map with words spoken by the subject and its phonemes reproduced.
+     * @param words The sequence of evaluation of the words. The sequence will have impact in the returned list of
+     * inferred phonemes.
+     * @return A non-null list with inferred phonemes.
+     */
+    public static List<Phoneme> getInferredPhonemes(final Map<String, List<Phoneme>> map, final List<String> words) {
+        List<Phoneme> clustersParts = new NoRepeatList<>();
+        List<Phoneme> inferredPhonemes = new NoRepeatList<>();
+
+        /**
+         * Bucket with all phonemes that weren't inferred. We must explicitly control that.
+         */
+        List<Phoneme> nonInferredPhonemes = new NoRepeatList<>();
+
+        words.forEach(w -> {
+            if (map.containsKey(w)) {
+                map.get(w).stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
+                    if (!nonInferredPhonemes.contains(p)) {
+                        List<Phoneme> splitPhonemes = p.splitPhonemes();
+
+                        if (clustersParts.containsAll(splitPhonemes)) {
+                            inferredPhonemes.add(p);
+                        } else {
+                            nonInferredPhonemes.add(p);
+                        }
+                        clustersParts.addAll(splitPhonemes);
+                        reloadInferredPhonemes(clustersParts, nonInferredPhonemes, inferredPhonemes);
+                    }
+                });
+            }
+        });
+
+        System.out.println("-------------------");
+        System.out.println("splittedProductions:");
+        printClusters(clustersParts);
+        System.out.println("-------------------");
+
+        return inferredPhonemes;
+    }
+
+    private static void reloadInferredPhonemes(final List<Phoneme> clustersParts,
+            final List<Phoneme> nonInferredPhonemes, final List<Phoneme> inferredPhonemes) {
+        Arrays.asList(Phoneme.CONSONANT_CLUSTERS).forEach(s -> {
+            Phoneme pOCI = new Phoneme(s, Phoneme.POSITION.OCI);
+            if (!nonInferredPhonemes.contains(pOCI) && clustersParts.containsAll(pOCI.splitPhonemes())) {
+                inferredPhonemes.add(pOCI);
+            }
+
+            Phoneme pOCM = new Phoneme(s, Phoneme.POSITION.OCME);
+            if (!nonInferredPhonemes.contains(pOCM) && clustersParts.containsAll(pOCM.splitPhonemes())) {
+                inferredPhonemes.add(pOCM);
+            }
+        });
+    }
+
+    /**
+     * Print consonant clusters separately according with its positions.
+     *
+     * @param clusters Clusters to print.
+     */
+    public static void printClusters(final List<Phoneme> clusters) {
+        System.out.println("total: " + clusters.size());
+        System.out.print(Phoneme.POSITION.OCI + ": ");
+        clusters.stream().filter(p -> p.getPosition().equals(Phoneme.POSITION.OCI)).forEach(p -> System.out.print(p.getPhoneme() + ","));
+        System.out.println("");
+
+        System.out.print(Phoneme.POSITION.OCME + ": ");
+        clusters.stream().filter(p -> p.getPosition().equals(Phoneme.POSITION.OCME)).forEach(p -> System.out.print(p.getPhoneme() + ","));
+        System.out.println("\n");
+    }
+
 }

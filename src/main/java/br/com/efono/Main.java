@@ -10,6 +10,7 @@ import br.com.efono.model.SimulationInfo;
 import br.com.efono.model.Statistics;
 import br.com.efono.tree.BinaryTreePrinter;
 import br.com.efono.util.Defaults;
+import br.com.efono.util.NoRepeatList;
 import br.com.efono.util.SimulationWordsSequence;
 import br.com.efono.util.Util;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -155,7 +156,7 @@ public class Main {
             analysisConsonantClusters(output);
             return;
         }
-        
+
         try {
             // continue with the application
             processSimulation(output);
@@ -219,15 +220,23 @@ public class Main {
         System.out.println("--------------------------------------");
         System.out.println("Analyzing Consonant Clusters");
         System.out.println("--------------------------------------");
-        final List<Assessment> assessments = getAssessmentsFromDB();
-        if (!assessments.isEmpty()) {
-            Assessment a = assessments.get(0);
+        
+        List<Phoneme> inferredPhonemes = Util.getInferredPhonemes(Defaults.TARGET_PHONEMES, Arrays.asList(Defaults.SORTED_WORDS));
+        final List<String> wordsWithInferredPhonemes = new NoRepeatList<>();
+        
+        Iterator<Map.Entry<String, List<Phoneme>>> it = Defaults.TARGET_PHONEMES.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, List<Phoneme>> next = it.next();
             
-            a.analyzeConsonantClusters();
-        } else {
-            System.out.println("This was not expected: no assessment returned from db.");
+            if (next.getValue().stream().filter(p -> inferredPhonemes.contains(p)).count() > 0) {
+                wordsWithInferredPhonemes.add(next.getKey());
+            }
         }
 
+        System.out.println("infered consonant clusters:");
+        Util.printClusters(inferredPhonemes);
+
+        System.out.println("wordsWithInferredPhonemes: [" + wordsWithInferredPhonemes.size() + "]: " + wordsWithInferredPhonemes);
     }
 
     private static void processSimulation(final File outputDirectory) throws SQLException {
