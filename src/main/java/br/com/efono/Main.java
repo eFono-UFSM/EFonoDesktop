@@ -167,10 +167,12 @@ public class Main {
 
     private static List<Assessment> getAssessmentsFromDB() {
         final List<Assessment> assessments = new ArrayList<>();
-        String queryAssessmentId = "SELECT DISTINCT id_avaliacao FROM avaliacaopalavra where id_avaliacao = 15";
+        String queryAssessmentId = "SELECT DISTINCT id_avaliacao FROM avaliacaopalavra";
         ResultSet idsResult;
         try {
             idsResult = MySQLConnection.getInstance().executeQuery(queryAssessmentId);
+
+            int discardedAssessment = 0;
             while (idsResult.next()) {
                 int id = idsResult.getInt("id_avaliacao");
 
@@ -207,9 +209,10 @@ public class Main {
                 if (assessment.getCases().size() == Defaults.SORTED_WORDS.length) {
                     assessments.add(assessment);
                 } else {
-                    System.out.println("Assessment " + assessment.getId() + " has less than " + Defaults.SORTED_WORDS.length + " valid cases, so it'll discarted");
+                    discardedAssessment++;
                 }
             }
+            System.out.println(discardedAssessment + " assessments were discarded because they have less than " + Defaults.SORTED_WORDS.length + " valid cases");
         } catch (final SQLException ex) {
             System.out.println("Exception while getting assessments from db: " + ex);
         }
@@ -220,22 +223,37 @@ public class Main {
         System.out.println("--------------------------------------");
         System.out.println("Analyzing Consonant Clusters");
         System.out.println("--------------------------------------");
-        
-        final List<Phoneme> clustersParts = new NoRepeatList<>();
-        List<Phoneme> inferredPhonemes = Util.getInferredPhonemes(Defaults.TARGET_PHONEMES, 
-                Arrays.asList(Defaults.SORTED_WORDS), clustersParts);
-        final List<String> wordsWithInferredPhonemes = new NoRepeatList<>();
-        
-        Iterator<Map.Entry<String, List<Phoneme>>> it = Defaults.TARGET_PHONEMES.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry<String, List<Phoneme>> next = it.next();
-            
-            if (next.getValue().stream().filter(p -> inferredPhonemes.contains(p)).count() > 0) {
-                wordsWithInferredPhonemes.add(next.getKey());
-            }
-        }
 
-        System.out.println("wordsWithInferredPhonemes: [" + wordsWithInferredPhonemes.size() + "]: " + wordsWithInferredPhonemes);
+        final List<Phoneme> clustersParts = new NoRepeatList<>();
+        List<Phoneme> inferredPhonemes = Util.getInferredPhonemes(Defaults.TARGET_PHONEMES,
+                Arrays.asList(Defaults.SORTED_WORDS), clustersParts);
+
+        List<Phoneme> allClustersInWords = new NoRepeatList<>();
+
+        // inferred phonemes that are in db
+        final List<Phoneme> intersec = new NoRepeatList<>();
+
+        List<Assessment> assessments = getAssessmentsFromDB();
+        assessments.stream().filter(a -> a.getCases().size() == Defaults.SORTED_WORDS.length).forEach(a -> {
+            a.getCases().forEach(c -> {
+
+                c.getPhonemes().stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
+                    allClustersInWords.add(p);
+                    if (inferredPhonemes.contains(p)) {
+                        intersec.add(p);
+                    }
+                });
+            });
+        });
+
+        System.out.println("allClustersInWords:");
+        Util.printClusters(allClustersInWords);
+        System.out.println("-------------------");
+
+        System.out.println("infered consonant clusters that are in transcription from DB:");
+        Util.printClusters(intersec);
+        System.out.println("-------------------");
+
     }
 
     private static void processSimulation(final File outputDirectory) throws SQLException {

@@ -465,7 +465,6 @@ public class Util {
 
             // esses são os fonemas que inferi e tenho condições de testar se a lógica é valida ou não.
             // os demais fonemas inferidos não aparecem em nenhuma palavra transcrita corretamente
-            // TODO: codigo para verificar quais desses fonemas inferidos aparecem em transcrições corretas no banco
             System.out.println("allClustersInTheWords that are in inferredPhonemes:");
             List<Phoneme> intersec = new NoRepeatList<>();
             allClustersInTheWords.forEach(c -> {
