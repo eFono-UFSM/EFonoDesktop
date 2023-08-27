@@ -297,6 +297,7 @@ public class SimulationWordsSequence {
         return wordsRequired;
     }
 
+    // TODO: mover esse método para SimulationUtils
     /**
      * Sorts the list with cases according with the given comparator.
      *

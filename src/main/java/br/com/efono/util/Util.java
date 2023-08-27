@@ -416,39 +416,42 @@ public class Util {
      * @param map A map with words spoken by the subject and its phonemes reproduced.
      * @param words The sequence of evaluation of the words. The sequence will have impact in the returned list of
      * inferred phonemes.
+     * @param clustersParts A list with all the clusters parts.
      * @return A non-null list with inferred phonemes.
      */
-    public static List<Phoneme> getInferredPhonemes(final Map<String, List<Phoneme>> map, final List<String> words) {
-        List<Phoneme> clustersParts = new NoRepeatList<>();
+    public static List<Phoneme> getInferredPhonemes(final Map<String, List<Phoneme>> map, final List<String> words, final List<Phoneme> clustersParts) {
         List<Phoneme> inferredPhonemes = new NoRepeatList<>();
+        if (clustersParts != null) {
+            clustersParts.clear();
 
-        /**
-         * Bucket with all phonemes that weren't inferred. We must explicitly control that.
-         */
-        List<Phoneme> nonInferredPhonemes = new NoRepeatList<>();
+            /**
+             * Bucket with all phonemes that weren't inferred. We must explicitly control that.
+             */
+            List<Phoneme> nonInferredPhonemes = new NoRepeatList<>();
 
-        words.forEach(w -> {
-            if (map.containsKey(w)) {
-                map.get(w).stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
-                    if (!nonInferredPhonemes.contains(p)) {
-                        List<Phoneme> splitPhonemes = p.splitPhonemes();
+            words.forEach(w -> {
+                if (map.containsKey(w)) {
+                    map.get(w).stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
+                        if (!nonInferredPhonemes.contains(p)) {
+                            List<Phoneme> splitPhonemes = p.splitPhonemes();
 
-                        if (clustersParts.containsAll(splitPhonemes)) {
-                            inferredPhonemes.add(p);
-                        } else {
-                            nonInferredPhonemes.add(p);
+                            if (clustersParts.containsAll(splitPhonemes)) {
+                                inferredPhonemes.add(p);
+                            } else {
+                                nonInferredPhonemes.add(p);
+                            }
+                            clustersParts.addAll(splitPhonemes);
+                            reloadInferredPhonemes(clustersParts, nonInferredPhonemes, inferredPhonemes);
                         }
-                        clustersParts.addAll(splitPhonemes);
-                        reloadInferredPhonemes(clustersParts, nonInferredPhonemes, inferredPhonemes);
-                    }
-                });
-            }
-        });
+                    });
+                }
+            });
 
-        System.out.println("-------------------");
-        System.out.println("splittedProductions:");
-        printClusters(clustersParts);
-        System.out.println("-------------------");
+            System.out.println("-------------------");
+            System.out.println("splittedProductions:");
+            printClusters(clustersParts);
+            System.out.println("-------------------");
+        }
 
         return inferredPhonemes;
     }

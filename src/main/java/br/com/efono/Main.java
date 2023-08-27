@@ -221,7 +221,9 @@ public class Main {
         System.out.println("Analyzing Consonant Clusters");
         System.out.println("--------------------------------------");
         
-        List<Phoneme> inferredPhonemes = Util.getInferredPhonemes(Defaults.TARGET_PHONEMES, Arrays.asList(Defaults.SORTED_WORDS));
+        final List<Phoneme> clustersParts = new NoRepeatList<>();
+        List<Phoneme> inferredPhonemes = Util.getInferredPhonemes(Defaults.TARGET_PHONEMES, 
+                Arrays.asList(Defaults.SORTED_WORDS), clustersParts);
         final List<String> wordsWithInferredPhonemes = new NoRepeatList<>();
         
         Iterator<Map.Entry<String, List<Phoneme>>> it = Defaults.TARGET_PHONEMES.entrySet().iterator();

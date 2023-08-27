@@ -615,8 +615,17 @@ public class UtilTest {
                 new Phoneme("fɾ", Phoneme.POSITION.OCI), // nao da para inferir novos fonemas pois está em OCI
                 new Phoneme("d", Phoneme.POSITION.OM)));
 
-        List<Phoneme> result = Util.getInferredPhonemes(map, Arrays.asList("Biblioteca", "Fralda"));
+        final List<Phoneme> clustersParts = new NoRepeatList<>();
+        List<Phoneme> result = Util.getInferredPhonemes(map, Arrays.asList("Biblioteca", "Fralda"), clustersParts);
         assertTrue("Result: " + result, result.isEmpty());
+
+        List<Phoneme> expectedClusters = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OCME),
+                new Phoneme("l", Phoneme.POSITION.OCME),
+                new Phoneme("f", Phoneme.POSITION.OCI),
+                new Phoneme("ɾ", Phoneme.POSITION.OCI));
+        assertEquals(expectedClusters.size(), clustersParts.size());
+        assertTrue(expectedClusters.containsAll(clustersParts));
 
         System.out.println("testGetInferredPhonemes 1 - infering new valid consonant clusters");
         map.clear();
@@ -634,9 +643,16 @@ public class UtilTest {
                 new Phoneme("bɾ", Phoneme.POSITION.OCME),
                 new Phoneme("fl", Phoneme.POSITION.OCME));
 
-        result = Util.getInferredPhonemes(map, Arrays.asList("Chifre", "Biblioteca"));
+        result = Util.getInferredPhonemes(map, Arrays.asList("Chifre", "Biblioteca"), clustersParts);
         assertEquals(expected.size(), result.size());
         assertTrue(expected.containsAll(result));
+        expectedClusters = Arrays.asList(
+                new Phoneme("f", Phoneme.POSITION.OCME),
+                new Phoneme("ɾ", Phoneme.POSITION.OCME),
+                new Phoneme("b", Phoneme.POSITION.OCME),
+                new Phoneme("l", Phoneme.POSITION.OCME));
+        assertEquals(expectedClusters.size(), clustersParts.size());
+        assertTrue(expectedClusters.containsAll(clustersParts));
 
         System.out.println("testGetInferredPhonemes 2 - same previous test (1), but now with another word in the map");
         map.clear();
@@ -663,9 +679,16 @@ public class UtilTest {
                 new Phoneme("bɾ", Phoneme.POSITION.OCME),
                 new Phoneme("fl", Phoneme.POSITION.OCME));
 
-        result = Util.getInferredPhonemes(map, Arrays.asList("Chifre", "Biblioteca", "Zebra"));
+        result = Util.getInferredPhonemes(map, Arrays.asList("Chifre", "Biblioteca", "Zebra"), clustersParts);
         assertEquals(expected.size(), result.size());
         assertTrue(expected.containsAll(result));
+        expectedClusters = Arrays.asList(
+                new Phoneme("f", Phoneme.POSITION.OCME),
+                new Phoneme("ɾ", Phoneme.POSITION.OCME),
+                new Phoneme("b", Phoneme.POSITION.OCME),
+                new Phoneme("l", Phoneme.POSITION.OCME));
+        assertEquals(expectedClusters.size(), clustersParts.size());
+        assertTrue(expectedClusters.containsAll(clustersParts));
 
         // the order of words in the list matters
         System.out.println("testGetInferredPhonemes 3 - infering new valid consonant clusters");
@@ -688,9 +711,16 @@ public class UtilTest {
                 new Phoneme("bl", Phoneme.POSITION.OCME),
                 new Phoneme("fɾ", Phoneme.POSITION.OCME));
 
-        result = Util.getInferredPhonemes(map, Arrays.asList("Zebra", "Chifre", "Biblioteca"));
+        result = Util.getInferredPhonemes(map, Arrays.asList("Zebra", "Chifre", "Biblioteca"), clustersParts);
         assertEquals(expected.size(), result.size());
         assertTrue(expected.containsAll(result));
+        expectedClusters = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OCME),
+                new Phoneme("ɾ", Phoneme.POSITION.OCME),
+                new Phoneme("f", Phoneme.POSITION.OCME),
+                new Phoneme("l", Phoneme.POSITION.OCME));
+        assertEquals(expectedClusters.size(), clustersParts.size());
+        assertTrue(expectedClusters.containsAll(clustersParts));
 
         System.out.println("testGetInferredPhonemes 4 - same as previous (3) but adding a new word");
         map.clear();
@@ -722,9 +752,18 @@ public class UtilTest {
                 new Phoneme("bl", Phoneme.POSITION.OCME),
                 new Phoneme("fɾ", Phoneme.POSITION.OCME));
 
-        result = Util.getInferredPhonemes(map, Arrays.asList("Fralda", "Zebra", "Chifre", "Biblioteca", "Refri"));
+        result = Util.getInferredPhonemes(map, Arrays.asList("Fralda", "Zebra", "Chifre", "Biblioteca", "Refri"), clustersParts);
         assertEquals(expected.size(), result.size());
         assertTrue(expected.containsAll(result));
+        expectedClusters = Arrays.asList(
+                new Phoneme("f", Phoneme.POSITION.OCI),
+                new Phoneme("ɾ", Phoneme.POSITION.OCI),
+                new Phoneme("b", Phoneme.POSITION.OCME),
+                new Phoneme("ɾ", Phoneme.POSITION.OCME),
+                new Phoneme("f", Phoneme.POSITION.OCME),
+                new Phoneme("l", Phoneme.POSITION.OCME));
+        assertEquals(expectedClusters.size(), clustersParts.size());
+        assertTrue(expectedClusters.containsAll(clustersParts));
 
         System.out.println("testGetInferredPhonemes 5 - same as previous (4) but adding a new word");
         map.clear();
@@ -754,20 +793,29 @@ public class UtilTest {
         expected = Arrays.asList(
                 new Phoneme("bl", Phoneme.POSITION.OCME));
 
-        result = Util.getInferredPhonemes(map, Arrays.asList("Fralda", "Zebra", "Refri", "Chifre", "Biblioteca"));
+        result = Util.getInferredPhonemes(map, Arrays.asList("Fralda", "Zebra", "Refri", "Chifre", "Biblioteca"), clustersParts);
         assertEquals(expected.size(), result.size());
         assertTrue(expected.containsAll(result));
-        
+        expectedClusters = Arrays.asList(
+                new Phoneme("f", Phoneme.POSITION.OCI),
+                new Phoneme("ɾ", Phoneme.POSITION.OCI),
+                new Phoneme("b", Phoneme.POSITION.OCME),
+                new Phoneme("ɾ", Phoneme.POSITION.OCME),
+                new Phoneme("f", Phoneme.POSITION.OCME),
+                new Phoneme("l", Phoneme.POSITION.OCME));
+        assertEquals(expectedClusters.size(), clustersParts.size());
+        assertTrue(expectedClusters.containsAll(clustersParts));
+
         System.out.println("testGetInferredPhonemes 6 - skip non inferred phoneme and map doesn't contain a word");
         map.clear();
         map.put("Fralda", Arrays.asList(
                 new Phoneme("fɾ", Phoneme.POSITION.OCI),
                 new Phoneme("d", Phoneme.POSITION.OM)));
-        
+
         map.put("Placa", Arrays.asList(
                 new Phoneme("pl", Phoneme.POSITION.OCI),
                 new Phoneme("k", Phoneme.POSITION.OM)));
-        
+
         map.put("Fruta", Arrays.asList(
                 new Phoneme("fɾ", Phoneme.POSITION.OCI),
                 new Phoneme("t", Phoneme.POSITION.OM)));
@@ -777,9 +825,52 @@ public class UtilTest {
                 new Phoneme("fl", Phoneme.POSITION.OCI));
 
         // the map doesn't contain "Beijo", but shouldn't have impact in the method.
-        result = Util.getInferredPhonemes(map, Arrays.asList("Fralda", "Beijo", "Placa", "Fruta"));
+        result = Util.getInferredPhonemes(map, Arrays.asList("Fralda", "Beijo", "Placa", "Fruta"), clustersParts);
         assertEquals(expected.size(), result.size());
         assertTrue(expected.containsAll(result));
+        expectedClusters = Arrays.asList(
+                new Phoneme("f", Phoneme.POSITION.OCI),
+                new Phoneme("ɾ", Phoneme.POSITION.OCI),
+                new Phoneme("p", Phoneme.POSITION.OCI),
+                new Phoneme("l", Phoneme.POSITION.OCI));
+        assertEquals(expectedClusters.size(), clustersParts.size());
+        assertTrue(expectedClusters.containsAll(clustersParts));
+
+        // com 3 fonemas eu inferi outros 6
+        System.out.println("testGetInferredPhonemes 7 - another test inferring phonemes");
+        map.clear();
+        map.put("Brasil", Arrays.asList(
+                new Phoneme("bɾ", Phoneme.POSITION.OCI),
+                new Phoneme("z", Phoneme.POSITION.OM)));
+
+        map.put("Vaca", Arrays.asList(
+                new Phoneme("vl", Phoneme.POSITION.OCI),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        map.put("Fruta", Arrays.asList(
+                new Phoneme("fχ", Phoneme.POSITION.OCI),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        expected = Arrays.asList(
+                new Phoneme("bl", Phoneme.POSITION.OCI),
+                new Phoneme("vɾ", Phoneme.POSITION.OCI),
+                new Phoneme("fɾ", Phoneme.POSITION.OCI),
+                new Phoneme("fl", Phoneme.POSITION.OCI),
+                new Phoneme("bχ", Phoneme.POSITION.OCI),
+                new Phoneme("vχ", Phoneme.POSITION.OCI));
+
+        result = Util.getInferredPhonemes(map, Arrays.asList("Brasil", "Vaca", "Fruta"), clustersParts);
+        assertEquals(expected.size(), result.size());
+        assertTrue(expected.containsAll(result));
+        expectedClusters = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OCI),
+                new Phoneme("ɾ", Phoneme.POSITION.OCI),
+                new Phoneme("v", Phoneme.POSITION.OCI),
+                new Phoneme("l", Phoneme.POSITION.OCI),
+                new Phoneme("f", Phoneme.POSITION.OCI),
+                new Phoneme("χ", Phoneme.POSITION.OCI));
+        assertEquals(expectedClusters.size(), clustersParts.size());
+        assertTrue(expectedClusters.containsAll(clustersParts));
     }
 
 }
