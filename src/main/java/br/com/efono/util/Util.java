@@ -429,9 +429,12 @@ public class Util {
              */
             List<Phoneme> nonInferredPhonemes = new NoRepeatList<>();
 
+            List<Phoneme> allClustersInTheWords = new NoRepeatList<>();
+
             words.forEach(w -> {
                 if (map.containsKey(w)) {
                     map.get(w).stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
+                        allClustersInTheWords.add(p);
                         if (!nonInferredPhonemes.contains(p)) {
                             List<Phoneme> splitPhonemes = p.splitPhonemes();
 
@@ -447,9 +450,31 @@ public class Util {
                 }
             });
 
+            // fonemas não inferidos que serviram de base para inferir outros fonemas
+            System.out.println("nonInferredPhonemes:");
+            printClusters(nonInferredPhonemes);
             System.out.println("-------------------");
-            System.out.println("splittedProductions:");
-            printClusters(clustersParts);
+
+            System.out.println("inferredPhonemes:");
+            printClusters(inferredPhonemes);
+            System.out.println("-------------------");
+
+            System.out.println("allClustersInTheWords:");
+            printClusters(allClustersInTheWords);
+            System.out.println("-------------------");
+
+            // esses são os fonemas que inferi e tenho condições de testar se a lógica é valida ou não.
+            // os demais fonemas inferidos não aparecem em nenhuma palavra transcrita corretamente
+            // TODO: codigo para verificar quais desses fonemas inferidos aparecem em transcrições corretas no banco
+            System.out.println("allClustersInTheWords that are in inferredPhonemes:");
+            List<Phoneme> intersec = new NoRepeatList<>();
+            allClustersInTheWords.forEach(c -> {
+                if (inferredPhonemes.contains(c)) {
+                    intersec.add(c);
+                }
+            });
+
+            printClusters(intersec);
             System.out.println("-------------------");
         }
 

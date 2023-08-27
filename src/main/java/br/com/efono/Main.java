@@ -235,9 +235,6 @@ public class Main {
             }
         }
 
-        System.out.println("infered consonant clusters:");
-        Util.printClusters(inferredPhonemes);
-
         System.out.println("wordsWithInferredPhonemes: [" + wordsWithInferredPhonemes.size() + "]: " + wordsWithInferredPhonemes);
     }
 
