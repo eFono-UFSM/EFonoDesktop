@@ -59,8 +59,21 @@ public class SimulationConsonantClusters {
                 });
             });
 
-            return new SimulationConsonantClustersInfo(inferredPhonemes, allTargetConsonantClusters, 
-                    inferredPhonemesInTargetWords, allClustersInAssessment, validInferred);
+            List<Phoneme> inferredNotReproducedInTargetWords = new NoRepeatList<>();
+            List<Phoneme> inferredNotReproducedNotInTargetWords = new NoRepeatList<>();
+            inferredPhonemes.forEach(c -> {
+                if (!validInferred.contains(c)) {
+                    if (allTargetConsonantClusters.contains(c)) {
+                        inferredNotReproducedInTargetWords.add(c);
+                    } else {
+                        inferredNotReproducedNotInTargetWords.add(c);
+                    }
+                }
+            });
+
+            return new SimulationConsonantClustersInfo(inferredPhonemes, allTargetConsonantClusters,
+                    inferredPhonemesInTargetWords, allClustersInAssessment, validInferred, 
+                    inferredNotReproducedInTargetWords, inferredNotReproducedNotInTargetWords);
         }
         return new SimulationConsonantClustersInfo();
 

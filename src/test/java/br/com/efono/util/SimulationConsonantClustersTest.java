@@ -58,7 +58,7 @@ public class SimulationConsonantClustersTest {
         Defaults.TARGET_PHONEMES.put("Flor", Arrays.asList(
                 new Phoneme("fl", Phoneme.POSITION.OCI),
                 new Phoneme("ɾ", Phoneme.POSITION.CM)));
-        
+
         Defaults.TARGET_PHONEMES.put("Biblioteca", Arrays.asList(
                 new Phoneme("b", Phoneme.POSITION.OI),
                 new Phoneme("bl", Phoneme.POSITION.OCME),
@@ -94,7 +94,7 @@ public class SimulationConsonantClustersTest {
                 new Phoneme("fl", Phoneme.POSITION.OCI),
                 new Phoneme("t", Phoneme.POSITION.OM)))); // e aqui eu vejo que não conseguiu o "fɾ"
         /////////////////
-        
+
         cases.add(new KnownCase("Biblioteca", "bliotɛka", false, Arrays.asList(
                 new Phoneme("bl", Phoneme.POSITION.OCI), // is not in target words in this position but can reproduce
                 new Phoneme("t", Phoneme.POSITION.OM),
@@ -103,7 +103,7 @@ public class SimulationConsonantClustersTest {
         // fonemas inferidos
         List<Phoneme> expected = Arrays.asList(
                 new Phoneme("bl", Phoneme.POSITION.OCI), // is not in target words, but it is in the assessment: can reproduce
-                new Phoneme("vɾ", Phoneme.POSITION.OCI), // is not in target words and not even in the target phonemes: can't validate if she can reproduce or not
+                new Phoneme("vɾ", Phoneme.POSITION.OCI), // is not in target words and not even in the assessment: can't validate if she can reproduce or not
                 new Phoneme("pl", Phoneme.POSITION.OCI),
                 new Phoneme("fɾ", Phoneme.POSITION.OCI)); // keep this here
 
@@ -127,9 +127,9 @@ public class SimulationConsonantClustersTest {
 
         System.out.println("testRun - consonant clusters in assessment");
         List<Phoneme> expectedClustersInAssessment = Arrays.asList(
-                new Phoneme("vl", Phoneme.POSITION.OCI), 
+                new Phoneme("vl", Phoneme.POSITION.OCI),
                 new Phoneme("bɾ", Phoneme.POSITION.OCI),
-                new Phoneme("pɾ", Phoneme.POSITION.OCI), 
+                new Phoneme("pɾ", Phoneme.POSITION.OCI),
                 new Phoneme("pl", Phoneme.POSITION.OCI),
                 new Phoneme("fl", Phoneme.POSITION.OCI),
                 new Phoneme("bl", Phoneme.POSITION.OCI));
@@ -147,10 +147,37 @@ public class SimulationConsonantClustersTest {
         List<Phoneme> resultValidInferred = info.getValidInferred();
         assertEquals(expectedValidInferredPhonemes.size(), resultValidInferred.size());
         assertTrue(expectedValidInferredPhonemes.containsAll(resultValidInferred));
-        
+
         // dos X fonemas inferidos Y foram reproduzidos na avaliação. porém, dos (X-Y) fonemas Z estavam presentes nos fonemas
         // alvo das palavras. Ou seja, não temos como saber se a criança não os produziu por não ser capaz de produzí-los ou
         // simplesmente porque ela não foi estimulada a produzí-los via palavras-alvo.
+        System.out.println("testRun - inferred not reproduced but are in target words");
+        /**
+         * We inferred that the child would be capable of reproduce this phoneme, and the assessment offers this
+         * possibility with a target words that contains this consonant cluster. Besides that, she wasn't capable of
+         * reproduce this phoneme, so the inference was invalid.
+         */
+        List<Phoneme> expectedInferredNotReproducedInTargetWords = Arrays.asList(
+                new Phoneme("fɾ", Phoneme.POSITION.OCI));
+
+        List<Phoneme> resultInferredNotReproducedInTargetWords = info.getInferredNotReproducedInTargetWords();
+        assertEquals(expectedInferredNotReproducedInTargetWords.size(), resultInferredNotReproducedInTargetWords.size());
+        assertTrue(expectedInferredNotReproducedInTargetWords.containsAll(resultInferredNotReproducedInTargetWords));
+
+        System.out.println("testRun - inferred not reproduced but are not in target words");
+        /**
+         * We inferred that the child would be capable of reproduce this phoneme, but she wasn't. Besides that, we are
+         * not capable of invalidated the inference, because we can't known if the wasn't capable of reproduce it
+         * because she really can't or because the assessment doesn't offer this possibility, by not containing a target
+         * words with the phoneme inferred.
+         */
+        List<Phoneme> expectedInferredNotReproducedNotInTargetWords = Arrays.asList(
+                new Phoneme("vɾ", Phoneme.POSITION.OCI) // is not in target words and not even in the assessment: can't validate if she can reproduce or not
+        );
+
+        List<Phoneme> resultInferredNotReproducedNotInTargetWords = info.getInferredNotReproducedNotInTargetWords();
+        assertEquals(expectedInferredNotReproducedNotInTargetWords.size(), resultInferredNotReproducedNotInTargetWords.size());
+        assertTrue(expectedInferredNotReproducedNotInTargetWords.containsAll(resultInferredNotReproducedNotInTargetWords));
     }
 
 }
