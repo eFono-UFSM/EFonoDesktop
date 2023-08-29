@@ -10,7 +10,7 @@ import br.com.efono.model.SimulationInfo;
 import br.com.efono.model.Statistics;
 import br.com.efono.tree.BinaryTreePrinter;
 import br.com.efono.util.Defaults;
-import br.com.efono.util.NoRepeatList;
+import br.com.efono.util.SimulationConsonantClusters;
 import br.com.efono.util.SimulationWordsSequence;
 import br.com.efono.util.Util;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -167,7 +167,7 @@ public class Main {
 
     private static List<Assessment> getAssessmentsFromDB() {
         final List<Assessment> assessments = new ArrayList<>();
-        String queryAssessmentId = "SELECT DISTINCT id_avaliacao FROM avaliacaopalavra";
+        String queryAssessmentId = "SELECT DISTINCT id_avaliacao FROM avaliacaopalavra where id_avaliacao=15";
         ResultSet idsResult;
         try {
             idsResult = MySQLConnection.getInstance().executeQuery(queryAssessmentId);
@@ -224,36 +224,11 @@ public class Main {
         System.out.println("Analyzing Consonant Clusters");
         System.out.println("--------------------------------------");
 
-        final List<Phoneme> clustersParts = new NoRepeatList<>();
-        List<Phoneme> inferredPhonemes = Util.getInferredPhonemes(Defaults.TARGET_PHONEMES,
-                Arrays.asList(Defaults.SORTED_WORDS), clustersParts);
-
-        List<Phoneme> allClustersInWords = new NoRepeatList<>();
-
-        // inferred phonemes that are in db
-        final List<Phoneme> intersec = new NoRepeatList<>();
-
         List<Assessment> assessments = getAssessmentsFromDB();
-        assessments.stream().filter(a -> a.getCases().size() == Defaults.SORTED_WORDS.length).forEach(a -> {
-            a.getCases().forEach(c -> {
-
-                c.getPhonemes().stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
-                    allClustersInWords.add(p);
-                    if (inferredPhonemes.contains(p)) {
-                        intersec.add(p);
-                    }
-                });
-            });
+        System.out.println("Running simulation with " + assessments.size() + " complete assessments");
+        assessments.forEach(a -> {
+            SimulationConsonantClusters.run(a, KnownCaseComparator.EasyWordsFirst);
         });
-
-        System.out.println("allClustersInWords:");
-        Util.printClusters(allClustersInWords);
-        System.out.println("-------------------");
-
-        System.out.println("infered consonant clusters that are in transcription from DB:");
-        Util.printClusters(intersec);
-        System.out.println("-------------------");
-
     }
 
     private static void processSimulation(final File outputDirectory) throws SQLException {

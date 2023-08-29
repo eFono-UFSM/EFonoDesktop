@@ -429,12 +429,9 @@ public class Util {
              */
             List<Phoneme> nonInferredPhonemes = new NoRepeatList<>();
 
-            List<Phoneme> allClustersInTheWords = new NoRepeatList<>();
-
             words.forEach(w -> {
                 if (map.containsKey(w)) {
                     map.get(w).stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
-                        allClustersInTheWords.add(p);
                         if (!nonInferredPhonemes.contains(p)) {
                             List<Phoneme> splitPhonemes = p.splitPhonemes();
 
@@ -449,32 +446,6 @@ public class Util {
                     });
                 }
             });
-
-            // fonemas não inferidos que serviram de base para inferir outros fonemas
-            System.out.println("nonInferredPhonemes:");
-            printClusters(nonInferredPhonemes);
-            System.out.println("-------------------");
-
-            System.out.println("inferredPhonemes:");
-            printClusters(inferredPhonemes);
-            System.out.println("-------------------");
-
-            System.out.println("allClustersInTheWords:");
-            printClusters(allClustersInTheWords);
-            System.out.println("-------------------");
-
-            // esses são os fonemas que inferi e tenho condições de testar se a lógica é valida ou não.
-            // os demais fonemas inferidos não aparecem em nenhuma palavra transcrita corretamente
-            System.out.println("allClustersInTheWords that are in inferredPhonemes:");
-            List<Phoneme> intersec = new NoRepeatList<>();
-            allClustersInTheWords.forEach(c -> {
-                if (inferredPhonemes.contains(c)) {
-                    intersec.add(c);
-                }
-            });
-
-            printClusters(intersec);
-            System.out.println("-------------------");
         }
 
         return inferredPhonemes;
@@ -499,16 +470,22 @@ public class Util {
      * Print consonant clusters separately according with its positions.
      *
      * @param clusters Clusters to print.
+     * @return The string to print.
      */
-    public static void printClusters(final List<Phoneme> clusters) {
-        System.out.println("total: " + clusters.size());
-        System.out.print(Phoneme.POSITION.OCI + ": ");
-        clusters.stream().filter(p -> p.getPosition().equals(Phoneme.POSITION.OCI)).forEach(p -> System.out.print(p.getPhoneme() + ","));
-        System.out.println("");
+    public static String printClusters(final List<Phoneme> clusters) {
+        final StringBuilder builder = new StringBuilder("total: " + clusters.size());
 
-        System.out.print(Phoneme.POSITION.OCME + ": ");
-        clusters.stream().filter(p -> p.getPosition().equals(Phoneme.POSITION.OCME)).forEach(p -> System.out.print(p.getPhoneme() + ","));
-        System.out.println("\n");
+        builder.append(Phoneme.POSITION.OCI).append(": ");
+        clusters.stream().filter(p -> p.getPosition().equals(Phoneme.POSITION.OCI)).forEach(
+                p -> builder.append(p.getPhoneme()).append(","));
+        builder.append("\n");
+
+        builder.append(Phoneme.POSITION.OCME).append(": ");
+        clusters.stream().filter(p -> p.getPosition().equals(Phoneme.POSITION.OCME)).forEach(
+                p -> builder.append(p.getPhoneme()).append(","));
+        builder.append("\n");
+        
+        return builder.toString();
     }
 
 }
