@@ -6,6 +6,7 @@ import br.com.efono.model.Assessment;
 import br.com.efono.model.KnownCase;
 import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.model.Phoneme;
+import br.com.efono.model.SimulationConsonantClustersInfo;
 import br.com.efono.model.SimulationInfo;
 import br.com.efono.model.Statistics;
 import br.com.efono.tree.BinaryTreePrinter;
@@ -167,7 +168,7 @@ public class Main {
 
     private static List<Assessment> getAssessmentsFromDB() {
         final List<Assessment> assessments = new ArrayList<>();
-        String queryAssessmentId = "SELECT DISTINCT id_avaliacao FROM avaliacaopalavra where id_avaliacao=15";
+        String queryAssessmentId = "SELECT DISTINCT id_avaliacao FROM avaliacaopalavra";
         ResultSet idsResult;
         try {
             idsResult = MySQLConnection.getInstance().executeQuery(queryAssessmentId);
@@ -226,9 +227,25 @@ public class Main {
 
         List<Assessment> assessments = getAssessmentsFromDB();
         System.out.println("Running simulation with " + assessments.size() + " complete assessments");
+
+        final StringBuilder builder = new StringBuilder();
         assessments.forEach(a -> {
-            SimulationConsonantClusters.run(a, KnownCaseComparator.EasyWordsFirst);
+            SimulationConsonantClustersInfo run = SimulationConsonantClusters.run(a, KnownCaseComparator.EasyWordsFirst);
+            builder.append(run.exportCSV(builder.toString().isBlank()));
         });
+
+        File parent = new File(outputDirectory, "SAC-2024-results");
+        parent.mkdir();
+
+        System.out.println("Output directory with simulation statistics: " + parent);
+
+        File file = new File(parent, "results.csv");
+        try (PrintWriter out = new PrintWriter(file)) {
+            out.print(builder.toString());
+            System.out.println("File at: " + file);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
     }
 
     private static void processSimulation(final File outputDirectory) throws SQLException {

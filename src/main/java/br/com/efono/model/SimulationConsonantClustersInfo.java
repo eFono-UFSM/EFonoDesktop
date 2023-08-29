@@ -97,7 +97,10 @@ public class SimulationConsonantClustersInfo {
         // quantos dos fonemas inferidos a criança realmente conseguiu reproduzir
         // dos fonemas que não foram inferidos, quantos estavam nas target words
         // dos fonemas que não foram inferidos, quantos não estavam nas target words
-        final StringBuilder builder = new StringBuilder("inferredPhonemes,inferredProduced,invalidInferences,cantInvalidateInferences");
+        final StringBuilder builder = new StringBuilder();
+        if (header) {
+            builder.append("inferredPhonemes,inferredProduced,invalidInferences,cantInvalidateInferences\n");
+        }
 
         List<String> cols = new LinkedList<>();
         cols.add(Integer.toString(inferredPhonemes.size()));
