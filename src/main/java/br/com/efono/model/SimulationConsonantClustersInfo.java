@@ -71,16 +71,28 @@ public class SimulationConsonantClustersInfo {
     public String toString() {
         final StringBuilder builder = new StringBuilder("\n==========================================\n");
 
-        builder.append("allClustersInAssessment\n");
-        builder.append(Util.printClusters(allClustersInAssessment));
+        builder.append("infered phonemes:\n");
+        builder.append(Util.printClusters(inferredPhonemes));
         builder.append("-------------------\n");
 
-        builder.append("valid infered consonant clusters:\n");
+        builder.append("inferredPhonemesInTargetWords:\n");
         builder.append(Util.printClusters(inferredPhonemesInTargetWords));
         builder.append("-------------------\n");
 
         builder.append("the logic was valid in:\n");
         builder.append(Util.printClusters(validInferred));
+        builder.append("-------------------\n");
+
+        builder.append("allClustersInAssessment\n");
+        builder.append(Util.printClusters(allClustersInAssessment));
+        builder.append("-------------------\n");
+
+        builder.append("inferredNotReproducedInTargetWords\n");
+        builder.append(Util.printClusters(inferredNotReproducedInTargetWords));
+        builder.append("-------------------\n");
+
+        builder.append("inferredNotReproducedNotInTargetWords:\n");
+        builder.append(Util.printClusters(inferredNotReproducedNotInTargetWords));
         builder.append("-------------------\n");
 
         return builder.toString();
@@ -99,11 +111,12 @@ public class SimulationConsonantClustersInfo {
         // dos fonemas que não foram inferidos, quantos não estavam nas target words
         final StringBuilder builder = new StringBuilder();
         if (header) {
-            builder.append("inferredPhonemes,inferredProduced,invalidInferences,cantInvalidateInferences\n");
+            builder.append("inferredPhonemes,inferredPhonemesInTargetWords,validInferred,inferredNotReproducedInTargetWords,inferredNotReproducedNotInTargetWords\n");
         }
 
         List<String> cols = new LinkedList<>();
         cols.add(Integer.toString(inferredPhonemes.size()));
+        cols.add(Integer.toString(inferredPhonemesInTargetWords.size()));
         cols.add(Integer.toString(validInferred.size()));
         cols.add(Integer.toString(inferredNotReproducedInTargetWords.size()));
         cols.add(Integer.toString(inferredNotReproducedNotInTargetWords.size()));

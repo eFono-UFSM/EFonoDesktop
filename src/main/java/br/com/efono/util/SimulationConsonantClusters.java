@@ -18,6 +18,11 @@ import java.util.Map;
 public class SimulationConsonantClusters {
 
     public static SimulationConsonantClustersInfo run(final Assessment assessment, final KnownCaseComparator comp) {
+        return run(assessment, comp, false);
+    }
+
+    public static SimulationConsonantClustersInfo run(final Assessment assessment, final KnownCaseComparator comp,
+            boolean considerOnlyClustersInTargetWords) {
         if (assessment != null && comp != null) {
             List<KnownCase> cases = assessment.getCases();
             SimulationWordsSequence.sortList(cases, comp);
@@ -53,16 +58,26 @@ public class SimulationConsonantClusters {
             assessment.getCases().forEach(c -> {
                 c.getPhonemes().stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
                     allClustersInAssessment.add(p);
-                    if (inferredPhonemes.contains(p)) {
+                    if (considerOnlyClustersInTargetWords) {
+                        if (inferredPhonemesInTargetWords.contains(p)) {
+                            validInferred.add(p);
+                        }
+                    } else if (inferredPhonemes.contains(p)) {
                         validInferred.add(p);
                     }
                 });
             });
 
+            List<Phoneme> inferred = inferredPhonemes;
+            if (considerOnlyClustersInTargetWords) {
+                inferred = inferredPhonemesInTargetWords;
+            }
+            
             List<Phoneme> inferredNotReproducedInTargetWords = new NoRepeatList<>();
             List<Phoneme> inferredNotReproducedNotInTargetWords = new NoRepeatList<>();
-            inferredPhonemes.forEach(c -> {
+            inferred.forEach(c -> {
                 if (!validInferred.contains(c)) {
+                    System.out.println(c);
                     if (allTargetConsonantClusters.contains(c)) {
                         inferredNotReproducedInTargetWords.add(c);
                     } else {
@@ -72,7 +87,7 @@ public class SimulationConsonantClusters {
             });
 
             return new SimulationConsonantClustersInfo(inferredPhonemes, allTargetConsonantClusters,
-                    inferredPhonemesInTargetWords, allClustersInAssessment, validInferred, 
+                    inferredPhonemesInTargetWords, allClustersInAssessment, validInferred,
                     inferredNotReproducedInTargetWords, inferredNotReproducedNotInTargetWords);
         }
         return new SimulationConsonantClustersInfo();
