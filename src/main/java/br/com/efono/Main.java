@@ -227,7 +227,7 @@ public class Main {
 
         List<Assessment> assessments = getAssessmentsFromDB();
         System.out.println("Running simulation with " + assessments.size() + " complete assessments");
-        File parent = new File(outputDirectory, "SAC-2024-results-limited");
+        File parent = new File(outputDirectory, "SAC-2024-results");
         parent.mkdir();
 
         System.out.println("Output directory with simulation statistics: " + parent);

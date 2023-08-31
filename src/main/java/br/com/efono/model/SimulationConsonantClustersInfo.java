@@ -105,21 +105,37 @@ public class SimulationConsonantClustersInfo {
      * @return The information in CSV format.
      */
     public String exportCSV(boolean header) {
+        if (inferredPhonemes.isEmpty() || inferredPhonemesInTargetWords.isEmpty()) {
+            return "";
+        }
         // quantos fonemas foram inferidos no decorrer da avaliação
         // quantos dos fonemas inferidos a criança realmente conseguiu reproduzir
         // dos fonemas que não foram inferidos, quantos estavam nas target words
         // dos fonemas que não foram inferidos, quantos não estavam nas target words
         final StringBuilder builder = new StringBuilder();
         if (header) {
-            builder.append("inferredPhonemes,inferredPhonemesInTargetWords,validInferred,inferredNotReproducedInTargetWords,inferredNotReproducedNotInTargetWords\n");
+            builder.append("inferredPhonemes,inferredPhonemesInTargetWords,validInferred,inferredNotReproducedInTargetWords,inferredNotReproducedNotInTargetWords,inferencesValidation\n");
         }
 
         List<String> cols = new LinkedList<>();
         cols.add(Integer.toString(inferredPhonemes.size()));
         cols.add(Integer.toString(inferredPhonemesInTargetWords.size()));
-        cols.add(Integer.toString(validInferred.size()));
-        cols.add(Integer.toString(inferredNotReproducedInTargetWords.size()));
+        if (validInferred.isEmpty()) {
+            cols.add("Nenhum");
+        } else {
+            cols.add(Integer.toString(validInferred.size()));
+        }
+        // número de fonemas inferidos que não foram reproduzidos mas que estão nas palavras alvo: inferências inválidas.
+        // se não tiver nenhuma, significa que todas inferências foram válidas
+        if (inferredNotReproducedInTargetWords.isEmpty()) {
+            cols.add("Todas Válidas");
+        } else {
+            cols.add(Integer.toString(inferredNotReproducedInTargetWords.size()));
+        }
         cols.add(Integer.toString(inferredNotReproducedNotInTargetWords.size()));
+        
+        int v = validInferred.size() * 100 / inferredPhonemesInTargetWords.size();
+        cols.add(Integer.toString(v) + "%");
 
         for (int i = 0; i < cols.size(); i++) {
             builder.append(cols.get(i));
