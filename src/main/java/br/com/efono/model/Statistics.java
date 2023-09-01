@@ -176,7 +176,15 @@ public class Statistics {
         return str.toString();
     }
 
-    private List<String> getLinesFromMap(final String key, final String value, final Map map) {
+    /**
+     * Get lines in CSV format from the given map.
+     *
+     * @param key Key header.
+     * @param value Value header.
+     * @param map The map.
+     * @return All the lines in CSV format.
+     */
+    public static List<String> getLinesFromMap(final String key, final String value, final Map map) {
         List<String> lines = new LinkedList<>();
         lines.add(key + "," + value); // header
 
@@ -214,7 +222,7 @@ public class Statistics {
                 }
             }
         }
-        
+
         System.out.println(comp + " mostRepeatedFrequency: " + mostRepeatedFrequency);
         System.out.println("sortedMap: " + sortedMap);
 
@@ -227,7 +235,7 @@ public class Statistics {
                 break;
             }
         }
-        
+
         System.out.println("words[" + words.size() + ": " + words);
 
         List<String> lines = new LinkedList<>();

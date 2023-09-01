@@ -2,8 +2,10 @@ package br.com.efono.model;
 
 import br.com.efono.util.Util;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -133,7 +135,7 @@ public class SimulationConsonantClustersInfo {
             cols.add(Integer.toString(inferredNotReproducedInTargetWords.size()));
         }
         cols.add(Integer.toString(inferredNotReproducedNotInTargetWords.size()));
-        
+
         int v = validInferred.size() * 100 / inferredPhonemesInTargetWords.size();
         cols.add(Integer.toString(v) + "%");
 
@@ -145,6 +147,56 @@ public class SimulationConsonantClustersInfo {
         }
         builder.append("\n");
 
+        return builder.toString();
+    }
+
+    public static String exportTableCSVInferredPhonemes(final List<SimulationConsonantClustersInfo> infos) {
+        Map<Phoneme, Integer> mapInferredPhonemes = new HashMap<>();
+
+        infos.forEach(i -> {
+            i.getInferredPhonemes().forEach(p -> {
+                if (!mapInferredPhonemes.containsKey(p)) {
+                    mapInferredPhonemes.put(p, 0);
+                }
+                mapInferredPhonemes.put(p, mapInferredPhonemes.get(p) + 1);
+            });
+        });
+
+        List<String> linesFromMapInferredPhonemes = Statistics.getLinesFromMap("inferredPhonemes", "count",
+                mapInferredPhonemes);
+
+        List<String> lines = new LinkedList<>();
+        linesFromMapInferredPhonemes.forEach(l -> lines.add(l));
+
+        final StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < lines.size(); i++) {
+            builder.append(lines.get(i)).append("\n");
+        }
+        return builder.toString();
+    }
+
+    public static String exportTableCSVInferredPhonemesInTargetWords(final List<SimulationConsonantClustersInfo> infos) {
+        Map<Phoneme, Integer> mapInferredPhonemesInTargetWords = new HashMap<>();
+
+        infos.forEach(i -> {
+            i.getInferredPhonemesInTargetWords().forEach(p -> {
+                if (!mapInferredPhonemesInTargetWords.containsKey(p)) {
+                    mapInferredPhonemesInTargetWords.put(p, 0);
+                }
+                mapInferredPhonemesInTargetWords.put(p, mapInferredPhonemesInTargetWords.get(p) + 1);
+            });
+        });
+
+        List<String> linesFromMapInferredPhonemesInTargetWords = Statistics.getLinesFromMap(
+                "inferredPhonemesInTargetWords", "count", mapInferredPhonemesInTargetWords);
+        List<String> lines = new LinkedList<>();
+        linesFromMapInferredPhonemesInTargetWords.forEach(l -> lines.add(l));
+
+        final StringBuilder builder = new StringBuilder();
+
+        for (int i = 0; i < lines.size(); i++) {
+            builder.append(lines.get(i)).append("\n");
+        }
         return builder.toString();
     }
 

@@ -198,8 +198,8 @@ public class Phoneme {
     @Override
     public String toString() {
         if (position != null) {
-            StringBuilder builder = new StringBuilder(position.toString());
-            builder.append("(").append(phoneme).append(")");
+            StringBuilder builder = new StringBuilder();
+            builder.append(phoneme).append("(").append(position.name()).append(")");
             return builder.toString();
         }
         return phoneme;

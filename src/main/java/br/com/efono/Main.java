@@ -232,23 +232,46 @@ public class Main {
 
         System.out.println("Output directory with simulation statistics: " + parent);
 
+        // consider as valid inferred phonemes only the ones that are in target words
+        List<SimulationConsonantClustersInfo> infos = new ArrayList<>();
         for (int i = 0; i <= 1; i++) {
             boolean considerOnlyClustersInTargetWords = (i == 0);
-            
+
             System.out.println("Consider only clusters in target words: " + considerOnlyClustersInTargetWords);
             final StringBuilder builder = new StringBuilder();
             assessments.forEach(a -> {
                 SimulationConsonantClustersInfo run = SimulationConsonantClusters.run(a, KnownCaseComparator.EasyWordsFirst,
                         considerOnlyClustersInTargetWords);
+
+                if (considerOnlyClustersInTargetWords) {
+                    infos.add(run);
+                }
+
                 builder.append(run.exportCSV(builder.toString().isBlank()));
             });
-            
+
             System.out.println("-----------------------------------------------------------------------");
 
             File file = new File(parent, "results-considerOnlyClustersInTargetWords-" + considerOnlyClustersInTargetWords + ".csv");
             try (PrintWriter out = new PrintWriter(file)) {
                 out.print(builder.toString());
                 System.out.println("File at: " + file);
+            } catch (final FileNotFoundException ex) {
+                System.out.println("Couldn't write into file: " + ex);
+            }
+
+            File fileInferredPhonemes = new File(parent, "inferredPhonemes-considerOnlyClustersInTargetWords-true.csv");
+            try (PrintWriter out = new PrintWriter(fileInferredPhonemes)) {
+                out.print(SimulationConsonantClustersInfo.exportTableCSVInferredPhonemes(infos));
+                System.out.println("File at: " + fileInferredPhonemes);
+            } catch (final FileNotFoundException ex) {
+                System.out.println("Couldn't write into file: " + ex);
+            }
+
+            File fileInferredPhonemesInTargetWords = new File(parent, "inferredPhonemesInTargetWords-considerOnlyClustersInTargetWords-true.csv");
+            try (PrintWriter out = new PrintWriter(fileInferredPhonemesInTargetWords)) {
+                out.print(SimulationConsonantClustersInfo.exportTableCSVInferredPhonemesInTargetWords(infos));
+                System.out.println("File at: " + fileInferredPhonemesInTargetWords);
             } catch (final FileNotFoundException ex) {
                 System.out.println("Couldn't write into file: " + ex);
             }
