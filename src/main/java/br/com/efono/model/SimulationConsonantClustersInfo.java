@@ -2,6 +2,7 @@ package br.com.efono.model;
 
 import br.com.efono.util.Util;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -150,53 +151,62 @@ public class SimulationConsonantClustersInfo {
         return builder.toString();
     }
 
-    public static String exportTableCSVInferredPhonemes(final List<SimulationConsonantClustersInfo> infos) {
-        Map<Phoneme, Integer> mapInferredPhonemes = new HashMap<>();
+    private static void putCountingInMap(final List list, final Map<Object, Integer> map) {
+        list.forEach(p -> {
+            if (!map.containsKey(p)) {
+                map.put(p, 0);
+            }
+            map.put(p, map.get(p) + 1);
+        });
+    }
 
+    /**
+     * Export lists counting from all the SimulationConsonantClustersInfo.
+     *
+     * @param infos Information to do the counting.
+     * @return The lists counting in CSV format.
+     */
+    public static String exportCountingInfosToCSV(final List<SimulationConsonantClustersInfo> infos) {
+        // pega a lista e faz uma contagem dos elementos dela
+        Map<Object, Integer> mapInferredPhonemesInTargetWords = new HashMap<>();
+        Map<Object, Integer> mapInferredPhonemes = new HashMap<>();
         infos.forEach(i -> {
-            i.getInferredPhonemes().forEach(p -> {
-                if (!mapInferredPhonemes.containsKey(p)) {
-                    mapInferredPhonemes.put(p, 0);
-                }
-                mapInferredPhonemes.put(p, mapInferredPhonemes.get(p) + 1);
-            });
+            putCountingInMap(i.getInferredPhonemes(), mapInferredPhonemes);
+            putCountingInMap(i.getInferredPhonemesInTargetWords(), mapInferredPhonemesInTargetWords);
         });
 
         List<String> linesFromMapInferredPhonemes = Statistics.getLinesFromMap("inferredPhonemes", "count",
                 mapInferredPhonemes);
+        List<String> linesFromMapInferredPhonemesInTargetWords = Statistics.getLinesFromMap("inferredPhonemesInTargetWords", "count",
+                mapInferredPhonemesInTargetWords);
 
-        List<String> lines = new LinkedList<>();
-        linesFromMapInferredPhonemes.forEach(l -> lines.add(l));
-
-        final StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < lines.size(); i++) {
-            builder.append(lines.get(i)).append("\n");
+        List<List<String>> data = Arrays.asList(linesFromMapInferredPhonemes, linesFromMapInferredPhonemesInTargetWords);
+        int maxSize = 0;
+        for (List l : data) {
+            if (l.size() > maxSize) {
+                maxSize = l.size();
+            }
         }
-        return builder.toString();
-    }
 
-    public static String exportTableCSVInferredPhonemesInTargetWords(final List<SimulationConsonantClustersInfo> infos) {
-        Map<Phoneme, Integer> mapInferredPhonemesInTargetWords = new HashMap<>();
+        StringBuilder builder = new StringBuilder();
 
-        infos.forEach(i -> {
-            i.getInferredPhonemesInTargetWords().forEach(p -> {
-                if (!mapInferredPhonemesInTargetWords.containsKey(p)) {
-                    mapInferredPhonemesInTargetWords.put(p, 0);
+        for (int i = 0; i < maxSize; i++) {
+            for (int j = 0; j < data.size(); j++) {
+                List<String> lines = data.get(j);
+
+                if (i < lines.size()) {
+                    builder.append(lines.get(i));
+                } else {
+                    builder.append(",");
                 }
-                mapInferredPhonemesInTargetWords.put(p, mapInferredPhonemesInTargetWords.get(p) + 1);
-            });
-        });
-
-        List<String> linesFromMapInferredPhonemesInTargetWords = Statistics.getLinesFromMap(
-                "inferredPhonemesInTargetWords", "count", mapInferredPhonemesInTargetWords);
-        List<String> lines = new LinkedList<>();
-        linesFromMapInferredPhonemesInTargetWords.forEach(l -> lines.add(l));
-
-        final StringBuilder builder = new StringBuilder();
-
-        for (int i = 0; i < lines.size(); i++) {
-            builder.append(lines.get(i)).append("\n");
+                if (j < data.size() - 1) {
+                    builder.append(",,"); // add a separator between infos
+                } else {
+                    builder.append("\n");
+                }
+            }
         }
+
         return builder.toString();
     }
 

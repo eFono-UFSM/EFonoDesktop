@@ -259,22 +259,14 @@ public class Main {
             } catch (final FileNotFoundException ex) {
                 System.out.println("Couldn't write into file: " + ex);
             }
+        }
 
-            File fileInferredPhonemes = new File(parent, "inferredPhonemes-considerOnlyClustersInTargetWords-true.csv");
-            try (PrintWriter out = new PrintWriter(fileInferredPhonemes)) {
-                out.print(SimulationConsonantClustersInfo.exportTableCSVInferredPhonemes(infos));
-                System.out.println("File at: " + fileInferredPhonemes);
-            } catch (final FileNotFoundException ex) {
-                System.out.println("Couldn't write into file: " + ex);
-            }
-
-            File fileInferredPhonemesInTargetWords = new File(parent, "inferredPhonemesInTargetWords-considerOnlyClustersInTargetWords-true.csv");
-            try (PrintWriter out = new PrintWriter(fileInferredPhonemesInTargetWords)) {
-                out.print(SimulationConsonantClustersInfo.exportTableCSVInferredPhonemesInTargetWords(infos));
-                System.out.println("File at: " + fileInferredPhonemesInTargetWords);
-            } catch (final FileNotFoundException ex) {
-                System.out.println("Couldn't write into file: " + ex);
-            }
+        File fileInfosCount = new File(parent, "infosCount-considerOnlyClustersInTargetWords-true.csv");
+        try (PrintWriter out = new PrintWriter(fileInfosCount)) {
+            out.print(SimulationConsonantClustersInfo.exportCountingInfosToCSV(infos));
+            System.out.println("File at: " + fileInfosCount);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
         }
     }
 
