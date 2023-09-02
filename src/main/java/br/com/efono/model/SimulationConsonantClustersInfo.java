@@ -20,19 +20,23 @@ public class SimulationConsonantClustersInfo {
     private final List<Phoneme> inferredPhonemesInTargetWords;
     private final List<Phoneme> allClustersInAssessment;
     private final List<Phoneme> validInferred;
+    private final List<Phoneme> invalidInferred;
     private final List<Phoneme> inferredNotReproducedInTargetWords;
     private final List<Phoneme> inferredNotReproducedNotInTargetWords;
+    private final List<Phoneme> clustersParts;
 
+    @Deprecated
     public SimulationConsonantClustersInfo() {
         this(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
-                new ArrayList<>(), new ArrayList<>());
+                new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
+    @Deprecated
     public SimulationConsonantClustersInfo(final List<Phoneme> inferredPhonemes,
             final List<Phoneme> allTargetConsonantClusters, final List<Phoneme> validInferredPhonemes,
             final List<Phoneme> allClustersInAssessment, final List<Phoneme> validInferred,
             final List<Phoneme> inferredNotReproducedInTargetWords,
-            final List<Phoneme> inferredNotReproducedNotInTargetWords) {
+            final List<Phoneme> inferredNotReproducedNotInTargetWords, final List<Phoneme> clustersParts) {
         this.inferredPhonemes = inferredPhonemes;
         this.allTargetConsonantClusters = allTargetConsonantClusters;
         this.inferredPhonemesInTargetWords = validInferredPhonemes;
@@ -40,6 +44,27 @@ public class SimulationConsonantClustersInfo {
         this.validInferred = validInferred;
         this.inferredNotReproducedInTargetWords = inferredNotReproducedInTargetWords;
         this.inferredNotReproducedNotInTargetWords = inferredNotReproducedNotInTargetWords;
+        this.clustersParts = clustersParts;
+        this.invalidInferred = new ArrayList<>();
+    }
+
+    public SimulationConsonantClustersInfo(final List<Phoneme> inferredPhonemes,
+            final List<Phoneme> allTargetConsonantClusters, final List<Phoneme> validInferredPhonemes,
+            final List<Phoneme> allClustersInAssessment, final List<Phoneme> validInferred,
+            final List<Phoneme> invalidInferred, final List<Phoneme> clustersParts) {
+        this.inferredPhonemes = inferredPhonemes;
+        this.allTargetConsonantClusters = allTargetConsonantClusters;
+        this.inferredPhonemesInTargetWords = validInferredPhonemes;
+        this.allClustersInAssessment = allClustersInAssessment;
+        this.validInferred = validInferred;
+        this.inferredNotReproducedInTargetWords = new ArrayList<>();
+        this.inferredNotReproducedNotInTargetWords = new ArrayList<>();
+        this.invalidInferred = validInferred;
+        this.clustersParts = clustersParts;
+    }
+
+    public List<Phoneme> getClustersParts() {
+        return clustersParts;
     }
 
     public List<Phoneme> getInferredPhonemes() {

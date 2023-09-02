@@ -414,56 +414,40 @@ public class Util {
      * In this case, this method will return {Medial Complex Onset(bɾ), Medial Complex Onset(kl)}.
      *
      * @param map A map with words spoken by the subject and its phonemes reproduced.
-     * @param words The sequence of evaluation of the words. The sequence will have impact in the returned list of
-     * inferred phonemes.
      * @param clustersParts A list with all the clusters parts.
      * @return A non-null list with inferred phonemes.
      */
-    public static List<Phoneme> getInferredPhonemes(final Map<String, List<Phoneme>> map, final List<String> words, final List<Phoneme> clustersParts) {
+    @Deprecated
+    public static List<Phoneme> getInferredPhonemes(final Map<String, List<Phoneme>> map,
+            final List<Phoneme> clustersParts) {
         List<Phoneme> inferredPhonemes = new NoRepeatList<>();
         if (clustersParts != null) {
             clustersParts.clear();
 
-            /**
-             * Bucket with all phonemes that weren't inferred. We must explicitly control that.
-             */
-            List<Phoneme> nonInferredPhonemes = new NoRepeatList<>();
+            map.values().forEach(l -> {
+                l.stream().filter(p -> p.isConsonantCluster()).forEach(p -> clustersParts.addAll(p.splitPhonemes()));
+            });
 
-            words.forEach(w -> {
-                if (map.containsKey(w)) {
-                    map.get(w).stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
-                        if (!nonInferredPhonemes.contains(p)) {
-                            List<Phoneme> splitPhonemes = p.splitPhonemes();
+            long countOCI = clustersParts.stream().filter(p -> p.getPosition().equals(Phoneme.POSITION.OCI)).count();
+            long countOCM = clustersParts.stream().filter(p -> p.getPosition().equals(Phoneme.POSITION.OCME)).count();
+            Arrays.asList(Phoneme.CONSONANT_CLUSTERS).forEach(s -> {
+                Phoneme pOCI = new Phoneme(s, Phoneme.POSITION.OCI);
+                /**
+                 * If we have just 2 splitted phonemes, that means that the child only spoke "bl", for example, and then
+                 * we can't infer nothing from that information.
+                 */
+                if (countOCI > 2 && clustersParts.containsAll(pOCI.splitPhonemes())) {
+                    inferredPhonemes.add(pOCI);
+                }
 
-                            if (clustersParts.containsAll(splitPhonemes)) {
-                                inferredPhonemes.add(p);
-                            } else {
-                                nonInferredPhonemes.add(p);
-                            }
-                            clustersParts.addAll(splitPhonemes);
-                            reloadInferredPhonemes(clustersParts, nonInferredPhonemes, inferredPhonemes);
-                        }
-                    });
+                Phoneme pOCM = new Phoneme(s, Phoneme.POSITION.OCME);
+                if (countOCM > 2 && clustersParts.containsAll(pOCM.splitPhonemes())) {
+                    inferredPhonemes.add(pOCM);
                 }
             });
         }
 
         return inferredPhonemes;
-    }
-
-    private static void reloadInferredPhonemes(final List<Phoneme> clustersParts,
-            final List<Phoneme> nonInferredPhonemes, final List<Phoneme> inferredPhonemes) {
-        Arrays.asList(Phoneme.CONSONANT_CLUSTERS).forEach(s -> {
-            Phoneme pOCI = new Phoneme(s, Phoneme.POSITION.OCI);
-            if (!nonInferredPhonemes.contains(pOCI) && clustersParts.containsAll(pOCI.splitPhonemes())) {
-                inferredPhonemes.add(pOCI);
-            }
-
-            Phoneme pOCM = new Phoneme(s, Phoneme.POSITION.OCME);
-            if (!nonInferredPhonemes.contains(pOCM) && clustersParts.containsAll(pOCM.splitPhonemes())) {
-                inferredPhonemes.add(pOCM);
-            }
-        });
     }
 
     /**
@@ -484,8 +468,58 @@ public class Util {
         clusters.stream().filter(p -> p.getPosition().equals(Phoneme.POSITION.OCME)).forEach(
                 p -> builder.append(p.getPhoneme()).append(","));
         builder.append("\n");
-        
+
         return builder.toString();
+    }
+
+    /**
+     * Gets a list of consonant clusters by combination of all phonemes parts given by the list. In a list with:
+     *
+     * <ul>
+     * <li>b(OCI)</li>
+     * <li>l(OCI)</li>
+     * <li>f(OCI)</li>
+     * <li>ɾ(OCI)</li>
+     * </ul>
+     *
+     * The returned list will be:
+     *
+     * <ul>
+     * <li>bl(OCI)</li>
+     * <li>bɾ(OCI)</li>
+     * <li>fl(OCI)</li>
+     * <li>fɾ(OCI)</li>
+     * </ul>
+     *
+     * A combination will always be with 2 parts, so if there is only one phoneme in a specific position, then no
+     * combination can be done.
+     *
+     * @param list A list with all the clusters parts.
+     * @return A non-null list with possible consonant clusters.
+     */
+    public static List<Phoneme> getPossibleClusters(final List<Phoneme> list) {
+        final List<Phoneme> possibleClusters = new NoRepeatList<>();
+        final List<Phoneme> clustersParts = new NoRepeatList<>();
+        clustersParts.addAll(list); // avoid elements repeated
+        long countOCI = clustersParts.stream().filter(p -> p.getPosition().equals(Phoneme.POSITION.OCI)).count();
+        long countOCM = clustersParts.stream().filter(p -> p.getPosition().equals(Phoneme.POSITION.OCME)).count();
+        Arrays.asList(Phoneme.CONSONANT_CLUSTERS).forEach(s -> {
+            Phoneme pOCI = new Phoneme(s, Phoneme.POSITION.OCI);
+            /**
+             * If we have just 2 splitted phonemes, that means that the child only spoke "bl", for example, and then we
+             * can't infer nothing from that information.
+             */
+            if (countOCI > 2 && clustersParts.containsAll(pOCI.splitPhonemes())) {
+                possibleClusters.add(pOCI);
+            }
+
+            Phoneme pOCM = new Phoneme(s, Phoneme.POSITION.OCME);
+            if (countOCM > 2 && clustersParts.containsAll(pOCM.splitPhonemes())) {
+                possibleClusters.add(pOCM);
+            }
+        });
+
+        return possibleClusters;
     }
 
 }
