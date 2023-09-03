@@ -201,6 +201,14 @@ public class SimulationConsonantClusters {
                 }
             });
 
+            /*
+            inferredPhonemes = inferidos que a criança NÃO consegue produzir (D)
+            allConsonantClustersInTargetWords = encontros consonantais (alvos) nas palavras alvo (B)
+            inferredPhonemesInTargetWords = inferidos que estão nas palavras alvo D x B
+            allClustersInAssessment = fonemas produzidos na avaliação (C)
+            validInferred = fonemas inferidos que ela NÃO conseguiria produzir que estão nas palavras alvo e que ela realmente não produziu (D x B - C)
+            invalidInferred = fonemas inferidos  que ela NÃO conseguiria produzir que estão nas palavras alvo mas que ela produziu (D x B x C)
+            */
             return new SimulationConsonantClustersInfo(inferredPhonemes, allConsonantClustersInTargetWords,
                     inferredPhonemesInTargetWords, allClustersInAssessment, validInferred,
                     invalidInferred, clustersParts);

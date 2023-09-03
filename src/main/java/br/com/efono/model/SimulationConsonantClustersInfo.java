@@ -30,7 +30,6 @@ public class SimulationConsonantClustersInfo {
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
-    @Deprecated
     public SimulationConsonantClustersInfo(final List<Phoneme> inferredPhonemes,
             final List<Phoneme> allTargetConsonantClusters, final List<Phoneme> validInferredPhonemes,
             final List<Phoneme> allClustersInAssessment, final List<Phoneme> validInferred,
