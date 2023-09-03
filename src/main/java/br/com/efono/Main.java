@@ -242,10 +242,12 @@ public class Main {
                     = SimulationConsonantClusters.runInferencesAnalysisCorrect(a);
             infosAbleToReproduce.add(runAbleToReproduce);
             builderAbleToReproduce.append(runAbleToReproduce.exportCSVAbleToReproduce(builderAbleToReproduce.toString().isBlank()));
-            
+
             ////////////////////////////////
             SimulationConsonantClustersInfo runNotAbleToReproduce
                     = SimulationConsonantClusters.runInferencesAnalysisIncorrect(a);
+
+//            System.out.println(runNotAbleToReproduce);
             infosNotAbleToReproduce.add(runNotAbleToReproduce);
             builderNotAbleToReproduce.append(runNotAbleToReproduce.exportCSVNotAbleToReproduce(
                     builderNotAbleToReproduce.toString().isBlank()));
@@ -253,7 +255,7 @@ public class Main {
 
         System.out.println("-----------------------------------------------------------------------");
 
-        File fileAbleToReproduce = new File(parent, 
+        File fileAbleToReproduce = new File(parent,
                 "AbleToReproduce-statistics.csv");
         try (PrintWriter out = new PrintWriter(fileAbleToReproduce)) {
             out.print(builderAbleToReproduce.toString());
@@ -262,7 +264,7 @@ public class Main {
             System.out.println("Couldn't write into file: " + ex);
         }
 
-        File fileInfosCountAbleToReproduce = new File(parent, 
+        File fileInfosCountAbleToReproduce = new File(parent,
                 "AbleToReproduce-infosCount.csv");
         try (PrintWriter out = new PrintWriter(fileInfosCountAbleToReproduce)) {
             out.print(SimulationConsonantClustersInfo.exportCountingInfosToCSV(infosAbleToReproduce));
@@ -270,9 +272,9 @@ public class Main {
         } catch (final FileNotFoundException ex) {
             System.out.println("Couldn't write into file: " + ex);
         }
-        
+
         //////////////////////////
-        File fileNotAbleToReproduce = new File(parent, 
+        File fileNotAbleToReproduce = new File(parent,
                 "NotAbleToReproduce-statistics.csv");
         try (PrintWriter out = new PrintWriter(fileNotAbleToReproduce)) {
             out.print(builderNotAbleToReproduce.toString());
@@ -281,7 +283,7 @@ public class Main {
             System.out.println("Couldn't write into file: " + ex);
         }
 
-        File fileInfosCountNotAbleToReproduce = new File(parent, 
+        File fileInfosCountNotAbleToReproduce = new File(parent,
                 "NotAbleToReproduce-infosCount.csv");
         try (PrintWriter out = new PrintWriter(fileInfosCountNotAbleToReproduce)) {
             out.print(SimulationConsonantClustersInfo.exportCountingInfosToCSV(infosNotAbleToReproduce));
