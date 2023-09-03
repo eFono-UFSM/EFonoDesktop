@@ -25,7 +25,6 @@ public class SimulationConsonantClustersInfo {
     private final List<Phoneme> inferredNotReproducedNotInTargetWords;
     private final List<Phoneme> clustersParts;
 
-    @Deprecated
     public SimulationConsonantClustersInfo() {
         this(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
                 new ArrayList<>(), new ArrayList<>(), new ArrayList<>());

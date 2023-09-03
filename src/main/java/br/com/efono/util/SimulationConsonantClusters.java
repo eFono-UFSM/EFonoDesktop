@@ -2,7 +2,6 @@ package br.com.efono.util;
 
 import br.com.efono.model.Assessment;
 import br.com.efono.model.KnownCase;
-import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.model.Phoneme;
 import br.com.efono.model.SimulationConsonantClustersInfo;
 import java.util.ArrayList;
@@ -17,12 +16,20 @@ import java.util.Map;
  */
 public class SimulationConsonantClusters {
 
-    public static SimulationConsonantClustersInfo run(final Assessment assessment, final KnownCaseComparator comp,
+    /**
+     * Runs an analysis in the assessment to infer the phonemes that the child would reproduce, based on the phonemes in
+     * the assessment that she could reproduce.For example: If the child could reproduce "bl" and "pr" in this
+     * assessment, we infer that she would be able to reproduce "br" and "pl" as well.
+     *
+     * @param assessment Assessment to analyze.
+     * @param considerOnlyClustersInTargetWords Only will validate inferred phonemes that are in target words.
+     * @return An object that keeps all the information from the analysis.
+     */
+    public static SimulationConsonantClustersInfo runInferencesAnalysisCorrect(final Assessment assessment,
             boolean considerOnlyClustersInTargetWords) {
-        if (assessment != null && comp != null) {
+        if (assessment != null) {
             List<Phoneme> allClustersInAssessment = new NoRepeatList<>();
             List<KnownCase> cases = assessment.getCases();
-            SimulationWordsSequence.sortList(cases, comp);
 
             Map<String, List<Phoneme>> mapWordsPhonemes = new LinkedHashMap<>();
             cases.forEach(c -> mapWordsPhonemes.put(c.getWord(), c.getPhonemes()));
@@ -103,7 +110,7 @@ public class SimulationConsonantClusters {
                     }
                 }
             });
-            
+
             /*
             inferredPhonemes = todo o conjunto azul claro (A)
             allConsonantClustersInTargetWords = todo o conjunto verde (B)
@@ -112,8 +119,7 @@ public class SimulationConsonantClusters {
             validInferred = (A) x (B) x (C) cinza
             inferredNotReproducedInTargetWords = (A) x (B) - (C) azul escuro
             inferredNotReproducedNotInTargetWords = (A) - (B) - (C) azul claro
-            */
-
+             */
             /**
              * For SAC-2024 I'm considering the valid inferences only the inferred phonemes that are in target words and
              * were reproduced in the assessment.
@@ -137,7 +143,7 @@ public class SimulationConsonantClusters {
      * @param assessment Assessment to analyze.
      * @return An object that keeps all the information from the analysis.
      */
-    public static SimulationConsonantClustersInfo runInferenceNotReproduce(final Assessment assessment) {
+    public static SimulationConsonantClustersInfo runInferencesAnalysisIncorrect(final Assessment assessment) {
         if (assessment != null) {
             List<Phoneme> allClustersInAssessment = new NoRepeatList<>();
             List<KnownCase> cases = assessment.getCases();

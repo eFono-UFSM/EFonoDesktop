@@ -28,11 +28,11 @@ public class SimulationConsonantClustersTest {
     }
 
     /**
-     * Tests {@link SimulationConsonantClusters#run(Assessment, KnownCaseComparator, boolean)}.
+     * Tests {@link SimulationConsonantClusters#runInferencesAnalysisCorrect(Assessment, boolean)}.
      */
     @Test
-    public void testRunOnlyClustersInTargetWordsFalse() {
-        System.out.println("testRunOnlyClustersInTargetWordsFalse");
+    public void testRunInferencesAnalysisCorrectFalse() {
+        System.out.println("testRunInferencesAnalysisCorrectFalse");
 
         Defaults.TARGET_PHONEMES.put("Brinco", Arrays.asList(
                 new Phoneme("bɾ", Phoneme.POSITION.OCI),
@@ -100,7 +100,7 @@ public class SimulationConsonantClustersTest {
                 new Phoneme("t", Phoneme.POSITION.OM),
                 new Phoneme("k", Phoneme.POSITION.OM))));
 
-        SimulationConsonantClustersInfo info = SimulationConsonantClusters.run(new Assessment(cases), KnownCaseComparator.EasyWordsFirst, false);
+        SimulationConsonantClustersInfo info = SimulationConsonantClusters.runInferencesAnalysisCorrect(new Assessment(cases), false);
 
         List<Phoneme> expectedClustersParts = Arrays.asList(
                 new Phoneme("v", Phoneme.POSITION.OCI),
@@ -129,7 +129,7 @@ public class SimulationConsonantClustersTest {
         assertEquals(expected.size(), inferredPhonemes.size());
         assertTrue(expected.containsAll(inferredPhonemes));
         
-        System.out.println("testRunOnlyClustersInTargetWordsFalse - consonant clusters in assessment");
+        System.out.println("testRunInferencesAnalysisCorrectFalse - consonant clusters in assessment");
         List<Phoneme> expectedClustersInAssessment = Arrays.asList(
                 new Phoneme("vl", Phoneme.POSITION.OCI),
                 new Phoneme("bɾ", Phoneme.POSITION.OCI),
@@ -142,7 +142,7 @@ public class SimulationConsonantClustersTest {
         assertTrue(expectedClustersInAssessment.containsAll(resultClustersInAssessment));
 
         // aqui eu testo a precisão do meu método
-        System.out.println("testRunOnlyClustersInTargetWordsFalse - valid inferred phonemes");
+        System.out.println("testRunInferencesAnalysisCorrectFalse - valid inferred phonemes");
         List<Phoneme> expectedValidInferredPhonemes = Arrays.asList(
                 new Phoneme("vl", Phoneme.POSITION.OCI),
 //                new Phoneme("vɾ", Phoneme.POSITION.OCI), // is not in target words and not even in the assessment: can't validate if she can reproduce or not
@@ -161,7 +161,7 @@ public class SimulationConsonantClustersTest {
         // dos X fonemas inferidos Y foram reproduzidos na avaliação. porém, dos (X-Y) fonemas Z estavam presentes nos fonemas
         // alvo das palavras. Ou seja, não temos como saber se a criança não os produziu por não ser capaz de produzí-los ou
         // simplesmente porque ela não foi estimulada a produzí-los via palavras-alvo.
-        System.out.println("testRunOnlyClustersInTargetWordsFalse - inferred not reproduced and in target words");
+        System.out.println("testRunInferencesAnalysisCorrectFalse - inferred not reproduced and in target words");
         /**
          * We inferred that the child would be capable of reproduce this phoneme, and the assessment offers this
          * possibility with a target words that contains this consonant cluster. Besides that, she wasn't capable of
@@ -174,7 +174,7 @@ public class SimulationConsonantClustersTest {
         assertEquals(expectedInferredNotReproducedInTargetWords.size(), resultInferredNotReproducedInTargetWords.size());
         assertTrue(expectedInferredNotReproducedInTargetWords.containsAll(resultInferredNotReproducedInTargetWords));
 
-        System.out.println("testRunOnlyClustersInTargetWordsFalse - inferred not reproduced and not in target words");
+        System.out.println("testRunInferencesAnalysisCorrectFalse - inferred not reproduced and not in target words");
         /**
          * We inferred that the child would be capable of reproduce this phoneme, but she wasn't. Besides that, we are
          * not capable of invalidated the inference, because we can't known if the wasn't capable of reproduce it
@@ -191,11 +191,11 @@ public class SimulationConsonantClustersTest {
     }
 
     /**
-     * Tests {@link SimulationConsonantClusters#run(Assessment, KnownCaseComparator, boolean)}.
+     * Tests {@link SimulationConsonantClusters#runInferencesAnalysisCorrect(Assessment, boolean)}.
      */
     @Test
-    public void testRunOnlyClustersInTargetWordsTrue() {
-        System.out.println("testRunOnlyClustersInTargetWordsTrue");
+    public void testRunInferencesAnalysisCorrectTrue() {
+        System.out.println("testRunInferencesAnalysisCorrectTrue");
 
         Defaults.TARGET_PHONEMES.put("Brinco", Arrays.asList(
                 new Phoneme("bɾ", Phoneme.POSITION.OCI),
@@ -265,8 +265,7 @@ public class SimulationConsonantClustersTest {
 
         Assessment assessment = new Assessment(cases);
 
-        SimulationConsonantClustersInfo info = SimulationConsonantClusters.run(
-                assessment, KnownCaseComparator.EasyWordsFirst, true);
+        SimulationConsonantClustersInfo info = SimulationConsonantClusters.runInferencesAnalysisCorrect(assessment, true);
 
         List<Phoneme> expectedClustersParts = Arrays.asList(
                 new Phoneme("v", Phoneme.POSITION.OCI),
@@ -297,7 +296,7 @@ public class SimulationConsonantClustersTest {
         assertTrue(expected.containsAll(inferredPhonemes));
 
         // esses são os que eu posso validar
-        System.out.println("testRunOnlyClustersInTargetWordsTrue - inferred phonemes that are in target words");
+        System.out.println("testRunInferencesAnalysisCorrectTrue - inferred phonemes that are in target words");
         List<Phoneme> expectedInfInTargetWords = Arrays.asList(
                 new Phoneme("bɾ", Phoneme.POSITION.OCI),
                 new Phoneme("vl", Phoneme.POSITION.OCI),
@@ -311,7 +310,7 @@ public class SimulationConsonantClustersTest {
         assertTrue(expectedInfInTargetWords.containsAll(inferredPhonemesinTargetWords));
 
         // aqui são os que ela falou
-        System.out.println("testRunOnlyClustersInTargetWordsTrue - consonant clusters in assessment");
+        System.out.println("testRunInferencesAnalysisCorrectTrue - consonant clusters in assessment");
         List<Phoneme> expectedClustersInAssessment = Arrays.asList(
                 new Phoneme("vl", Phoneme.POSITION.OCI),
                 new Phoneme("bɾ", Phoneme.POSITION.OCI),
@@ -324,7 +323,7 @@ public class SimulationConsonantClustersTest {
         assertTrue(expectedClustersInAssessment.containsAll(resultClustersInAssessment));
 
         // aqui eu testo a precisão do meu método
-        System.out.println("testRunOnlyClustersInTargetWordsTrue - valid inferred phonemes");
+        System.out.println("testRunInferencesAnalysisCorrectTrue - valid inferred phonemes");
         // here, I'm considering only clusters that are in target words
         List<Phoneme> expectedValidInferredPhonemes = Arrays.asList(
                 new Phoneme("vl", Phoneme.POSITION.OCI),
@@ -345,7 +344,7 @@ public class SimulationConsonantClustersTest {
         // dos X fonemas inferidos Y foram reproduzidos na avaliação. porém, dos (X-Y) fonemas Z estavam presentes nos fonemas
         // alvo das palavras. Ou seja, não temos como saber se a criança não os produziu por não ser capaz de produzí-los ou
         // simplesmente porque ela não foi estimulada a produzí-los via palavras-alvo.
-        System.out.println("testRunOnlyClustersInTargetWordsTrue - inferred not reproduced but are in target words");
+        System.out.println("testRunInferencesAnalysisCorrectTrue - inferred not reproduced but are in target words");
         /**
          * We inferred that the child would be capable of reproduce this phoneme, and the assessment offers this
          * possibility with a target words that contains this consonant cluster. Besides that, she wasn't capable of
@@ -358,7 +357,7 @@ public class SimulationConsonantClustersTest {
         assertEquals(expectedInferredNotReproducedInTargetWords.size(), resultInferredNotReproducedInTargetWords.size());
         assertTrue(expectedInferredNotReproducedInTargetWords.containsAll(resultInferredNotReproducedInTargetWords));
 
-        System.out.println("testRunOnlyClustersInTargetWordsTrue - inferred not reproduced and not in target words - only considering inferred phonemes that are in target words");
+        System.out.println("testRunInferencesAnalysisCorrectTrue - inferred not reproduced and not in target words - only considering inferred phonemes that are in target words");
         /**
          * We inferred that the child would be capable of reproduce this phoneme, but she wasn't. Besides that, we are
          * not capable of invalidated the inference, because we can't known if the wasn't capable of reproduce it
@@ -427,7 +426,7 @@ public class SimulationConsonantClustersTest {
 
         Assessment assessment = new Assessment(cases);
 
-        SimulationConsonantClustersInfo info = SimulationConsonantClusters.runInferenceNotReproduce(assessment);
+        SimulationConsonantClustersInfo info = SimulationConsonantClusters.runInferencesAnalysisIncorrect(assessment);
 
         // aqui eu olho para os fonemas que estão nas target words que a criança não reproduziu
         List<Phoneme> expectedClustersParts = Arrays.asList(
