@@ -5,6 +5,7 @@ import br.com.efono.model.KnownCase;
 import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.model.Phoneme;
 import br.com.efono.model.SimulationConsonantClustersInfo;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ public class SimulationConsonantClusters {
     public static SimulationConsonantClustersInfo run(final Assessment assessment, final KnownCaseComparator comp,
             boolean considerOnlyClustersInTargetWords) {
         if (assessment != null && comp != null) {
+            List<Phoneme> allClustersInAssessment = new NoRepeatList<>();
             List<KnownCase> cases = assessment.getCases();
             SimulationWordsSequence.sortList(cases, comp);
 
@@ -26,29 +28,59 @@ public class SimulationConsonantClusters {
             cases.forEach(c -> mapWordsPhonemes.put(c.getWord(), c.getPhonemes()));
 
             List<Phoneme> clustersParts = new NoRepeatList<>();
-            List<Phoneme> inferredPhonemes = Util.getInferredPhonemes(mapWordsPhonemes, clustersParts);
+            cases.forEach(c -> {
+                // all the clusters parts: target and produced phonemes parts
+                List<Phoneme> targetSplit = new NoRepeatList<>();
+                List<Phoneme> producedSplit = new NoRepeatList<>();
 
-            // contains all the target consonant clusters, so we can compare if the child was really capable of reproduce some of the inferred phonemes.
-            List<Phoneme> allTargetConsonantClusters = new NoRepeatList<>();
-            Defaults.TARGET_PHONEMES.forEach((key, value) -> {
-                value.stream().filter(p -> p.isConsonantCluster()).forEach(p -> allTargetConsonantClusters.add(p));
+                Defaults.TARGET_PHONEMES.get(c.getWord()).stream().filter(p -> p.isConsonantCluster()).forEach(
+                        p -> targetSplit.addAll(p.splitPhonemes()));
+
+                c.getPhonemes().stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
+                    producedSplit.addAll(p.splitPhonemes());
+                    allClustersInAssessment.add(p);
+                });
+
+                if (considerOnlyClustersInTargetWords) {
+                    targetSplit.stream().filter(p -> producedSplit.contains(p)).forEach(p -> clustersParts.add(p));
+                } else {
+                    clustersParts.addAll(producedSplit);
+                }
             });
 
+            List<Phoneme> inferredPhonemes = Util.getPossibleClusters(clustersParts);
+
             /**
-             * inferredPhonemes that are in target words. So, if some of the inferred phonemes are in child assessment
-             * than our logic is valid. Otherwise, means that some of the inferred phonemes that are in target words the
-             * child wasn't capable of reproduce.
+             * Contains all the consonant clusters that are in target words.
+             */
+            List<Phoneme> allConsonantClustersInTargetWords = new NoRepeatList<>();
+            Defaults.TARGET_PHONEMES.values().forEach(value -> value.stream().filter(p -> p.isConsonantCluster()).forEach(p -> allConsonantClustersInTargetWords.add(p)));
+
+            /**
+             * Contains all the inferred phonemes that are in target words.
              */
             List<Phoneme> inferredPhonemesInTargetWords = new NoRepeatList<>();
-            inferredPhonemes.stream().filter(p -> allTargetConsonantClusters.contains(p)).forEach(p -> inferredPhonemesInTargetWords.add(p));
+            inferredPhonemes.stream().filter(p -> allConsonantClustersInTargetWords.contains(p)).forEach(p -> inferredPhonemesInTargetWords.add(p));
 
-            List<Phoneme> allClustersInAssessment = new NoRepeatList<>();
+            // base list of inferred phonemes to do the validation
+            final List<Phoneme> inferred = new ArrayList<>(inferredPhonemes);
+            if (considerOnlyClustersInTargetWords) {
+                inferred.clear();
+                inferred.addAll(inferredPhonemesInTargetWords);
+            }
+
+            /**
+             * Contains all the valid inferences.
+             */
             List<Phoneme> validInferred = new NoRepeatList<>();
+
+            cases.forEach(c -> {
+                c.getPhonemes().stream().filter(p -> inferred.contains(p)).forEach(p -> validInferred.add(p));
+            });
 
             // precisa validar também os inferidos que ela conseguiu reproduzir mas que não estão nas target wordas
             assessment.getCases().forEach(c -> {
                 c.getPhonemes().stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
-                    allClustersInAssessment.add(p);
                     if (considerOnlyClustersInTargetWords) {
                         if (inferredPhonemesInTargetWords.contains(p)) {
                             validInferred.add(p);
@@ -59,25 +91,34 @@ public class SimulationConsonantClusters {
                 });
             });
 
-            List<Phoneme> inferred = inferredPhonemes;
-            if (considerOnlyClustersInTargetWords) {
-                inferred = inferredPhonemesInTargetWords;
-            }
-
             List<Phoneme> inferredNotReproducedInTargetWords = new NoRepeatList<>();
             List<Phoneme> inferredNotReproducedNotInTargetWords = new NoRepeatList<>();
             inferred.forEach(c -> {
                 if (!validInferred.contains(c)) {
                     System.out.println(c);
-                    if (allTargetConsonantClusters.contains(c)) {
+                    if (allConsonantClustersInTargetWords.contains(c)) {
                         inferredNotReproducedInTargetWords.add(c);
                     } else {
                         inferredNotReproducedNotInTargetWords.add(c);
                     }
                 }
             });
+            
+            /*
+            inferredPhonemes = todo o conjunto azul claro (A)
+            allConsonantClustersInTargetWords = todo o conjunto verde (B)
+            inferredPhonemesInTargetWords = (A) x (B) azul escuro + cinza
+            allClustersInAssessment = todo o conjunto amarelo (C)
+            validInferred = (A) x (B) x (C) cinza
+            inferredNotReproducedInTargetWords = (A) x (B) - (C) azul escuro
+            inferredNotReproducedNotInTargetWords = (A) - (B) - (C) azul claro
+            */
 
-            return new SimulationConsonantClustersInfo(inferredPhonemes, allTargetConsonantClusters,
+            /**
+             * For SAC-2024 I'm considering the valid inferences only the inferred phonemes that are in target words and
+             * were reproduced in the assessment.
+             */
+            return new SimulationConsonantClustersInfo(inferredPhonemes, allConsonantClustersInTargetWords,
                     inferredPhonemesInTargetWords, allClustersInAssessment, validInferred,
                     inferredNotReproducedInTargetWords, inferredNotReproducedNotInTargetWords, clustersParts);
         }
@@ -141,7 +182,7 @@ public class SimulationConsonantClusters {
             List<Phoneme> inferredPhonemesInTargetWords = new NoRepeatList<>();
             inferredPhonemes.stream().filter(p -> allConsonantClustersInTargetWords.contains(p)).forEach(
                     p -> inferredPhonemesInTargetWords.add(p));
-            
+
             // os que eu inferi que ela não conseguiria produzir que estão nas palavras alvo e que ela realmente não produziu
             List<Phoneme> validInferred = new NoRepeatList<>();
             // os que eu inferi que ela não conseguiria produzir que estão nas palavras alvo mas que ela produziu
