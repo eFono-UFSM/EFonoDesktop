@@ -50,18 +50,18 @@ public class SimulationConsonantClustersInfo {
     }
 
     public SimulationConsonantClustersInfo(final List<Phoneme> inferredPhonemes,
-            final List<Phoneme> allTargetConsonantClusters, final List<Phoneme> validInferredPhonemes,
-            final List<Phoneme> allClustersInAssessment, final List<Phoneme> validInferred,
+            final List<Phoneme> allTargetConsonantClusters, final List<Phoneme> inferredPhonemesInTargetWords,
+            final List<Phoneme> allClustersInAssessment, final List<Phoneme> inferredReproducedInTargetWords,
             final List<Phoneme> invalidInferred, final List<Phoneme> clustersParts) {
         this.inferredPhonemes = inferredPhonemes;
         this.allTargetConsonantClusters = allTargetConsonantClusters;
-        this.inferredPhonemesInTargetWords = validInferredPhonemes;
+        this.inferredPhonemesInTargetWords = inferredPhonemesInTargetWords;
         this.allClustersInAssessment = allClustersInAssessment;
-        this.inferredReproducedInTargetWords = validInferred;
+        this.inferredReproducedInTargetWords = inferredReproducedInTargetWords;
         this.inferredNotReproducedInTargetWords = new ArrayList<>();
         this.inferredNotReproducedNotInTargetWords = new ArrayList<>();
         this.inferredReproducedNotInTargetWords = new ArrayList<>();
-        this.invalidInferred = validInferred;
+        this.invalidInferred = invalidInferred;
         this.clustersParts = clustersParts;
     }
 

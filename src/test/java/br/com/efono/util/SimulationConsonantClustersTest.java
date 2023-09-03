@@ -222,6 +222,235 @@ public class SimulationConsonantClustersTest {
      * Tests {@link SimulationConsonantClusters#runInferencesAnalysisIncorrect(Assessment)}.
      */
     @Test
+    public void testRunInferencesAnalysisIncorrect1() {
+        System.out.println("testRunInferencesAnalysisIncorrect");
+
+        Defaults.TARGET_PHONEMES.put("Brinco", Arrays.asList(
+                new Phoneme("bɾ", Phoneme.POSITION.OCI),
+                new Phoneme("n", Phoneme.POSITION.CM),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        Defaults.TARGET_PHONEMES.put("Prato", Arrays.asList(
+                new Phoneme("pɾ", Phoneme.POSITION.OCI),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        List<KnownCase> cases = new ArrayList<>();
+        cases.add(new KnownCase("Brinco", "bĩnko", false, Arrays.asList(
+                new Phoneme("bl", Phoneme.POSITION.OCI), // não falou o bɾ
+                new Phoneme("n", Phoneme.POSITION.CM),
+                new Phoneme("k", Phoneme.POSITION.OM))));
+
+        cases.add(new KnownCase("Prato", "pato", true, Arrays.asList(
+                new Phoneme("pɾ", Phoneme.POSITION.OCI),
+                new Phoneme("t", Phoneme.POSITION.OM))));
+
+        Assessment assessment = new Assessment(cases);
+
+        SimulationConsonantClustersInfo info = SimulationConsonantClusters.runInferencesAnalysisIncorrect(assessment);
+
+        List<Phoneme> resultClustersParts = info.getClustersParts();
+        assertEquals(0, resultClustersParts.size());
+
+        // fonemas inferidos que a criança NÃO consegue produzir
+        List<Phoneme> inferredPhonemes = info.getInferredPhonemes();
+        assertEquals(0, inferredPhonemes.size());
+
+        System.out.println("testRunInferencesAnalysisIncorrect - consonant clusters in assessment");
+        List<Phoneme> expectedClustersInAssessment = Arrays.asList(
+                new Phoneme("bl", Phoneme.POSITION.OCI),
+                new Phoneme("pɾ", Phoneme.POSITION.OCI));
+
+        List<Phoneme> resultClustersInAssessment = info.getAllClustersInAssessment();
+        assertEquals(expectedClustersInAssessment.size(), resultClustersInAssessment.size());
+        assertTrue(expectedClustersInAssessment.containsAll(resultClustersInAssessment));
+
+        // aqui eu testo a precisão do meu método
+        System.out.println("testRunInferencesAnalysisIncorrect - valid inferred phonemes");
+        List<Phoneme> resultValidInferred = info.getInferredReproducedInTargetWords();
+        assertEquals(0, resultValidInferred.size());
+    }
+
+    /**
+     * Tests {@link SimulationConsonantClusters#runInferencesAnalysisIncorrect(Assessment)}.
+     */
+    @Test
+    public void testRunInferencesAnalysisIncorrect2() {
+        System.out.println("testRunInferencesAnalysisIncorrect");
+
+        Defaults.TARGET_PHONEMES.put("Brinco", Arrays.asList(
+                new Phoneme("bɾ", Phoneme.POSITION.OCI),
+                new Phoneme("n", Phoneme.POSITION.CM),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        Defaults.TARGET_PHONEMES.put("Prato", Arrays.asList(
+                new Phoneme("pɾ", Phoneme.POSITION.OCI),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        Defaults.TARGET_PHONEMES.put("Placa", Arrays.asList(
+                new Phoneme("pl", Phoneme.POSITION.OCI),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        List<KnownCase> cases = new ArrayList<>();
+        cases.add(new KnownCase("Brinco", "bĩnko", false, Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI), // não falou o bɾ
+                new Phoneme("n", Phoneme.POSITION.CM),
+                new Phoneme("k", Phoneme.POSITION.OM))));
+
+        cases.add(new KnownCase("Prato", "pato", true, Arrays.asList(
+                new Phoneme("p", Phoneme.POSITION.OI),
+                new Phoneme("t", Phoneme.POSITION.OM))));
+
+        cases.add(new KnownCase("Placa", "pakə", true, Arrays.asList(
+                new Phoneme("p", Phoneme.POSITION.OI), // não falou o pl
+                new Phoneme("k", Phoneme.POSITION.OM))));
+
+        Assessment assessment = new Assessment(cases);
+
+        SimulationConsonantClustersInfo info = SimulationConsonantClusters.runInferencesAnalysisIncorrect(assessment);
+
+        // aqui eu olho para os fonemas que estão nas target words que a criança não reproduziu
+        List<Phoneme> expectedClustersParts = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OCI),
+                new Phoneme("ɾ", Phoneme.POSITION.OCI),
+                new Phoneme("p", Phoneme.POSITION.OCI),
+                new Phoneme("l", Phoneme.POSITION.OCI));
+
+        List<Phoneme> resultClustersParts = info.getClustersParts();
+        assertEquals(expectedClustersParts.size(), resultClustersParts.size());
+        assertTrue(expectedClustersParts.containsAll(resultClustersParts));
+
+        // fonemas inferidos que a criança NÃO consegue produzir
+        List<Phoneme> expected = Arrays.asList(
+                new Phoneme("bɾ", Phoneme.POSITION.OCI),
+                new Phoneme("bl", Phoneme.POSITION.OCI),
+                new Phoneme("pɾ", Phoneme.POSITION.OCI),
+                new Phoneme("pl", Phoneme.POSITION.OCI));
+        List<Phoneme> inferredPhonemes = info.getInferredPhonemes();
+
+        assertEquals(expected.size(), inferredPhonemes.size());
+        assertTrue(expected.containsAll(inferredPhonemes));
+
+        System.out.println("testRunInferencesAnalysisIncorrect - inferred phonemes that are in target words");
+        List<Phoneme> expectedInfInTargetWords = Arrays.asList(
+                new Phoneme("bɾ", Phoneme.POSITION.OCI),
+                new Phoneme("pɾ", Phoneme.POSITION.OCI),
+                new Phoneme("pl", Phoneme.POSITION.OCI));
+
+        List<Phoneme> inferredPhonemesinTargetWords = info.getInferredPhonemesInTargetWords();
+        assertEquals(expectedInfInTargetWords.size(), inferredPhonemesinTargetWords.size());
+        assertTrue(expectedInfInTargetWords.containsAll(inferredPhonemesinTargetWords));
+
+        System.out.println("testRunInferencesAnalysisIncorrect - consonant clusters in assessment");
+        List<Phoneme> resultClustersInAssessment = info.getAllClustersInAssessment();
+        assertEquals(0, resultClustersInAssessment.size());
+
+        // aqui eu testo a precisão do meu método
+        System.out.println("testRunInferencesAnalysisIncorrect - valid inferred phonemes");
+        List<Phoneme> expectedValidInferredPhonemes = Arrays.asList(
+                new Phoneme("bɾ", Phoneme.POSITION.OCI),
+                new Phoneme("pɾ", Phoneme.POSITION.OCI),
+                new Phoneme("pl", Phoneme.POSITION.OCI));
+
+        List<Phoneme> resultValidInferred = info.getInferredReproducedInTargetWords();
+        assertEquals(expectedValidInferredPhonemes.size(), resultValidInferred.size());
+        assertTrue(expectedValidInferredPhonemes.containsAll(resultValidInferred));
+
+        System.out.println("testRunInferencesAnalysisIncorrect - invalid inferred phonemes");
+        List<Phoneme> resultInvalidInferred = info.getInvalidInferred();
+        assertEquals(0, resultInvalidInferred.size());
+    }
+
+    /**
+     * Tests {@link SimulationConsonantClusters#runInferencesAnalysisIncorrect(Assessment)}.
+     */
+    @Test
+    public void testRunInferencesAnalysisIncorrect3() {
+        System.out.println("testRunInferencesAnalysisIncorrect");
+
+        Defaults.TARGET_PHONEMES.put("Brinco", Arrays.asList(
+                new Phoneme("bɾ", Phoneme.POSITION.OCI),
+                new Phoneme("n", Phoneme.POSITION.CM),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        Defaults.TARGET_PHONEMES.put("Placa", Arrays.asList(
+                new Phoneme("pl", Phoneme.POSITION.OCI),
+                new Phoneme("k", Phoneme.POSITION.OM)));
+
+        Defaults.TARGET_PHONEMES.put("Prato", Arrays.asList(
+                new Phoneme("pɾ", Phoneme.POSITION.OCI),
+                new Phoneme("t", Phoneme.POSITION.OM)));
+
+        List<KnownCase> cases = new ArrayList<>();
+        cases.add(new KnownCase("Brinco", "bĩnko", false, Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OI),
+                new Phoneme("n", Phoneme.POSITION.CM),
+                new Phoneme("k", Phoneme.POSITION.OM))));
+
+        cases.add(new KnownCase("Prato", "pato", true, Arrays.asList(
+                new Phoneme("fl", Phoneme.POSITION.OCI),
+                new Phoneme("t", Phoneme.POSITION.OM))));
+
+        cases.add(new KnownCase("Placa", "pakə", true, Arrays.asList(
+                new Phoneme("fl", Phoneme.POSITION.OCI),
+                new Phoneme("k", Phoneme.POSITION.OM))));
+
+        Assessment assessment = new Assessment(cases);
+
+        SimulationConsonantClustersInfo info = SimulationConsonantClusters.runInferencesAnalysisIncorrect(assessment);
+
+        // aqui eu olho para os fonemas que estão nas target words que a criança não reproduziu
+        List<Phoneme> expectedClustersParts = Arrays.asList(
+                new Phoneme("b", Phoneme.POSITION.OCI),
+                new Phoneme("ɾ", Phoneme.POSITION.OCI),
+                new Phoneme("p", Phoneme.POSITION.OCI));
+
+        List<Phoneme> resultClustersParts = info.getClustersParts();
+        assertEquals(expectedClustersParts.size(), resultClustersParts.size());
+        assertTrue(expectedClustersParts.containsAll(resultClustersParts));
+
+        // fonemas inferidos que a criança NÃO consegue produzir
+        List<Phoneme> expected = Arrays.asList(
+                new Phoneme("bɾ", Phoneme.POSITION.OCI),
+                new Phoneme("pɾ", Phoneme.POSITION.OCI));
+        List<Phoneme> inferredPhonemes = info.getInferredPhonemes();
+        assertEquals(expected.size(), inferredPhonemes.size());
+        assertTrue(expected.containsAll(inferredPhonemes));
+
+        System.out.println("testRunInferencesAnalysisIncorrect - inferred phonemes that are in target words");
+        List<Phoneme> expectedInfInTargetWords = Arrays.asList(
+                new Phoneme("bɾ", Phoneme.POSITION.OCI),
+                new Phoneme("pɾ", Phoneme.POSITION.OCI));
+
+        List<Phoneme> inferredPhonemesinTargetWords = info.getInferredPhonemesInTargetWords();
+        assertEquals(expectedInfInTargetWords.size(), inferredPhonemesinTargetWords.size());
+        assertTrue(expectedInfInTargetWords.containsAll(inferredPhonemesinTargetWords));
+
+        System.out.println("testRunInferencesAnalysisIncorrect - consonant clusters in assessment");
+        List<Phoneme> expectedClustersInAssessment = Arrays.asList(
+                new Phoneme("fl", Phoneme.POSITION.OCI));
+        List<Phoneme> resultClustersInAssessment = info.getAllClustersInAssessment();
+        assertEquals(expectedClustersInAssessment.size(), resultClustersInAssessment.size());
+        assertTrue(expectedClustersInAssessment.containsAll(resultClustersInAssessment));
+
+        // aqui eu testo a precisão do meu método
+        System.out.println("testRunInferencesAnalysisIncorrect - valid inferred phonemes");
+        List<Phoneme> expectedValidInferredPhonemes = Arrays.asList(
+                new Phoneme("bɾ", Phoneme.POSITION.OCI),
+                new Phoneme("pɾ", Phoneme.POSITION.OCI));
+
+        List<Phoneme> resultValidInferred = info.getInferredReproducedInTargetWords();
+        assertEquals(expectedValidInferredPhonemes.size(), resultValidInferred.size());
+        assertTrue(expectedValidInferredPhonemes.containsAll(resultValidInferred));
+
+        System.out.println("testRunInferencesAnalysisIncorrect - invalid inferred phonemes");
+        List<Phoneme> resultInvalidInferred = info.getInvalidInferred();
+        assertEquals(0, resultInvalidInferred.size());
+    }
+
+    /**
+     * Tests {@link SimulationConsonantClusters#runInferencesAnalysisIncorrect(Assessment)}.
+     */
+    @Test
     public void testRunInferencesAnalysisIncorrect() {
         System.out.println("testRunInferencesAnalysisIncorrect");
 
