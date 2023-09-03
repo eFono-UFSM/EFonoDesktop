@@ -100,31 +100,35 @@ public class SimulationConsonantClustersTest {
                 new Phoneme("t", Phoneme.POSITION.OM),
                 new Phoneme("k", Phoneme.POSITION.OM))));
 
+        SimulationConsonantClustersInfo info = SimulationConsonantClusters.run(new Assessment(cases), KnownCaseComparator.EasyWordsFirst, false);
+
+        List<Phoneme> expectedClustersParts = Arrays.asList(
+                new Phoneme("v", Phoneme.POSITION.OCI),
+                new Phoneme("l", Phoneme.POSITION.OCI),
+                new Phoneme("b", Phoneme.POSITION.OCI),
+                new Phoneme("ɾ", Phoneme.POSITION.OCI),
+                new Phoneme("p", Phoneme.POSITION.OCI),
+                new Phoneme("f", Phoneme.POSITION.OCI));
+
+        List<Phoneme> resultClustersParts = info.getClustersParts();
+        assertEquals(expectedClustersParts.size(), resultClustersParts.size());
+        assertTrue(expectedClustersParts.containsAll(resultClustersParts));
+
         // fonemas inferidos
         List<Phoneme> expected = Arrays.asList(
-                new Phoneme("bl", Phoneme.POSITION.OCI), // is not in target words, but it is in the assessment: can reproduce
+                new Phoneme("vl", Phoneme.POSITION.OCI),
                 new Phoneme("vɾ", Phoneme.POSITION.OCI), // is not in target words and not even in the assessment: can't validate if she can reproduce or not
+                new Phoneme("bl", Phoneme.POSITION.OCI), // is not in target words, but it is in the assessment: can reproduce
+                new Phoneme("bɾ", Phoneme.POSITION.OCI),
                 new Phoneme("pl", Phoneme.POSITION.OCI),
-                new Phoneme("fɾ", Phoneme.POSITION.OCI)); // keep this here
-
-        Assessment assessment = new Assessment(cases);
-
-        SimulationConsonantClustersInfo info = SimulationConsonantClusters.run(
-                assessment, KnownCaseComparator.EasyWordsFirst, false);
+                new Phoneme("pɾ", Phoneme.POSITION.OCI),
+                new Phoneme("fl", Phoneme.POSITION.OCI),
+                new Phoneme("fɾ", Phoneme.POSITION.OCI)); // invalid inference: can't reproduce
         List<Phoneme> inferredPhonemes = info.getInferredPhonemes();
 
         assertEquals(expected.size(), inferredPhonemes.size());
         assertTrue(expected.containsAll(inferredPhonemes));
-
-        System.out.println("testRunOnlyClustersInTargetWordsFalse - inferred phonemes that are in target words");
-        List<Phoneme> expectedInfInTargetWords = Arrays.asList(
-                new Phoneme("pl", Phoneme.POSITION.OCI),
-                new Phoneme("fɾ", Phoneme.POSITION.OCI));
-
-        List<Phoneme> inferredPhonemesinTargetWords = info.getInferredPhonemesInTargetWords();
-        assertEquals(expectedInfInTargetWords.size(), inferredPhonemesinTargetWords.size());
-        assertTrue(expectedInfInTargetWords.containsAll(inferredPhonemesinTargetWords));
-
+        
         System.out.println("testRunOnlyClustersInTargetWordsFalse - consonant clusters in assessment");
         List<Phoneme> expectedClustersInAssessment = Arrays.asList(
                 new Phoneme("vl", Phoneme.POSITION.OCI),
@@ -140,9 +144,15 @@ public class SimulationConsonantClustersTest {
         // aqui eu testo a precisão do meu método
         System.out.println("testRunOnlyClustersInTargetWordsFalse - valid inferred phonemes");
         List<Phoneme> expectedValidInferredPhonemes = Arrays.asList(
-                new Phoneme("bl", Phoneme.POSITION.OCI), // is not in target words but the child could reproduce as well
-                new Phoneme("pl", Phoneme.POSITION.OCI));
-        // "fɾ" was inferred but the child couldn't reproduce
+                new Phoneme("vl", Phoneme.POSITION.OCI),
+//                new Phoneme("vɾ", Phoneme.POSITION.OCI), // is not in target words and not even in the assessment: can't validate if she can reproduce or not
+                new Phoneme("bl", Phoneme.POSITION.OCI), // is not in target words, but it is in the assessment: can reproduce
+                new Phoneme("bɾ", Phoneme.POSITION.OCI),
+                new Phoneme("pl", Phoneme.POSITION.OCI),
+                new Phoneme("pɾ", Phoneme.POSITION.OCI),
+                new Phoneme("fl", Phoneme.POSITION.OCI)
+//                new Phoneme("fɾ", Phoneme.POSITION.OCI) // invalid inference: can't reproduce
+        ); 
 
         List<Phoneme> resultValidInferred = info.getValidInferred();
         assertEquals(expectedValidInferredPhonemes.size(), resultValidInferred.size());
@@ -432,7 +442,7 @@ public class SimulationConsonantClustersTest {
         // fonemas inferidos que a criança NÃO consegue produzir
         List<Phoneme> expected = Arrays.asList(
                 new Phoneme("bɾ", Phoneme.POSITION.OCI),
-                new Phoneme("pɾ", Phoneme.POSITION.OCI)); 
+                new Phoneme("pɾ", Phoneme.POSITION.OCI));
         List<Phoneme> inferredPhonemes = info.getInferredPhonemes();
 
         assertEquals(expected.size(), inferredPhonemes.size());
@@ -464,7 +474,7 @@ public class SimulationConsonantClustersTest {
         List<Phoneme> resultValidInferred = info.getValidInferred();
         assertEquals(expectedValidInferredPhonemes.size(), resultValidInferred.size());
         assertTrue(expectedValidInferredPhonemes.containsAll(resultValidInferred));
-        
+
         // TODO: tests for invalid inferences
     }
 
