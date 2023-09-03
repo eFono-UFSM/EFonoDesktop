@@ -235,12 +235,11 @@ public class Main {
         List<SimulationConsonantClustersInfo> infosAbleToReproduce = new ArrayList<>();
         List<SimulationConsonantClustersInfo> infosNotAbleToReproduce = new ArrayList<>();
 
-        System.out.println("Considering only clusters in target words");
         final StringBuilder builderAbleToReproduce = new StringBuilder();
         final StringBuilder builderNotAbleToReproduce = new StringBuilder();
         assessments.forEach(a -> {
             SimulationConsonantClustersInfo runAbleToReproduce
-                    = SimulationConsonantClusters.runInferencesAnalysisCorrect(a, true);
+                    = SimulationConsonantClusters.runInferencesAnalysisCorrect(a);
             infosAbleToReproduce.add(runAbleToReproduce);
             builderAbleToReproduce.append(runAbleToReproduce.exportCSVAbleToReproduce(builderAbleToReproduce.toString().isBlank()));
             
@@ -255,7 +254,7 @@ public class Main {
         System.out.println("-----------------------------------------------------------------------");
 
         File fileAbleToReproduce = new File(parent, 
-                "statistics-AbleToReproduce-considerOnlyClustersInTargetWords-true.csv");
+                "AbleToReproduce-statistics.csv");
         try (PrintWriter out = new PrintWriter(fileAbleToReproduce)) {
             out.print(builderAbleToReproduce.toString());
             System.out.println("File at: " + fileAbleToReproduce);
@@ -264,7 +263,7 @@ public class Main {
         }
 
         File fileInfosCountAbleToReproduce = new File(parent, 
-                "infosCount-AbleToReproduce-considerOnlyClustersInTargetWords-true.csv");
+                "AbleToReproduce-infosCount.csv");
         try (PrintWriter out = new PrintWriter(fileInfosCountAbleToReproduce)) {
             out.print(SimulationConsonantClustersInfo.exportCountingInfosToCSV(infosAbleToReproduce));
             System.out.println("File at: " + fileInfosCountAbleToReproduce);
@@ -274,7 +273,7 @@ public class Main {
         
         //////////////////////////
         File fileNotAbleToReproduce = new File(parent, 
-                "statistics-NotAbleToReproduce-considerOnlyClustersInTargetWords-true.csv");
+                "NotAbleToReproduce-statistics.csv");
         try (PrintWriter out = new PrintWriter(fileNotAbleToReproduce)) {
             out.print(builderNotAbleToReproduce.toString());
             System.out.println("File at: " + fileNotAbleToReproduce);
@@ -283,7 +282,7 @@ public class Main {
         }
 
         File fileInfosCountNotAbleToReproduce = new File(parent, 
-                "infosCount-NotAbleToReproduce-considerOnlyClustersInTargetWords-true.csv");
+                "NotAbleToReproduce-infosCount.csv");
         try (PrintWriter out = new PrintWriter(fileInfosCountNotAbleToReproduce)) {
             out.print(SimulationConsonantClustersInfo.exportCountingInfosToCSV(infosNotAbleToReproduce));
             System.out.println("File at: " + fileInfosCountNotAbleToReproduce);

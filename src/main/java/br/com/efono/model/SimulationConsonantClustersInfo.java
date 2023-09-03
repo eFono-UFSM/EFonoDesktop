@@ -32,14 +32,14 @@ public class SimulationConsonantClustersInfo {
     }
 
     public SimulationConsonantClustersInfo(final List<Phoneme> inferredPhonemes,
-            final List<Phoneme> allTargetConsonantClusters, final List<Phoneme> validInferredPhonemes,
+            final List<Phoneme> allTargetConsonantClusters, final List<Phoneme> inferredPhonemesInTargetWords,
             final List<Phoneme> allClustersInAssessment, final List<Phoneme> inferredReproducedInTargetWords,
             final List<Phoneme> inferredNotReproducedInTargetWords,
             final List<Phoneme> inferredNotReproducedNotInTargetWords,
             final List<Phoneme> inferredReproducedNotInTargetWords, final List<Phoneme> clustersParts) {
         this.inferredPhonemes = inferredPhonemes;
         this.allTargetConsonantClusters = allTargetConsonantClusters;
-        this.inferredPhonemesInTargetWords = validInferredPhonemes;
+        this.inferredPhonemesInTargetWords = inferredPhonemesInTargetWords;
         this.allClustersInAssessment = allClustersInAssessment;
         this.inferredReproducedInTargetWords = inferredReproducedInTargetWords;
         this.inferredNotReproducedInTargetWords = inferredNotReproducedInTargetWords;
@@ -153,11 +153,12 @@ public class SimulationConsonantClustersInfo {
             allConsonantClustersInTargetWords = todos os fonemas (alvo) nas palavras alvo (B)
             inferredPhonemesInTargetWords = inferidos que estão nas palavras alvo (A) x (B)
             allClustersInAssessment = fonemas produzidos na avaliação (C)
-            validInferred = fonemas inferidos que estão nas palavras alvo e que foram produzidos na avaliação (A) x (B) x (C)
+            inferredReproducedInTargetWords = fonemas inferidos que estão nas palavras alvo e que foram produzidos na avaliação (A) x (B) x (C)
+            inferredReproducedNotInTargetWords = fonemas inferidos que NÃO estão nas palavras alvo e que foram produzidos na avaliação A x C - B
             inferredNotReproducedInTargetWords = inferidos que estão nas palavras alvo e que não foram produzidos (A) x (B) - (C) azul escuro (inválidas)
             inferredNotReproducedNotInTargetWords = inferidos que não estão nas palavras alvo e que não foram produzidos (A) - ((B) U (C)) impossível de validar
              */
-            builder.append("inferredPhonemes,allConsonantClustersInTargetWords,inferredPhonemesInTargetWords,allClustersInAssessment,validInferred,inferredNotReproducedInTargetWords,inferredNotReproducedNotInTargetWords\n");
+            builder.append("inferredPhonemes,allConsonantClustersInTargetWords,inferredPhonemesInTargetWords,allClustersInAssessment,inferredReproducedInTargetWords,inferredReproducedNotInTargetWords,inferredNotReproducedInTargetWords,inferredNotReproducedNotInTargetWords\n");
         }
 
         List<String> cols = new LinkedList<>();
@@ -166,6 +167,7 @@ public class SimulationConsonantClustersInfo {
         cols.add(Integer.toString(inferredPhonemesInTargetWords.size()));
         cols.add(Integer.toString(allClustersInAssessment.size()));
         cols.add(Integer.toString(inferredReproducedInTargetWords.size()));
+        cols.add(Integer.toString(inferredReproducedNotInTargetWords.size()));
         cols.add(Integer.toString(inferredNotReproducedInTargetWords.size()));
         cols.add(Integer.toString(inferredNotReproducedNotInTargetWords.size()));
 
