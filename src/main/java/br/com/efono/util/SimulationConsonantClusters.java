@@ -79,10 +79,13 @@ public class SimulationConsonantClusters {
             /**
              * Contains all the valid inferences.
              */
-            List<Phoneme> validInferred = new NoRepeatList<>();
+            List<Phoneme> inferredReproducedInTargetWords = new NoRepeatList<>();
+            // inferidos que ela conseguiu produzir mas não estão nas palavras alvo
+            List<Phoneme> inferredReproducedNotInTargetWords = new NoRepeatList<>();
+            inferredPhonemes.stream().filter(p -> !allConsonantClustersInTargetWords.contains(p) && allClustersInAssessment.contains(p)).forEach(p -> inferredReproducedNotInTargetWords.add(p));
 
             cases.forEach(c -> {
-                c.getPhonemes().stream().filter(p -> inferred.contains(p)).forEach(p -> validInferred.add(p));
+                c.getPhonemes().stream().filter(p -> inferred.contains(p)).forEach(p -> inferredReproducedInTargetWords.add(p));
             });
 
             // precisa validar também os inferidos que ela conseguiu reproduzir mas que não estão nas target wordas
@@ -90,26 +93,21 @@ public class SimulationConsonantClusters {
                 c.getPhonemes().stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
                     if (considerOnlyClustersInTargetWords) {
                         if (inferredPhonemesInTargetWords.contains(p)) {
-                            validInferred.add(p);
+                            inferredReproducedInTargetWords.add(p);
                         }
                     } else if (inferredPhonemes.contains(p)) {
-                        validInferred.add(p);
+                        inferredReproducedInTargetWords.add(p);
                     }
                 });
             });
 
+            // inferidos que estão nas palavras alvo e que ela não reproduziu
             List<Phoneme> inferredNotReproducedInTargetWords = new NoRepeatList<>();
+            inferredPhonemes.stream().filter(p -> allConsonantClustersInTargetWords.contains(p) && !allClustersInAssessment.contains(p)).forEach(p -> inferredNotReproducedInTargetWords.add(p));
+
+            // inferidos que não estão nas palavras alvo e que ela não reproduziu
             List<Phoneme> inferredNotReproducedNotInTargetWords = new NoRepeatList<>();
-            inferred.forEach(c -> {
-                if (!validInferred.contains(c)) {
-                    System.out.println(c);
-                    if (allConsonantClustersInTargetWords.contains(c)) {
-                        inferredNotReproducedInTargetWords.add(c);
-                    } else {
-                        inferredNotReproducedNotInTargetWords.add(c);
-                    }
-                }
-            });
+            inferredPhonemes.stream().filter(p -> !allConsonantClustersInTargetWords.contains(p) && !allClustersInAssessment.contains(p)).forEach(p -> inferredNotReproducedNotInTargetWords.add(p));
 
             /*
             inferredPhonemes = todo o conjunto azul claro (A)
@@ -117,6 +115,7 @@ public class SimulationConsonantClusters {
             inferredPhonemesInTargetWords = (A) x (B) azul escuro + cinza
             allClustersInAssessment = todo o conjunto amarelo (C)
             validInferred = (A) x (B) x (C) cinza
+            validInferredNotInTargetWords = (A) x (C) - (B) laranja
             inferredNotReproducedInTargetWords = (A) x (B) - (C) azul escuro
             inferredNotReproducedNotInTargetWords = (A) - (B) - (C) azul claro
              */
@@ -125,8 +124,9 @@ public class SimulationConsonantClusters {
              * were reproduced in the assessment.
              */
             return new SimulationConsonantClustersInfo(inferredPhonemes, allConsonantClustersInTargetWords,
-                    inferredPhonemesInTargetWords, allClustersInAssessment, validInferred,
-                    inferredNotReproducedInTargetWords, inferredNotReproducedNotInTargetWords, clustersParts);
+                    inferredPhonemesInTargetWords, allClustersInAssessment, inferredReproducedInTargetWords,
+                    inferredNotReproducedInTargetWords, inferredNotReproducedNotInTargetWords,
+                    inferredReproducedNotInTargetWords, clustersParts);
         }
         return new SimulationConsonantClustersInfo();
 
@@ -208,7 +208,7 @@ public class SimulationConsonantClusters {
             allClustersInAssessment = fonemas produzidos na avaliação (C)
             validInferred = fonemas inferidos que ela NÃO conseguiria produzir que estão nas palavras alvo e que ela realmente não produziu (D x B - C)
             invalidInferred = fonemas inferidos  que ela NÃO conseguiria produzir que estão nas palavras alvo mas que ela produziu (D x B x C)
-            */
+             */
             return new SimulationConsonantClustersInfo(inferredPhonemes, allConsonantClustersInTargetWords,
                     inferredPhonemesInTargetWords, allClustersInAssessment, validInferred,
                     invalidInferred, clustersParts);

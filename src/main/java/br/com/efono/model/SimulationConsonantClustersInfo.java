@@ -19,29 +19,32 @@ public class SimulationConsonantClustersInfo {
     private final List<Phoneme> allTargetConsonantClusters;
     private final List<Phoneme> inferredPhonemesInTargetWords;
     private final List<Phoneme> allClustersInAssessment;
-    private final List<Phoneme> validInferred;
+    private final List<Phoneme> inferredReproducedInTargetWords;
     private final List<Phoneme> invalidInferred;
     private final List<Phoneme> inferredNotReproducedInTargetWords;
     private final List<Phoneme> inferredNotReproducedNotInTargetWords;
+    private final List<Phoneme> inferredReproducedNotInTargetWords;
     private final List<Phoneme> clustersParts;
 
     public SimulationConsonantClustersInfo() {
         this(new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
-                new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+                new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
     public SimulationConsonantClustersInfo(final List<Phoneme> inferredPhonemes,
             final List<Phoneme> allTargetConsonantClusters, final List<Phoneme> validInferredPhonemes,
-            final List<Phoneme> allClustersInAssessment, final List<Phoneme> validInferred,
+            final List<Phoneme> allClustersInAssessment, final List<Phoneme> inferredReproducedInTargetWords,
             final List<Phoneme> inferredNotReproducedInTargetWords,
-            final List<Phoneme> inferredNotReproducedNotInTargetWords, final List<Phoneme> clustersParts) {
+            final List<Phoneme> inferredNotReproducedNotInTargetWords,
+            final List<Phoneme> inferredReproducedNotInTargetWords, final List<Phoneme> clustersParts) {
         this.inferredPhonemes = inferredPhonemes;
         this.allTargetConsonantClusters = allTargetConsonantClusters;
         this.inferredPhonemesInTargetWords = validInferredPhonemes;
         this.allClustersInAssessment = allClustersInAssessment;
-        this.validInferred = validInferred;
+        this.inferredReproducedInTargetWords = inferredReproducedInTargetWords;
         this.inferredNotReproducedInTargetWords = inferredNotReproducedInTargetWords;
         this.inferredNotReproducedNotInTargetWords = inferredNotReproducedNotInTargetWords;
+        this.inferredReproducedNotInTargetWords = inferredReproducedNotInTargetWords;
         this.clustersParts = clustersParts;
         this.invalidInferred = new ArrayList<>();
     }
@@ -54,11 +57,20 @@ public class SimulationConsonantClustersInfo {
         this.allTargetConsonantClusters = allTargetConsonantClusters;
         this.inferredPhonemesInTargetWords = validInferredPhonemes;
         this.allClustersInAssessment = allClustersInAssessment;
-        this.validInferred = validInferred;
+        this.inferredReproducedInTargetWords = validInferred;
         this.inferredNotReproducedInTargetWords = new ArrayList<>();
         this.inferredNotReproducedNotInTargetWords = new ArrayList<>();
+        this.inferredReproducedNotInTargetWords = new ArrayList<>();
         this.invalidInferred = validInferred;
         this.clustersParts = clustersParts;
+    }
+
+    public List<Phoneme> getInferredReproducedNotInTargetWords() {
+        return inferredReproducedNotInTargetWords;
+    }
+
+    public List<Phoneme> getInvalidInferred() {
+        return invalidInferred;
     }
 
     public List<Phoneme> getClustersParts() {
@@ -81,8 +93,8 @@ public class SimulationConsonantClustersInfo {
         return allClustersInAssessment;
     }
 
-    public List<Phoneme> getValidInferred() {
-        return validInferred;
+    public List<Phoneme> getInferredReproducedInTargetWords() {
+        return inferredReproducedInTargetWords;
     }
 
     public List<Phoneme> getInferredNotReproducedInTargetWords() {
@@ -106,7 +118,7 @@ public class SimulationConsonantClustersInfo {
         builder.append("-------------------\n");
 
         builder.append("the logic was valid in:\n");
-        builder.append(Util.printClusters(validInferred));
+        builder.append(Util.printClusters(inferredReproducedInTargetWords));
         builder.append("-------------------\n");
 
         builder.append("allClustersInAssessment\n");
@@ -130,38 +142,74 @@ public class SimulationConsonantClustersInfo {
      * @param header With header or not.
      * @return The information in CSV format.
      */
-    public String exportCSV(boolean header) {
+    public String exportCSVAbleToReproduce(boolean header) {
         if (inferredPhonemes.isEmpty() || inferredPhonemesInTargetWords.isEmpty()) {
             return "";
         }
-        // quantos fonemas foram inferidos no decorrer da avaliação
-        // quantos dos fonemas inferidos a criança realmente conseguiu reproduzir
-        // dos fonemas que não foram inferidos, quantos estavam nas target words
-        // dos fonemas que não foram inferidos, quantos não estavam nas target words
         final StringBuilder builder = new StringBuilder();
         if (header) {
-            builder.append("inferredPhonemes,inferredPhonemesInTargetWords,validInferred,inferredNotReproducedInTargetWords,inferredNotReproducedNotInTargetWords,inferencesValidation\n");
+            /*
+            inferredPhonemes = todos os fonemas inferidos (A)
+            allConsonantClustersInTargetWords = todos os fonemas (alvo) nas palavras alvo (B)
+            inferredPhonemesInTargetWords = inferidos que estão nas palavras alvo (A) x (B)
+            allClustersInAssessment = fonemas produzidos na avaliação (C)
+            validInferred = fonemas inferidos que estão nas palavras alvo e que foram produzidos na avaliação (A) x (B) x (C)
+            inferredNotReproducedInTargetWords = inferidos que estão nas palavras alvo e que não foram produzidos (A) x (B) - (C) azul escuro (inválidas)
+            inferredNotReproducedNotInTargetWords = inferidos que não estão nas palavras alvo e que não foram produzidos (A) - ((B) U (C)) impossível de validar
+             */
+            builder.append("inferredPhonemes,allConsonantClustersInTargetWords,inferredPhonemesInTargetWords,allClustersInAssessment,validInferred,inferredNotReproducedInTargetWords,inferredNotReproducedNotInTargetWords\n");
         }
 
         List<String> cols = new LinkedList<>();
         cols.add(Integer.toString(inferredPhonemes.size()));
+        cols.add(Integer.toString(allTargetConsonantClusters.size()));
         cols.add(Integer.toString(inferredPhonemesInTargetWords.size()));
-        if (validInferred.isEmpty()) {
-            cols.add("Nenhum");
-        } else {
-            cols.add(Integer.toString(validInferred.size()));
-        }
-        // número de fonemas inferidos que não foram reproduzidos mas que estão nas palavras alvo: inferências inválidas.
-        // se não tiver nenhuma, significa que todas inferências foram válidas
-        if (inferredNotReproducedInTargetWords.isEmpty()) {
-            cols.add("Todas Válidas");
-        } else {
-            cols.add(Integer.toString(inferredNotReproducedInTargetWords.size()));
-        }
+        cols.add(Integer.toString(allClustersInAssessment.size()));
+        cols.add(Integer.toString(inferredReproducedInTargetWords.size()));
+        cols.add(Integer.toString(inferredNotReproducedInTargetWords.size()));
         cols.add(Integer.toString(inferredNotReproducedNotInTargetWords.size()));
 
-        int v = validInferred.size() * 100 / inferredPhonemesInTargetWords.size();
-        cols.add(Integer.toString(v) + "%");
+        for (int i = 0; i < cols.size(); i++) {
+            builder.append(cols.get(i));
+            if (i < cols.size() - 1) {
+                builder.append(",");
+            }
+        }
+        builder.append("\n");
+
+        return builder.toString();
+    }
+
+    /**
+     * Exports all the wanted information to CSV format.
+     *
+     * @param header With header or not.
+     * @return The information in CSV format.
+     */
+    public String exportCSVNotAbleToReproduce(boolean header) {
+        if (inferredPhonemes.isEmpty() || inferredPhonemesInTargetWords.isEmpty()) {
+            return "";
+        }
+        final StringBuilder builder = new StringBuilder();
+        if (header) {
+            /*
+            inferredPhonemes = inferidos que a criança NÃO consegue produzir (D)
+            allConsonantClustersInTargetWords = encontros consonantais (alvos) nas palavras alvo (B)
+            inferredPhonemesInTargetWords = inferidos que estão nas palavras alvo D x B
+            allClustersInAssessment = fonemas produzidos na avaliação (C)
+            validInferred = fonemas inferidos que ela NÃO conseguiria produzir que estão nas palavras alvo e que ela realmente não produziu (D x B - C)
+            invalidInferred = fonemas inferidos  que ela NÃO conseguiria produzir que estão nas palavras alvo mas que ela produziu (D x B x C)
+             */
+            builder.append("inferredPhonemes,allConsonantClustersInTargetWords,inferredPhonemesInTargetWords,allClustersInAssessment,validInferred,invalidInferred\n");
+        }
+
+        List<String> cols = new LinkedList<>();
+        cols.add(Integer.toString(inferredPhonemes.size()));
+        cols.add(Integer.toString(allTargetConsonantClusters.size()));
+        cols.add(Integer.toString(inferredPhonemesInTargetWords.size()));
+        cols.add(Integer.toString(allClustersInAssessment.size()));
+        cols.add(Integer.toString(inferredReproducedInTargetWords.size()));
+        cols.add(Integer.toString(invalidInferred.size()));
 
         for (int i = 0; i < cols.size(); i++) {
             builder.append(cols.get(i));

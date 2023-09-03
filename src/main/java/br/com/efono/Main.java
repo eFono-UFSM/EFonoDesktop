@@ -232,39 +232,61 @@ public class Main {
 
         System.out.println("Output directory with simulation statistics: " + parent);
 
-        // consider as valid inferred phonemes only the ones that are in target words
-        List<SimulationConsonantClustersInfo> infos = new ArrayList<>();
-        for (int i = 0; i <= 1; i++) {
-            boolean considerOnlyClustersInTargetWords = (i == 0);
+        List<SimulationConsonantClustersInfo> infosAbleToReproduce = new ArrayList<>();
+        List<SimulationConsonantClustersInfo> infosNotAbleToReproduce = new ArrayList<>();
 
-            System.out.println("Consider only clusters in target words: " + considerOnlyClustersInTargetWords);
-            final StringBuilder builder = new StringBuilder();
-            assessments.forEach(a -> {
-                SimulationConsonantClustersInfo run = SimulationConsonantClusters.run(a, KnownCaseComparator.EasyWordsFirst,
-                        considerOnlyClustersInTargetWords);
+        System.out.println("Considering only clusters in target words");
+        final StringBuilder builderAbleToReproduce = new StringBuilder();
+        final StringBuilder builderNotAbleToReproduce = new StringBuilder();
+        assessments.forEach(a -> {
+            SimulationConsonantClustersInfo runAbleToReproduce
+                    = SimulationConsonantClusters.runInferencesAnalysisCorrect(a, true);
+            infosAbleToReproduce.add(runAbleToReproduce);
+            builderAbleToReproduce.append(runAbleToReproduce.exportCSVAbleToReproduce(builderAbleToReproduce.toString().isBlank()));
+            
+            ////////////////////////////////
+            SimulationConsonantClustersInfo runNotAbleToReproduce
+                    = SimulationConsonantClusters.runInferencesAnalysisIncorrect(a);
+            infosNotAbleToReproduce.add(runNotAbleToReproduce);
+            builderNotAbleToReproduce.append(runNotAbleToReproduce.exportCSVNotAbleToReproduce(
+                    builderNotAbleToReproduce.toString().isBlank()));
+        });
 
-                if (considerOnlyClustersInTargetWords) {
-                    infos.add(run);
-                }
+        System.out.println("-----------------------------------------------------------------------");
 
-                builder.append(run.exportCSV(builder.toString().isBlank()));
-            });
-
-            System.out.println("-----------------------------------------------------------------------");
-
-            File file = new File(parent, "results-considerOnlyClustersInTargetWords-" + considerOnlyClustersInTargetWords + ".csv");
-            try (PrintWriter out = new PrintWriter(file)) {
-                out.print(builder.toString());
-                System.out.println("File at: " + file);
-            } catch (final FileNotFoundException ex) {
-                System.out.println("Couldn't write into file: " + ex);
-            }
+        File fileAbleToReproduce = new File(parent, 
+                "statistics-AbleToReproduce-considerOnlyClustersInTargetWords-true.csv");
+        try (PrintWriter out = new PrintWriter(fileAbleToReproduce)) {
+            out.print(builderAbleToReproduce.toString());
+            System.out.println("File at: " + fileAbleToReproduce);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
         }
 
-        File fileInfosCount = new File(parent, "infosCount-considerOnlyClustersInTargetWords-true.csv");
-        try (PrintWriter out = new PrintWriter(fileInfosCount)) {
-            out.print(SimulationConsonantClustersInfo.exportCountingInfosToCSV(infos));
-            System.out.println("File at: " + fileInfosCount);
+        File fileInfosCountAbleToReproduce = new File(parent, 
+                "infosCount-AbleToReproduce-considerOnlyClustersInTargetWords-true.csv");
+        try (PrintWriter out = new PrintWriter(fileInfosCountAbleToReproduce)) {
+            out.print(SimulationConsonantClustersInfo.exportCountingInfosToCSV(infosAbleToReproduce));
+            System.out.println("File at: " + fileInfosCountAbleToReproduce);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
+        
+        //////////////////////////
+        File fileNotAbleToReproduce = new File(parent, 
+                "statistics-NotAbleToReproduce-considerOnlyClustersInTargetWords-true.csv");
+        try (PrintWriter out = new PrintWriter(fileNotAbleToReproduce)) {
+            out.print(builderNotAbleToReproduce.toString());
+            System.out.println("File at: " + fileNotAbleToReproduce);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
+
+        File fileInfosCountNotAbleToReproduce = new File(parent, 
+                "infosCount-NotAbleToReproduce-considerOnlyClustersInTargetWords-true.csv");
+        try (PrintWriter out = new PrintWriter(fileInfosCountNotAbleToReproduce)) {
+            out.print(SimulationConsonantClustersInfo.exportCountingInfosToCSV(infosNotAbleToReproduce));
+            System.out.println("File at: " + fileInfosCountNotAbleToReproduce);
         } catch (final FileNotFoundException ex) {
             System.out.println("Couldn't write into file: " + ex);
         }
