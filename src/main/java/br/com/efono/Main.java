@@ -245,7 +245,7 @@ public class Main {
 
             ////////////////////////////////
             SimulationConsonantClustersInfo runNotAbleToReproduce
-                    = SimulationConsonantClusters.runInferencesAnalysisIncorrect(a);
+                    = SimulationConsonantClusters.runInferencesAnalysisIncorrect2(a);
 
 //            System.out.println(runNotAbleToReproduce);
             infosNotAbleToReproduce.add(runNotAbleToReproduce);
