@@ -11,6 +11,7 @@ import br.com.efono.model.SimulationInfo;
 import br.com.efono.model.Statistics;
 import br.com.efono.tree.BinaryTreePrinter;
 import br.com.efono.util.Defaults;
+import br.com.efono.util.NoRepeatList;
 import br.com.efono.util.SimulationConsonantClusters;
 import br.com.efono.util.SimulationWordsSequence;
 import br.com.efono.util.Util;
@@ -224,6 +225,45 @@ public class Main {
         System.out.println("--------------------------------------");
         System.out.println("Analyzing Consonant Clusters");
         System.out.println("--------------------------------------");
+
+        Map<Phoneme, List<String>> clustersInWords = new HashMap<>();
+
+        System.out.println("Possible consonant clusters: [" + Phoneme.CONSONANT_CLUSTERS.length + "]: " + Arrays.toString(Phoneme.CONSONANT_CLUSTERS));
+
+        List<Phoneme> clustersInTargetWords = new NoRepeatList<>();
+
+        Iterator<Map.Entry<String, List<Phoneme>>> iterator = Defaults.TARGET_PHONEMES.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, List<Phoneme>> next = iterator.next();
+
+            next.getValue().stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
+                if (!clustersInWords.containsKey(p)) {
+                    clustersInWords.put(p, new ArrayList<>());
+                }
+                clustersInWords.get(p).add(next.getKey());
+
+                clustersInTargetWords.add(p);
+            });
+        }
+
+        List<Phoneme> clustersInTargetWordsMinimum2Times = new NoRepeatList<>();
+
+        System.out.println("clustersInTargetWords: [" + clustersInTargetWords.size() + "]: " + clustersInTargetWords);
+
+        System.out.println("clustersInWords");
+        Iterator<Map.Entry<Phoneme, List<String>>> it = clustersInWords.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<Phoneme, List<String>> next = it.next();
+            System.out.println(next.getKey() + " -> " + next.getValue());
+
+            if (next.getValue().size() >= 2) {
+                clustersInTargetWordsMinimum2Times.add(next.getKey());
+            }
+        }
+
+        System.out.println("clustersInTargetWordsMinimum2Times [" + clustersInTargetWordsMinimum2Times.size() + "]: " + clustersInTargetWordsMinimum2Times);
+
+        System.out.println("------------------------");
 
         List<Assessment> assessments = getAssessmentsFromDB();
         System.out.println("Running simulation with " + assessments.size() + " complete assessments");
