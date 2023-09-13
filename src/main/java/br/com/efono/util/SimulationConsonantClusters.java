@@ -122,12 +122,12 @@ public class SimulationConsonantClusters {
             cases.forEach(c -> {
                 List<Phoneme> targetSplit = new NoRepeatList<>();
                 Defaults.TARGET_PHONEMES.get(c.getWord()).stream().filter(p -> p.isConsonantCluster()).forEach(p -> targetSplit.addAll(p.splitPhonemes()));
-               
+
                 List<Phoneme> producedSplit = new NoRepeatList<>();
                 c.getPhonemes().stream().filter(p -> p.isConsonantCluster()).forEach(p -> producedSplit.addAll(p.splitPhonemes()));
-                
+
                 targetSplit.stream().filter(p -> !producedSplit.contains(p)).forEach(p -> clustersParts.add(p));
-                
+
                 c.getPhonemes().stream().filter(p -> p.isConsonantCluster()).forEach(p -> {
                     allClustersInAssessment.add(p);
                 });
@@ -143,6 +143,10 @@ public class SimulationConsonantClusters {
                 value.stream().filter(p -> p.isConsonantCluster()).forEach(
                         p -> allConsonantClustersInTargetWords.add(p));
             });
+
+            List<Phoneme> allClustersNotReproduced = new NoRepeatList<>();
+            allConsonantClustersInTargetWords.stream().filter(p -> !allClustersInAssessment.contains(p)).forEach(
+                    p -> allClustersNotReproduced.add(p));
 
             /**
              * inferredPhonemes that are in target words.
@@ -173,7 +177,7 @@ public class SimulationConsonantClusters {
              */
             return new SimulationConsonantClustersInfo(assessment.getId(), inferredPhonemes,
                     allConsonantClustersInTargetWords, inferredPhonemesInTargetWords, allClustersInAssessment,
-                    validInferred, invalidInferred, clustersParts);
+                    validInferred, invalidInferred, clustersParts, allClustersNotReproduced);
         }
         return new SimulationConsonantClustersInfo();
 
