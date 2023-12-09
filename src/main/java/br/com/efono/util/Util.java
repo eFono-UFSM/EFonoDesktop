@@ -1,5 +1,6 @@
 package br.com.efono.util;
 
+import br.com.efono.model.Assessment;
 import br.com.efono.model.KnownCase;
 import br.com.efono.model.Phoneme;
 import static br.com.efono.model.Phoneme.CONSONANT_CLUSTERS;
@@ -520,6 +521,115 @@ public class Util {
         });
 
         return possibleClusters;
+    }
+
+    /**
+     * Exports info in CSV format as input for ML algorithms.
+     *
+     * @param assessments Assessment to be analyzed.
+     * @param targetPhonemes Target phonemes expected for each word.
+     * @return The info in CSV format.
+     */
+    public static String exportClustersInfo(final List<Assessment> assessments,
+            final Map<String, List<Phoneme>> targetPhonemes) {
+        StringBuilder builder = new StringBuilder("assessmentID,targetWord,transcription,correct,targetClusters,producedClusters1,producedClusters2\n");
+
+        assessments.forEach(a -> {
+            a.getCases().forEach(c -> {
+                List<Phoneme> targetClusters = targetPhonemes.get(c.getWord()).stream().filter(p -> p.isConsonantCluster()).toList();
+                List<Phoneme> producedClusters = c.getPhonemes().stream().filter(p -> p.isConsonantCluster()).toList();
+
+                List<Phoneme> subList1;
+                List<Phoneme> subList2 = new ArrayList<>();
+
+                if (producedClusters.size() > 1) {
+                    int middle = producedClusters.size() / 2;
+
+                    subList1 = producedClusters.subList(0, middle);
+                    subList2 = producedClusters.subList(middle, producedClusters.size());
+                } else {
+                    subList1 = producedClusters;
+                }
+
+                if (subList1.size() + subList2.size() != producedClusters.size()) {
+                    System.out.println("ERRO!");
+                }
+
+                List<String> cols = new LinkedList<>();
+                cols.add(Integer.toString(a.getId()));
+                cols.add(c.getWord());
+                cols.add(c.getRepresentation());
+                cols.add(Boolean.toString(c.isCorrect()));
+                cols.add(getCSVFormat(targetClusters, " "));
+                cols.add(getCSVFormat(subList1, " "));
+                cols.add(getCSVFormat(subList2, " "));
+
+                builder.append(getCSVFormat(cols, ",")).append("\n");
+            });
+        });
+
+        return builder.toString();
+    }
+
+    /**
+     * Exports info in CSV format as input for ML algorithms.
+     *
+     * @param assessments Assessment to be analyzed.
+     * @param targetPhonemes Target phonemes expected for each word.
+     * @return The info in CSV format.
+     */
+    public static String exportClustersInfosGeneral(final List<Assessment> assessments,
+            final Map<String, List<Phoneme>> targetPhonemes) {
+        StringBuilder builder = new StringBuilder("assessmentID,targetClusters,producedClusters1,producedClusters2\n");
+        
+        List<Phoneme> targetClusters = new NoRepeatList<>();
+        targetPhonemes.values().forEach(list -> list.stream().filter(p -> p.isConsonantCluster()).forEach(p -> targetClusters.add(p)));
+
+        assessments.forEach(a -> {
+            List<Phoneme> producedClusters = new NoRepeatList<>();
+            a.getCases().forEach(c -> {
+                c.getPhonemes().stream().filter(p -> p.isConsonantCluster()).forEach(p -> producedClusters.add(p));
+            });
+
+            List<Phoneme> subList1;
+            List<Phoneme> subList2 = new ArrayList<>();
+
+            if (producedClusters.size() > 1) {
+                int middle = producedClusters.size() / 2;
+
+                subList1 = producedClusters.subList(0, middle);
+                subList2 = producedClusters.subList(middle, producedClusters.size());
+            } else {
+                subList1 = producedClusters;
+            }
+
+            if (subList1.size() + subList2.size() != producedClusters.size()) {
+                System.out.println("ERRO!");
+            }
+
+            List<String> cols = new LinkedList<>();
+            cols.add(Integer.toString(a.getId()));
+            cols.add(getCSVFormat(targetClusters, " "));
+            cols.add(getCSVFormat(subList1, " "));
+            cols.add(getCSVFormat(subList2, " "));
+
+            builder.append(getCSVFormat(cols, ",")).append("\n");
+
+        });
+
+        return builder.toString();
+    }
+
+    public static String getCSVFormat(final List cols, final String separator) {
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < cols.size(); i++) {
+            builder.append(cols.get(i));
+            if (i < cols.size() - 1) {
+                builder.append(separator);
+            }
+        }
+
+        return builder.toString();
     }
 
 }

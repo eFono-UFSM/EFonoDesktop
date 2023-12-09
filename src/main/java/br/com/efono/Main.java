@@ -272,6 +272,24 @@ public class Main {
 
         System.out.println("Output directory with simulation statistics: " + parent);
 
+        File fileReproducedExport = new File(parent,
+                "Reproduced-export.csv");
+        try (PrintWriter out = new PrintWriter(fileReproducedExport)) {
+            out.print(Util.exportClustersInfo(assessments, Defaults.TARGET_PHONEMES));
+            System.out.println("File at: " + fileReproducedExport);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
+
+        File fileReproducedExportGeneral = new File(parent,
+                "Reproduced-General-export.csv");
+        try (PrintWriter out = new PrintWriter(fileReproducedExportGeneral)) {
+            out.print(Util.exportClustersInfosGeneral(assessments, Defaults.TARGET_PHONEMES));
+            System.out.println("File at: " + fileReproducedExportGeneral);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
+
         List<SimulationConsonantClustersInfo> infosAbleToReproduce = new ArrayList<>();
         List<SimulationConsonantClustersInfo> infosNotAbleToReproduce = new ArrayList<>();
 
