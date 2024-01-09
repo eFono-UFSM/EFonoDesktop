@@ -10,6 +10,7 @@ import br.com.efono.model.SimulationConsonantClustersInfo;
 import br.com.efono.model.SimulationInfo;
 import br.com.efono.model.Statistics;
 import br.com.efono.tree.BinaryTreePrinter;
+import br.com.efono.tree.Node;
 import br.com.efono.util.Defaults;
 import br.com.efono.util.NoRepeatList;
 import br.com.efono.util.SimulationConsonantClusters;
@@ -31,9 +32,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bson.Document;
@@ -235,6 +238,53 @@ public class Main {
         }
     }
 
+    private static void screeningAssessment() {
+        try (Scanner scanner = new Scanner(System.in)) {
+            String resposta, currentWord;
+            
+            List<Node> sequence = new LinkedList<>();
+
+            Node<String> node = Defaults.TREE.getRoot();
+            if (node != null) {
+                do {
+                    currentWord = node.getValue();
+                    sequence.add(node);
+                    
+                    System.out.println("A criança falou '" + node.getValue() + "' satisfatóriamente? [s/n/quit]");
+                    resposta = scanner.next();
+                    
+                    if (resposta.equalsIgnoreCase("quit")) {
+                        break;
+                    }
+
+                    while (!(resposta.startsWith("s") || resposta.startsWith("S")) && 
+                        !(resposta.startsWith("n") || resposta.startsWith("N"))) {
+                        System.out.println("Resposta inválida. Digite 's' ou 'n'.");
+                        System.out.println("A criança falou '" + node.getValue() + "' satisfatóriamente?");
+                        resposta = scanner.next();
+                    }
+                    if (resposta.startsWith("s") || resposta.startsWith("S")) {
+                        System.out.println("Parabéns! Você acertou!");
+                        node = node.getRight();
+                    } else if (resposta.startsWith("n") || resposta.startsWith("N")) {
+                        System.out.println("Oops! Você errou.");
+                        node = node.getLeft();
+                    }
+                } while (node != null);
+                System.out.println("Triagem finalizada com "+sequence.size()+" palavras. Palavra final: " + currentWord);
+                System.out.println("Sequencia completa: ");
+                for (int i = 0; i < sequence.size(); i++) {
+                    System.out.print(sequence.get(i).printValue());
+                    if (i < sequence.size() - 1) {
+                        System.out.print(" -> ");
+                    }
+                }
+            } else {
+                System.err.println("Root is null");
+            }
+        }
+    }
+
     /**
      * Show application.
      *
@@ -258,12 +308,25 @@ public class Main {
             }
         }
 
-        MySQLConnection.getInstance().connect(prop);
+        Defaults.TREE.init(Defaults.SORTED_WORDS);
+
+        System.out.println("-------------------");
+
+        System.out.println(
+            "@startuml\n"
+            + "top to bottom direction");
+
+        BinaryTreePrinter.printUML(Defaults.TREE.getRoot());
+
+        System.out.println("@enduml");
+        System.out.println("\n-------------------");
+
         if (1 > 0) {
-            exportToJson("C:\\Users\\Joao\\Documents\\mestrado\\ComputerSpeech\\words.json");
+            screeningAssessment();
             return;
         }
 
+        MySQLConnection.getInstance().connect(prop);
         MongoConnection.getInstance().connect(prop);
 
         Map<String, Object> filters = new HashMap<>();
@@ -301,19 +364,6 @@ public class Main {
             Map.Entry<String, List<Phoneme>> next = iterator.next();
             System.out.println(next.getKey() + " -> " + next.getValue());
         }
-
-        Defaults.TREE.init(Defaults.SORTED_WORDS);
-
-        System.out.println("-------------------");
-
-        System.out.println(
-            "@startuml\n"
-            + "top to bottom direction");
-
-        BinaryTreePrinter.printUML(Defaults.TREE.getRoot());
-
-        System.out.println("@enduml");
-        System.out.println("\n-------------------");
 
         // TODO: testar esse código
         Arrays.asList(Defaults.SORTED_WORDS).forEach(w -> {
