@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -33,6 +34,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.bson.Document;
 
 /**
@@ -40,6 +43,197 @@ import org.bson.Document;
  * @version 2023, May 28.
  */
 public class Main {
+
+    private static String removerAcentos(String input) {
+        return Normalizer.normalize(input, Normalizer.Form.NFD)
+            .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+    }
+
+    public static void exportToJson(String nomeArquivo) {
+        List<PalavraJson> palavrasJson = new ArrayList<>();
+        // id,palavra
+        String dados = """
+                '44', 'Anel'
+                '39', 'Barriga'
+                '73', 'Batom'
+                '65', 'Bebê'
+                '16', 'Beijo'
+                '80', 'Biblioteca'
+                '74', 'Bicicleta'
+                '56', 'Bolsa'
+                '69', 'Brinco'
+                '4', 'Bruxa'
+                '13', 'Cabelo'
+                '35', 'Cachorro'
+                '49', 'Caixa'
+                '81', 'Calça'
+                '7', 'Cama'
+                '41', 'Caminhão'
+                '26', 'Casa'
+                '1', 'Cavalo'
+                '62', 'Chapéu'
+                '6', 'Chiclete'
+                '77', 'Chifre'
+                '55', 'Chinelo'
+                '84', 'Cobra'
+                '21', 'Coelho'
+                '61', 'Colher'
+                '15', 'Cruz'
+                '70', 'Dado'
+                '31', 'Dedo'
+                '71', 'Dente'
+                '79', 'Dragão'
+                '22', 'Escrever'
+                '33', 'Espelho'
+                '24', 'Estrela'
+                '29', 'Faca'
+                '20', 'Flor'
+                '64', 'Floresta'
+                '58', 'Fogo'
+                '19', 'Folha'
+                '53', 'Fralda'
+                '27', 'Fruta'
+                '72', 'Galinha'
+                '45', 'Garfo'
+                '63', 'Gato'
+                '17', 'Girafa'
+                '40', 'Grama'
+                '2', 'Gritar'
+                '47', 'Igreja'
+                '5', 'Jacaré'
+                '52', 'Jornal'
+                '14', 'Letra'
+                '8', 'Livro'
+                '28', 'Lápis'
+                '18', 'Língua'
+                '36', 'Magro'
+                '43', 'Mesa'
+                '37', 'Microfone'
+                '38', 'Nariz'
+                '78', 'Navio'
+                '10', 'Nuvem'
+                '83', 'Passarinho'
+                '66', 'Pastel'
+                '51', 'Pedra'
+                '23', 'Placa'
+                '32', 'Plástico'
+                '67', 'Porta'
+                '11', 'Prato'
+                '30', 'Presente'
+                '75', 'Rabo'
+                '34', 'Refri'
+                '12', 'Relógio'
+                '25', 'Sapato'
+                '3', 'Sapo'
+                '9', 'Sofá'
+                '57', 'Soprar'
+                '76', 'Terra'
+                '50', 'Tesoura'
+                '54', 'Travesseiro'
+                '48', 'Trem'
+                '42', 'Tênis'
+                '60', 'Vaca'
+                '82', 'Ventilador'
+                '46', 'Vidro'
+                '59', 'Zebra'
+                '68', 'Zero'
+                """;
+
+        Map<Integer, String> mapaPalavras = new HashMap<>();
+
+        // Dividir as linhas e processar cada linha
+        String[] linhas = dados.split("\n");
+        for (String linha : linhas) {
+            // Dividir os campos da linha
+            String[] campos = linha.split(",");
+
+            // Extrair o id_palavra e a palavra
+            int idPalavra = Integer.parseInt(campos[0].trim().replace("'", ""));
+            String palavra = campos[1].trim().replace("'", "");
+
+            // Aplicar a conversão para minúsculas e remoção de acentos
+            palavra = removerAcentos(palavra.toLowerCase());
+
+            // Adicionar ao mapa
+            mapaPalavras.put(idPalavra, palavra);
+        }
+
+        System.out.println("palavras: " + mapaPalavras.size());
+
+        if (1 > 0) {
+            return;
+        }
+
+        // Imprimir o mapa
+        for (Map.Entry<Integer, String> entry : mapaPalavras.entrySet()) {
+            System.out.println("ID: " + entry.getKey() + ", Palavra: " + entry.getValue());
+
+            String palavra = entry.getValue();
+
+            String queryAssessmentId = "SELECT distinct transcricao FROM avaliacaopalavra where id_palavra = " + entry.getKey() + " and correto = 1 LIMIT 1;";
+            ResultSet idsResult;
+            String transcription = "";
+            try {
+                idsResult = MySQLConnection.getInstance().executeQuery(queryAssessmentId);
+                while (idsResult.next()) {
+                    transcription = idsResult.getString("transcricao");
+                    break;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            PalavraJson palavraJson = new PalavraJson();
+            palavraJson.setWord(palavra);
+            palavraJson.setRepresentation(transcription);
+            palavraJson.setPhonologicalProcesses(List.of("semi_liquida_todas_l"));
+
+            palavrasJson.add(palavraJson);
+        }
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        try {
+            // Escreve o JSON no arquivo especificado
+            objectMapper.writeValue(new File(nomeArquivo), palavrasJson);
+
+            System.out.println("Exportado com sucesso para: " + nomeArquivo);
+        } catch (IOException e) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+
+    static class PalavraJson {
+
+        private String word;
+        private String representation;
+        private List<String> phonologicalProcesses;
+
+        // Getters e Setters
+        public String getWord() {
+            return word;
+        }
+
+        public void setWord(String word) {
+            this.word = word;
+        }
+
+        public String getRepresentation() {
+            return representation;
+        }
+
+        public void setRepresentation(String representation) {
+            this.representation = representation;
+        }
+
+        public List<String> getPhonologicalProcesses() {
+            return phonologicalProcesses;
+        }
+
+        public void setPhonologicalProcesses(List<String> phonologicalProcesses) {
+            this.phonologicalProcesses = phonologicalProcesses;
+        }
+    }
 
     /**
      * Show application.
@@ -65,6 +259,11 @@ public class Main {
         }
 
         MySQLConnection.getInstance().connect(prop);
+        if (1 > 0) {
+            exportToJson("C:\\Users\\Joao\\Documents\\mestrado\\ComputerSpeech\\words.json");
+            return;
+        }
+
         MongoConnection.getInstance().connect(prop);
 
         Map<String, Object> filters = new HashMap<>();
@@ -74,7 +273,7 @@ public class Main {
         Arrays.asList(Defaults.SORTED_WORDS).forEach(w -> {
             filters.put("word", w);
             FindIterable<Document> result = MongoConnection.getInstance().executeQuery("knowncases", filters,
-                    null);
+                null);
 
             // correct known cases for word <w>
             final List<KnownCase> correctCases = new ArrayList<>();
@@ -108,8 +307,8 @@ public class Main {
         System.out.println("-------------------");
 
         System.out.println(
-                "@startuml\n"
-                + "top to bottom direction");
+            "@startuml\n"
+            + "top to bottom direction");
 
         BinaryTreePrinter.printUML(Defaults.TREE.getRoot());
 
@@ -180,11 +379,11 @@ public class Main {
 
                 // avaliacao 15 está toda correta, vou usar essa agora para fazer a simulação sem muita complexidade
                 String query = "SELECT "
-                        + "avaliacaopalavra.id_avaliacao, avaliacaopalavra.id_palavra, "
-                        + "avaliacaopalavra.transcricao, palavra.palavra, avaliacaopalavra.correto "
-                        + "FROM avaliacaopalavra, palavra WHERE palavra.id_palavra = avaliacaopalavra.id_palavra "
-                        + "AND avaliacaopalavra.transcricao <> 'NULL' AND (correto = 1 OR correto = 0) "
-                        + "AND id_avaliacao = " + id;
+                    + "avaliacaopalavra.id_avaliacao, avaliacaopalavra.id_palavra, "
+                    + "avaliacaopalavra.transcricao, palavra.palavra, avaliacaopalavra.correto "
+                    + "FROM avaliacaopalavra, palavra WHERE palavra.id_palavra = avaliacaopalavra.id_palavra "
+                    + "AND avaliacaopalavra.transcricao <> 'NULL' AND (correto = 1 OR correto = 0) "
+                    + "AND id_avaliacao = " + id;
                 ResultSet rs = MySQLConnection.getInstance().executeQuery(query);
 
                 List<Integer> wordsIDs = new ArrayList<>();
@@ -196,7 +395,7 @@ public class Main {
                         wordsIDs.add(rs.getInt("id_palavra"));
                         try {
                             KnownCase knownCase = new KnownCase(rs.getString("palavra"),
-                                    rs.getString("transcricao"), rs.getBoolean("correto"));
+                                rs.getString("transcricao"), rs.getBoolean("correto"));
 
                             knownCase.putPhonemes(Util.getConsonantPhonemes(knownCase.getRepresentation()));
 
@@ -229,6 +428,10 @@ public class Main {
         Map<Phoneme, List<String>> clustersInWords = new HashMap<>();
 
         System.out.println("Possible consonant clusters: [" + Phoneme.CONSONANT_CLUSTERS.length + "]: " + Arrays.toString(Phoneme.CONSONANT_CLUSTERS));
+
+        if (1 > 0) {
+            return;
+        }
 
         List<Phoneme> clustersInTargetWords = new NoRepeatList<>();
 
@@ -267,13 +470,12 @@ public class Main {
 
         List<Assessment> assessments = getAssessmentsFromDB();
         System.out.println("Running simulation with " + assessments.size() + " complete assessments");
-        File parent = new File(outputDirectory, "SAC-2024-results");
+        File parent = new File(outputDirectory, "ICEIS-2024-results");
         parent.mkdir();
 
         System.out.println("Output directory with simulation statistics: " + parent);
 
-        File fileReproducedExport = new File(parent,
-                "Reproduced-export.csv");
+        File fileReproducedExport = new File(parent, "Reproduced-export.csv");
         try (PrintWriter out = new PrintWriter(fileReproducedExport)) {
             out.print(Util.exportClustersInfo(assessments, Defaults.TARGET_PHONEMES));
             System.out.println("File at: " + fileReproducedExport);
@@ -282,7 +484,7 @@ public class Main {
         }
 
         File fileReproducedExportGeneral = new File(parent,
-                "Reproduced-General-export.csv");
+            "Reproduced-General-export.csv");
         try (PrintWriter out = new PrintWriter(fileReproducedExportGeneral)) {
             out.print(Util.exportClustersInfosGeneral(assessments, Defaults.TARGET_PHONEMES));
             System.out.println("File at: " + fileReproducedExportGeneral);
@@ -297,24 +499,24 @@ public class Main {
         final StringBuilder builderNotAbleToReproduce = new StringBuilder();
         assessments.forEach(a -> {
             SimulationConsonantClustersInfo runAbleToReproduce
-                    = SimulationConsonantClusters.runInferencesAnalysisCorrect(a);
+                = SimulationConsonantClusters.runInferencesAnalysisCorrect(a);
             infosAbleToReproduce.add(runAbleToReproduce);
             builderAbleToReproduce.append(runAbleToReproduce.exportCSVAbleToReproduce(builderAbleToReproduce.toString().isBlank()));
 
             ////////////////////////////////
             SimulationConsonantClustersInfo runNotAbleToReproduce
-                    = SimulationConsonantClusters.runInferencesAnalysisIncorrect(a);
+                = SimulationConsonantClusters.runInferencesAnalysisIncorrect(a);
 
 //            System.out.println(runNotAbleToReproduce);
             infosNotAbleToReproduce.add(runNotAbleToReproduce);
             builderNotAbleToReproduce.append(runNotAbleToReproduce.exportCSVNotAbleToReproduce(
-                    builderNotAbleToReproduce.toString().isBlank()));
+                builderNotAbleToReproduce.toString().isBlank()));
         });
 
         System.out.println("-----------------------------------------------------------------------");
 
         File fileAbleToReproduce = new File(parent,
-                "AbleToReproduce-statistics.csv");
+            "AbleToReproduce-statistics.csv");
         try (PrintWriter out = new PrintWriter(fileAbleToReproduce)) {
             out.print(builderAbleToReproduce.toString());
             System.out.println("File at: " + fileAbleToReproduce);
@@ -323,7 +525,7 @@ public class Main {
         }
 
         File fileInfosCountAbleToReproduce = new File(parent,
-                "AbleToReproduce-infosCount.csv");
+            "AbleToReproduce-infosCount.csv");
         try (PrintWriter out = new PrintWriter(fileInfosCountAbleToReproduce)) {
             out.print(SimulationConsonantClustersInfo.exportCountingInfosToCSV(infosAbleToReproduce));
             System.out.println("File at: " + fileInfosCountAbleToReproduce);
@@ -333,7 +535,7 @@ public class Main {
 
         //////////////////////////
         File fileNotAbleToReproduce = new File(parent,
-                "NotAbleToReproduce-statistics.csv");
+            "NotAbleToReproduce-statistics.csv");
         try (PrintWriter out = new PrintWriter(fileNotAbleToReproduce)) {
             out.print(builderNotAbleToReproduce.toString());
             System.out.println("File at: " + fileNotAbleToReproduce);
@@ -342,7 +544,7 @@ public class Main {
         }
 
         File fileInfosCountNotAbleToReproduce = new File(parent,
-                "NotAbleToReproduce-infosCount.csv");
+            "NotAbleToReproduce-infosCount.csv");
         try (PrintWriter out = new PrintWriter(fileInfosCountNotAbleToReproduce)) {
             out.print(SimulationConsonantClustersInfo.exportCountingInfosToCSV(infosNotAbleToReproduce));
             System.out.println("File at: " + fileInfosCountNotAbleToReproduce);
@@ -439,44 +641,44 @@ public class Main {
         System.out.println("Running simulation with " + assessments.size() + " complete assessments");
         for (Assessment assessment : assessments) {
             SimulationInfo hardWordsFirstPhonInv = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.HardWordsFirst, 2, true, true);
+                KnownCaseComparator.HardWordsFirst, 2, true, true);
             SimulationInfo hardWordsFirstPhonInvNoSplit = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.HardWordsFirst, 2, false, true);
+                KnownCaseComparator.HardWordsFirst, 2, false, true);
             SimulationInfo hardWordsFirstPCCR = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.HardWordsFirst, 2, true, false);
+                KnownCaseComparator.HardWordsFirst, 2, true, false);
 
             mapPhoneticInventory.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirstPhonInv);
             mapPhoneticInventoryNoSplitClusters.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirstPhonInvNoSplit);
             mapPCCR.get(KnownCaseComparator.HardWordsFirst).extractStatistics(hardWordsFirstPCCR);
 
             SimulationInfo easyWordsFirstPhonInv = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.EasyWordsFirst, 2, true, true);
+                KnownCaseComparator.EasyWordsFirst, 2, true, true);
             SimulationInfo easyWordsFirstPhonInvNoSplit = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.EasyWordsFirst, 2, false, true);
+                KnownCaseComparator.EasyWordsFirst, 2, false, true);
             SimulationInfo easyWordsFirstPCCR = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.EasyWordsFirst, 2, true, false);
+                KnownCaseComparator.EasyWordsFirst, 2, true, false);
 
             mapPhoneticInventory.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirstPhonInv);
             mapPhoneticInventoryNoSplitClusters.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirstPhonInvNoSplit);
             mapPCCR.get(KnownCaseComparator.EasyWordsFirst).extractStatistics(easyWordsFirstPCCR);
 
             SimulationInfo easyHardSwitchingPhonInv = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.EasyHardWords, 2, true, true);
+                KnownCaseComparator.EasyHardWords, 2, true, true);
             SimulationInfo easyHardSwitchingPhonInvNoSplit = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.EasyHardWords, 2, false, true);
+                KnownCaseComparator.EasyHardWords, 2, false, true);
             SimulationInfo easyHardSwitchingPCCR = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.EasyHardWords, 2, true, false);
+                KnownCaseComparator.EasyHardWords, 2, true, false);
 
             mapPhoneticInventory.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitchingPhonInv);
             mapPhoneticInventoryNoSplitClusters.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitchingPhonInvNoSplit);
             mapPCCR.get(KnownCaseComparator.EasyHardWords).extractStatistics(easyHardSwitchingPCCR);
 
             SimulationInfo binaryTreeSimulationPhonInv = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.BinaryTreeComparator, 2, true, true);
+                KnownCaseComparator.BinaryTreeComparator, 2, true, true);
             SimulationInfo binaryTreeSimulationPhonInvNoSplit = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.BinaryTreeComparator, 2, false, true);
+                KnownCaseComparator.BinaryTreeComparator, 2, false, true);
             SimulationInfo binaryTreeSimulationPCCR = SimulationWordsSequence.runSimulation(assessment,
-                    KnownCaseComparator.BinaryTreeComparator, 2, true, false);
+                KnownCaseComparator.BinaryTreeComparator, 2, true, false);
 
             mapPhoneticInventory.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPhonInv);
             mapPhoneticInventoryNoSplitClusters.get(KnownCaseComparator.BinaryTreeComparator).extractStatistics(binaryTreeSimulationPhonInvNoSplit);
@@ -484,9 +686,9 @@ public class Main {
 
             // blocos de palavras
             SimulationInfo binaryTreeExtended = SimulationWordsSequence.runSimulation2(assessment,
-                    KnownCaseComparator.BinaryTreeComparator, 2, true);
+                KnownCaseComparator.BinaryTreeComparator, 2, true);
             SimulationInfo binaryTreeExtendedNoSplit = SimulationWordsSequence.runSimulation2(assessment,
-                    KnownCaseComparator.BinaryTreeComparator, 2, false);
+                KnownCaseComparator.BinaryTreeComparator, 2, false);
 
             statisticsExtended.extractStatistics(binaryTreeExtended);
             statisticsExtendedNoSplit.extractStatistics(binaryTreeExtendedNoSplit);
