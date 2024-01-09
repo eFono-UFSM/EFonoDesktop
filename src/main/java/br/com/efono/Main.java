@@ -256,7 +256,7 @@ public class Main {
                     if (resposta.equalsIgnoreCase("quit")) {
                         break;
                     }
-
+                    // TODO: caso que termina em Livro. Se acertou livro (sem filhos) então volta pro nó anterior (pq ele tá um nível acima). Se ele errar, fica em Livro
                     while (!(resposta.startsWith("s") || resposta.startsWith("S")) && 
                         !(resposta.startsWith("n") || resposta.startsWith("N"))) {
                         System.out.println("Resposta inválida. Digite 's' ou 'n'.");
