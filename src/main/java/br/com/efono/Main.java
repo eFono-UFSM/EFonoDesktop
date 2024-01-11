@@ -241,37 +241,54 @@ public class Main {
     private static void screeningAssessment() {
         try (Scanner scanner = new Scanner(System.in)) {
             String resposta, currentWord;
-            
-            List<Node> sequence = new LinkedList<>();
+
+            List<String> operations = new LinkedList<>();
+            List<Node<String>> sequence = new LinkedList<>();
 
             Node<String> node = Defaults.TREE.getRoot();
             if (node != null) {
                 do {
                     currentWord = node.getValue();
                     sequence.add(node);
-                    
+
                     System.out.println("A criança falou '" + node.getValue() + "' satisfatóriamente? [s/n/quit]");
                     resposta = scanner.next();
-                    
+
                     if (resposta.equalsIgnoreCase("quit")) {
                         break;
                     }
-                    // TODO: caso que termina em Livro. Se acertou livro (sem filhos) então volta pro nó anterior (pq ele tá um nível acima). Se ele errar, fica em Livro
-                    while (!(resposta.startsWith("s") || resposta.startsWith("S")) && 
-                        !(resposta.startsWith("n") || resposta.startsWith("N"))) {
-                        System.out.println("Resposta inválida. Digite 's' ou 'n'.");
+                    while (!(resposta.startsWith("s") || resposta.startsWith("S"))
+                        && !(resposta.startsWith("n") || resposta.startsWith("N"))) {
+                        System.out.println("Resposta inválida. Digite [s/n/quit].");
                         System.out.println("A criança falou '" + node.getValue() + "' satisfatóriamente?");
                         resposta = scanner.next();
                     }
-                    if (resposta.startsWith("s") || resposta.startsWith("S")) {
+
+                    operations.add(resposta.startsWith("s") || resposta.startsWith("S") ? "R" : "L");
+
+                    boolean noChildren = (node.getLeft() == null && node.getRight() == null);
+
+                    String currentOp = operations.get(operations.size() - 1);
+
+                    if (operations.size() >= 2) {
+                        // isso resolve a parte 1
+                        String previousOp = operations.get(operations.size() - 2);
+                        if (noChildren) {
+                            if (!currentOp.equals(previousOp)) {
+                                currentWord = sequence.get(sequence.size() - 2).getValue();
+                            }
+                        }
+                    }
+
+                    if (currentOp.equals("R")) {
                         System.out.println("Parabéns! Você acertou!");
                         node = node.getRight();
-                    } else if (resposta.startsWith("n") || resposta.startsWith("N")) {
+                    } else {
                         System.out.println("Oops! Você errou.");
                         node = node.getLeft();
                     }
                 } while (node != null);
-                System.out.println("Triagem finalizada com "+sequence.size()+" palavras. Palavra final: " + currentWord);
+                System.out.println("Triagem finalizada com " + sequence.size() + " palavras. Palavra final: " + currentWord);
                 System.out.println("Sequencia completa: ");
                 for (int i = 0; i < sequence.size(); i++) {
                     System.out.print(sequence.get(i).printValue());
