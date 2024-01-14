@@ -6,7 +6,7 @@
 
     <groupId>br.com.efono</groupId>
     <artifactId>efono-launcher</artifactId>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.2</version>
     <packaging>jar</packaging>
     <name>EFono Desktop Launcher [${project.artifactId}]</name>
    
