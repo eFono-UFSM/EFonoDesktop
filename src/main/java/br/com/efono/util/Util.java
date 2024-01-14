@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 /**
@@ -60,7 +61,7 @@ public class Util {
                 String line = reader.readLine();
 
                 while (line != null) {
-                    if (!line.isBlank()) {
+                    if (!line.trim().isEmpty()) {
                         list.add(StringEscapeUtils.unescapeJava(line));
                     }
 
@@ -186,7 +187,7 @@ public class Util {
         if (phoneme != null) {
             phoneme = StringEscapeUtils.unescapeJava(phoneme); // just in case...
             phoneme = phoneme.trim();
-            if (!phoneme.isBlank()) {
+            if (!phoneme.trim().isEmpty()) {
                 // TODO: ter uma lista de fonemas consonantais válidos? existe algum pacote com esses fonemas? ver Phon
                 if (phoneme.length() == 1 || Arrays.asList(Phoneme.LABIALIZATION).contains(phoneme)
                         || Arrays.asList(Phoneme.SPECIAL_CONSONANTS).contains(phoneme)) {
@@ -291,7 +292,7 @@ public class Util {
      * @return An ordered list with the consonant phonemes or empty if inconsistencies were found.
      */
     public static List<Phoneme> getConsonantPhonemes(final String transcription) {
-        if (transcription != null && !transcription.isBlank()) {
+        if (transcription != null && !transcription.trim().isEmpty()) {
             String clean = cleanTranscription(transcription);
 
             for (String vowel : VOWELS) {
@@ -536,8 +537,8 @@ public class Util {
 
         assessments.forEach(a -> {
             a.getCases().forEach(c -> {
-                List<Phoneme> targetClusters = targetPhonemes.get(c.getWord()).stream().filter(p -> p.isConsonantCluster()).toList();
-                List<Phoneme> producedClusters = c.getPhonemes().stream().filter(p -> p.isConsonantCluster()).toList();
+                List<Phoneme> targetClusters = targetPhonemes.get(c.getWord()).stream().filter(p -> p.isConsonantCluster()).collect(Collectors.toList());
+                List<Phoneme> producedClusters = c.getPhonemes().stream().filter(p -> p.isConsonantCluster()).collect(Collectors.toList());
 
                 List<Phoneme> subList1;
                 List<Phoneme> subList2 = new ArrayList<>();

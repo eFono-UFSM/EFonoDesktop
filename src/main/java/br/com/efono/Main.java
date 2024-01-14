@@ -55,92 +55,91 @@ public class Main {
     public static void exportToJson(String nomeArquivo) {
         List<PalavraJson> palavrasJson = new ArrayList<>();
         // id,palavra
-        String dados = """
-                '44', 'Anel'
-                '39', 'Barriga'
-                '73', 'Batom'
-                '65', 'Bebê'
-                '16', 'Beijo'
-                '80', 'Biblioteca'
-                '74', 'Bicicleta'
-                '56', 'Bolsa'
-                '69', 'Brinco'
-                '4', 'Bruxa'
-                '13', 'Cabelo'
-                '35', 'Cachorro'
-                '49', 'Caixa'
-                '81', 'Calça'
-                '7', 'Cama'
-                '41', 'Caminhão'
-                '26', 'Casa'
-                '1', 'Cavalo'
-                '62', 'Chapéu'
-                '6', 'Chiclete'
-                '77', 'Chifre'
-                '55', 'Chinelo'
-                '84', 'Cobra'
-                '21', 'Coelho'
-                '61', 'Colher'
-                '15', 'Cruz'
-                '70', 'Dado'
-                '31', 'Dedo'
-                '71', 'Dente'
-                '79', 'Dragão'
-                '22', 'Escrever'
-                '33', 'Espelho'
-                '24', 'Estrela'
-                '29', 'Faca'
-                '20', 'Flor'
-                '64', 'Floresta'
-                '58', 'Fogo'
-                '19', 'Folha'
-                '53', 'Fralda'
-                '27', 'Fruta'
-                '72', 'Galinha'
-                '45', 'Garfo'
-                '63', 'Gato'
-                '17', 'Girafa'
-                '40', 'Grama'
-                '2', 'Gritar'
-                '47', 'Igreja'
-                '5', 'Jacaré'
-                '52', 'Jornal'
-                '14', 'Letra'
-                '8', 'Livro'
-                '28', 'Lápis'
-                '18', 'Língua'
-                '36', 'Magro'
-                '43', 'Mesa'
-                '37', 'Microfone'
-                '38', 'Nariz'
-                '78', 'Navio'
-                '10', 'Nuvem'
-                '83', 'Passarinho'
-                '66', 'Pastel'
-                '51', 'Pedra'
-                '23', 'Placa'
-                '32', 'Plástico'
-                '67', 'Porta'
-                '11', 'Prato'
-                '30', 'Presente'
-                '75', 'Rabo'
-                '34', 'Refri'
-                '12', 'Relógio'
-                '25', 'Sapato'
-                '3', 'Sapo'
-                '9', 'Sofá'
-                '57', 'Soprar'
-                '76', 'Terra'
-                '50', 'Tesoura'
-                '54', 'Travesseiro'
-                '48', 'Trem'
-                '42', 'Tênis'
-                '60', 'Vaca'
-                '82', 'Ventilador'
-                '46', 'Vidro'
-                '59', 'Zebra'
-                '68', 'Zero'
-                """;
+        String dados = ""
+            + "'44', 'Anel'\n"
+            + "'39', 'Barriga'\n"
+            + "'73', 'Batom'\n"
+            + "'65', 'Bebê'\n"
+            + "'16', 'Beijo'\n"
+            + "'80', 'Biblioteca'\n"
+            + "'74', 'Bicicleta'\n"
+            + "'56', 'Bolsa'\n"
+            + "'69', 'Brinco'\n"
+            + "'4', 'Bruxa'\n"
+            + "'13', 'Cabelo'\n"
+            + "'35', 'Cachorro'\n"
+            + "'49', 'Caixa'\n"
+            + "'81', 'Calça'\n"
+            + "'7', 'Cama'\n"
+            + "'41', 'Caminhão'\n"
+            + "'26', 'Casa'\n"
+            + "'1', 'Cavalo'\n"
+            + "'62', 'Chapéu'\n"
+            + "'6', 'Chiclete'\n"
+            + "'77', 'Chifre'\n"
+            + "'55', 'Chinelo'\n"
+            + "'84', 'Cobra'\n"
+            + "'21', 'Coelho'\n"
+            + "'61', 'Colher'\n"
+            + "'15', 'Cruz'\n"
+            + "'70', 'Dado'\n"
+            + "'31', 'Dedo'\n"
+            + "'71', 'Dente'\n"
+            + "'79', 'Dragão'\n"
+            + "'22', 'Escrever'\n"
+            + "'33', 'Espelho'\n"
+            + "'24', 'Estrela'\n"
+            + "'29', 'Faca'\n"
+            + "'20', 'Flor'\n"
+            + "'64', 'Floresta'\n"
+            + "'58', 'Fogo'\n"
+            + "'19', 'Folha'\n"
+            + "'53', 'Fralda'\n"
+            + "'27', 'Fruta'\n"
+            + "'72', 'Galinha'\n"
+            + "'45', 'Garfo'\n"
+            + "'63', 'Gato'\n"
+            + "'17', 'Girafa'\n"
+            + "'40', 'Grama'\n"
+            + "'2', 'Gritar'\n"
+            + "'47', 'Igreja'\n"
+            + "'5', 'Jacaré'\n"
+            + "'52', 'Jornal'\n"
+            + "'14', 'Letra'\n"
+            + "'8', 'Livro'\n"
+            + "'28', 'Lápis'\n"
+            + "'18', 'Língua'\n"
+            + "'36', 'Magro'\n"
+            + "'43', 'Mesa'\n"
+            + "'37', 'Microfone'\n"
+            + "'38', 'Nariz'\n"
+            + "'78', 'Navio'\n"
+            + "'10', 'Nuvem'\n"
+            + "'83', 'Passarinho'\n"
+            + "'66', 'Pastel'\n"
+            + "'51', 'Pedra'\n"
+            + "'23', 'Placa'\n"
+            + "'32', 'Plástico'\n"
+            + "'67', 'Porta'\n"
+            + "'11', 'Prato'\n"
+            + "'30', 'Presente'\n"
+            + "'75', 'Rabo'\n"
+            + "'34', 'Refri'\n"
+            + "'12', 'Relógio'\n"
+            + "'25', 'Sapato'\n"
+            + "'3', 'Sapo'\n"
+            + "'9', 'Sofá'\n"
+            + "'57', 'Soprar'\n"
+            + "'76', 'Terra'\n"
+            + "'50', 'Tesoura'\n"
+            + "'54', 'Travesseiro'\n"
+            + "'48', 'Trem'\n"
+            + "'42', 'Tênis'\n"
+            + "'60', 'Vaca'\n"
+            + "'82', 'Ventilador'\n"
+            + "'46', 'Vidro'\n"
+            + "'59', 'Zebra'\n"
+            + "'68', 'Zero'";
 
         Map<Integer, String> mapaPalavras = new HashMap<>();
 
@@ -189,7 +188,7 @@ public class Main {
             PalavraJson palavraJson = new PalavraJson();
             palavraJson.setWord(palavra);
             palavraJson.setRepresentation(transcription);
-            palavraJson.setPhonologicalProcesses(List.of("semi_liquida_todas_l"));
+            palavraJson.setPhonologicalProcesses(Arrays.asList("semi_liquida_todas_l"));
 
             palavrasJson.add(palavraJson);
         }
@@ -416,7 +415,7 @@ public class Main {
         });
 
         File output = null;
-        if (parent != null && !parent.isBlank()) {
+        if (parent != null && !parent.trim().isEmpty()) {
             output = new File(parent);
         }
 
@@ -568,7 +567,7 @@ public class Main {
             SimulationConsonantClustersInfo runAbleToReproduce
                 = SimulationConsonantClusters.runInferencesAnalysisCorrect(a);
             infosAbleToReproduce.add(runAbleToReproduce);
-            builderAbleToReproduce.append(runAbleToReproduce.exportCSVAbleToReproduce(builderAbleToReproduce.toString().isBlank()));
+            builderAbleToReproduce.append(runAbleToReproduce.exportCSVAbleToReproduce(builderAbleToReproduce.toString().trim().isEmpty()));
 
             ////////////////////////////////
             SimulationConsonantClustersInfo runNotAbleToReproduce
@@ -577,7 +576,7 @@ public class Main {
 //            System.out.println(runNotAbleToReproduce);
             infosNotAbleToReproduce.add(runNotAbleToReproduce);
             builderNotAbleToReproduce.append(runNotAbleToReproduce.exportCSVNotAbleToReproduce(
-                builderNotAbleToReproduce.toString().isBlank()));
+                builderNotAbleToReproduce.toString().trim().isEmpty()));
         });
 
         System.out.println("-----------------------------------------------------------------------");

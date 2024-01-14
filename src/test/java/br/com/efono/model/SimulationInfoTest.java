@@ -178,7 +178,7 @@ public class SimulationInfoTest {
         SimulationInfo instance = new SimulationInfo(mapCounterExpected, Arrays.asList("Anel", "Cobra"), null, null,
                 true);
 
-        assertFalse(instance.toString().isBlank());
+        assertFalse(instance.toString().trim().isEmpty());
     }
 
     /**
