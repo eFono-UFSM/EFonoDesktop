@@ -244,17 +244,19 @@ public class Main {
      * @return A list of words that represents an indicator of speech disorder: [0 -> highest, ..., 83 -> lowest].
      */
     private static List<String> getWordsIndicators() {
-        List<String> words = new LinkedList<String>();
+        List<String> words = new NoRepeatList<String>();
         Arrays.asList(Defaults.SORTED_WORDS).forEach(w -> {
             Node<String> node = Defaults.TREE.getNode(w);
-            
+
             if (node != null) {
-                if (node.getLeft() == null || node.getRight() == null) {
+                // all the leafs and its parent
+                if (node.getLeft() == null && node.getRight() == null) {
                     words.add(w);
+                    words.add(Defaults.TREE.findParent(w).getValue());
                 }
             }
         });
-        
+
         return words;
     }
 
@@ -266,8 +268,7 @@ public class Main {
             List<Node<String>> sequence = new LinkedList<>();
 
             List<String> wordsIndicators = getWordsIndicators();
-            System.out.println("words indicators: " + wordsIndicators);
-
+            System.out.println("words indicators[" + wordsIndicators.size() + "]: " + wordsIndicators);
             Node<String> node = Defaults.TREE.getRoot();
             if (node != null) {
                 do {
@@ -322,7 +323,7 @@ public class Main {
                     classifier = "Moderate-Low";
                 }
                 System.out.println("Triagem finalizada com " + sequence.size() + " palavras. Palavra final: " + currentWord + " Indicator: " + indicator + "(" + classifier + ")");
-                
+
                 System.out.println("Sequencia completa: ");
                 for (int i = 0; i < sequence.size(); i++) {
                     System.out.print(sequence.get(i).printValue());

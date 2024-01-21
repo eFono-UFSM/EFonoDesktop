@@ -63,7 +63,7 @@ public class BinaryTree<E> {
         }
         System.out.println("Tree initialized!");
     }
-    
+
     public void resetVisited(final Node node) {
         if (node != null) {
             node.setVisited(false);
@@ -133,6 +133,32 @@ public class BinaryTree<E> {
         return containsNodeRecursive(root, value);
     }
 
+    /**
+     * Find the parent node of the node that has the searchData.
+     *
+     * @param searchData Search data.
+     * @return The parent node.
+     */
+    public Node<E> findParent(final E searchData) {
+        return findParent(root, searchData);
+    }
+
+    private Node<E> findParent(final Node<E> root, final E searchData) {
+        if (root == null || root.getValue().equals(searchData)) {
+            return null; // Não há pai ou o próprio nó é a raiz
+        }
+
+        if ((root.getLeft() != null && root.getLeft().getValue().equals(searchData))
+            || (root.getRight() != null && root.getRight().getValue().equals(searchData))) {
+            return root; // O nó atual é o pai do nó procurado
+        }
+
+        if (comparator.compare(root.getValue(), searchData) < 0) {
+            return findParent(root.getLeft(), searchData);
+        }
+        return findParent(root.getRight(), searchData);
+    }
+
     private Node<E> containsNodeRecursive(final Node<E> current, final E value) {
         if (current == null) {
             return null;
@@ -140,10 +166,10 @@ public class BinaryTree<E> {
         if (Objects.equals(value, current.getValue())) {
             return current;
         }
-       
+
         return comparator.compare(current.getValue(), value) < 0
-                ? containsNodeRecursive(current.getLeft(), value)
-                : containsNodeRecursive(current.getRight(), value);
+            ? containsNodeRecursive(current.getLeft(), value)
+            : containsNodeRecursive(current.getRight(), value);
     }
 
     private Node<E> addRecursive(final Node<E> current, final E value) {

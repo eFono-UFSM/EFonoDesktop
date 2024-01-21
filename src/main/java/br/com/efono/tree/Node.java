@@ -12,8 +12,8 @@ import java.util.Arrays;
 public class Node<E> {
 
     private final E value;
-    private Node left;
-    private Node right;
+    private Node<E> left;
+    private Node<E> right;
 
     private boolean visited = false;
 
@@ -56,14 +56,14 @@ public class Node<E> {
      *
      * @param left The child node.
      */
-    public void setLeft(final Node left) {
+    public void setLeft(final Node<E> left) {
         this.left = left;
     }
 
     /**
      * @return The left child.
      */
-    public Node getLeft() {
+    public Node<E> getLeft() {
         return left;
     }
 
@@ -72,14 +72,14 @@ public class Node<E> {
      *
      * @param right The child node.
      */
-    public void setRight(final Node right) {
+    public void setRight(final Node<E> right) {
         this.right = right;
     }
 
     /**
      * @return The right child.
      */
-    public Node getRight() {
+    public Node<E> getRight() {
         return right;
     }
 
