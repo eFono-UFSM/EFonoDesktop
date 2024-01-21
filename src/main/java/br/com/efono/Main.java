@@ -237,12 +237,36 @@ public class Main {
         }
     }
 
+    /**
+     * Gets all the words in the tree that represents an indicator of speech disorder. The first words in the list are
+     * the easiest ones, and the last are the hardests.
+     *
+     * @return A list of words that represents an indicator of speech disorder: [0 -> highest, ..., 83 -> lowest].
+     */
+    private static List<String> getWordsIndicators() {
+        List<String> words = new LinkedList<String>();
+        Arrays.asList(Defaults.SORTED_WORDS).forEach(w -> {
+            Node<String> node = Defaults.TREE.getNode(w);
+            
+            if (node != null) {
+                if (node.getLeft() == null || node.getRight() == null) {
+                    words.add(w);
+                }
+            }
+        });
+        
+        return words;
+    }
+
     private static void screeningAssessment() {
         try (Scanner scanner = new Scanner(System.in)) {
             String resposta, currentWord;
 
             List<String> operations = new LinkedList<>();
             List<Node<String>> sequence = new LinkedList<>();
+
+            List<String> wordsIndicators = getWordsIndicators();
+            System.out.println("words indicators: " + wordsIndicators);
 
             Node<String> node = Defaults.TREE.getRoot();
             if (node != null) {
@@ -287,7 +311,18 @@ public class Main {
                         node = node.getLeft();
                     }
                 } while (node != null);
-                System.out.println("Triagem finalizada com " + sequence.size() + " palavras. Palavra final: " + currentWord);
+
+                int indicator = Arrays.asList(Defaults.SORTED_WORDS).indexOf(currentWord);
+                String classifier = "Low";
+                if (indicator >= 0 && indicator <= 19) {
+                    classifier = "High";
+                } else if (indicator >= 21 && indicator <= 40) {
+                    classifier = "Moderate-High";
+                } else if (indicator >= 42 && indicator <= 61) {
+                    classifier = "Moderate-Low";
+                }
+                System.out.println("Triagem finalizada com " + sequence.size() + " palavras. Palavra final: " + currentWord + " Indicator: " + indicator + "(" + classifier + ")");
+                
                 System.out.println("Sequencia completa: ");
                 for (int i = 0; i < sequence.size(); i++) {
                     System.out.print(sequence.get(i).printValue());

@@ -140,8 +140,8 @@ public class BinaryTree<E> {
         if (Objects.equals(value, current.getValue())) {
             return current;
         }
-
-        return comparator.compare(value, current.getValue()) < 0
+       
+        return comparator.compare(current.getValue(), value) < 0
                 ? containsNodeRecursive(current.getLeft(), value)
                 : containsNodeRecursive(current.getRight(), value);
     }
