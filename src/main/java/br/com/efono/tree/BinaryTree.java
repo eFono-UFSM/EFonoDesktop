@@ -159,6 +159,10 @@ public class BinaryTree<E> {
         return findParent(root.getRight(), searchData);
     }
 
+    public Comparator<E> getComparator() {
+        return comparator;
+    }
+
     private Node<E> containsNodeRecursive(final Node<E> current, final E value) {
         if (current == null) {
             return null;

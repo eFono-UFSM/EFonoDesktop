@@ -257,6 +257,8 @@ public class Main {
             }
         });
 
+        words.sort(Defaults.TREE.getComparator().reversed());
+
         return words;
     }
 
