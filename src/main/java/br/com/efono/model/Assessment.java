@@ -1,6 +1,8 @@
 package br.com.efono.model;
 
+import br.com.efono.tree.Node;
 import br.com.efono.util.Defaults;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -164,6 +166,83 @@ public class Assessment {
         }
 
         return correctProductions / totalProductions;
+    }
+
+    /**
+     * Gets the indicator of this assessment like doing a screening assessment with less words than original.
+     *
+     * @param limit The limit number of words to be used in the screening assessment. 0 to run without any limit: the
+     * screening assessment will be over when it reach a leaf node in the {@link Defaults#TREE}.
+     * @return The indicator get from the screening assessment.
+     */
+    public String getIndicatorFromScreening(final int limit) {
+        String currentWord = null;
+        List<String> operations = new LinkedList<>();
+        List<Node<String>> sequence = new LinkedList<>();
+
+        Node<String> node = Defaults.TREE.getRoot();
+        if (node != null && limit >= 0) {
+            do {
+                currentWord = node.getValue();
+                sequence.add(node);
+
+                if (limit != 0 && sequence.size() > limit) {
+                    break;
+                }
+
+                // the child produced node.getValue() correctly?
+                operations.add(isWordCorrect(node.getValue()) ? "R" : "L");
+
+                boolean noChildren = (node.getLeft() == null && node.getRight() == null);
+
+                String currentOp = operations.get(operations.size() - 1);
+
+                if (operations.size() >= 2) {
+                    String previousOp = operations.get(operations.size() - 2);
+                    if (noChildren) {
+                        if (!currentOp.equals(previousOp)) {
+                            currentWord = sequence.get(sequence.size() - 2).getValue();
+                        }
+                    }
+                }
+
+                if (currentOp.equals("R")) {
+                    node = node.getRight();
+                } else {
+                    node = node.getLeft();
+                }
+            } while (node != null);
+        }
+
+        if (currentWord != null) {
+            int indicator = Arrays.asList(Defaults.SORTED_WORDS).indexOf(currentWord);
+
+            if (indicator == 41) {
+                return null;
+            } else if (indicator == 20) {
+                return "High";
+            } else if (indicator == 62) {
+                return "Low";
+            } else if (indicator >= 0 && indicator <= 19) {
+                return "High";
+            } else if (indicator >= 21 && indicator <= 40) {
+                return "Moderate-High";
+            } else if (indicator >= 42 && indicator <= 61) {
+                return "Moderate-Low";
+            }
+            return "Low";
+        }
+
+        return null;
+    }
+
+    private boolean isWordCorrect(final String w) {
+        for (KnownCase c : cases) {
+            if (c.getWord().equalsIgnoreCase(w)) {
+                return c.isCorrect();
+            }
+        }
+        return false;
     }
 
 }

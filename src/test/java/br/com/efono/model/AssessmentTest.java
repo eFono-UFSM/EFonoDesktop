@@ -180,4 +180,38 @@ public class AssessmentTest {
 //        assertEquals(-1, assessment.getPCCR(Arrays.asList(Defaults.SORTED_WORDS)), 0.01);
     }
 
+    /**
+     * Tests {@link Assessment#getIndicatorFromScreening(int)}.
+     */
+    @Test
+    public void testGetIndicatorFromScreening() {
+        Defaults.TREE.init(Defaults.SORTED_WORDS);
+
+        List<KnownCase> cases = new ArrayList<>();
+
+        cases.add(new KnownCase("Ventilador", "", true));
+        cases.add(new KnownCase("Mesa", "", true));
+        cases.add(new KnownCase("Presente", "", false));
+        cases.add(new KnownCase("Escrever", "", true));
+        cases.add(new KnownCase("Vidro", "", true));
+        cases.add(new KnownCase("Floresta", "", true));
+        cases.add(new KnownCase("Biblioteca", "", true));
+        cases.add(new KnownCase("Travesseiro", "", false));
+        cases.add(new KnownCase("Rabo", "", true));
+        cases.add(new KnownCase("Dado", "", true));
+        cases.add(new KnownCase("Coelho", "", true));
+        cases.add(new KnownCase("Prato", "", true));
+        cases.add(new KnownCase("Soprar", "", false));
+        cases.add(new KnownCase("Grama", "", false));
+        cases.add(new KnownCase("Cobra", "", true));
+        cases.add(new KnownCase("Zebra", "", false));
+
+        Assessment instance = new Assessment(cases);
+        assertEquals(null, instance.getIndicatorFromScreening(-1));
+        assertEquals("Low", instance.getIndicatorFromScreening(1));
+        assertEquals("Moderate-Low", instance.getIndicatorFromScreening(2));
+        assertEquals("Moderate-Low", instance.getIndicatorFromScreening(0)); // parou em Cobra
+
+    }
+
 }

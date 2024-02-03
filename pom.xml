@@ -11,8 +11,8 @@
     <name>EFono Desktop Launcher [${project.artifactId}]</name>
    
     <properties>
-        <java-version>1.8</java-version>
-        <jdk-version>1.8</jdk-version>
+        <java-version>20</java-version>
+        <jdk-version>20</jdk-version>
         <enforcer.jdk-version>[${jdk-version},)</enforcer.jdk-version>
         <compilerArgs>--enable-preview</compilerArgs>
         <enforcer.maven-version>[3.5.3,)</enforcer.maven-version>
@@ -41,10 +41,10 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.11.0</version>
-<!--                    <configuration>
+                    <configuration>
                         <release>${java-version}</release>
                         <compilerArgs>${compilerArgs}</compilerArgs>
-                    </configuration>-->
+                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

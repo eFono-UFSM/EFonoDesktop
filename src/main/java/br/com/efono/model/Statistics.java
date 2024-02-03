@@ -3,6 +3,7 @@ package br.com.efono.model;
 import br.com.efono.tree.BinaryTree;
 import br.com.efono.tree.TreeUtils;
 import br.com.efono.util.Defaults;
+import br.com.efono.util.Util;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -160,8 +161,8 @@ public class Statistics {
             double pccrAll = a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS));
             double pccrSelectedWords = a.getPCCR(words);
 
-            String degreeAll = getDegree(pccrAll);
-            String degreeSelectedWords = getDegree(pccrSelectedWords);
+            String degreeAll = Util.getDegree(pccrAll);
+            String degreeSelectedWords = Util.getDegree(pccrSelectedWords);
 
             DecimalFormat df = new DecimalFormat("#.##");
             str.append(words.size()).append(",").
@@ -245,8 +246,8 @@ public class Statistics {
             double pccrAll = a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS));
             double pccrSelectedWords = a.getPCCR(words);
 
-            String degreeAll = getDegree(pccrAll);
-            String degreeSelectedWords = getDegree(pccrSelectedWords);
+            String degreeAll = Util.getDegree(pccrAll);
+            String degreeSelectedWords = Util.getDegree(pccrSelectedWords);
 
             DecimalFormat df = new DecimalFormat("#.##");
             StringBuilder str = new StringBuilder();
@@ -363,10 +364,10 @@ public class Statistics {
             double pccrFirstWords = a.getPCCR(words);
             double pccr55Words = a.getPCCR(Arrays.asList(words55));
 
-            String degreeAll = getDegree(pccrAll);
-            String degree55w = getDegree(pccr55Words);
-            String degreeCustom = getDegree(pccrFirstWords);
-            String degreeBlocks = getDegree(pccrBlocksOfWords);
+            String degreeAll = Util.getDegree(pccrAll);
+            String degree55w = Util.getDegree(pccr55Words);
+            String degreeCustom = Util.getDegree(pccrFirstWords);
+            String degreeBlocks = Util.getDegree(pccrBlocksOfWords);
 
             DecimalFormat df = new DecimalFormat("#.##");
             str.append(words.getLast()).append(",").
@@ -385,17 +386,6 @@ public class Statistics {
                     append("\n");
         });
         return str.toString();
-    }
-
-    private String getDegree(final double pccr) {
-        if (pccr >= .85) {
-            return "Low";
-        } else if (pccr >= .65 && pccr < .85) {
-            return "Low-Moderate";
-        } else if (pccr >= .5 && pccr < .65) {
-            return "Moderate-High";
-        }
-        return "High";
     }
 
     /**

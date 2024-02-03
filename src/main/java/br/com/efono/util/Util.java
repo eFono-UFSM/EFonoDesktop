@@ -190,7 +190,7 @@ public class Util {
             if (!phoneme.trim().isEmpty()) {
                 // TODO: ter uma lista de fonemas consonantais válidos? existe algum pacote com esses fonemas? ver Phon
                 if (phoneme.length() == 1 || Arrays.asList(Phoneme.LABIALIZATION).contains(phoneme)
-                        || Arrays.asList(Phoneme.SPECIAL_CONSONANTS).contains(phoneme)) {
+                    || Arrays.asList(Phoneme.SPECIAL_CONSONANTS).contains(phoneme)) {
                     list.add(new Phoneme(phoneme, Phoneme.POSITION.OM));
                 } else if (Arrays.asList(CONSONANT_CLUSTERS).contains(phoneme)) {
                     list.add(new Phoneme(phoneme, Phoneme.POSITION.OCME));
@@ -222,8 +222,8 @@ public class Util {
                          * word, and codas it's not the case (it was just read before).
                          */
                         if (next.getPhoneme().length() == 1
-                                || Arrays.asList(Phoneme.LABIALIZATION).contains(next.getPhoneme())
-                                || Arrays.asList(Phoneme.SPECIAL_CONSONANTS).contains(next.getPhoneme())) {
+                            || Arrays.asList(Phoneme.LABIALIZATION).contains(next.getPhoneme())
+                            || Arrays.asList(Phoneme.SPECIAL_CONSONANTS).contains(next.getPhoneme())) {
                             next.setPosition(Phoneme.POSITION.OM);
                         } else {
                             /**
@@ -233,7 +233,7 @@ public class Util {
                              * Case of bisʃkɛtə, which /ʃ/ is a Medial Onset and not a consonant cluster.
                              */
                             if (next.getPhoneme().length() == 2
-                                    && !Arrays.asList(Phoneme.CONSONANT_CLUSTERS).contains(next.getPhoneme())) {
+                                && !Arrays.asList(Phoneme.CONSONANT_CLUSTERS).contains(next.getPhoneme())) {
                                 Arrays.asList(next.getPhoneme().split("")).forEach(phon -> {
                                     list.add(new Phoneme(phon, Phoneme.POSITION.OM));
                                 });
@@ -421,7 +421,7 @@ public class Util {
      */
     @Deprecated
     public static List<Phoneme> getInferredPhonemes(final Map<String, List<Phoneme>> map,
-            final List<Phoneme> clustersParts) {
+        final List<Phoneme> clustersParts) {
         List<Phoneme> inferredPhonemes = new NoRepeatList<>();
         if (clustersParts != null) {
             clustersParts.clear();
@@ -463,12 +463,12 @@ public class Util {
 
         builder.append(Phoneme.POSITION.OCI).append(": ");
         clusters.stream().filter(p -> p.getPosition().equals(Phoneme.POSITION.OCI)).forEach(
-                p -> builder.append(p.getPhoneme()).append(","));
+            p -> builder.append(p.getPhoneme()).append(","));
         builder.append("\n");
 
         builder.append(Phoneme.POSITION.OCME).append(": ");
         clusters.stream().filter(p -> p.getPosition().equals(Phoneme.POSITION.OCME)).forEach(
-                p -> builder.append(p.getPhoneme()).append(","));
+            p -> builder.append(p.getPhoneme()).append(","));
         builder.append("\n");
 
         return builder.toString();
@@ -524,6 +524,37 @@ public class Util {
         return possibleClusters;
     }
 
+    public static String getDegree(final double pccr) {
+        if (pccr >= .85) {
+            return "Low";
+        } else if (pccr >= .65 && pccr < .85) {
+            return "Moderate-Low";
+        } else if (pccr >= .5 && pccr < .65) {
+            return "Moderate-High";
+        }
+        return "High";
+    }
+
+    public static String exportScreeningAssessmentResults(final List<Assessment> assessments) {
+        StringBuilder builder = new StringBuilder("assessmentID,PCC-R (84w),Indicator (84w),Indicator (2w),Same Indicator (84w x 2w)\n");
+
+        assessments.forEach(a -> {
+            builder.append(a.getId()).append(",");
+            double pccrAll = a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS));
+            builder.append(pccrAll).append(",");
+
+            String indicatorPCCR = getDegree(pccrAll);
+            String indicatorScreening = a.getIndicatorFromScreening(2);
+
+            builder.append(indicatorPCCR).append(",");
+            builder.append(indicatorScreening).append(",");
+            builder.append(indicatorScreening.equals(indicatorPCCR)).append("\n");
+
+        });
+
+        return builder.toString();
+    }
+
     /**
      * Exports info in CSV format as input for ML algorithms.
      *
@@ -532,7 +563,7 @@ public class Util {
      * @return The info in CSV format.
      */
     public static String exportClustersInfo(final List<Assessment> assessments,
-            final Map<String, List<Phoneme>> targetPhonemes) {
+        final Map<String, List<Phoneme>> targetPhonemes) {
         StringBuilder builder = new StringBuilder("assessmentID,targetWord,transcription,correct,targetClusters,producedClusters1,producedClusters2\n");
 
         assessments.forEach(a -> {
@@ -580,9 +611,9 @@ public class Util {
      * @return The info in CSV format.
      */
     public static String exportClustersInfosGeneral(final List<Assessment> assessments,
-            final Map<String, List<Phoneme>> targetPhonemes) {
+        final Map<String, List<Phoneme>> targetPhonemes) {
         StringBuilder builder = new StringBuilder("assessmentID,targetClusters,producedClusters1,producedClusters2\n");
-        
+
         List<Phoneme> targetClusters = new NoRepeatList<>();
         targetPhonemes.values().forEach(list -> list.stream().filter(p -> p.isConsonantCluster()).forEach(p -> targetClusters.add(p)));
 

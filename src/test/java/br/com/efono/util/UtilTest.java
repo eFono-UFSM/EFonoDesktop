@@ -109,7 +109,6 @@ public class UtilTest {
      * @throws java.net.URISyntaxException Exception.
      */
     @Test
-    @Ignore
     public void testReadTranscriptions() throws URISyntaxException {
         System.out.println("testReadTranscriptions - null file");
         List<String> readTranscriptions = Util.readTranscriptions(null);
@@ -143,7 +142,6 @@ public class UtilTest {
      * Tests {@link Util#cleanTranscription(String)}.
      */
     @Test
-    @Ignore
     public void testCleanTranscription() throws URISyntaxException {
         System.out.println("testCleanTranscription - null and empty");
         assertTrue(Util.cleanTranscription(null).isEmpty());

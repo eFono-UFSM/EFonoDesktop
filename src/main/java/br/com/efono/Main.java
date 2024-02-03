@@ -374,11 +374,11 @@ public class Main {
 
         System.out.println("@enduml");
         System.out.println("\n-------------------");
-
-        if (1 > 0) {
-            screeningAssessment();
-            return;
-        }
+//
+//        if (1 > 0) {
+//            screeningAssessment();
+//            return;
+//        }
 
         MySQLConnection.getInstance().connect(prop);
         MongoConnection.getInstance().connect(prop);
@@ -457,8 +457,12 @@ public class Main {
             output = new File(parent);
         }
 
+//        if (1 > 0) {
+//            analysisConsonantClusters(output);
+//            return;
+//        }
         if (1 > 0) {
-            analysisConsonantClusters(output);
+            runSimulationScreeningAssessment(output);
             return;
         }
 
@@ -652,6 +656,24 @@ public class Main {
         try (PrintWriter out = new PrintWriter(fileInfosCountNotAbleToReproduce)) {
             out.print(SimulationConsonantClustersInfo.exportCountingInfosToCSV(infosNotAbleToReproduce));
             System.out.println("File at: " + fileInfosCountNotAbleToReproduce);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
+    }
+
+    private static void runSimulationScreeningAssessment(final File outputDirectory) {
+        final List<Assessment> assessments = getAssessmentsFromDB();
+
+        System.out.println("Running simulation with " + assessments.size() + " complete assessments");
+        File parent = new File(outputDirectory, "Computer-Speech-2024-results");
+        parent.mkdir();
+
+        System.out.println("Output directory with simulation statistics: " + parent);
+
+        File fileReproducedExport = new File(parent, "Screening-Dynamic-Assessment.csv");
+        try (PrintWriter out = new PrintWriter(fileReproducedExport)) {
+            out.print(Util.exportScreeningAssessmentResults(assessments));
+            System.out.println("File at: " + fileReproducedExport);
         } catch (final FileNotFoundException ex) {
             System.out.println("Couldn't write into file: " + ex);
         }
