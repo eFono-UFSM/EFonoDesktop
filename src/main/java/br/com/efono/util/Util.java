@@ -536,7 +536,7 @@ public class Util {
     }
 
     public static String exportScreeningAssessmentResults(final List<Assessment> assessments) {
-        StringBuilder builder = new StringBuilder("assessmentID,PCC-R (84w),Indicator (84w),Indicator (2w),Same Indicator (84w x 2w)\n");
+        StringBuilder builder = new StringBuilder("assessmentID,PCC-R (84w),Indicator (84w),Indicator (2w),Same Indicator (84w x 2w),Indicator (84w) Transformed,Indicator (1w),Same Indicator (84wT x 1w)\n");
 
         assessments.forEach(a -> {
             builder.append(a.getId()).append(",");
@@ -548,8 +548,14 @@ public class Util {
 
             builder.append(indicatorPCCR).append(",");
             builder.append(indicatorScreening).append(",");
-            builder.append(indicatorScreening.equals(indicatorPCCR)).append("\n");
+            builder.append(indicatorScreening.equals(indicatorPCCR)).append(",");
 
+            String indicatorPCCR_Transformed = indicatorPCCR.endsWith("Low") ? "Low" : "High";
+
+            String indicatorScreening1w = a.getIndicatorFromScreening(1);
+            builder.append(indicatorPCCR_Transformed).append(",");
+            builder.append(indicatorScreening1w).append(",");
+            builder.append(indicatorScreening1w.equals(indicatorPCCR_Transformed)).append("\n");
         });
 
         return builder.toString();
