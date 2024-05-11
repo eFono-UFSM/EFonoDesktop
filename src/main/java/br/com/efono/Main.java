@@ -1,6 +1,5 @@
 package br.com.efono;
 
-import br.com.efono.db.MongoConnection;
 import br.com.efono.db.MySQLConnection;
 import br.com.efono.model.Assessment;
 import br.com.efono.model.KnownCase;
@@ -11,17 +10,15 @@ import br.com.efono.model.SimulationInfo;
 import br.com.efono.model.Statistics;
 import br.com.efono.tree.BinaryTreePrinter;
 import br.com.efono.tree.Node;
+import br.com.efono.util.DatabaseUtils;
 import br.com.efono.util.Defaults;
+import br.com.efono.util.FileUtils;
 import br.com.efono.util.NoRepeatList;
 import br.com.efono.util.SimulationConsonantClusters;
 import br.com.efono.util.SimulationWordsSequence;
 import br.com.efono.util.Util;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mongodb.client.FindIterable;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -39,7 +36,6 @@ import java.util.Properties;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.bson.Document;
 
 /**
  * @author João Bolsson (joaovictorbolsson@gmail.com)
@@ -347,69 +343,23 @@ public class Main {
     public static void main(final String[] args) {
         System.out.println("Arguments received: " + Arrays.toString(args));
 
-        final Properties prop = new Properties();
+        File output = null;
+        final Properties prop = FileUtils.readProperties(args);
 
-        String parent = "";
-        if (args != null && args.length >= 1) {
-            try {
-                String configPath = args[0];
-
-                parent = new File(configPath).getParent();
-                System.out.println("Reading config file at " + configPath);
-                prop.load(new FileInputStream(configPath));
-            } catch (final IOException e) {
-                System.out.println("Couldn't read properties file: " + e);
-            }
+        String outputDir = prop.getProperty(FileUtils.OUTPUT_DIR_PROP_NAME);
+        if (outputDir != null) {
+            output = new File(outputDir);
         }
 
         Defaults.TREE.init(Defaults.SORTED_WORDS);
-
-        System.out.println("-------------------");
-
-        System.out.println(
-            "@startuml\n"
-            + "top to bottom direction");
-
-        BinaryTreePrinter.printUML(Defaults.TREE.getRoot());
-
-        System.out.println("@enduml");
-        System.out.println("\n-------------------");
+        BinaryTreePrinter.print(Defaults.TREE);
 //
 //        if (1 > 0) {
 //            screeningAssessment();
 //            return;
 //        }
-
-        MySQLConnection.getInstance().connect(prop);
-        MongoConnection.getInstance().connect(prop);
-
-        Map<String, Object> filters = new HashMap<>();
-        filters.put("correct", true);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        Arrays.asList(Defaults.SORTED_WORDS).forEach(w -> {
-            filters.put("word", w);
-            FindIterable<Document> result = MongoConnection.getInstance().executeQuery("knowncases", filters,
-                null);
-
-            // correct known cases for word <w>
-            final List<KnownCase> correctCases = new ArrayList<>();
-
-            if (result != null) {
-                result.forEach(doc -> {
-                    try {
-                        KnownCase val = objectMapper.readValue(doc.toJson(), new TypeReference<KnownCase>() {
-                        });
-                        correctCases.add(val);
-                    } catch (final JsonProcessingException ex) {
-                        System.out.println("Error while parsing doc " + doc.toJson() + ":\n " + ex);
-                    }
-                });
-            }
-
-            // building the target phonemes for the word
-            Defaults.TARGET_PHONEMES.put(w, Util.getTargetPhonemes(correctCases));
-        });
+        DatabaseUtils dbUtils = new DatabaseUtils(prop);
+        Defaults.TARGET_PHONEMES.putAll(dbUtils.getTargetPhonemesForEachWord(Defaults.SORTED_WORDS));
 
         System.out.println("Target phonemes for each word: ");
         Iterator<Map.Entry<String, List<Phoneme>>> iterator = Defaults.TARGET_PHONEMES.entrySet().iterator();
@@ -452,11 +402,6 @@ public class Main {
             System.out.println(w + "->SimilarWords[" + similarWords.size() + "]: " + similarWords);
         });
 
-        File output = null;
-        if (parent != null && !parent.trim().isEmpty()) {
-            output = new File(parent);
-        }
-
 //        if (1 > 0) {
 //            analysisConsonantClusters(output);
 //            return;
@@ -474,6 +419,10 @@ public class Main {
         }
     }
 
+    /**
+     * @deprecated Use {@link DatabaseUtils#getCompleteAssessmentsFromDB()}.
+     */
+    @Deprecated
     private static List<Assessment> getAssessmentsFromDB() {
         final List<Assessment> assessments = new ArrayList<>();
         String queryAssessmentId = "SELECT DISTINCT id_avaliacao FROM avaliacaopalavra";

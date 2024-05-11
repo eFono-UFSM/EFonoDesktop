@@ -2,11 +2,13 @@ package br.com.efono.util;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 /**
  *
@@ -41,6 +43,36 @@ public class FileUtils {
             }
         }
         return list;
+    }
+
+    /**
+     * Property name to store the output dir to be used to store generated files.
+     */
+    public static final String OUTPUT_DIR_PROP_NAME = "output.dir";
+
+    /**
+     * Reads the properties from the file path given in the first argument.
+     *
+     * @param args Arguments, the first position keeps the path to read properties from.
+     * @return The loaded properties.
+     */
+    public static Properties readProperties(final String[] args) {
+        final Properties prop = new Properties();
+
+        if (args != null && args.length >= 1) {
+            try {
+                String configPath = args[0];
+
+                System.out.println("Reading config file at " + configPath);
+                prop.load(new FileInputStream(configPath));
+
+                prop.put(OUTPUT_DIR_PROP_NAME, new File(configPath).getParent());
+            } catch (final IOException e) {
+                System.out.println("Couldn't read properties file: " + e);
+            }
+        }
+
+        return prop;
     }
 
 }

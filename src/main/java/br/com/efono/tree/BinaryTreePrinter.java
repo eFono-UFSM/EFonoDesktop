@@ -57,8 +57,26 @@ public class BinaryTreePrinter {
      * @param tree
      * @param os Output stream.
      */
+    @Deprecated
     public static void print(final BinaryTree tree, final PrintStream os) {
         os.print(traversePreOrder(tree.getRoot()));
+    }
+
+    /**
+     * Prints the given BST.
+     *
+     * @param tree Tree to print in UML (plantUML format).
+     */
+    public static void print(final BinaryTree tree) {
+        System.out.println("-------------------");
+        System.out.println(
+            "@startuml\n"
+            + "top to bottom direction");
+
+        BinaryTreePrinter.printUML(tree.getRoot());
+
+        System.out.println("@enduml");
+        System.out.println("\n-------------------");
     }
 
     /**
