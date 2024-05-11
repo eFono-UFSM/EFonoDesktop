@@ -10,8 +10,11 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.5.0:exec</goal>
             </goals>
             <properties>
-                <exec.args>-Dfile.encoding=UTF-8  -Dsun.stdout.encoding=UTF-8  -Dsun.stderr.encoding=UTF-8 -classpath %classpath br.com.efono.Main C:\Users\Joao\Documents\mestrado\Java\config.properties</exec.args>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
                 <exec.executable>java</exec.executable>
+                <exec.mainClass>br.com.efono.Main</exec.mainClass>
+                <exec.vmArgs>-Dfile.encoding=UTF-8  -Dsun.stdout.encoding=UTF-8  -Dsun.stderr.encoding=UTF-8</exec.vmArgs>
+                <exec.appArgs>C:\Users\Joao\Documents\mestrado\Java\config.properties</exec.appArgs>
             </properties>
         </action>
         <action>
@@ -24,9 +27,12 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.5.0:exec</goal>
             </goals>
             <properties>
-                <exec.args>-agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address} -Dfile.encoding=UTF-8  -Dsun.stdout.encoding=UTF-8  -Dsun.stderr.encoding=UTF-8 -classpath %classpath br.com.efono.Main C:\Users\Joao\Documents\mestrado\Java\config.properties</exec.args>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
                 <exec.executable>java</exec.executable>
                 <jpda.listen>true</jpda.listen>
+                <exec.mainClass>br.com.efono.Main</exec.mainClass>
+                <exec.vmArgs>-Dfile.encoding=UTF-8  -Dsun.stdout.encoding=UTF-8  -Dsun.stderr.encoding=UTF-8 -agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</exec.vmArgs>
+                <exec.appArgs>C:\Users\Joao\Documents\mestrado\Java\config.properties</exec.appArgs>
             </properties>
         </action>
         <action>
@@ -39,8 +45,11 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:1.5.0:exec</goal>
             </goals>
             <properties>
-                <exec.args>-Dfile.encoding=UTF-8  -Dsun.stdout.encoding=UTF-8  -Dsun.stderr.encoding=UTF-8 -classpath %classpath br.com.efono.Main C:\Users\Joao\Documents\mestrado\Java\config.properties</exec.args>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
                 <exec.executable>java</exec.executable>
+                <exec.mainClass>br.com.efono.Main</exec.mainClass>
+                <exec.vmArgs>-Dfile.encoding=UTF-8  -Dsun.stdout.encoding=UTF-8  -Dsun.stderr.encoding=UTF-8</exec.vmArgs>
+                <exec.appArgs>C:\Users\Joao\Documents\mestrado\Java\config.properties</exec.appArgs>
             </properties>
         </action>
     </actions>

@@ -136,15 +136,11 @@ public class KnownCase {
      * @return A list with correct productions.
      */
     public List<Phoneme> getCorrectProductions(final List<Phoneme> targetPhonemes) {
-        final List<Phoneme> correctProd = new ArrayList<>();
         if (targetPhonemes != null) {
-            targetPhonemes.forEach(p -> {
-                if (this.phonemes.contains(p)) {
-                    correctProd.add(p);
-                }
-            });
+            // only the phonemes that are expected (target) will be considered as correct
+            return phonemes.stream().filter(p -> targetPhonemes.contains(p)).toList();
         }
-        return correctProd;
+        return Collections.EMPTY_LIST;
     }
 
     /**

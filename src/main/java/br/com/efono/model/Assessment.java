@@ -3,6 +3,7 @@ package br.com.efono.model;
 import br.com.efono.tree.Node;
 import br.com.efono.util.Defaults;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -133,34 +134,49 @@ public class Assessment {
      * Gets the PCC-R value for this simulation according with the assessment.The PCC-R value indicates the level of
      * disorder according with the number of correct productions divided by the total of expected productions. Example:
      * if the subject was exposed to 10 target phonemes in the assessment and then spoke correctly only 5: the PCC-R
-     * value will 0.5 indicating a High level of disorder. Reference: "Shriberg et al. (1997) The speech disorders
+     * value will be 0.5 indicating a High level of disorder. Reference: "Shriberg et al. (1997) The speech disorders
      * classification system (sdcs). Journal of Speech, Language and Hearing Research, 40(4):723–740."
      *
      * @param words The words to compute PCC-R.
      * @return The PCC-R value between 0 and 1 or -1 if the assessment is not valid.
      */
     public double getPCCR(final List<String> words) {
+        /**
+         * To calculate PCC-R, the total number of correct consonants in a speech sample is divided by the total number
+         * of opportunities for consonant production in that sample and multiplied by 100. The resulting percentage
+         * reflects how accurately the child produced the consonant phonemes of his or her language.
+         */
+        /**
+         * The PCC is calculated after the division of the consonants which are correctly produced, by the total number
+         * of produced consonants (correct+incorrect).
+         */
+
+        /**
+         * Com essas duas referencias dá pra concluir que: total de produções é o total de produções ESPERADAS. Se a
+         * criança produziu fonemas que não eram esperados, eles não vão ser contabilizados e serão irrelevantes no
+         * cálculo do PCC-R, apenas os fonemas que eram esperados serão avaliados. casinha, passarinho, passinho
+         * (incorreto passarinho)
+         */
         double totalProductions = 0d;
+        Collection<List<Phoneme>> listExpectedPhonemes = Defaults.TARGET_PHONEMES.values();
+        for (List<Phoneme> l : listExpectedPhonemes) {
+            totalProductions += l.size();
+        }
+
         double correctProductions = 0d;
 
         for (KnownCase c : cases) {
             if (words.contains(c.getWord())) {
-                totalProductions += c.getPhonemes().size();
-                if (c.isCorrect()) {
-                    correctProductions += c.getPhonemes().size();
-                } else {
-                    /**
-                     * We can do TARGET_PHONEMES.get(c.getWord()) here because KnownCase doesn't allow words that is not
-                     * in Defaults#SORTED_WORDS. Even if there is a difference in accentuation, for example, those cases
-                     * will be treated and use the related word from Defaults#SORTED_WORDS.
-                     */
-                    List<Phoneme> targetPhonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
-                    correctProductions += c.getCorrectProductions(targetPhonemes).size();
-                }
+                /**
+                 * We can do TARGET_PHONEMES.get(c.getWord()) here because KnownCase doesn't allow words that is not in
+                 * Defaults#SORTED_WORDS. Even if there is a difference in accentuation, for example, those cases will
+                 * be treated and use the related word from Defaults#SORTED_WORDS.
+                 */
+                List<Phoneme> targetPhonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
+                correctProductions += c.getCorrectProductions(targetPhonemes).size();
             }
         }
 
-        // TODO: tests
         if (totalProductions == 0) {
             return -1;
         }
