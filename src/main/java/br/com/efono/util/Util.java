@@ -525,11 +525,11 @@ public class Util {
     }
 
     public static String getDegree(final double pccr) {
-        if (pccr >= .85) {
+        if (pccr > .85) {
             return "Low";
-        } else if (pccr >= .65 && pccr < .85) {
+        } else if (pccr >= .66 && pccr <= .85) {
             return "Moderate-Low";
-        } else if (pccr >= .5 && pccr < .65) {
+        } else if (pccr >= .51 && pccr <= .65) {
             return "Moderate-High";
         }
         return "High";
@@ -556,6 +556,29 @@ public class Util {
             builder.append(indicatorPCCR_Transformed).append(",");
             builder.append(indicatorScreening1w).append(",");
             builder.append(indicatorScreening1w.equals(indicatorPCCR_Transformed)).append("\n");
+        });
+
+        return builder.toString();
+    }
+
+    public static String exportScreeningAssessmentResultsROC(final List<Assessment> assessments) {
+        StringBuilder builder = new StringBuilder("PCC-R,Screening Dynamic Assessment,Number of Words Used,Indicator PCC-R,Indicator SDA\n");
+
+        assessments.forEach(a -> {
+            double pccrAll = a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS));
+
+            String indicatorPCCR = getDegree(pccrAll);
+            Assessment.IndicatorInfo info = a.getIndicatorInfoFromScreening(0);
+
+            // 0 -> Low indicator
+            // 1 -> High indicator
+            int indicatorPCCR_Transformed = indicatorPCCR.endsWith("Low") ? 0 : 1;
+
+            builder.append(indicatorPCCR_Transformed).append(",");
+            builder.append(info.getIndicator()).append(",");
+            builder.append(info.getNumberOfWords()).append(",");
+            builder.append(indicatorPCCR).append(",");
+            builder.append(info.getIndicatorAsString()).append("\n");
         });
 
         return builder.toString();

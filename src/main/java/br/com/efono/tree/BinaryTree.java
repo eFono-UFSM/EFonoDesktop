@@ -46,20 +46,7 @@ public class BinaryTree<E> {
 
         if (values != null) {
             this.values.clear();
-            int min = 0;
-            int max = values.length - 1;
-
-            float m = (min + max) / 2f;
-            int middle = (int) Math.floor(m);
-
-            add(min, middle, max, values);
-
-            System.out.println("Values in insertion order: " + this.values);
-            System.out.println("Ok, now init the tree");
-            root = null;
-            for (E val : this.values) {
-                add(val);
-            }
+            root = addNode(values, 0, values.length - 1);
         }
         System.out.println("Tree initialized!");
     }
@@ -70,23 +57,6 @@ public class BinaryTree<E> {
             resetVisited(node.getLeft());
             resetVisited(node.getRight());
         }
-    }
-
-    private void add(int min, int middle, int max, final E[] values) {
-        E val = values[middle];
-        if (this.values.contains(val)) {
-            // the value is already in the tree
-            return;
-        }
-        this.values.add(val);
-
-        // adiciona na esquerda
-        int current = (int) Math.floor((min + middle) / 2f);
-        add(min, current, middle, values);
-
-        // adiciona na direta
-        current = (int) Math.ceil((middle + max) / 2f);
-        add(middle, current, max, values);
     }
 
     /**
@@ -112,15 +82,6 @@ public class BinaryTree<E> {
      */
     public Node<E> getRoot() {
         return root;
-    }
-
-    /**
-     * Adds an element in the tree.
-     *
-     * @param value Element to add.
-     */
-    public void add(final E value) {
-        root = addRecursive(root, value);
     }
 
     /**
@@ -176,20 +137,27 @@ public class BinaryTree<E> {
             : containsNodeRecursive(current.getRight(), value);
     }
 
-    private Node<E> addRecursive(final Node<E> current, final E value) {
-        // when the current node is null, we've reached a leaf node and we can insert the new node in that position
-        if (current == null) {
-            return new Node(value);
+    private void addValue(final E value) {
+        if (!this.values.contains(value)) {
+            this.values.add(value);
         }
+    }
 
-        if (comparator.compare(current.getValue(), value) < 0) {
-            current.setLeft(addRecursive(current.getLeft(), value));
-        } else if (comparator.compare(current.getValue(), value) > 0) {
-            current.setRight(addRecursive(current.getRight(), value));
+    private Node addNode(E[] values, int firstIndex, int lastIndex) {
+        if (firstIndex == lastIndex) {
+            addValue(values[firstIndex]);
+            // leaf node
+            return new Node(values[firstIndex]);
+        } else if (firstIndex > lastIndex) {
+            return null;
         }
+        int middleIndex = (firstIndex + lastIndex) / 2;
 
-        // value already exists
-        return current;
+        Node left = addNode(values, firstIndex, middleIndex - 1);
+        Node right = addNode(values, middleIndex + 1, lastIndex);
+
+        addValue(values[middleIndex]);
+        return new Node(values[middleIndex], left, right);
     }
 
 }

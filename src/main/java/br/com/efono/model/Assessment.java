@@ -176,6 +176,21 @@ public class Assessment {
      * @return The indicator get from the screening assessment.
      */
     public String getIndicatorFromScreening(final int limit) {
+        IndicatorInfo info = getIndicatorInfoFromScreening(limit);
+        if (info != null) {
+            return info.getIndicatorAsString();
+        }
+        return null;
+    }
+
+    /**
+     * Gets the indicator info of this assessment like doing a screening assessment with less words than original.
+     *
+     * @param limit The limit number of words to be used in the screening assessment. 0 to run without any limit: the
+     * screening assessment will be over when it reach a leaf node in the {@link Defaults#TREE}.
+     * @return The indicator get from the screening assessment.
+     */
+    public IndicatorInfo getIndicatorInfoFromScreening(final int limit) {
         String currentWord = null;
         List<String> operations = new LinkedList<>();
         List<Node<String>> sequence = new LinkedList<>();
@@ -215,8 +230,40 @@ public class Assessment {
         }
 
         if (currentWord != null) {
-            int indicator = Arrays.asList(Defaults.SORTED_WORDS).indexOf(currentWord);
+            return new IndicatorInfo(sequence, currentWord);
+        }
 
+        return null;
+    }
+
+    public static class IndicatorInfo {
+
+        private final List<Node<String>> sequence;
+        private final String currentWord;
+
+        public IndicatorInfo(final List<Node<String>> sequence, final String currentWord) {
+            this.sequence = sequence;
+            this.currentWord = currentWord;
+        }
+
+        public String getCurrentWord() {
+            return currentWord;
+        }
+
+        public List<Node<String>> getSequence() {
+            return sequence;
+        }
+
+        public int getNumberOfWords() {
+            return sequence.size();
+        }
+
+        public int getIndicator() {
+            return Arrays.asList(Defaults.SORTED_WORDS).indexOf(currentWord);
+        }
+
+        public String getIndicatorAsString() {
+            int indicator = getIndicator();
             if (indicator == 41) {
                 return null;
             } else if (indicator == 20) {
@@ -233,7 +280,6 @@ public class Assessment {
             return "Low";
         }
 
-        return null;
     }
 
     private boolean isWordCorrect(final String w) {

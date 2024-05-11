@@ -677,6 +677,14 @@ public class Main {
         } catch (final FileNotFoundException ex) {
             System.out.println("Couldn't write into file: " + ex);
         }
+
+        File fileROC = new File(parent, "Screening-Dynamic-Assessment-ROC.csv");
+        try (PrintWriter out = new PrintWriter(fileROC)) {
+            out.print(Util.exportScreeningAssessmentResultsROC(assessments));
+            System.out.println("File at: " + fileROC);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
     }
 
     private static void processSimulation(final File outputDirectory) throws SQLException {

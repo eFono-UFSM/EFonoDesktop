@@ -23,9 +23,20 @@ public class Node<E> {
      * @param value Node value.
      */
     public Node(final E value) {
+        this(value, null, null);
+    }
+
+    /**
+     * Creates a node with the given value.
+     *
+     * @param value Node value.
+     * @param left Left node.
+     * @param right Righ node.
+     */
+    public Node(final E value, final Node left, final Node right) {
         this.value = value;
-        right = null;
-        left = null;
+        this.left = left;
+        this.right = right;
     }
 
     /**
