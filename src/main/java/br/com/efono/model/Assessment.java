@@ -173,7 +173,9 @@ public class Assessment {
                  * be treated and use the related word from Defaults#SORTED_WORDS.
                  */
                 List<Phoneme> targetPhonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
-                correctProductions += c.getCorrectProductions(targetPhonemes).size();
+                List<Phoneme> expectedProduced = c.getPhonemes().stream().filter(p -> targetPhonemes.contains(p)).toList();
+
+                correctProductions += expectedProduced.size();
             }
         }
 
