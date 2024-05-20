@@ -25,6 +25,7 @@ public class ScreeningAssessmentExperiment {
     private final Properties prop;
 
     public ScreeningAssessmentExperiment(final Properties prop) {
+        System.out.println("Starting ScreeningAssessmentExperiment");
         this.prop = prop;
         dbUtils = new DatabaseUtils(prop);
 
@@ -51,7 +52,6 @@ public class ScreeningAssessmentExperiment {
 //            Map.Entry<String, List<Phoneme>> next = iterator.next();
 //            System.out.println(next.getKey() + " -> " + next.getValue());
 //        }
-
         runExperimentResults(output);
     }
 
@@ -82,22 +82,80 @@ public class ScreeningAssessmentExperiment {
             writer.write(headerBuilder.toString());
             for (Assessment a : assessments) {
                 double pccr = a.getPCCR(allWords);
+                String indicatorPCCR = Util.getDegree(pccr);
                 StringBuilder sb = new StringBuilder();
 
                 sb.append(a.getId()).append(",");
                 sb.append(df.format(pccr).replaceAll(",", ".")).append(",");
-                sb.append(Util.getDegree(pccr)).append(",");
+                sb.append(indicatorPCCR).append(",");
+
+                Range rangeIndicatorPCCR = getTreeIndicatorFromPCCR(indicatorPCCR);
 
                 for (int i = 1; i <= maxWordsScreening; i++) {
-                    sb.append(a.getIndicatorFromScreening(i)).append(",");
+                    Assessment.IndicatorInfo indicatorInfo = a.getIndicatorInfoFromScreening(i);
+
+                    int deltaFromSDA = getDeltaFromSDA(rangeIndicatorPCCR, indicatorInfo.getIndicator());
+                    sb.append(deltaFromSDA).append(",");
                 }
                 // SDA
-                sb.append(a.getIndicatorFromScreening(0)).append("\n");
+                Assessment.IndicatorInfo sdaInfo = a.getIndicatorInfoFromScreening(0);
+                int deltaSDA = getDeltaFromSDA(rangeIndicatorPCCR, sdaInfo.getIndicator());
+                sb.append(deltaSDA).append("\n");
                 writer.write(sb.toString());
             }
         } catch (final IOException ex) {
             System.out.println("Couldn't write into file: " + ex);
         }
+    }
+
+    private Range getTreeIndicatorFromPCCR(final String indicatorPCCR) {
+        if ("High".equals(indicatorPCCR)) {
+            return new Range(0, 20);
+        } else if ("Moderate-High".equals(indicatorPCCR)) {
+            return new Range(21, 40);
+        } else if ("Moderate-Low".equals(indicatorPCCR)) {
+            return new Range(42, 61);
+        }
+        return new Range(62, Defaults.SORTED_WORDS.length - 1);
+    }
+
+    /**
+     * Calculates the delta between the indicator from SDA and the target range. The PCC-R indicator is in the target
+     * range. With this method we want to know how far our SDA indicator is from the PCC-R range. If the SDA indicator
+     * was the same of PCC-R, then the delta returned will be 0.
+     *
+     * @param targetRange The referenced range of values.
+     * @param indicatorSDA The indicator from SDA.
+     * @return A value indicating how far the SDA indicator is from the target range.
+     */
+    private int getDeltaFromSDA(final Range targetRange, final int indicatorSDA) {
+        if (indicatorSDA >= targetRange.min && indicatorSDA <= targetRange.max) {
+            // the indicator from SDA is the same from target (PCC-R).
+            return 0;
+        } else if (indicatorSDA < targetRange.min) {
+            // SDA indicator is at the left side of range
+            return targetRange.min - indicatorSDA;
+        }
+        // SDA indicator is at the right side of range
+        return indicatorSDA - targetRange.max;
+    }
+
+    private class Range {
+
+        private final int min, max;
+
+        /**
+         * Creates an object that represents a range.
+         *
+         * @param min Min value in the range (inclusive).
+         * @param max Max value in the range (inclusive).
+         */
+        public Range(int min, int max) {
+            // min <= value <= max
+            this.min = min;
+            this.max = max;
+        }
+
     }
 
     /**
@@ -109,8 +167,8 @@ public class ScreeningAssessmentExperiment {
         System.out.println("Arguments received: " + Arrays.toString(args));
         Properties prop = FileUtils.readProperties(args);
 
-        new ScreeningAssessmentExperiment(prop).init();
+        ScreeningAssessmentExperiment experiment = new ScreeningAssessmentExperiment(prop);
+        experiment.init();
     }
-
 
 }

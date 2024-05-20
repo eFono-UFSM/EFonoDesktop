@@ -174,6 +174,74 @@ public class Util {
         return null;
     }
 
+    private static List<Phoneme> processIrregularPhoneme(final String phoneme) {
+        final List<Phoneme> list = new ArrayList<>();
+        // the array has an inconsistensy. Treating it here...
+        /**
+         * some possibilities: ngʷ skɾ sʃk kɾʧ.
+         */
+        // treating kɾʧ: consonant cluster at the beggining: si’kɾʧi.
+        for (String cluster : CONSONANT_CLUSTERS) {
+            if (phoneme.startsWith(cluster)) {
+                list.add(new Phoneme(cluster, Phoneme.POSITION.OCME));
+                list.add(new Phoneme(phoneme.substring(cluster.length()), Phoneme.POSITION.OM));
+                return list;
+            }
+        }
+
+        // always CM, because CF is at the end of the word.
+        list.add(new Phoneme(phoneme.substring(0, 1), Phoneme.POSITION.CM));
+
+        /**
+         * The other part can be only OM/OCME, because OI and OCME must be at the beginning of the word, and codas it's
+         * not the case (it was just read before).
+         */
+        String otherPart = phoneme.substring(1);
+        if (isRegularPhoneme(otherPart) || isSpecialPhoneme(otherPart) || isConsonantCluster(otherPart)) {
+            list.add(processRegularPhoneme(otherPart));
+        } else {
+            /**
+             * Case of bisʃkɛtə, which /ʃ/ is a Medial Onset and not a consonant cluster.
+             */
+            String[] split = otherPart.split("");
+            for (String phon : split) {
+                list.add(processRegularPhoneme(phon));
+            }
+        }
+        return list;
+    }
+
+    private static String retrieveSpecialPhoneme(final String phoneme) {
+        String special = phoneme;
+        // replaces all possible labialization phonemes. This array never must have an index greater than 9
+        for (int i = 0; i < Phoneme.SPECIAL_PHONEMES.size(); i++) {
+            special = special.replaceAll(i + "", Phoneme.SPECIAL_PHONEMES.get(i));
+        }
+        return special;
+    }
+
+    private static Phoneme processRegularPhoneme(final String phoneme) {
+        if (isRegularPhoneme(phoneme) || Phoneme.SPECIAL_PHONEMES.contains(phoneme)) {
+            return new Phoneme(phoneme, Phoneme.POSITION.OM);
+        } else if (Arrays.asList(CONSONANT_CLUSTERS).contains(phoneme)) {
+            return new Phoneme(phoneme, Phoneme.POSITION.OCME);
+        }
+
+        return null;
+    }
+
+    private static boolean isRegularPhoneme(final String phoneme) {
+        return phoneme.length() == 1;
+    }
+
+    private static boolean isSpecialPhoneme(final String phoneme) {
+        return Phoneme.SPECIAL_PHONEMES.contains(phoneme);
+    }
+
+    private static boolean isConsonantCluster(final String phoneme) {
+        return Arrays.asList(CONSONANT_CLUSTERS).contains(phoneme);
+    }
+
     /**
      * Checks if the given phoneme is valid or not and return a valid array containing all the valid phonemes in the
      * given target.
@@ -181,7 +249,7 @@ public class Util {
      * @param phonemeTarget Target phoneme to check.
      * @return An array with the valid phonemes found in the target.
      */
-    public static Phoneme[] checkPhoneme(final String phonemeTarget) {
+    public static List<Phoneme> checkPhoneme(final String phonemeTarget) {
         String phoneme = phonemeTarget;
         final List<Phoneme> list = new ArrayList<>();
         if (phoneme != null) {
@@ -189,66 +257,14 @@ public class Util {
             phoneme = phoneme.trim();
             if (!phoneme.trim().isEmpty()) {
                 // TODO: ter uma lista de fonemas consonantais válidos? existe algum pacote com esses fonemas? ver Phon
-                if (phoneme.length() == 1 || Arrays.asList(Phoneme.LABIALIZATION).contains(phoneme)
-                    || Arrays.asList(Phoneme.SPECIAL_CONSONANTS).contains(phoneme)) {
-                    list.add(new Phoneme(phoneme, Phoneme.POSITION.OM));
-                } else if (Arrays.asList(CONSONANT_CLUSTERS).contains(phoneme)) {
-                    list.add(new Phoneme(phoneme, Phoneme.POSITION.OCME));
+                if (isRegularPhoneme(phoneme) || isSpecialPhoneme(phoneme) || isConsonantCluster(phoneme)) {
+                    list.add(processRegularPhoneme(phoneme));
                 } else {
-                    // the array has an inconsistensy. Treating it here...
-
-                    /**
-                     * some possibilities: ngʷ skɾ sʃk kɾʧ.
-                     */
-                    if (phoneme.length() == 3) {
-                        // treating kɾʧ: consonant cluster at the beggining: si’kɾʧi.
-                        for (String cluster : CONSONANT_CLUSTERS) {
-                            if (phoneme.startsWith(cluster)) {
-                                list.add(new Phoneme(cluster, Phoneme.POSITION.OCME));
-                                list.add(new Phoneme(phoneme.substring(cluster.length()), Phoneme.POSITION.OM));
-                                phoneme = "";
-                            }
-                        }
-                    }
-
-                    if (phoneme.length() > 0) {
-                        // always CM, because CF is at the end of the word.
-                        list.add(new Phoneme(phoneme.substring(0, 1), Phoneme.POSITION.CM));
-
-                        Phoneme next = new Phoneme(phoneme.substring(1));
-
-                        /**
-                         * The next phoneme can be only OM/OCME, because OI and OCME must be at the beginning of the
-                         * word, and codas it's not the case (it was just read before).
-                         */
-                        if (next.getPhoneme().length() == 1
-                            || Arrays.asList(Phoneme.LABIALIZATION).contains(next.getPhoneme())
-                            || Arrays.asList(Phoneme.SPECIAL_CONSONANTS).contains(next.getPhoneme())) {
-                            next.setPosition(Phoneme.POSITION.OM);
-                        } else {
-                            /**
-                             * Checks if the phoneme is a valid consonant cluster. If it's not, then split in two (and
-                             * only two) Medial Onsets.
-                             *
-                             * Case of bisʃkɛtə, which /ʃ/ is a Medial Onset and not a consonant cluster.
-                             */
-                            if (next.getPhoneme().length() == 2
-                                && !Arrays.asList(Phoneme.CONSONANT_CLUSTERS).contains(next.getPhoneme())) {
-                                Arrays.asList(next.getPhoneme().split("")).forEach(phon -> {
-                                    list.add(new Phoneme(phon, Phoneme.POSITION.OM));
-                                });
-                                return list.toArray(new Phoneme[list.size()]);
-                            }
-
-                            next.setPosition(Phoneme.POSITION.OCME);
-                        }
-
-                        list.add(next);
-                    }
+                    list.addAll(processIrregularPhoneme(phoneme));
                 }
             }
         }
-        return list.toArray(new Phoneme[list.size()]);
+        return list;
     }
 
     /**
@@ -263,12 +279,7 @@ public class Util {
     public static String replaceSpecialPhonemes(final String str) {
         if (str != null) {
             String clean = str;
-
-            List<String> list = new LinkedList<>();
-            list.addAll(Arrays.asList(Phoneme.LABIALIZATION));
-            list.addAll(Arrays.asList(Phoneme.SPECIAL_CONSONANTS));
-
-            if (list.size() > 9) {
+            if (Phoneme.SPECIAL_PHONEMES.size() > 9) {
                 /**
                  * If this happens, then it's time to increase the algorithm. More than 9 digits we won't be able to
                  * replace correctly again when translate the indexes with their representations.
@@ -277,7 +288,7 @@ public class Util {
             }
 
             int index = 0;
-            for (String p : list) {
+            for (String p : Phoneme.SPECIAL_PHONEMES) {
                 clean = clean.replaceAll(p, Integer.toString(index++));
             }
             return clean;
@@ -327,16 +338,9 @@ public class Util {
             String[] split = clean.split(" ");
 
             if (split.length >= 1) {
-                List<String> special = new LinkedList<>();
-                special.addAll(Arrays.asList(Phoneme.LABIALIZATION));
-                special.addAll(Arrays.asList(Phoneme.SPECIAL_CONSONANTS));
-
                 for (String phoneme : split) {
-                    // replaces all possible labialization phonemes. This array never must have an index greater than 9
-                    for (int i = 0; i < special.size(); i++) {
-                        phoneme = phoneme.replaceAll(i + "", special.get(i));
-                    }
-                    list.addAll(Arrays.asList(checkPhoneme(phoneme)));
+                    phoneme = retrieveSpecialPhoneme(phoneme);
+                    list.addAll(checkPhoneme(phoneme));
                 }
             }
 
@@ -382,6 +386,10 @@ public class Util {
              * the first case here.
              */
             KnownCase firstCase = cases.get(0);
+
+            if (firstCase.getWord().equals("Soprar")) {
+                System.out.println("first: " + firstCase + " phonemes: " + firstCase.getPhonemes());
+            }
             firstCase.getPhonemes().forEach(p -> {
                 if (!target.contains(p)) {
                     // count in how many cases this phoneme is 

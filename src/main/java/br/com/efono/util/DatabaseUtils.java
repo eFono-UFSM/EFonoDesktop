@@ -89,10 +89,24 @@ public class DatabaseUtils {
 
         Map<String, List<Phoneme>> map = new HashMap<>();
 
+        String word = "";
+        int maxDif = Integer.MIN_VALUE;
         while (it.hasNext()) {
             Map.Entry<String, List<KnownCase>> next = it.next();
-            map.put(next.getKey(), Util.getTargetPhonemes(next.getValue()));
+            List<Phoneme> targetPhonemes = Util.getTargetPhonemes(next.getValue());
+            next.getValue().size();
+
+            int dif = next.getValue().size() - targetPhonemes.size();
+            if (dif > maxDif && !next.getKey().equals("Soprar")) {
+                maxDif = dif;
+                word = next.getKey();
+            }
+            map.put(next.getKey(), targetPhonemes);
         }
+
+        System.out.println("word with biggest difference: " + word + " dif: " + maxDif);
+        System.out.println("correct cases: " + correctCases.get(word));
+        System.out.println("target phonemes for " + word + ": " + map.get(word));
 
         return map;
     }

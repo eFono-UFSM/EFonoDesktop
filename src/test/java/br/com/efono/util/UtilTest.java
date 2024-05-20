@@ -206,45 +206,69 @@ public class UtilTest {
     @Test
     public void testCheckPhoneme() {
         System.out.println("testCheckPhoneme - null");
-        assertEquals(0, Util.checkPhoneme(null).length);
+        assertEquals(0, Util.checkPhoneme(null).size());
 
         System.out.println("testCheckPhoneme - blank");
-        assertEquals(0, Util.checkPhoneme("").length);
-        assertEquals(0, Util.checkPhoneme("     ").length);
+        assertEquals(0, Util.checkPhoneme("").size());
+        assertEquals(0, Util.checkPhoneme("     ").size());
 
         System.out.println("testCheckPhoneme - consonant clusters");
         for (String cluster : Phoneme.CONSONANT_CLUSTERS) {
-            Phoneme[] result = Util.checkPhoneme(cluster);
+            List<Phoneme> result = Util.checkPhoneme(cluster);
 
-            assertEquals(1, result.length);
-            assertEquals(cluster, result[0].getPhoneme());
+            assertEquals(1, result.size());
+            assertEquals(cluster, result.get(0).getPhoneme());
         }
 
         System.out.println("testCheckPhoneme - labialization phonemes");
         for (String labialization : Phoneme.LABIALIZATION) {
-            Phoneme[] result = Util.checkPhoneme(labialization);
+            List<Phoneme> result = Util.checkPhoneme(labialization);
 
-            assertEquals(1, result.length);
-            assertEquals(labialization, result[0].getPhoneme());
+            assertEquals(1, result.size());
+            assertEquals(labialization, result.get(0).getPhoneme());
         }
 
         System.out.println("testCheckPhoneme - a single charcater phoneme");
-        Phoneme[] result = Util.checkPhoneme("b");
-        assertEquals("b", result[0].getPhoneme());
+        List<Phoneme> result = Util.checkPhoneme("b");
+        assertEquals("b", result.get(0).getPhoneme());
 
         System.out.println("testCheckPhoneme - invalid phoneme - coda followed by Medial Complex Onset");
         result = Util.checkPhoneme("skɾ");
         Phoneme[] expected = new Phoneme[]{
             new Phoneme("s", Phoneme.POSITION.CM),
             new Phoneme("kɾ", Phoneme.POSITION.OCME)};
-        assertArrayEquals(expected, result);
+        assertEquals(expected.length, result.size());
+        assertTrue(result.containsAll(Arrays.asList(expected)));
 
         System.out.println("testCheckPhoneme - invalid phoneme - coda followed by Medial Onset");
         result = Util.checkPhoneme("sp");
         expected = new Phoneme[]{
             new Phoneme("s", Phoneme.POSITION.CM),
             new Phoneme("p", Phoneme.POSITION.OM)};
-        assertArrayEquals(expected, result);
+        assertEquals(expected.length, result.size());
+        assertTrue(result.containsAll(Arrays.asList(expected)));
+
+        result = Util.checkPhoneme("ngʷ");
+        expected = new Phoneme[]{
+            new Phoneme("n", Phoneme.POSITION.CM),
+            new Phoneme("gʷ", Phoneme.POSITION.OM)};
+        assertEquals(expected.length, result.size());
+        assertTrue(result.containsAll(Arrays.asList(expected)));
+
+        result = Util.checkPhoneme("sʃk");
+        expected = new Phoneme[]{
+            new Phoneme("s", Phoneme.POSITION.CM),
+            new Phoneme("ʃ", Phoneme.POSITION.OM),
+            new Phoneme("k", Phoneme.POSITION.OM)};
+        assertEquals(expected.length, result.size());
+        assertTrue(result.containsAll(Arrays.asList(expected)));
+
+        result = Util.checkPhoneme("kɾʧ");
+        expected = new Phoneme[]{
+            new Phoneme("kɾ", Phoneme.POSITION.OCME),
+            new Phoneme("ʧ", Phoneme.POSITION.OM)};
+        assertEquals(expected.length, result.size());
+        assertTrue(result.containsAll(Arrays.asList(expected)));
     }
 
     /**

@@ -284,11 +284,7 @@ public class Assessment {
             int indicator = getIndicator();
             if (indicator == 41) {
                 return null;
-            } else if (indicator == 20) {
-                return "High";
-            } else if (indicator == 62) {
-                return "Low";
-            } else if (indicator >= 0 && indicator <= 19) {
+            } else if (indicator >= 0 && indicator <= 20) {
                 return "High";
             } else if (indicator >= 21 && indicator <= 40) {
                 return "Moderate-High";

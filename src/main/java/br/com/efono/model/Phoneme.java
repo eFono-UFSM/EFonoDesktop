@@ -44,6 +44,16 @@ public class Phoneme {
     public static final String[] SPECIAL_CONSONANTS = new String[]{"s̃"};
 
     /**
+     * List containing all the special phonemes which are represented by two or more chars.
+     */
+    public static final List<String> SPECIAL_PHONEMES = new ArrayList<>();
+
+    static {
+        SPECIAL_PHONEMES.addAll(Arrays.asList(LABIALIZATION));
+        SPECIAL_PHONEMES.addAll(Arrays.asList(SPECIAL_CONSONANTS));
+    }
+
+    /**
      * All the possible phoneme positions at the word.
      */
     public enum POSITION {
