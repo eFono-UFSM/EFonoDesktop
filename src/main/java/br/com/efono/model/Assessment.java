@@ -1,8 +1,7 @@
 package br.com.efono.model;
 
-import br.com.efono.tree.Node;
 import br.com.efono.util.Defaults;
-import java.util.Arrays;
+import br.com.efono.util.Util;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
@@ -193,109 +192,12 @@ public class Assessment {
      * screening assessment will be over when it reach a leaf node in the {@link Defaults#TREE}.
      * @return The indicator get from the screening assessment.
      */
+    @Deprecated
     public String getIndicatorFromScreening(final int limit) {
-        IndicatorInfo info = getIndicatorInfoFromScreening(limit);
+        IndicatorInfo info = Util.getIndicatorSDA(this, limit);
         if (info != null) {
             return info.getIndicatorAsString();
         }
         return null;
     }
-
-    /**
-     * Gets the indicator info of this assessment like doing a screening assessment with less words than original.
-     *
-     * @param maxWords The limit number of words to be used in the screening assessment. 0 to run without any limit: the
-     * screening assessment will be over when it reach a leaf node in the {@link Defaults#TREE}.
-     * @return The indicator get from the screening assessment.
-     */
-    public IndicatorInfo getIndicatorInfoFromScreening(final int maxWords) {
-        Node<String> node = Defaults.TREE.getRoot();
-        if (node != null && maxWords >= 0) {
-
-            List<String> operations = new LinkedList<>();
-            List<Node<String>> sequence = new LinkedList<>();
-
-            int limit = (maxWords == 0) ? Defaults.TREE.getValues().size() : maxWords;
-            while (sequence.size() < limit) {
-                // add this node in the sequence
-                sequence.add(node);
-                operations.add(isWordCorrect(node.getValue()) ? "R" : "L");
-
-                int lastIndex = operations.size() - 1;
-
-                String currentOp = operations.get(lastIndex);
-
-                boolean hasNext = currentOp.equals("R") ? node.getRight() != null : node.getLeft() != null;
-                // is at the final word of the sequence, we need to check if this word correspond to the right indicator based on previous answers
-                if (lastIndex > 0 && !hasNext) {
-                    String previousOp = operations.get(lastIndex - 1);
-                    if (!currentOp.equals(previousOp)) {
-                        node = sequence.get(lastIndex - 1);
-                    }
-                    break;
-                }
-                if (currentOp.equals("R")) {
-                    node = node.getRight();
-                } else {
-                    node = node.getLeft();
-                }
-            }
-
-            return new IndicatorInfo(sequence, node.getValue());
-        }
-
-        return null;
-    }
-
-    public static class IndicatorInfo {
-
-        private final List<Node<String>> sequence;
-        private final String currentWord;
-
-        public IndicatorInfo(final List<Node<String>> sequence, final String currentWord) {
-            this.sequence = sequence;
-            this.currentWord = currentWord;
-        }
-
-        public String getCurrentWord() {
-            return currentWord;
-        }
-
-        public List<Node<String>> getSequence() {
-            return sequence;
-        }
-
-        public int getNumberOfWords() {
-            return sequence.size();
-        }
-
-        public int getIndicator() {
-            return Arrays.asList(Defaults.SORTED_WORDS).indexOf(currentWord);
-        }
-
-        public String getIndicatorAsString() {
-            int indicator = getIndicator();
-            if (indicator == 41) {
-                return null;
-            } else if (indicator >= 0 && indicator <= 20) {
-                return "High";
-            } else if (indicator >= 21 && indicator <= 40) {
-                return "Moderate-High";
-            } else if (indicator >= 42 && indicator <= 61) {
-                return "Moderate-Low";
-            }
-            return "Low";
-        }
-
-    }
-
-    private boolean isWordCorrect(final String w) {
-        for (KnownCase c : cases) {
-            if (c.getWord().equalsIgnoreCase(w)) {
-                return c.isCorrect();
-            }
-        }
-        return false;
-    }
-
 }
