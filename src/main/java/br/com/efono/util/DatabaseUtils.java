@@ -22,7 +22,7 @@ import org.bson.Document;
 
 /**
  *
- * @author João Bolsson (joaobolsson@animati.com.br)
+ * @author João Bolsson (joaovictorbolsson@gmail.com)
  * @version 2024, May 11.
  */
 public class DatabaseUtils {
