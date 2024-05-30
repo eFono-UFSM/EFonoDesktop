@@ -1,6 +1,8 @@
 package br.com.efono.experiments;
 
 import br.com.efono.model.Assessment;
+import br.com.efono.model.KnownCase;
+import br.com.efono.tree.Node;
 import br.com.efono.util.DatabaseUtils;
 import br.com.efono.util.Defaults;
 import br.com.efono.util.FileUtils;
@@ -11,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
@@ -89,23 +92,79 @@ public class ScreeningAssessmentExperiment {
                 sb.append(df.format(pccr).replaceAll(",", ".")).append(",");
                 sb.append(indicatorPCCR).append(",");
 
-                Range rangeIndicatorPCCR = getTreeIndicatorFromPCCR(indicatorPCCR);
+                Range referenceRangeIndicatorPCCR = getTreeIndicatorFromPCCR(indicatorPCCR);
 
                 for (int i = 1; i <= maxWordsScreening; i++) {
-                    Assessment.IndicatorInfo indicatorInfo = a.getIndicatorInfoFromScreening(i);
-
-                    int deltaFromSDA = getDeltaFromSDA(rangeIndicatorPCCR, indicatorInfo.getIndicator());
+                    int indicatorSDA = getIndicatorSDA(a, i);
+                    int deltaFromSDA = getDelta(referenceRangeIndicatorPCCR, indicatorSDA);
                     sb.append(deltaFromSDA).append(",");
                 }
                 // SDA
-                Assessment.IndicatorInfo sdaInfo = a.getIndicatorInfoFromScreening(0);
-                int deltaSDA = getDeltaFromSDA(rangeIndicatorPCCR, sdaInfo.getIndicator());
+                int deltaSDA = getDelta(referenceRangeIndicatorPCCR, getIndicatorSDA(a, 0));
                 sb.append(deltaSDA).append("\n");
                 writer.write(sb.toString());
             }
         } catch (final IOException ex) {
             System.out.println("Couldn't write into file: " + ex);
         }
+    }
+
+    /**
+     * Gets the indicator info of this assessment like doing a screening assessment with less words than original.
+     *
+     * @param assessment The given assessment.
+     * @param maxWords The limit number of words to be used in the screening assessment. 0 to run without any limit: the
+     * screening assessment will be over when it reach a leaf node in the {@link Defaults#TREE}.
+     * @return The indicator get from the screening assessment.
+     */
+    public int getIndicatorSDA(final Assessment assessment, final int maxWords) {
+        // TODO: esse é o metodo referenciado no artigo, adc em uma classe util
+        List<String> operations = new LinkedList<>();
+        List<Node<String>> sequence = new LinkedList<>();
+
+        Node<String> node = Defaults.TREE.getRoot();
+
+        String finalWord = node.getValue();
+        int limit = (maxWords == 0) ? Defaults.TREE.getValues().size() : maxWords;
+        while (sequence.size() < limit && node != null) {
+            // add this node in the sequence
+            sequence.add(node);
+
+            finalWord = node.getValue();
+
+            operations.add(isWordCorrect(node.getValue(), assessment) ? "R" : "L");
+
+            int lastIndex = operations.size() - 1;
+
+            String currentOp = operations.get(lastIndex);
+
+            boolean noChildren = (node.getLeft() == null && node.getRight() == null);
+            // is at the final word of the sequence, we need to check if this word correspond to the right indicator based on previous answers
+            if (lastIndex > 0 && noChildren) {
+                String previousOp = operations.get(lastIndex - 1);
+                if (!currentOp.equals(previousOp)) {
+                    node = sequence.get(lastIndex - 1);
+                    finalWord = node.getValue();
+                }
+                break;
+            }
+            if (currentOp.equals("R")) {
+                node = node.getRight();
+            } else {
+                node = node.getLeft();
+            }
+        }
+
+        return Arrays.asList(Defaults.SORTED_WORDS).indexOf(finalWord);
+    }
+
+    private static boolean isWordCorrect(final String w, final Assessment assessment) {
+        for (KnownCase c : assessment.getCases()) {
+            if (c.getWord().equalsIgnoreCase(w)) {
+                return c.isCorrect();
+            }
+        }
+        return false;
     }
 
     private Range getTreeIndicatorFromPCCR(final String indicatorPCCR) {
@@ -128,7 +187,7 @@ public class ScreeningAssessmentExperiment {
      * @param indicatorSDA The indicator from SDA.
      * @return A value indicating how far the SDA indicator is from the target range.
      */
-    private int getDeltaFromSDA(final Range targetRange, final int indicatorSDA) {
+    private int getDelta(final Range targetRange, final int indicatorSDA) {
         if (indicatorSDA >= targetRange.min && indicatorSDA <= targetRange.max) {
             // the indicator from SDA is the same from target (PCC-R).
             return 0;

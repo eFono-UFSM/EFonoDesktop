@@ -204,51 +204,49 @@ public class Assessment {
     /**
      * Gets the indicator info of this assessment like doing a screening assessment with less words than original.
      *
-     * @param limit The limit number of words to be used in the screening assessment. 0 to run without any limit: the
+     * @param maxWords The limit number of words to be used in the screening assessment. 0 to run without any limit: the
      * screening assessment will be over when it reach a leaf node in the {@link Defaults#TREE}.
      * @return The indicator get from the screening assessment.
      */
-    public IndicatorInfo getIndicatorInfoFromScreening(final int limit) {
-        String currentWord = null;
-        List<String> operations = new LinkedList<>();
-        List<Node<String>> sequence = new LinkedList<>();
-
+    public IndicatorInfo getIndicatorInfoFromScreening(final int maxWords) {
         Node<String> node = Defaults.TREE.getRoot();
-        if (node != null && limit >= 0) {
-            do {
-                currentWord = node.getValue();
+        if (node != null && maxWords >= 0) {
+
+            List<String> operations = new LinkedList<>();
+            List<Node<String>> sequence = new LinkedList<>();
+
+            String finalWord = node.getValue();
+            int limit = (maxWords == 0) ? Defaults.TREE.getValues().size() : maxWords;
+            while (sequence.size() < limit && node != null) {
+                // add this node in the sequence
                 sequence.add(node);
 
-                if (limit != 0 && sequence.size() > limit) {
-                    break;
-                }
+                finalWord = node.getValue();
 
-                // the child produced node.getValue() correctly?
                 operations.add(isWordCorrect(node.getValue()) ? "R" : "L");
 
+                int lastIndex = operations.size() - 1;
+
+                String currentOp = operations.get(lastIndex);
+
                 boolean noChildren = (node.getLeft() == null && node.getRight() == null);
-
-                String currentOp = operations.get(operations.size() - 1);
-
-                if (operations.size() >= 2) {
-                    String previousOp = operations.get(operations.size() - 2);
-                    if (noChildren) {
-                        if (!currentOp.equals(previousOp)) {
-                            currentWord = sequence.get(sequence.size() - 2).getValue();
-                        }
+                // is at the final word of the sequence, we need to check if this word correspond to the right indicator based on previous answers
+                if (lastIndex > 0 && noChildren) {
+                    String previousOp = operations.get(lastIndex - 1);
+                    if (!currentOp.equals(previousOp)) {
+                        node = sequence.get(lastIndex - 1);
+                        finalWord = node.getValue();
                     }
+                    break;
                 }
-
                 if (currentOp.equals("R")) {
                     node = node.getRight();
                 } else {
                     node = node.getLeft();
                 }
-            } while (node != null);
-        }
+            }
 
-        if (currentWord != null) {
-            return new IndicatorInfo(sequence, currentWord);
+            return new IndicatorInfo(sequence, finalWord);
         }
 
         return null;
