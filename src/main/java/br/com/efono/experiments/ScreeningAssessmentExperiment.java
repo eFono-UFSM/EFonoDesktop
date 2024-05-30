@@ -124,30 +124,27 @@ public class ScreeningAssessmentExperiment {
 
         Node<String> node = Defaults.TREE.getRoot();
 
-        String finalWord = node.getValue();
         int limit = (maxWords == 0) ? Defaults.TREE.getValues().size() : maxWords;
-        while (sequence.size() < limit && node != null) {
+        while (sequence.size() < limit) {
             // add this node in the sequence
             sequence.add(node);
-
-            finalWord = node.getValue();
-
             operations.add(isWordCorrect(node.getValue(), assessment) ? "R" : "L");
 
             int lastIndex = operations.size() - 1;
 
             String currentOp = operations.get(lastIndex);
 
-            boolean noChildren = (node.getLeft() == null && node.getRight() == null);
+            boolean hasNext = currentOp.equals("R") ? node.getRight() != null : node.getLeft() != null;
+
             // is at the final word of the sequence, we need to check if this word correspond to the right indicator based on previous answers
-            if (lastIndex > 0 && noChildren) {
+            if (lastIndex > 0 && !hasNext) {
                 String previousOp = operations.get(lastIndex - 1);
                 if (!currentOp.equals(previousOp)) {
                     node = sequence.get(lastIndex - 1);
-                    finalWord = node.getValue();
                 }
                 break;
             }
+
             if (currentOp.equals("R")) {
                 node = node.getRight();
             } else {
@@ -155,7 +152,7 @@ public class ScreeningAssessmentExperiment {
             }
         }
 
-        return Arrays.asList(Defaults.SORTED_WORDS).indexOf(finalWord);
+        return Arrays.asList(Defaults.SORTED_WORDS).indexOf(node.getValue());
     }
 
     private static boolean isWordCorrect(final String w, final Assessment assessment) {
