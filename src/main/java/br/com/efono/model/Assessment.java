@@ -20,6 +20,7 @@ public class Assessment {
     public static final int DEFAULT_ID = -1;
 
     private final int id;
+    private final int patientID;
 
     private final List<KnownCase> cases = new LinkedList<>();
 
@@ -28,6 +29,7 @@ public class Assessment {
      */
     public Assessment() {
         id = DEFAULT_ID; // non identified
+        patientID = DEFAULT_ID;
     }
 
     /**
@@ -36,10 +38,25 @@ public class Assessment {
      * @param id Assessment id in database.
      */
     public Assessment(final int id) {
-        this.id = id;
         if (id < 0) {
             throw new IllegalArgumentException("Non identified assessment is not allowed here.");
         }
+        this.id = id;
+        patientID = DEFAULT_ID;
+    }
+
+    /**
+     * Creates an assessment.
+     *
+     * @param id Assessment id in database.
+     * @param id_paciente Patient id.
+     */
+    public Assessment(final int id, final int id_paciente) {
+        if (id < 0) {
+            throw new IllegalArgumentException("Non identified assessment is not allowed here.");
+        }
+        this.id = id;
+        this.patientID = id_paciente;
     }
 
     /**
@@ -50,6 +67,13 @@ public class Assessment {
     public Assessment(final List<KnownCase> cases) {
         this();
         this.cases.addAll(cases);
+    }
+
+    /**
+     * @return Patient id.
+     */
+    public int getPatientID() {
+        return patientID;
     }
 
     /**

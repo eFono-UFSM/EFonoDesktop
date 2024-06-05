@@ -91,7 +91,7 @@ public class ScreeningAssessmentExperiment {
             List<String> allWords = Arrays.asList(Defaults.SORTED_WORDS);
 
             // SDA (Screening Dynamic Assessment): no limits, continue until reaches a leaf node in the screening.
-            StringBuilder headerBuilder = new StringBuilder("ID_ASSESSMENT,PCC-R Complete Assessment,Indicator 84w,Indicator SDA,");
+            StringBuilder headerBuilder = new StringBuilder("ID_ASSESSMENT,PATIENT,PCC-R Complete Assessment,Indicator 84w,Indicator SDA,");
             for (int i = 1; i <= maxWordsScreening; i++) {
                 headerBuilder.append("Indicator ").append(i).append("w");
                 if (i < maxWordsScreening) {
@@ -111,6 +111,7 @@ public class ScreeningAssessmentExperiment {
                 StringBuilder sb = new StringBuilder();
 
                 sb.append(a.getId()).append(",");
+                sb.append(a.getPatientID()).append(",");
                 sb.append(df.format(pccr).replaceAll(",", ".")).append(",");
                 sb.append(indicatorPCCR).append(",");
 

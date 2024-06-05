@@ -119,7 +119,7 @@ public class DatabaseUtils {
      */
     public List<Assessment> getCompleteAssessmentsFromDB() {
         final List<Assessment> assessments = new ArrayList<>();
-        String queryAssessmentId = "SELECT DISTINCT id_avaliacao FROM avaliacaopalavra";
+        String queryAssessmentId = "SELECT DISTINCT id_avaliacao, id_paciente FROM avaliacao";
         ResultSet idsResult;
         try {
             idsResult = MySQLConnection.getInstance().executeQuery(queryAssessmentId);
@@ -127,6 +127,7 @@ public class DatabaseUtils {
             int discardedAssessment = 0;
             while (idsResult.next()) {
                 int id = idsResult.getInt("id_avaliacao");
+                int patientID = idsResult.getInt("id_paciente");
 
                 // avaliacao 15 está toda correta, vou usar essa agora para fazer a simulação sem muita complexidade
                 String query = "SELECT "
@@ -139,7 +140,7 @@ public class DatabaseUtils {
 
                 List<Integer> wordsIDs = new ArrayList<>();
 
-                Assessment assessment = new Assessment(id);
+                Assessment assessment = new Assessment(id, patientID);
 
                 while (rs.next()) {
                     if (!wordsIDs.contains(rs.getInt("id_palavra"))) {
