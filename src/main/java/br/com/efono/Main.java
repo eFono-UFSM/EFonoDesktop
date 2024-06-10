@@ -406,10 +406,10 @@ public class Main {
 //            analysisConsonantClusters(output);
 //            return;
 //        }
-        if (1 > 0) {
-            runSimulationScreeningAssessment(output);
-            return;
-        }
+//        if (1 > 0) {
+//            runSimulationScreeningAssessment(output);
+//            return;
+//        }
 
         try {
             // continue with the application

@@ -2,7 +2,6 @@ package br.com.efono.model;
 
 import br.com.efono.util.Defaults;
 import br.com.efono.util.Util;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
@@ -175,17 +174,12 @@ public class Assessment {
          */
 
         /**
-         * Com essas duas referencias dá pra concluir que: total de produções é o total de produções ESPERADAS. Se a
-         * criança produziu fonemas que não eram esperados, eles não vão ser contabilizados e serão irrelevantes no
-         * cálculo do PCC-R, apenas os fonemas que eram esperados serão avaliados. casinha, passarinho, passinho
-         * (incorreto passarinho)
+         * Com essas duas referencias dá pra concluir que: total de produções (totalOpportunities) é o total de
+         * produções ESPERADAS. Se a criança produziu fonemas que não eram esperados, eles não vão ser contabilizados e
+         * serão irrelevantes no cálculo do PCC-R, apenas os fonemas que eram esperados serão avaliados. casinha,
+         * passarinho, passinho (incorreto passarinho)
          */
-        double totalProductions = 0d;
-        Collection<List<Phoneme>> listExpectedPhonemes = Defaults.TARGET_PHONEMES.values();
-        for (List<Phoneme> l : listExpectedPhonemes) {
-            totalProductions += l.size();
-        }
-
+        double totalOpportunities = 0d;
         double correctProductions = 0d;
 
         for (KnownCase c : cases) {
@@ -198,15 +192,16 @@ public class Assessment {
                 List<Phoneme> targetPhonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
                 List<Phoneme> expectedProduced = c.getPhonemes().stream().filter(p -> targetPhonemes.contains(p)).toList();
 
+                totalOpportunities += targetPhonemes.size();
                 correctProductions += expectedProduced.size();
             }
         }
 
-        if (totalProductions == 0) {
+        if (totalOpportunities == 0) {
             return -1;
         }
 
-        return correctProductions / totalProductions;
+        return correctProductions / totalOpportunities;
     }
 
     /**

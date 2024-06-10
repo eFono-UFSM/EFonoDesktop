@@ -7,6 +7,7 @@ import br.com.efono.model.Phoneme;
 import br.com.efono.util.Defaults;
 import br.com.efono.util.ExperimentUtils;
 import br.com.efono.util.FileUtils;
+import br.com.efono.util.Util;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -70,7 +71,7 @@ public class SequencesExperiment extends Experiment {
         for (Map.Entry<KnownCaseComparator, ResultAggregator> next : map.entrySet()) {
             File file = new File(parent, next.getKey().name() + ".csv");
             try (PrintWriter out = new PrintWriter(file)) {
-                out.print(next.getValue().exportCSV());
+                out.print(next.getValue().exportCSV(assessments));
                 System.out.println("File at: " + file);
             } catch (final FileNotFoundException ex) {
                 System.out.println("Couldn't write into file: " + ex);
@@ -92,7 +93,7 @@ public class SequencesExperiment extends Experiment {
             resultNoSplit.update(wordsRequiredNoSplit);
         }
 
-        String exportCSV() {
+        String exportCSV(final List<Assessment> assessments) {
             // words required section
             List<String> wordsRequired = new ArrayList<>();
             wordsRequired.add("qtd-WordsRequired,frequency-split,frequency-no-split");
@@ -126,9 +127,24 @@ public class SequencesExperiment extends Experiment {
             report.add("bestSize," + resultSplit.bestSize + "," + resultNoSplit.bestSize);
             report.add("words," + resultSplit.getBestWordsFormated() + "," + resultNoSplit.getBestWordsFormated());
 
+            // PCC-R
+            List<String> indicators = new ArrayList<>();
+            indicators.add("Degree 84w,Degree split " + resultSplit.bestSize + "w,Degree no-split " + resultNoSplit.bestSize + "w,precision split,precision no-split");
+            assessments.forEach(a -> {
+                String degree84w = Util.getDegree(a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS)));
+
+                String degreeSplit = Util.getDegree(a.getPCCR(resultSplit.getBestWords()));
+                String degreeNoSplit = Util.getDegree(a.getPCCR(resultNoSplit.getBestWords()));
+
+                String matchSplit = degree84w.equals(degreeSplit) ? "TRUE" : "FALSE";
+                String matchNoSplit = degree84w.equals(degreeNoSplit) ? "TRUE" : "FALSE";
+
+                indicators.add(degree84w + "," + degreeSplit + "," + degreeNoSplit + "," + matchSplit + "," + matchNoSplit);
+            });
+
             // Arrays.asList("-"): this is a empty column
             return ExperimentUtils.concatListsToCSV(Arrays.asList(wordsRequired, Arrays.asList("-"),
-                wordsCounter, Arrays.asList("-"), report));
+                wordsCounter, Arrays.asList("-"), Arrays.asList("-"), report, Arrays.asList("-"), indicators));
         }
 
         private class Result {
