@@ -1,5 +1,6 @@
 package br.com.efono.model;
 
+import br.com.efono.experiments.SequencesExperiment;
 import br.com.efono.tree.BinaryTree;
 import br.com.efono.tree.TreeUtils;
 import br.com.efono.util.Defaults;
@@ -51,7 +52,9 @@ public class Statistics {
      * Extracts statistics from simulation info.
      *
      * @param info Simulation info to extract statistics.
+     * @deprecated Use {@link SequencesExperiment}.
      */
+    @Deprecated
     public void extractStatistics(final SimulationInfo info) {
         if (!constainsAssessment(info.getAssessment().getId())) {
             if (info.getAssessment().getId() < 1) {

@@ -4,7 +4,6 @@ import br.com.efono.model.Assessment;
 import br.com.efono.model.KnownCase;
 import br.com.efono.model.KnownCaseComparator;
 import br.com.efono.model.Phoneme;
-import br.com.efono.model.Statistics;
 import br.com.efono.util.Defaults;
 import br.com.efono.util.ExperimentUtils;
 import br.com.efono.util.FileUtils;
@@ -46,11 +45,7 @@ public class SequencesExperiment extends Experiment {
             KnownCaseComparator.HardWordsFirst, KnownCaseComparator.EasyWordsFirst,
             KnownCaseComparator.EasyHardWords, KnownCaseComparator.BinaryTreeComparator};
 
-        final Map<KnownCaseComparator, Statistics> map = new HashMap<>();
-        map.put(KnownCaseComparator.HardWordsFirst, new Statistics(KnownCaseComparator.HardWordsFirst));
-        map.put(KnownCaseComparator.EasyWordsFirst, new Statistics(KnownCaseComparator.EasyWordsFirst));
-        map.put(KnownCaseComparator.EasyHardWords, new Statistics(KnownCaseComparator.EasyHardWords));
-        map.put(KnownCaseComparator.BinaryTreeComparator, new Statistics(KnownCaseComparator.BinaryTreeComparator));
+        final Map<KnownCaseComparator, ResultAggregator> map = new HashMap<>();
 
         assessments.forEach(assessment -> {
             final Map<Phoneme, Integer> mapCounterSplit = new HashMap<>();
@@ -64,10 +59,53 @@ public class SequencesExperiment extends Experiment {
                 List<String> wordsRequiredSplit = getWordsRequired(cases, mapCounterSplit, true);
                 List<String> wordsRequiredNoSplit = getWordsRequired(cases, mapCounterNoSplit, false);
 
-                // TODO:
+                map.getOrDefault(comp, new ResultAggregator()).updateResults(wordsRequiredSplit, wordsRequiredNoSplit);
             }
         });
 
+        // TODO: csv from map
+    }
+
+    private class ResultAggregator {
+
+        private final Result resultSplit, resultNoSplit;
+
+        ResultAggregator() {
+            this.resultSplit = new Result();
+            this.resultNoSplit = new Result();
+        }
+
+        void updateResults(final List<String> wordsRequiredSplit, final List<String> wordsRequiredNoSplit) {
+            resultSplit.update(wordsRequiredSplit);
+            resultNoSplit.update(wordsRequiredNoSplit);
+        }
+
+        private class Result {
+
+            /**
+             * The key is the number of words required and the value is how many times this number was required in the
+             * experiment. This helps us to understand the best number of words that should be available in an
+             * instrument of phonological assessment following a specific sequence of words.
+             */
+            private final Map<Integer, Integer> mapWordsRequired = new HashMap<>();
+
+            /**
+             * The key is the word required and the value is the number of times this words was required. This will
+             * helps us to understand what words should be in an instrument of phonological assessment.
+             */
+            private final Map<String, Integer> mapWordsCounter = new HashMap<>();
+
+            void update(final List<String> wordsRequired) {
+                for (String w : wordsRequired) {
+                    Integer currentVal = mapWordsCounter.getOrDefault(w, 0);
+                    mapWordsCounter.put(w, currentVal + 1);
+                }
+
+                int countWordsRequired = wordsRequired.size();
+                Integer val = mapWordsRequired.getOrDefault(countWordsRequired, 0);
+                mapWordsRequired.put(countWordsRequired, val + 1);
+            }
+        }
     }
 
     /**
