@@ -2,7 +2,6 @@ package br.com.efono.experiments;
 
 import br.com.efono.model.Assessment;
 import br.com.efono.model.IndicatorInfo;
-import br.com.efono.util.DatabaseUtils;
 import br.com.efono.util.Defaults;
 import br.com.efono.util.FileUtils;
 import br.com.efono.util.Range;
@@ -23,43 +22,14 @@ import java.util.Properties;
  * @author João Bolsson (joaovictorbolsson@gmail.com)
  * @version 2024, May 11.
  */
-public class ScreeningAssessmentExperiment {
-
-    private final DatabaseUtils dbUtils;
-    private final Properties prop;
+public class ScreeningAssessmentExperiment extends Experiment {
 
     public ScreeningAssessmentExperiment(final Properties prop) {
-        System.out.println("Starting ScreeningAssessmentExperiment");
-        this.prop = prop;
-        dbUtils = new DatabaseUtils(prop);
-
-        // keep here
-        Defaults.TREE.init(Defaults.SORTED_WORDS);
-        Defaults.TARGET_PHONEMES.putAll(dbUtils.getTargetPhonemesForEachWord(Defaults.SORTED_WORDS));
+        super(prop);
     }
 
-    private void init() {
-        // output to store generated files
-        File output = null;
-        String outputDir = prop.getProperty(FileUtils.OUTPUT_DIR_PROP_NAME);
-        if (outputDir != null) {
-            output = new File(outputDir);
-        }
-
-        // just print the UML tree
-//        BinaryTreePrinter.print(Defaults.TREE);
-//
-//        System.out.println("Target phonemes for each word: ");
-//        Iterator<Map.Entry<String, List<Phoneme>>> iterator = Defaults.TARGET_PHONEMES.entrySet().iterator();
-//
-//        while (iterator.hasNext()) {
-//            Map.Entry<String, List<Phoneme>> next = iterator.next();
-//            System.out.println(next.getKey() + " -> " + next.getValue());
-//        }
-        runExperimentResults(output);
-    }
-
-    private void runExperimentResults(final File outputDirectory) {
+    @Override
+    protected void runExperimentResults(final File outputDirectory) {
         final List<Assessment> assessments = dbUtils.getCompleteAssessmentsFromDB();
 
         System.out.println("Running experiment with " + assessments.size() + " complete assessments");
