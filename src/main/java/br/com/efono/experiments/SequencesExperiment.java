@@ -93,14 +93,42 @@ public class SequencesExperiment extends Experiment {
         }
 
         String exportCSV() {
-            List<List<String>> csvSplit = resultSplit.exportDataToCSV("split");
-            List<List<String>> csvNoSplit = resultNoSplit.exportDataToCSV("no-split");
+            // words required section
+            List<String> wordsRequired = new ArrayList<>();
+            wordsRequired.add("qtd-WordsRequired,frequency-split,frequency-no-split");
 
-            List<List<String>> data = new LinkedList<>();
-            data.addAll(csvSplit);
-            data.addAll(csvNoSplit);
+            List<Integer> keys = new ArrayList<>();
+            for (Integer k : resultSplit.mapWordsRequired.keySet()) {
+                if (!keys.contains(k)) {
+                    keys.add(k);
+                }
+            }
+            for (Integer k : resultNoSplit.mapWordsRequired.keySet()) {
+                if (!keys.contains(k)) {
+                    keys.add(k);
+                }
+            }
 
-            return ExperimentUtils.concatListsToCSV(data);
+            for (Integer k : keys) {
+                wordsRequired.add(k + "," + resultSplit.mapWordsRequired.getOrDefault(k, 0) + "," + resultNoSplit.mapWordsRequired.getOrDefault(k, 0));
+            }
+
+            // words counter section
+            List<String> wordsCounter = new ArrayList<>();
+            wordsCounter.add("word,frequency-split,frequency-no-split");
+            for (String w : Defaults.SORTED_WORDS) {
+                wordsCounter.add(w + "," + resultSplit.mapWordsCounter.getOrDefault(w, 0) + "," + resultNoSplit.mapWordsCounter.getOrDefault(w, 0));
+            }
+
+            // report of best size in the set of words and what words should be
+            List<String> report = new ArrayList<>();
+            report.add(",split,no-split");
+            report.add("bestSize," + resultSplit.bestSize + "," + resultNoSplit.bestSize);
+            report.add("words," + resultSplit.getBestWordsFormated() + "," + resultNoSplit.getBestWordsFormated());
+
+            // Arrays.asList("-"): this is a empty column
+            return ExperimentUtils.concatListsToCSV(Arrays.asList(wordsRequired, Arrays.asList("-"),
+                wordsCounter, Arrays.asList("-"), report));
         }
 
         private class Result {
@@ -118,8 +146,11 @@ public class SequencesExperiment extends Experiment {
              */
             private final Map<String, Integer> mapWordsCounter = new HashMap<>();
 
-            // best set size of words from this result
+            // the most repeated size of words.
             private int mostRepeatedFrequency = 0;
+
+            // size of the most repeated "size of the set of words" observed in the result
+            private int bestSize = 0;
 
             void update(final List<String> wordsRequired) {
                 for (String w : wordsRequired) {
@@ -133,6 +164,7 @@ public class SequencesExperiment extends Experiment {
 
                 if (newVal > mostRepeatedFrequency) {
                     mostRepeatedFrequency = newVal;
+                    bestSize = countWordsRequired;
                 }
             }
 
@@ -146,35 +178,20 @@ public class SequencesExperiment extends Experiment {
                 List<String> bestWords = new LinkedList<>();
 
                 // Seleciona as top N chaves com maiores valores
-                for (int i = 0; i < Math.min(mostRepeatedFrequency, sortedEntries.size()); i++) {
+                for (int i = 0; i < Math.min(bestSize, sortedEntries.size()); i++) {
                     Map.Entry<String, Integer> entry = sortedEntries.get(i);
                     bestWords.add(entry.getKey());
                 }
                 return bestWords;
             }
 
-            List<List<String>> exportDataToCSV(final String id) {
-                System.out.println("map words required: " + mapWordsRequired.size() + " counter: " + mapWordsCounter.size());
-                List<String> linesWordsRequired = ExperimentUtils.getLinesFromMap("wordsRequired-" + id, "frequency-" + id, mapWordsRequired);
-                List<String> linesWordsFrequency = ExperimentUtils.getLinesFromMap("word-" + id, "frequency-" + id, mapWordsCounter);
-                List<String> linesReport = buildReport(id);
-
-                return Arrays.asList(linesWordsRequired, linesWordsFrequency, linesReport);
-            }
-
-            List<String> buildReport(final String id) {
-                List<String> list = new LinkedList<>();
-                list.add("bestSize-" + id + ",bestWords-" + id);
-
+            String getBestWordsFormated() {
                 List<String> bestWords = getBestWords();
                 StringBuilder builderBestWords = new StringBuilder();
                 for (String w : bestWords) {
                     builderBestWords.append(w).append("-");
                 }
-
-                list.add(Integer.toString(mostRepeatedFrequency) + "," + builderBestWords.toString());
-
-                return list;
+                return builderBestWords.toString();
             }
         }
     }
