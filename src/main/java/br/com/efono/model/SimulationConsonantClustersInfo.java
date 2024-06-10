@@ -1,5 +1,6 @@
 package br.com.efono.model;
 
+import br.com.efono.util.ExperimentUtils;
 import br.com.efono.util.Util;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -265,10 +266,8 @@ public class SimulationConsonantClustersInfo {
             putCountingInMap(i.getInferredPhonemesInTargetWords(), mapInferredPhonemesInTargetWords);
         });
 
-        List<String> linesFromMapInferredPhonemes = Statistics.getLinesFromMap("inferredPhonemes", "count",
-                mapInferredPhonemes);
-        List<String> linesFromMapInferredPhonemesInTargetWords = Statistics.getLinesFromMap("inferredPhonemesInTargetWords", "count",
-                mapInferredPhonemesInTargetWords);
+        List<String> linesFromMapInferredPhonemes = ExperimentUtils.getLinesFromMap("inferredPhonemes", "count",                mapInferredPhonemes);
+        List<String> linesFromMapInferredPhonemesInTargetWords = ExperimentUtils.getLinesFromMap("inferredPhonemesInTargetWords", "count",                mapInferredPhonemesInTargetWords);
 
         List<List<String>> data = Arrays.asList(linesFromMapInferredPhonemes, linesFromMapInferredPhonemesInTargetWords);
         int maxSize = 0;

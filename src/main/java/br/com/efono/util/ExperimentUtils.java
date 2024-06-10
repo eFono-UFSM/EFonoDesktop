@@ -5,8 +5,11 @@ import br.com.efono.model.KnownCaseComparator;
 import static br.com.efono.model.KnownCaseComparator.BinaryTreeComparator;
 import static br.com.efono.model.KnownCaseComparator.EasyHardWords;
 import br.com.efono.tree.TreeUtils;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -69,6 +72,64 @@ public class ExperimentUtils {
                     list.sort(comp.getComparator());
             }
         }
+    }
+
+    /**
+     * Get lines in CSV format from the given map.
+     *
+     * @param key Key header.
+     * @param value Value header.
+     * @param map The map.
+     * @return All the lines in CSV format.
+     */
+    public static List<String> getLinesFromMap(final String key, final String value, final Map map) {
+        List<String> lines = new LinkedList<>();
+        lines.add(key + "," + value); // header
+
+        Iterator<Map.Entry> it = map.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry next = it.next();
+            lines.add(next.getKey() + "," + next.getValue());
+        }
+
+        return lines;
+    }
+
+    public static String concatListsToCSV(final List<List<String>> lists) {
+        StringBuilder csv = new StringBuilder();
+
+        // list -> numero de colunas
+        Map<List<String>, Integer> mapData = new LinkedHashMap<>();
+
+        int maxRows = 0;
+        for (List<String> l : lists) {
+            if (l.size() > maxRows) {
+                maxRows = l.size();
+            }
+            mapData.put(l, l.get(0).split(",").length);
+        }
+        for (int i = 0; i < maxRows; i++) {
+            StringBuilder line = new StringBuilder();
+
+            for (Map.Entry<List<String>, Integer> next : mapData.entrySet()) {
+                List<String> list = next.getKey();
+
+                if (i < list.size()) {
+                    if (!line.toString().replaceAll(",", "").isEmpty()) {
+                        line.append(",");
+                    }
+                    line.append(list.get(i));
+                } else {
+                    Integer columns = next.getValue();
+                    for (int j = 0; j < columns; j++) {
+                        line.append(",");
+                    }
+                }
+            }
+
+            csv.append(line).append("\n");
+        }
+        return csv.toString();
     }
 
 }

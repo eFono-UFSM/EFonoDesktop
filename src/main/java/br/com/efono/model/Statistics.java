@@ -4,6 +4,7 @@ import br.com.efono.experiments.SequencesExperiment;
 import br.com.efono.tree.BinaryTree;
 import br.com.efono.tree.TreeUtils;
 import br.com.efono.util.Defaults;
+import br.com.efono.util.ExperimentUtils;
 import br.com.efono.util.Util;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -180,27 +181,6 @@ public class Statistics {
         return str.toString();
     }
 
-    /**
-     * Get lines in CSV format from the given map.
-     *
-     * @param key Key header.
-     * @param value Value header.
-     * @param map The map.
-     * @return All the lines in CSV format.
-     */
-    public static List<String> getLinesFromMap(final String key, final String value, final Map map) {
-        List<String> lines = new LinkedList<>();
-        lines.add(key + "," + value); // header
-
-        Iterator<Map.Entry> it = map.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry next = it.next();
-            lines.add(next.getKey() + "," + next.getValue());
-        }
-
-        return lines;
-    }
-
     private List<String> getLinesPCCR() {
         int max = 0;
         Integer mostRepeatedFrequency = 0;
@@ -273,8 +253,8 @@ public class Statistics {
      * @return The CSV.
      */
     public String exportAllCSV() {
-        List<String> linesWordsRequired = getLinesFromMap("wordsRequired", "frequency", mapWordsRequired);
-        List<String> linesWordsFrequency = getLinesFromMap("word", "frequency", mapWordsCounter);
+        List<String> linesWordsRequired = ExperimentUtils.getLinesFromMap("wordsRequired", "frequency", mapWordsRequired);
+        List<String> linesWordsFrequency = ExperimentUtils.getLinesFromMap("word", "frequency", mapWordsCounter);
 
         List<String> linesPCCR = getLinesPCCR();
 
