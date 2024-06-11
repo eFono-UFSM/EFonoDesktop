@@ -51,10 +51,26 @@ public class SequencesExperiment extends Experiment {
 
         final Map<KnownCaseComparator, ResultAggregator> map = new HashMap<>();
 
-        assessments.forEach(assessment -> {
-            List<KnownCase> cases = assessment.getCases();
+        // for the first three comparators doesn't matter what is it in the assessment, only the words. We create a fake cases here to pass to getWordsRequired (it will only use the word).
+        List<KnownCase> fakeCases = new ArrayList<>();
+        for (String w : Defaults.SORTED_WORDS) {
+            fakeCases.add(new KnownCase(w, w, true));
+        }
 
-            for (KnownCaseComparator comp : comparators) {
+        List<Assessment> fakeAssessments = Arrays.asList(new Assessment(fakeCases));
+
+        for (KnownCaseComparator comp : comparators) {
+            List<Assessment> list;
+
+            if (!comp.equals(KnownCaseComparator.BinaryTreeComparator)) {
+                list = fakeAssessments;
+            } else {
+                list = assessments;
+            }
+
+            list.forEach(assessment -> {
+                List<KnownCase> cases = assessment.getCases();
+                // sortList will return always the same order for the first three comparators, because they don't use assessment information
                 ExperimentUtils.sortList(cases, comp);
 
                 List<String> wordsRequiredSplit = getWordsRequired(cases, true);
@@ -64,8 +80,8 @@ public class SequencesExperiment extends Experiment {
                 aggregator.updateResults(wordsRequiredSplit, wordsRequiredNoSplit);
 
                 map.put(comp, aggregator);
-            }
-        });
+            });
+        }
 
         // exporting results
         for (Map.Entry<KnownCaseComparator, ResultAggregator> next : map.entrySet()) {
