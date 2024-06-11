@@ -75,8 +75,8 @@ public class SimulationWordsSequence {
     }
 
     // todo: adicionar esse mecanismo com as 7 palavras, serão mais, mas pode melhorar a precisão na hora de advinhar o PCC-R
-    public static SimulationInfo runSimulation2(final Assessment assessment, final KnownCaseComparator comp,
-            final int minimum, boolean splitConsonantClusters) {
+    @Deprecated
+    public static SimulationInfo runSimulation2(final Assessment assessment, final KnownCaseComparator comp,            final int minimum, boolean splitConsonantClusters) {
         if (assessment != null && minimum > 0) {
             final Map<Phoneme, Integer> mapCounter = new HashMap<>();
 
@@ -131,6 +131,7 @@ public class SimulationWordsSequence {
         return new SimulationInfo(assessment, comp, splitConsonantClusters);
     }
 
+    @Deprecated
     private static void testNextWords(final List<String> nextWords, final List<KnownCase> cases, final int minimum,
             boolean splitConsonantClusters, final Map<Phoneme, Integer> mapCounter, final List<String> wordsRequired) {
         cases.forEach(c -> {
@@ -176,6 +177,7 @@ public class SimulationWordsSequence {
      * can evaluate more precisely the consonant clusters productions.
      * @return A list with all the words that contains the phonemes in the given list.
      */
+    @Deprecated
     public static List<String> getNextWords(final List<Phoneme> toBeTested, final boolean splitConsonantClusters) {
         List<String> nextWords = new LinkedList<>();
         Iterator<Map.Entry<String, List<Phoneme>>> it = Defaults.TARGET_PHONEMES.entrySet().iterator();
@@ -274,10 +276,7 @@ public class SimulationWordsSequence {
                 });
 
                 for (Phoneme p : list) {
-                    int count = 1;
-                    if (mapCounter.containsKey(p)) {
-                        count = mapCounter.get(p) + 1;
-                    }
+                    int count = mapCounter.getOrDefault(p, 0) + 1;
                     mapCounter.put(p, count);
 
                     if (count <= minimum) {

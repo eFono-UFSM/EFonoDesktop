@@ -3,8 +3,15 @@
  */
 package br.com.efono;
 
+import br.com.efono.experiments.SequencesExperiment;
+import br.com.efono.model.KnownCase;
+import br.com.efono.model.KnownCaseComparator;
+import br.com.efono.tree.BinaryTreePrinter;
+import br.com.efono.util.DatabaseUtils;
+import br.com.efono.util.Defaults;
 import br.com.efono.util.ExperimentUtils;
 import br.com.efono.util.FileUtils;
+import br.com.efono.util.Util;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -28,6 +35,11 @@ public class Test {
 
         File output = null;
         final Properties prop = FileUtils.readProperties(args);
+
+        if (1 > 0) {
+            testBinaryTreeComparator(prop);
+            return;
+        }
 
         String outputDir = prop.getProperty(FileUtils.OUTPUT_DIR_PROP_NAME);
         if (outputDir != null) {
@@ -80,6 +92,31 @@ public class Test {
         } catch (final FileNotFoundException ex) {
             System.out.println("Couldn't write into file: " + ex);
         }
+    }
+
+    public static void testBinaryTreeComparator(final Properties prop) {
+        DatabaseUtils dbUtils = new DatabaseUtils(prop);
+
+        // keep here
+        Defaults.TREE.init(Defaults.SORTED_WORDS);
+        Defaults.TARGET_PHONEMES.putAll(dbUtils.getTargetPhonemesForEachWord(Defaults.SORTED_WORDS));
+
+        Defaults.SIMILAR_WORDS.clear();
+        Defaults.SIMILAR_WORDS.putAll(
+            Util.buildSimilarWords(Arrays.asList(Defaults.SORTED_WORDS),
+                Defaults.TARGET_PHONEMES,
+                SequencesExperiment.MINIMUM_REPEATED_PHONEMES));
+
+        List<KnownCase> list = new LinkedList<>();
+        for (String w : Defaults.SORTED_WORDS) {
+            list.add(new KnownCase(w, w, true));
+        }
+
+        BinaryTreePrinter.print(Defaults.TREE);
+
+        System.out.println("list before: " + list);
+        ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
+        System.out.println("list after: " + list);
     }
 
 }
