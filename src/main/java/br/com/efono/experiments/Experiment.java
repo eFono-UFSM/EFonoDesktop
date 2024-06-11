@@ -3,7 +3,9 @@ package br.com.efono.experiments;
 import br.com.efono.util.DatabaseUtils;
 import br.com.efono.util.Defaults;
 import br.com.efono.util.FileUtils;
+import br.com.efono.util.Util;
 import java.io.File;
+import java.util.Arrays;
 import java.util.Properties;
 
 /**
@@ -23,6 +25,12 @@ public abstract class Experiment {
         // keep here
         Defaults.TREE.init(Defaults.SORTED_WORDS);
         Defaults.TARGET_PHONEMES.putAll(dbUtils.getTargetPhonemesForEachWord(Defaults.SORTED_WORDS));
+
+        Defaults.SIMILAR_WORDS.clear();
+        Defaults.SIMILAR_WORDS.putAll(
+            Util.buildSimilarWords(Arrays.asList(Defaults.SORTED_WORDS),
+                Defaults.TARGET_PHONEMES,
+                SequencesExperiment.MINIMUM_REPEATED_PHONEMES));
     }
 
     protected void init() {

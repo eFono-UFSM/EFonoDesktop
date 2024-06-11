@@ -47,7 +47,8 @@ public class SequencesExperiment extends Experiment {
 
         KnownCaseComparator[] comparators = new KnownCaseComparator[]{
             KnownCaseComparator.HardWordsFirst, KnownCaseComparator.EasyWordsFirst,
-            KnownCaseComparator.EasyHardWords, KnownCaseComparator.BinaryTreeComparator};
+            KnownCaseComparator.EasyHardWords, KnownCaseComparator.BinaryTreeComparator,
+            KnownCaseComparator.BlocksOfWords};
 
         final Map<KnownCaseComparator, ResultAggregator> map = new HashMap<>();
 
@@ -62,7 +63,7 @@ public class SequencesExperiment extends Experiment {
         for (KnownCaseComparator comp : comparators) {
             List<Assessment> list;
 
-            if (!comp.equals(KnownCaseComparator.BinaryTreeComparator)) {
+            if (!comp.equals(KnownCaseComparator.BinaryTreeComparator) && !comp.equals(KnownCaseComparator.BlocksOfWords)) {
                 list = fakeAssessments;
             } else {
                 list = assessments;
@@ -265,7 +266,8 @@ public class SequencesExperiment extends Experiment {
      * 10.5220/0012555600003690
      * @return A list with the required words, according with the criteria above.
      */
-    public static List<String> getWordsRequired(final List<KnownCase> cases, final KnownCaseComparator comp, boolean splitConsonantClusters) {
+    public static List<String> getWordsRequired(final List<KnownCase> cases, final KnownCaseComparator comp,
+        boolean splitConsonantClusters) {
         // sortList will return always the same order for the first three comparators, because they don't use assessment information
         if (comp.equals(KnownCaseComparator.BlocksOfWords)) {
             ExperimentUtils.sortList(cases, KnownCaseComparator.BinaryTreeComparator);
@@ -276,15 +278,14 @@ public class SequencesExperiment extends Experiment {
          * A map only to count how many times each phoneme was tested.
          */
         final Map<Phoneme, Integer> mapCounter = new HashMap<>();
-        final List<String> wordsRequired = new LinkedList<>();
+        final List<String> wordsRequired = new ArrayList<>();
         /**
          * It'll only consider word that are in the assessment and not all the words in the set for a complete
          * assessment. This is not a problem right now because we are working only with complete assessment that have
          * all the words in the target set.
          */
         if (cases != null) {
-            List<String> visitedWords = new ArrayList<>();
-            List<String> wordsToVisit = new ArrayList<>();
+            List<String> wordsToVisit = new LinkedList<>();
 
             cases.forEach(c -> {
                 String w = c.getWord();
@@ -292,7 +293,12 @@ public class SequencesExperiment extends Experiment {
                     wordsToVisit.add(w);
 
                     if (comp.equals(KnownCaseComparator.BlocksOfWords)) {
-
+                        // adds all the similar words in the sequence
+                        Defaults.SIMILAR_WORDS.get(w).forEach(similar -> {
+                            if (!wordsToVisit.contains(similar)) {
+                                wordsToVisit.add(similar);
+                            }
+                        });
                     }
                 }
             });
