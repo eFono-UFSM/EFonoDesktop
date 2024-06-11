@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -92,6 +93,58 @@ public class Util {
 
         return new IndicatorInfo(sequence, node.getValue());
 //        return Arrays.asList(Defaults.SORTED_WORDS).indexOf(node.getValue());
+    }
+
+    /**
+     * Build a map of words and their similar words. Similar words are words that have at least one phoneme in commom.
+     *
+     * @param words A list with words to find their similar.
+     * @param targetPhonemes A map containing all the target phonemes for a word.
+     * @param minimumRepeat The minimum number of times that each phoneme must appear sum all the occurences in the word
+     * and their similar.
+     * @return A map containing the word and their similar words.
+     */
+    public static Map<String, List<String>> buildSimilarWords(final List<String> words, final Map<String, List<Phoneme>> targetPhonemes, final int minimumRepeat) {
+        Map<String, List<String>> map = new HashMap<>();
+        if (words != null && targetPhonemes != null) {
+            words.forEach(w -> {
+                List<String> similarWords = new ArrayList<>();
+
+                List<Phoneme> phonemes = targetPhonemes.getOrDefault(w, new ArrayList<>());
+
+                // linked hashmap to check in the same order
+                Map<Phoneme, Integer> mapCount = new LinkedHashMap<>();
+                phonemes.forEach(p -> {
+                    Integer newCount = mapCount.getOrDefault(p, 0) + 1;
+                    mapCount.put(p, newCount);
+                });
+
+                int i = words.size();
+                while (--i >= 0 && !mapCount.values().stream().filter(v -> v < minimumRepeat).collect(Collectors.toList()).isEmpty()) {
+                    String otherWord = words.get(i);
+                    if (!otherWord.equals(w)) {
+                        // common phonemes and have another necessary phonemes to reach the minimum tests required
+                        List<Phoneme> commonPhonemes = targetPhonemes.getOrDefault(otherWord, new ArrayList<>()).stream().filter(p -> mapCount.containsKey(p) && mapCount.get(p) < minimumRepeat).collect(Collectors.toList());
+
+                        if (!commonPhonemes.isEmpty()) {
+                            similarWords.add(otherWord);
+                            // update the map
+                            targetPhonemes.get(otherWord).forEach(p -> {
+                                if (mapCount.containsKey(p)) {
+                                    mapCount.put(p, mapCount.get(p) + 1);
+                                }
+                            });
+                        }
+                    }
+                }
+
+                map.put(w, similarWords);
+                // TODO: não preciso de todas as palavras, só de 4 ou 5 pra testar os mesmos fonemas dela
+                // mesmo assim, se cada palavra tiver 4 fonemas, vão ser 24 palavras ou 28 (6x4, 7x4). Será que melhora a precisão do PCC-R?
+                System.out.println(w + "->SimilarWords[" + similarWords.size() + "]: " + similarWords);
+            });
+        }
+        return map;
     }
 
     private static boolean isWordCorrect(final String w, final Assessment assessment) {

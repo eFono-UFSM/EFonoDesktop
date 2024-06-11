@@ -31,7 +31,7 @@ public class SequencesExperiment extends Experiment {
      * Minimum number of times that a phoneme in a certain position must be tested to be considered in the phonetic
      * inventory.
      */
-    private static final byte MINIMUM_REPEATED_PHONEMES = 2;
+    public static final byte MINIMUM_REPEATED_PHONEMES = 2;
 
     public SequencesExperiment(final Properties prop) {
         super(prop);
@@ -70,11 +70,9 @@ public class SequencesExperiment extends Experiment {
 
             list.forEach(assessment -> {
                 List<KnownCase> cases = assessment.getCases();
-                // sortList will return always the same order for the first three comparators, because they don't use assessment information
-                ExperimentUtils.sortList(cases, comp);
 
-                List<String> wordsRequiredSplit = getWordsRequired(cases, true);
-                List<String> wordsRequiredNoSplit = getWordsRequired(cases, false);
+                List<String> wordsRequiredSplit = getWordsRequired(cases, comp, true);
+                List<String> wordsRequiredNoSplit = getWordsRequired(cases, comp, false);
 
                 ResultAggregator aggregator = map.getOrDefault(comp, new ResultAggregator());
                 aggregator.updateResults(wordsRequiredSplit, wordsRequiredNoSplit);
@@ -93,6 +91,8 @@ public class SequencesExperiment extends Experiment {
                 System.out.println("Couldn't write into file: " + ex);
             }
         }
+
+//        ResultAggregator bstResult = map.get(KnownCaseComparator.BinaryTreeComparator);
     }
 
     private class ResultAggregator {
@@ -109,6 +109,24 @@ public class SequencesExperiment extends Experiment {
             resultNoSplit.update(wordsRequiredNoSplit);
         }
 
+//        String exportBlockOfWordsCSV(final List<Assessment> assessments) {
+//            StringBuilder builder = new StringBuilder();
+//            builder.append("Degree 84w,Degree 55w,words-in-blocks,Degree blocks,Concordance BLOCKS x 84w\n");
+//
+//            // 55 words from Algorithm for Selecting Words to Compose Phonological Assessments
+//            String[] words55 = new String[]{"Jornal", "Tênis", "Cruz", "Mesa", "Tesoura", "Bebê", "Cachorro", "Terra", "Rabo",
+//                "Dragão", "Língua", "Chiclete", "Gritar", "Porta", "Refri", "Dado", "Igreja", "Relógio", "Cobra", "Zebra",
+//                "Brinco", "Placa", "Plástico", "Vaca", "Soprar", "Travesseiro", "Escrever", "Bruxa", "Zero", "Dedo",
+//                "Fralda", "Estrela", "Espelho", "Flor", "Faca", "Fogo", "Girafa", "Garfo", "Sofá", "Trem", "Vidro", "Sapo",
+//                "Livro", "Magro", "Pedra", "Nuvem", "Galinha", "Grama", "Chapéu", "Navio", "Caixa", "Letra", "Chifre",
+//                "Folha", "Cama"};
+//
+//            assessments.forEach(a -> {
+//
+//            });
+//
+//            return builder.toString();
+//        }
         String exportCSV(final List<Assessment> assessments) {
             // words required section
             List<String> wordsRequired = new ArrayList<>();
@@ -239,6 +257,7 @@ public class SequencesExperiment extends Experiment {
      * assessments, since probably the phonetic inventory will be incomplete as well.
      *
      * @param cases The sorted cases to analyze.
+     * @param comp Comparator to build words sequence.
      * @param splitConsonantClusters True - the consonant clusters will be transformed into 2 consonants phonemes. Ex.:
      * bɾ(OCME) -> b(OCME) + ɾ(OCME). False - keep the consonant phonemes as they are. Letting this flag with false
      * possibly will return more words because it's more difficult to find the phoneme bɾ(OCME) in the cases, but
@@ -246,7 +265,13 @@ public class SequencesExperiment extends Experiment {
      * 10.5220/0012555600003690
      * @return A list with the required words, according with the criteria above.
      */
-    public static List<String> getWordsRequired(final List<KnownCase> cases, boolean splitConsonantClusters) {
+    public static List<String> getWordsRequired(final List<KnownCase> cases, final KnownCaseComparator comp, boolean splitConsonantClusters) {
+        // sortList will return always the same order for the first three comparators, because they don't use assessment information
+        if (comp.equals(KnownCaseComparator.BlocksOfWords)) {
+            ExperimentUtils.sortList(cases, KnownCaseComparator.BinaryTreeComparator);
+        } else {
+            ExperimentUtils.sortList(cases, comp);
+        }
         /**
          * A map only to count how many times each phoneme was tested.
          */
@@ -258,13 +283,27 @@ public class SequencesExperiment extends Experiment {
          * all the words in the target set.
          */
         if (cases != null) {
+            List<String> visitedWords = new ArrayList<>();
+            List<String> wordsToVisit = new ArrayList<>();
+
             cases.forEach(c -> {
+                String w = c.getWord();
+                if (!wordsToVisit.contains(w)) {
+                    wordsToVisit.add(w);
+
+                    if (comp.equals(KnownCaseComparator.BlocksOfWords)) {
+
+                    }
+                }
+            });
+
+            wordsToVisit.forEach(w -> {
                 /**
                  * We must always consider the target phonemes for a word. If we consider the phonemes produced here,
                  * for example "tavalo" for the word "cavalo" we will be considering that the word cavalo is necessary
                  * for the child produce the phoneme `t`, and this is wrong.
                  */
-                List<Phoneme> phonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
+                List<Phoneme> phonemes = Defaults.TARGET_PHONEMES.get(w);
                 // TODO: e se um fonema tiver 2 produções: correta e incorreta. Deveria ter uma palavra a mais pra desempatar...
 
                 final List<Phoneme> list = new ArrayList<>();
@@ -293,8 +332,8 @@ public class SequencesExperiment extends Experiment {
                      * If all the phonemes tested by this word were already tested at minimum 2 times, so the word
                      * doesn't would need to be here.
                      */
-                    if (count <= MINIMUM_REPEATED_PHONEMES && !wordsRequired.contains(c.getWord())) {
-                        wordsRequired.add(c.getWord());
+                    if (count <= MINIMUM_REPEATED_PHONEMES && !wordsRequired.contains(w)) {
+                        wordsRequired.add(w);
                     }
                 }
             });

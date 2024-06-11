@@ -1,6 +1,7 @@
 package br.com.efono;
 
 import br.com.efono.db.MySQLConnection;
+import br.com.efono.experiments.SequencesExperiment;
 import br.com.efono.model.Assessment;
 import br.com.efono.model.KnownCase;
 import br.com.efono.model.KnownCaseComparator;
@@ -369,38 +370,11 @@ public class Main {
             System.out.println(next.getKey() + " -> " + next.getValue());
         }
 
-        // TODO: testar esse código
-        Arrays.asList(Defaults.SORTED_WORDS).forEach(w -> {
-            List<Phoneme> phonemes = Defaults.TARGET_PHONEMES.get(w);
-
-            List<String> similarWords = new ArrayList<>();
-
-            List<Phoneme> countPhonemes = new ArrayList<>();
-
-            // vai pegar as mais difíceis primeiro
-            for (int i = Defaults.SORTED_WORDS.length - 1; i >= 0; i--) {
-                String key = Defaults.SORTED_WORDS[i];
-
-                if (!key.equals(w)) {
-                    List<Phoneme> value = Defaults.TARGET_PHONEMES.get(key);
-
-                    for (Phoneme p : phonemes) {
-                        if (value.contains(p) && !countPhonemes.contains(p)) {
-                            countPhonemes.add(p);
-
-                            if (!similarWords.contains(key)) {
-                                similarWords.add(key);
-                            }
-                        }
-                    }
-                }
-            }
-
-            Defaults.SIMILAR_WORDS.put(w, similarWords);
-            // TODO: não preciso de todas as palavras, só de 4 ou 5 pra testar os mesmos fonemas dela
-            // mesmo assim, se cada palavra tiver 4 fonemas, vão ser 24 palavras ou 28 (6x4, 7x4). Será que melhora a precisão do PCC-R?
-            System.out.println(w + "->SimilarWords[" + similarWords.size() + "]: " + similarWords);
-        });
+        Defaults.SIMILAR_WORDS.clear();
+        Defaults.SIMILAR_WORDS.putAll(
+            Util.buildSimilarWords(Arrays.asList(Defaults.SORTED_WORDS),
+                Defaults.TARGET_PHONEMES,
+                SequencesExperiment.MINIMUM_REPEATED_PHONEMES));
 
 //        if (1 > 0) {
 //            analysisConsonantClusters(output);

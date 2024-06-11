@@ -56,7 +56,12 @@ public enum KnownCaseComparator {
         int indexOfo1 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o1.getWord());
         int indexOfo2 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o2.getWord());
         return indexOfo1 - indexOfo2;
-    });
+    }),
+    BlocksOfWords((KnownCase o1, KnownCase o2) -> {
+        int indexOfo1 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o1.getWord());
+        int indexOfo2 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o2.getWord());
+        return indexOfo1 - indexOfo2;
+    }),;
 
     private final Comparator<KnownCase> comp;
 

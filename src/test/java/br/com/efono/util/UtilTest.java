@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +21,137 @@ import org.junit.Ignore;
  * @version 2023, May 28.
  */
 public class UtilTest {
+
+    @Test
+    public void testBuildSimilarWords_NoCommonPhonemes() {
+        List<String> words = Arrays.asList("cat", "dog", "fish");
+        Map<String, List<Phoneme>> targetPhonemes = new HashMap<>();
+
+        words.forEach(w -> {
+            String[] split = w.split("");
+            List<Phoneme> list = new ArrayList<>();
+            for (String s : split) {
+                list.add(new Phoneme(s));
+            }
+            targetPhonemes.put(w, list);
+        });
+
+        Map<String, List<String>> result = Util.buildSimilarWords(words, targetPhonemes, 2);
+
+        assertTrue(result.get("cat").isEmpty());
+        assertTrue(result.get("dog").isEmpty());
+        assertTrue(result.get("fish").isEmpty());
+    }
+
+    @Test
+    public void testBuildSimilarWords_Basic() {
+        List<String> words = Arrays.asList("bat", "cat", "hat");
+        Map<String, List<Phoneme>> targetPhonemes = new HashMap<>();
+
+        words.forEach(w -> {
+            String[] split = w.split("");
+            List<Phoneme> list = new ArrayList<>();
+            for (String s : split) {
+                list.add(new Phoneme(s));
+            }
+            targetPhonemes.put(w, list);
+        });
+
+        // just one repetition: don't need another word
+        Map<String, List<String>> result = Util.buildSimilarWords(words, targetPhonemes, 1);
+        assertTrue(result.get("bat").isEmpty());
+        assertTrue(result.get("cat").isEmpty());
+        assertTrue(result.get("hat").isEmpty());
+
+        // two repetitions
+        result = Util.buildSimilarWords(words, targetPhonemes, 2);
+        assertEquals(Arrays.asList("hat"), result.get("bat"));
+        assertEquals(Arrays.asList("hat"), result.get("cat"));
+        assertEquals(Arrays.asList("cat"), result.get("hat"));
+
+        // three repetitions
+        result = Util.buildSimilarWords(words, targetPhonemes, 3);
+        assertEquals(Arrays.asList("hat", "cat"), result.get("bat"));
+        assertEquals(Arrays.asList("hat", "bat"), result.get("cat"));
+        assertEquals(Arrays.asList("cat", "bat"), result.get("hat"));
+    }
+
+    @Test
+    public void testBuildSimilarWords_Complex() {
+        System.out.println("testBuildSimilarWords_Complex");
+        // repeated phonemes in the same word
+        List<String> words = Arrays.asList("sassy", "assy", "mes");
+        Map<String, List<Phoneme>> targetPhonemes = new HashMap<>();
+
+        words.forEach(w -> {
+            String[] split = w.split("");
+            List<Phoneme> list = new ArrayList<>();
+            for (String s : split) {
+                list.add(new Phoneme(s));
+            }
+            targetPhonemes.put(w, list);
+        });
+
+        // just one repetition: don't need another word
+        Map<String, List<String>> result = Util.buildSimilarWords(words, targetPhonemes, 1);
+        assertTrue(result.get("sassy").isEmpty());
+        assertTrue(result.get("assy").isEmpty());
+        assertTrue(result.get("mes").isEmpty());
+
+        // two repetitions
+        result = Util.buildSimilarWords(words, targetPhonemes, 2);
+        assertEquals(Arrays.asList("assy"), result.get("sassy"));
+        assertEquals(Arrays.asList("sassy"), result.get("assy"));
+        assertEquals(Arrays.asList("assy"), result.get("mes"));
+
+        // three repetitions
+        result = Util.buildSimilarWords(words, targetPhonemes, 3);
+        assertEquals(Arrays.asList("assy"), result.get("sassy"));
+        assertEquals(Arrays.asList("mes", "sassy"), result.get("assy"));
+        assertEquals(Arrays.asList("assy"), result.get("mes"));
+    }
+
+    @Test
+    public void testBuildSimilarWords_WordWithoutPhonemes() {
+        List<String> words = Arrays.asList("bat", "cat", "hat");
+        Map<String, List<Phoneme>> targetPhonemes = new HashMap<>();
+
+        words.forEach(w -> {
+            // "hat" sem fonemas
+            if (!w.equals("hat")) {
+                String[] split = w.split("");
+                List<Phoneme> list = new ArrayList<>();
+                for (String s : split) {
+                    list.add(new Phoneme(s));
+                }
+                targetPhonemes.put(w, list);
+            }
+        });
+
+        // just one repetition: don't need another word
+        Map<String, List<String>> result = Util.buildSimilarWords(words, targetPhonemes, 1);
+        assertTrue(result.get("bat").isEmpty());
+        assertTrue(result.get("cat").isEmpty());
+        assertTrue(result.get("hat").isEmpty());
+
+        result = Util.buildSimilarWords(words, targetPhonemes, 2);
+
+        assertEquals(Arrays.asList("cat"), result.get("bat"));
+        assertEquals(Arrays.asList("bat"), result.get("cat"));
+        assertTrue(result.get("hat").isEmpty());
+    }
+
+    @Test
+    public void testBuildSimilarWords_EmptyInput() {
+        List<String> words = Collections.emptyList();
+        Map<String, List<Phoneme>> targetPhonemes = new HashMap<>();
+
+        Map<String, List<String>> result = Util.buildSimilarWords(words, targetPhonemes, 1);
+        assertTrue(result.isEmpty());
+
+        result = Util.buildSimilarWords(null, null, 1);
+        assertTrue(result.isEmpty());
+    }
 
     /**
      * Just to ensure if java is recognizing the phonemes.
@@ -104,8 +237,9 @@ public class UtilTest {
     }
 
     /**
-     * Tests {@link Util#readTranscriptions(File)}.
-     * Ignored because this test fails on java 8, keep here and upgrade to java 20.
+     * Tests {@link Util#readTranscriptions(File)}. Ignored because this test fails on java 8, keep here and upgrade to
+     * java 20.
+     *
      * @throws java.net.URISyntaxException Exception.
      */
     @Test
@@ -515,7 +649,7 @@ public class UtilTest {
             result = Util.getConsonantPhonemes(c.getRepresentation());
 
             System.out.println("case: " + c.getRepresentation() + " word: " + c.getWord() + "\n\texpected: " + Arrays.toString(expected.toArray()) + ""
-                    + "\n\tresult: " + Arrays.toString(result.toArray()));
+                + "\n\tresult: " + Arrays.toString(result.toArray()));
 
             assertArrayEquals(expected.toArray(), result.toArray());
         }
@@ -560,20 +694,20 @@ public class UtilTest {
 
         System.out.println("testGetTargetPhonemes - real case");
         KnownCase passarinho = new KnownCase("Passarinho", "[pasa’ɾiɲo]", true, Arrays.asList(
-                new Phoneme("p", Phoneme.POSITION.OI),
-                new Phoneme("s", Phoneme.POSITION.OM),
-                new Phoneme("ɾ", Phoneme.POSITION.OM),
-                new Phoneme("ɲ", Phoneme.POSITION.OM)));
+            new Phoneme("p", Phoneme.POSITION.OI),
+            new Phoneme("s", Phoneme.POSITION.OM),
+            new Phoneme("ɾ", Phoneme.POSITION.OM),
+            new Phoneme("ɲ", Phoneme.POSITION.OM)));
 
         KnownCase passaro = new KnownCase("Passarinho", "[pasa’ɾiɲo]", true, Arrays.asList(
-                new Phoneme("p", Phoneme.POSITION.OI),
-                new Phoneme("s", Phoneme.POSITION.OM),
-                new Phoneme("ɾ", Phoneme.POSITION.OM)));
+            new Phoneme("p", Phoneme.POSITION.OI),
+            new Phoneme("s", Phoneme.POSITION.OM),
+            new Phoneme("ɾ", Phoneme.POSITION.OM)));
 
         List<Phoneme> expected = Arrays.asList(
-                new Phoneme("p", Phoneme.POSITION.OI),
-                new Phoneme("s", Phoneme.POSITION.OM),
-                new Phoneme("ɾ", Phoneme.POSITION.OM));
+            new Phoneme("p", Phoneme.POSITION.OI),
+            new Phoneme("s", Phoneme.POSITION.OM),
+            new Phoneme("ɾ", Phoneme.POSITION.OM));
 
         assertEquals(expected, Util.getTargetPhonemes(Arrays.asList(passarinho, passaro)));
         assertEquals(expected, Util.getTargetPhonemes(Arrays.asList(passaro, passarinho)));
@@ -583,21 +717,21 @@ public class UtilTest {
          * Only the phonemes matters, all the other parameters here are useless.
          */
         KnownCase test = new KnownCase("Cama", "test", false, Arrays.asList(
-                new Phoneme("a", Phoneme.POSITION.OI),
-                new Phoneme("b", Phoneme.POSITION.OM),
-                new Phoneme("c", Phoneme.POSITION.OM)));
+            new Phoneme("a", Phoneme.POSITION.OI),
+            new Phoneme("b", Phoneme.POSITION.OM),
+            new Phoneme("c", Phoneme.POSITION.OM)));
 
         KnownCase test2 = new KnownCase("Cama", "test", true, Arrays.asList(
-                new Phoneme("a", Phoneme.POSITION.OI),
-                new Phoneme("b", Phoneme.POSITION.OM),
-                new Phoneme("c", Phoneme.POSITION.OM),
-                new Phoneme("d", Phoneme.POSITION.OM)));
+            new Phoneme("a", Phoneme.POSITION.OI),
+            new Phoneme("b", Phoneme.POSITION.OM),
+            new Phoneme("c", Phoneme.POSITION.OM),
+            new Phoneme("d", Phoneme.POSITION.OM)));
 
         KnownCase test3 = new KnownCase("Cama", "test", false, Arrays.asList(
-                new Phoneme("d", Phoneme.POSITION.OI),
-                new Phoneme("e", Phoneme.POSITION.OM),
-                new Phoneme("f", Phoneme.POSITION.OM),
-                new Phoneme("g", Phoneme.POSITION.OM)));
+            new Phoneme("d", Phoneme.POSITION.OI),
+            new Phoneme("e", Phoneme.POSITION.OM),
+            new Phoneme("f", Phoneme.POSITION.OM),
+            new Phoneme("g", Phoneme.POSITION.OM)));
 
         System.out.println("testGetTargetPhonemes - no common phonemes");
         assertTrue(Util.getTargetPhonemes(Arrays.asList(test, test2, test3)).isEmpty());
@@ -608,9 +742,9 @@ public class UtilTest {
         assertTrue(Util.getTargetPhonemes(Arrays.asList(test3, test2, test)).isEmpty());
 
         expected = Arrays.asList(
-                new Phoneme("a", Phoneme.POSITION.OI),
-                new Phoneme("b", Phoneme.POSITION.OM),
-                new Phoneme("c", Phoneme.POSITION.OM));
+            new Phoneme("a", Phoneme.POSITION.OI),
+            new Phoneme("b", Phoneme.POSITION.OM),
+            new Phoneme("c", Phoneme.POSITION.OM));
         System.out.println("testGetTargetPhonemes - common phonemes");
 
         assertEquals(expected, Util.getTargetPhonemes(Arrays.asList(test, test2)));
@@ -630,68 +764,68 @@ public class UtilTest {
 
         final Map<String, List<Phoneme>> map = new LinkedHashMap<>();
         map.put("Biblioteca", Arrays.asList(
-                new Phoneme("b", Phoneme.POSITION.OI),
-                new Phoneme("bl", Phoneme.POSITION.OCME),
-                new Phoneme("t", Phoneme.POSITION.OM),
-                new Phoneme("k", Phoneme.POSITION.OM)));
+            new Phoneme("b", Phoneme.POSITION.OI),
+            new Phoneme("bl", Phoneme.POSITION.OCME),
+            new Phoneme("t", Phoneme.POSITION.OM),
+            new Phoneme("k", Phoneme.POSITION.OM)));
 
         map.put("Fralda", Arrays.asList(
-                new Phoneme("fɾ", Phoneme.POSITION.OCI), // nao da para inferir novos fonemas pois está em OCI
-                new Phoneme("d", Phoneme.POSITION.OM)));
+            new Phoneme("fɾ", Phoneme.POSITION.OCI), // nao da para inferir novos fonemas pois está em OCI
+            new Phoneme("d", Phoneme.POSITION.OM)));
 
         final List<Phoneme> clustersParts = new NoRepeatList<>();
         List<Phoneme> result = Util.getInferredPhonemes(map, clustersParts);
         assertTrue("Result: " + result, result.isEmpty());
 
         List<Phoneme> expectedClusters = Arrays.asList(
-                new Phoneme("b", Phoneme.POSITION.OCME),
-                new Phoneme("l", Phoneme.POSITION.OCME),
-                new Phoneme("f", Phoneme.POSITION.OCI),
-                new Phoneme("ɾ", Phoneme.POSITION.OCI));
+            new Phoneme("b", Phoneme.POSITION.OCME),
+            new Phoneme("l", Phoneme.POSITION.OCME),
+            new Phoneme("f", Phoneme.POSITION.OCI),
+            new Phoneme("ɾ", Phoneme.POSITION.OCI));
         assertEquals(expectedClusters.size(), clustersParts.size());
         assertTrue(expectedClusters.containsAll(clustersParts));
 
         System.out.println("testGetInferredPhonemes 1 - infering new valid consonant clusters");
         map.clear();
         map.put("Chifre", Arrays.asList(
-                new Phoneme("ʃ", Phoneme.POSITION.OI),
-                new Phoneme("fɾ", Phoneme.POSITION.OCME))); // mesma posição que "bl"
+            new Phoneme("ʃ", Phoneme.POSITION.OI),
+            new Phoneme("fɾ", Phoneme.POSITION.OCME))); // mesma posição que "bl"
 
         map.put("Biblioteca", Arrays.asList(
-                new Phoneme("b", Phoneme.POSITION.OI),
-                new Phoneme("bl", Phoneme.POSITION.OCME),
-                new Phoneme("t", Phoneme.POSITION.OM),
-                new Phoneme("k", Phoneme.POSITION.OM)));
+            new Phoneme("b", Phoneme.POSITION.OI),
+            new Phoneme("bl", Phoneme.POSITION.OCME),
+            new Phoneme("t", Phoneme.POSITION.OM),
+            new Phoneme("k", Phoneme.POSITION.OM)));
 
         // é a combinação de todos os encontros consonantais explodidos
         List<Phoneme> expected = Arrays.asList(
-                new Phoneme("fɾ", Phoneme.POSITION.OCME),
-                new Phoneme("fl", Phoneme.POSITION.OCME),
-                new Phoneme("bɾ", Phoneme.POSITION.OCME),
-                new Phoneme("bl", Phoneme.POSITION.OCME));
+            new Phoneme("fɾ", Phoneme.POSITION.OCME),
+            new Phoneme("fl", Phoneme.POSITION.OCME),
+            new Phoneme("bɾ", Phoneme.POSITION.OCME),
+            new Phoneme("bl", Phoneme.POSITION.OCME));
 
         result = Util.getInferredPhonemes(map, clustersParts);
         assertEquals(expected.size(), result.size());
         assertTrue(expected.containsAll(result));
         expectedClusters = Arrays.asList(
-                new Phoneme("f", Phoneme.POSITION.OCME),
-                new Phoneme("ɾ", Phoneme.POSITION.OCME),
-                new Phoneme("b", Phoneme.POSITION.OCME),
-                new Phoneme("l", Phoneme.POSITION.OCME));
+            new Phoneme("f", Phoneme.POSITION.OCME),
+            new Phoneme("ɾ", Phoneme.POSITION.OCME),
+            new Phoneme("b", Phoneme.POSITION.OCME),
+            new Phoneme("l", Phoneme.POSITION.OCME));
         assertEquals(expectedClusters.size(), clustersParts.size());
         assertTrue(expectedClusters.containsAll(clustersParts));
 
         System.out.println("testGetInferredPhonemes 2 - same previous test (1), but now with another word in the map");
         map.clear();
         map.put("Chifre", Arrays.asList(
-                new Phoneme("ʃ", Phoneme.POSITION.OI),
-                new Phoneme("fɾ", Phoneme.POSITION.OCME))); // mesma posição que "bl"
+            new Phoneme("ʃ", Phoneme.POSITION.OI),
+            new Phoneme("fɾ", Phoneme.POSITION.OCME))); // mesma posição que "bl"
 
         map.put("Biblioteca", Arrays.asList(
-                new Phoneme("b", Phoneme.POSITION.OI),
-                new Phoneme("bl", Phoneme.POSITION.OCME),
-                new Phoneme("t", Phoneme.POSITION.OM),
-                new Phoneme("k", Phoneme.POSITION.OM)));
+            new Phoneme("b", Phoneme.POSITION.OI),
+            new Phoneme("bl", Phoneme.POSITION.OCME),
+            new Phoneme("t", Phoneme.POSITION.OM),
+            new Phoneme("k", Phoneme.POSITION.OM)));
 
         /**
          * Mustn't interfere in the expected result. At the moment of reading this word and its phonemes, the phoneme
@@ -699,23 +833,23 @@ public class UtilTest {
          * be discarded in the future after a more complex analysis).
          */
         map.put("Zebra", Arrays.asList(
-                new Phoneme("z", Phoneme.POSITION.OI),
-                new Phoneme("bɾ", Phoneme.POSITION.OCME)));
+            new Phoneme("z", Phoneme.POSITION.OI),
+            new Phoneme("bɾ", Phoneme.POSITION.OCME)));
 
         expected = Arrays.asList(
-                new Phoneme("fɾ", Phoneme.POSITION.OCME),
-                new Phoneme("fl", Phoneme.POSITION.OCME),
-                new Phoneme("bɾ", Phoneme.POSITION.OCME),
-                new Phoneme("bl", Phoneme.POSITION.OCME));
+            new Phoneme("fɾ", Phoneme.POSITION.OCME),
+            new Phoneme("fl", Phoneme.POSITION.OCME),
+            new Phoneme("bɾ", Phoneme.POSITION.OCME),
+            new Phoneme("bl", Phoneme.POSITION.OCME));
 
         result = Util.getInferredPhonemes(map, clustersParts);
         assertEquals(expected.size(), result.size());
         assertTrue(expected.containsAll(result));
         expectedClusters = Arrays.asList(
-                new Phoneme("f", Phoneme.POSITION.OCME),
-                new Phoneme("ɾ", Phoneme.POSITION.OCME),
-                new Phoneme("b", Phoneme.POSITION.OCME),
-                new Phoneme("l", Phoneme.POSITION.OCME));
+            new Phoneme("f", Phoneme.POSITION.OCME),
+            new Phoneme("ɾ", Phoneme.POSITION.OCME),
+            new Phoneme("b", Phoneme.POSITION.OCME),
+            new Phoneme("l", Phoneme.POSITION.OCME));
         assertEquals(expectedClusters.size(), clustersParts.size());
         assertTrue(expectedClusters.containsAll(clustersParts));
 
@@ -723,33 +857,33 @@ public class UtilTest {
         System.out.println("testGetInferredPhonemes 3 - infering new valid consonant clusters");
         map.clear();
         map.put("Zebra", Arrays.asList(
-                new Phoneme("z", Phoneme.POSITION.OI),
-                new Phoneme("bɾ", Phoneme.POSITION.OCME)));
+            new Phoneme("z", Phoneme.POSITION.OI),
+            new Phoneme("bɾ", Phoneme.POSITION.OCME)));
 
         map.put("Chifre", Arrays.asList(
-                new Phoneme("ʃ", Phoneme.POSITION.OI),
-                new Phoneme("fl", Phoneme.POSITION.OCME))); // changed to "fl" so we can test
+            new Phoneme("ʃ", Phoneme.POSITION.OI),
+            new Phoneme("fl", Phoneme.POSITION.OCME))); // changed to "fl" so we can test
 
         map.put("Biblioteca", Arrays.asList(
-                new Phoneme("b", Phoneme.POSITION.OI),
-                new Phoneme("bl", Phoneme.POSITION.OCME),
-                new Phoneme("t", Phoneme.POSITION.OM),
-                new Phoneme("k", Phoneme.POSITION.OM)));
+            new Phoneme("b", Phoneme.POSITION.OI),
+            new Phoneme("bl", Phoneme.POSITION.OCME),
+            new Phoneme("t", Phoneme.POSITION.OM),
+            new Phoneme("k", Phoneme.POSITION.OM)));
 
         expected = Arrays.asList(
-                new Phoneme("fɾ", Phoneme.POSITION.OCME),
-                new Phoneme("fl", Phoneme.POSITION.OCME),
-                new Phoneme("bɾ", Phoneme.POSITION.OCME),
-                new Phoneme("bl", Phoneme.POSITION.OCME));
+            new Phoneme("fɾ", Phoneme.POSITION.OCME),
+            new Phoneme("fl", Phoneme.POSITION.OCME),
+            new Phoneme("bɾ", Phoneme.POSITION.OCME),
+            new Phoneme("bl", Phoneme.POSITION.OCME));
 
         result = Util.getInferredPhonemes(map, clustersParts);
         assertEquals(expected.size(), result.size());
         assertTrue(expected.containsAll(result));
         expectedClusters = Arrays.asList(
-                new Phoneme("b", Phoneme.POSITION.OCME),
-                new Phoneme("ɾ", Phoneme.POSITION.OCME),
-                new Phoneme("f", Phoneme.POSITION.OCME),
-                new Phoneme("l", Phoneme.POSITION.OCME));
+            new Phoneme("b", Phoneme.POSITION.OCME),
+            new Phoneme("ɾ", Phoneme.POSITION.OCME),
+            new Phoneme("f", Phoneme.POSITION.OCME),
+            new Phoneme("l", Phoneme.POSITION.OCME));
         assertEquals(expectedClusters.size(), clustersParts.size());
         assertTrue(expectedClusters.containsAll(clustersParts));
 
@@ -757,44 +891,44 @@ public class UtilTest {
         map.clear();
         // won't have impact in inferred phonemes
         map.put("Fralda", Arrays.asList(
-                new Phoneme("fɾ", Phoneme.POSITION.OCI), // nao da para inferir novos fonemas pois está em OCI
-                new Phoneme("d", Phoneme.POSITION.OM)));
+            new Phoneme("fɾ", Phoneme.POSITION.OCI), // nao da para inferir novos fonemas pois está em OCI
+            new Phoneme("d", Phoneme.POSITION.OM)));
 
         map.put("Zebra", Arrays.asList(
-                new Phoneme("z", Phoneme.POSITION.OI),
-                new Phoneme("bɾ", Phoneme.POSITION.OCME)));
+            new Phoneme("z", Phoneme.POSITION.OI),
+            new Phoneme("bɾ", Phoneme.POSITION.OCME)));
 
         map.put("Chifre", Arrays.asList(
-                new Phoneme("ʃ", Phoneme.POSITION.OI),
-                new Phoneme("fl", Phoneme.POSITION.OCME))); // changed to "fl" so we can test
+            new Phoneme("ʃ", Phoneme.POSITION.OI),
+            new Phoneme("fl", Phoneme.POSITION.OCME))); // changed to "fl" so we can test
 
         map.put("Biblioteca", Arrays.asList(
-                new Phoneme("b", Phoneme.POSITION.OI),
-                new Phoneme("bl", Phoneme.POSITION.OCME),
-                new Phoneme("t", Phoneme.POSITION.OM),
-                new Phoneme("k", Phoneme.POSITION.OM)));
+            new Phoneme("b", Phoneme.POSITION.OI),
+            new Phoneme("bl", Phoneme.POSITION.OCME),
+            new Phoneme("t", Phoneme.POSITION.OM),
+            new Phoneme("k", Phoneme.POSITION.OM)));
 
         // won't have impact in inferred phonemes
         map.put("Refri", Arrays.asList(
-                new Phoneme("χ", Phoneme.POSITION.OI),
-                new Phoneme("fɾ", Phoneme.POSITION.OCME)));
+            new Phoneme("χ", Phoneme.POSITION.OI),
+            new Phoneme("fɾ", Phoneme.POSITION.OCME)));
 
         expected = Arrays.asList(
-                new Phoneme("fɾ", Phoneme.POSITION.OCME),
-                new Phoneme("fl", Phoneme.POSITION.OCME),
-                new Phoneme("bɾ", Phoneme.POSITION.OCME),
-                new Phoneme("bl", Phoneme.POSITION.OCME));
+            new Phoneme("fɾ", Phoneme.POSITION.OCME),
+            new Phoneme("fl", Phoneme.POSITION.OCME),
+            new Phoneme("bɾ", Phoneme.POSITION.OCME),
+            new Phoneme("bl", Phoneme.POSITION.OCME));
 
         result = Util.getInferredPhonemes(map, clustersParts);
         assertEquals(expected.size(), result.size());
         assertTrue(expected.containsAll(result));
         expectedClusters = Arrays.asList(
-                new Phoneme("f", Phoneme.POSITION.OCI),
-                new Phoneme("ɾ", Phoneme.POSITION.OCI),
-                new Phoneme("b", Phoneme.POSITION.OCME),
-                new Phoneme("ɾ", Phoneme.POSITION.OCME),
-                new Phoneme("f", Phoneme.POSITION.OCME),
-                new Phoneme("l", Phoneme.POSITION.OCME));
+            new Phoneme("f", Phoneme.POSITION.OCI),
+            new Phoneme("ɾ", Phoneme.POSITION.OCI),
+            new Phoneme("b", Phoneme.POSITION.OCME),
+            new Phoneme("ɾ", Phoneme.POSITION.OCME),
+            new Phoneme("f", Phoneme.POSITION.OCME),
+            new Phoneme("l", Phoneme.POSITION.OCME));
         assertEquals(expectedClusters.size(), clustersParts.size());
         assertTrue(expectedClusters.containsAll(clustersParts));
 
@@ -802,78 +936,78 @@ public class UtilTest {
         map.clear();
         // won't have impact in inferred phonemes
         map.put("Fralda", Arrays.asList(
-                new Phoneme("fɾ", Phoneme.POSITION.OCI), // nao da para inferir novos fonemas pois está em OCI
-                new Phoneme("d", Phoneme.POSITION.OM)));
+            new Phoneme("fɾ", Phoneme.POSITION.OCI), // nao da para inferir novos fonemas pois está em OCI
+            new Phoneme("d", Phoneme.POSITION.OM)));
 
         map.put("Zebra", Arrays.asList(
-                new Phoneme("z", Phoneme.POSITION.OI),
-                new Phoneme("bɾ", Phoneme.POSITION.OCME)));
+            new Phoneme("z", Phoneme.POSITION.OI),
+            new Phoneme("bɾ", Phoneme.POSITION.OCME)));
 
         map.put("Refri", Arrays.asList(
-                new Phoneme("χ", Phoneme.POSITION.OI),
-                new Phoneme("fɾ", Phoneme.POSITION.OCME)));
+            new Phoneme("χ", Phoneme.POSITION.OI),
+            new Phoneme("fɾ", Phoneme.POSITION.OCME)));
 
         map.put("Chifre", Arrays.asList(
-                new Phoneme("ʃ", Phoneme.POSITION.OI),
-                new Phoneme("fl", Phoneme.POSITION.OCME))); // changed to "fl" so we can test
+            new Phoneme("ʃ", Phoneme.POSITION.OI),
+            new Phoneme("fl", Phoneme.POSITION.OCME))); // changed to "fl" so we can test
 
         map.put("Biblioteca", Arrays.asList(
-                new Phoneme("b", Phoneme.POSITION.OI),
-                new Phoneme("bl", Phoneme.POSITION.OCME),
-                new Phoneme("t", Phoneme.POSITION.OM),
-                new Phoneme("k", Phoneme.POSITION.OM)));
+            new Phoneme("b", Phoneme.POSITION.OI),
+            new Phoneme("bl", Phoneme.POSITION.OCME),
+            new Phoneme("t", Phoneme.POSITION.OM),
+            new Phoneme("k", Phoneme.POSITION.OM)));
 
         /**
          * The method is about inference, and we can't ignore the inferences that were already produced.
          */
         expected = Arrays.asList(
-                new Phoneme("fɾ", Phoneme.POSITION.OCME),
-                new Phoneme("fl", Phoneme.POSITION.OCME),
-                new Phoneme("bɾ", Phoneme.POSITION.OCME),
-                new Phoneme("bl", Phoneme.POSITION.OCME));
+            new Phoneme("fɾ", Phoneme.POSITION.OCME),
+            new Phoneme("fl", Phoneme.POSITION.OCME),
+            new Phoneme("bɾ", Phoneme.POSITION.OCME),
+            new Phoneme("bl", Phoneme.POSITION.OCME));
 
         result = Util.getInferredPhonemes(map, clustersParts);
         assertEquals(expected.size(), result.size());
         assertTrue(expected.containsAll(result));
         expectedClusters = Arrays.asList(
-                new Phoneme("f", Phoneme.POSITION.OCI),
-                new Phoneme("ɾ", Phoneme.POSITION.OCI),
-                new Phoneme("b", Phoneme.POSITION.OCME),
-                new Phoneme("ɾ", Phoneme.POSITION.OCME),
-                new Phoneme("f", Phoneme.POSITION.OCME),
-                new Phoneme("l", Phoneme.POSITION.OCME));
+            new Phoneme("f", Phoneme.POSITION.OCI),
+            new Phoneme("ɾ", Phoneme.POSITION.OCI),
+            new Phoneme("b", Phoneme.POSITION.OCME),
+            new Phoneme("ɾ", Phoneme.POSITION.OCME),
+            new Phoneme("f", Phoneme.POSITION.OCME),
+            new Phoneme("l", Phoneme.POSITION.OCME));
         assertEquals(expectedClusters.size(), clustersParts.size());
         assertTrue(expectedClusters.containsAll(clustersParts));
 
         System.out.println("testGetInferredPhonemes 6 - skip non inferred phoneme and map doesn't contain a word");
         map.clear();
         map.put("Fralda", Arrays.asList(
-                new Phoneme("fɾ", Phoneme.POSITION.OCI),
-                new Phoneme("d", Phoneme.POSITION.OM)));
+            new Phoneme("fɾ", Phoneme.POSITION.OCI),
+            new Phoneme("d", Phoneme.POSITION.OM)));
 
         map.put("Placa", Arrays.asList(
-                new Phoneme("pl", Phoneme.POSITION.OCI),
-                new Phoneme("k", Phoneme.POSITION.OM)));
+            new Phoneme("pl", Phoneme.POSITION.OCI),
+            new Phoneme("k", Phoneme.POSITION.OM)));
 
         map.put("Fruta", Arrays.asList(
-                new Phoneme("fɾ", Phoneme.POSITION.OCI),
-                new Phoneme("t", Phoneme.POSITION.OM)));
+            new Phoneme("fɾ", Phoneme.POSITION.OCI),
+            new Phoneme("t", Phoneme.POSITION.OM)));
 
         expected = Arrays.asList(
-                new Phoneme("fɾ", Phoneme.POSITION.OCI),
-                new Phoneme("fl", Phoneme.POSITION.OCI),
-                new Phoneme("pɾ", Phoneme.POSITION.OCI),
-                new Phoneme("pl", Phoneme.POSITION.OCI));
+            new Phoneme("fɾ", Phoneme.POSITION.OCI),
+            new Phoneme("fl", Phoneme.POSITION.OCI),
+            new Phoneme("pɾ", Phoneme.POSITION.OCI),
+            new Phoneme("pl", Phoneme.POSITION.OCI));
 
         // the map doesn't contain "Beijo", but shouldn't have impact in the method.
         result = Util.getInferredPhonemes(map, clustersParts);
         assertEquals(expected.size(), result.size());
         assertTrue("Result: " + result, expected.containsAll(result));
         expectedClusters = Arrays.asList(
-                new Phoneme("f", Phoneme.POSITION.OCI),
-                new Phoneme("ɾ", Phoneme.POSITION.OCI),
-                new Phoneme("p", Phoneme.POSITION.OCI),
-                new Phoneme("l", Phoneme.POSITION.OCI));
+            new Phoneme("f", Phoneme.POSITION.OCI),
+            new Phoneme("ɾ", Phoneme.POSITION.OCI),
+            new Phoneme("p", Phoneme.POSITION.OCI),
+            new Phoneme("l", Phoneme.POSITION.OCI));
         assertEquals(expectedClusters.size(), clustersParts.size());
         assertTrue(expectedClusters.containsAll(clustersParts));
 
@@ -881,38 +1015,38 @@ public class UtilTest {
         System.out.println("testGetInferredPhonemes 7 - another test inferring phonemes");
         map.clear();
         map.put("Brasil", Arrays.asList(
-                new Phoneme("bɾ", Phoneme.POSITION.OCI),
-                new Phoneme("z", Phoneme.POSITION.OM)));
+            new Phoneme("bɾ", Phoneme.POSITION.OCI),
+            new Phoneme("z", Phoneme.POSITION.OM)));
 
         map.put("Vaca", Arrays.asList(
-                new Phoneme("vl", Phoneme.POSITION.OCI),
-                new Phoneme("k", Phoneme.POSITION.OM)));
+            new Phoneme("vl", Phoneme.POSITION.OCI),
+            new Phoneme("k", Phoneme.POSITION.OM)));
 
         map.put("Fruta", Arrays.asList(
-                new Phoneme("fχ", Phoneme.POSITION.OCI),
-                new Phoneme("t", Phoneme.POSITION.OM)));
+            new Phoneme("fχ", Phoneme.POSITION.OCI),
+            new Phoneme("t", Phoneme.POSITION.OM)));
 
         expected = Arrays.asList(
-                new Phoneme("bl", Phoneme.POSITION.OCI),
-                new Phoneme("bɾ", Phoneme.POSITION.OCI),
-                new Phoneme("bχ", Phoneme.POSITION.OCI),
-                new Phoneme("fl", Phoneme.POSITION.OCI),
-                new Phoneme("fɾ", Phoneme.POSITION.OCI),
-                new Phoneme("fχ", Phoneme.POSITION.OCI),
-                new Phoneme("vl", Phoneme.POSITION.OCI),
-                new Phoneme("vɾ", Phoneme.POSITION.OCI),
-                new Phoneme("vχ", Phoneme.POSITION.OCI));
+            new Phoneme("bl", Phoneme.POSITION.OCI),
+            new Phoneme("bɾ", Phoneme.POSITION.OCI),
+            new Phoneme("bχ", Phoneme.POSITION.OCI),
+            new Phoneme("fl", Phoneme.POSITION.OCI),
+            new Phoneme("fɾ", Phoneme.POSITION.OCI),
+            new Phoneme("fχ", Phoneme.POSITION.OCI),
+            new Phoneme("vl", Phoneme.POSITION.OCI),
+            new Phoneme("vɾ", Phoneme.POSITION.OCI),
+            new Phoneme("vχ", Phoneme.POSITION.OCI));
 
         result = Util.getInferredPhonemes(map, clustersParts);
         assertEquals(expected.size(), result.size());
         assertTrue(expected.containsAll(result));
         expectedClusters = Arrays.asList(
-                new Phoneme("b", Phoneme.POSITION.OCI),
-                new Phoneme("ɾ", Phoneme.POSITION.OCI),
-                new Phoneme("v", Phoneme.POSITION.OCI),
-                new Phoneme("l", Phoneme.POSITION.OCI),
-                new Phoneme("f", Phoneme.POSITION.OCI),
-                new Phoneme("χ", Phoneme.POSITION.OCI));
+            new Phoneme("b", Phoneme.POSITION.OCI),
+            new Phoneme("ɾ", Phoneme.POSITION.OCI),
+            new Phoneme("v", Phoneme.POSITION.OCI),
+            new Phoneme("l", Phoneme.POSITION.OCI),
+            new Phoneme("f", Phoneme.POSITION.OCI),
+            new Phoneme("χ", Phoneme.POSITION.OCI));
         assertEquals(expectedClusters.size(), clustersParts.size());
         assertTrue(expectedClusters.containsAll(clustersParts));
     }
@@ -929,32 +1063,32 @@ public class UtilTest {
         System.out.println("testGetPossibleClusters - no combination can be done");
 
         List<Phoneme> parts = Arrays.asList(
-                new Phoneme("b", Phoneme.POSITION.OCI),
-                new Phoneme("ɾ", Phoneme.POSITION.OCI),
-                new Phoneme("v", Phoneme.POSITION.OCME),
-                new Phoneme("l", Phoneme.POSITION.OCME));
+            new Phoneme("b", Phoneme.POSITION.OCI),
+            new Phoneme("ɾ", Phoneme.POSITION.OCI),
+            new Phoneme("v", Phoneme.POSITION.OCME),
+            new Phoneme("l", Phoneme.POSITION.OCME));
         assertTrue(Util.getPossibleClusters(parts).isEmpty());
 
         System.out.println("testGetPossibleClusters - repeated elements");
         parts = Arrays.asList(
-                new Phoneme("b", Phoneme.POSITION.OCI),
-                new Phoneme("ɾ", Phoneme.POSITION.OCI),
-                new Phoneme("b", Phoneme.POSITION.OCI),
-                new Phoneme("ɾ", Phoneme.POSITION.OCI));
+            new Phoneme("b", Phoneme.POSITION.OCI),
+            new Phoneme("ɾ", Phoneme.POSITION.OCI),
+            new Phoneme("b", Phoneme.POSITION.OCI),
+            new Phoneme("ɾ", Phoneme.POSITION.OCI));
         assertTrue(Util.getPossibleClusters(parts).isEmpty());
 
         System.out.println("testGetPossibleClusters - valid entry");
         parts = Arrays.asList(
-                new Phoneme("b", Phoneme.POSITION.OCI),
-                new Phoneme("ɾ", Phoneme.POSITION.OCI),
-                new Phoneme("v", Phoneme.POSITION.OCI),
-                new Phoneme("l", Phoneme.POSITION.OCI));
+            new Phoneme("b", Phoneme.POSITION.OCI),
+            new Phoneme("ɾ", Phoneme.POSITION.OCI),
+            new Phoneme("v", Phoneme.POSITION.OCI),
+            new Phoneme("l", Phoneme.POSITION.OCI));
 
         List<Phoneme> expected = Arrays.asList(
-                new Phoneme("bl", Phoneme.POSITION.OCI),
-                new Phoneme("bɾ", Phoneme.POSITION.OCI),
-                new Phoneme("vl", Phoneme.POSITION.OCI),
-                new Phoneme("vɾ", Phoneme.POSITION.OCI));
+            new Phoneme("bl", Phoneme.POSITION.OCI),
+            new Phoneme("bɾ", Phoneme.POSITION.OCI),
+            new Phoneme("vl", Phoneme.POSITION.OCI),
+            new Phoneme("vɾ", Phoneme.POSITION.OCI));
         List<Phoneme> result = Util.getPossibleClusters(parts);
         assertEquals(expected.size(), result.size());
         assertTrue(expected.containsAll(result));
