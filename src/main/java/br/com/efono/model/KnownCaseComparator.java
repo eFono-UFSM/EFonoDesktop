@@ -52,6 +52,7 @@ public enum KnownCaseComparator {
         int indexOfo2 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o2.getWord());
         return indexOfo1 - indexOfo2;
     }),
+    @Deprecated
     BinaryTreeComparatorExtended((KnownCase o1, KnownCase o2) -> {
         int indexOfo1 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o1.getWord());
         int indexOfo2 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o2.getWord());
@@ -61,7 +62,23 @@ public enum KnownCaseComparator {
         int indexOfo1 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o1.getWord());
         int indexOfo2 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o2.getWord());
         return indexOfo1 - indexOfo2;
-    }),;
+    }),
+    /**
+     * Approach when we use only the first words untill we reach the tree base.
+     */
+    BinaryTreeSDA((KnownCase o1, KnownCase o2) -> {
+        int indexOfo1 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o1.getWord());
+        int indexOfo2 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o2.getWord());
+        return indexOfo1 - indexOfo2;
+    }),
+    /**
+     * Approach with blocks of words with SDA approach (only the first words will have blocks).
+     */
+    BlocksOfWordsSDA((KnownCase o1, KnownCase o2) -> {
+        int indexOfo1 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o1.getWord());
+        int indexOfo2 = Arrays.asList(Defaults.SORTED_WORDS).indexOf(o2.getWord());
+        return indexOfo1 - indexOfo2;
+    });
 
     private final Comparator<KnownCase> comp;
 

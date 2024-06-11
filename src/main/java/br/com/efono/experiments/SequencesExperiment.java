@@ -46,9 +46,9 @@ public class SequencesExperiment extends Experiment {
         System.out.println("Running experiment with " + assessments.size() + " complete assessments");
 
         KnownCaseComparator[] comparators = new KnownCaseComparator[]{
-            KnownCaseComparator.HardWordsFirst, KnownCaseComparator.EasyWordsFirst,
-            KnownCaseComparator.EasyHardWords, KnownCaseComparator.BinaryTreeComparator,
-            KnownCaseComparator.BlocksOfWords};
+            KnownCaseComparator.HardWordsFirst, KnownCaseComparator.EasyWordsFirst, KnownCaseComparator.EasyHardWords,
+            KnownCaseComparator.BinaryTreeComparator, KnownCaseComparator.BinaryTreeSDA,
+            KnownCaseComparator.BlocksOfWords, KnownCaseComparator.BlocksOfWordsSDA};
 
         final Map<KnownCaseComparator, ResultAggregator> map = new HashMap<>();
 
@@ -63,17 +63,18 @@ public class SequencesExperiment extends Experiment {
         for (KnownCaseComparator comp : comparators) {
             List<Assessment> list;
 
-            if (!comp.equals(KnownCaseComparator.BinaryTreeComparator) && !comp.equals(KnownCaseComparator.BlocksOfWords)) {
+            if (!comp.equals(KnownCaseComparator.BinaryTreeComparator)
+                && !comp.equals(KnownCaseComparator.BinaryTreeSDA)
+                && !comp.equals(KnownCaseComparator.BlocksOfWords)
+                && !comp.equals(KnownCaseComparator.BlocksOfWordsSDA)) {
                 list = fakeAssessments;
             } else {
                 list = assessments;
             }
 
             list.forEach(assessment -> {
-                List<KnownCase> cases = assessment.getCases();
-
-                List<String> wordsRequiredSplit = getWordsRequired(cases, comp, true);
-                List<String> wordsRequiredNoSplit = getWordsRequired(cases, comp, false);
+                List<String> wordsRequiredSplit = getWordsRequired(assessment, comp, true);
+                List<String> wordsRequiredNoSplit = getWordsRequired(assessment, comp, false);
 
                 ResultAggregator aggregator = map.getOrDefault(comp, new ResultAggregator());
                 aggregator.updateResults(wordsRequiredSplit, wordsRequiredNoSplit);
@@ -257,7 +258,7 @@ public class SequencesExperiment extends Experiment {
      * In this method will be only considered phonemes spoken in the list of cases. So here, we can have incomplete
      * assessments, since probably the phonetic inventory will be incomplete as well.
      *
-     * @param cases The sorted cases to analyze.
+     * @param assessment The assessment with cases to analyze.
      * @param comp Comparator to build words sequence.
      * @param splitConsonantClusters True - the consonant clusters will be transformed into 2 consonants phonemes. Ex.:
      * bɾ(OCME) -> b(OCME) + ɾ(OCME). False - keep the consonant phonemes as they are. Letting this flag with false
@@ -266,8 +267,9 @@ public class SequencesExperiment extends Experiment {
      * 10.5220/0012555600003690
      * @return A list with the required words, according with the criteria above.
      */
-    public static List<String> getWordsRequired(final List<KnownCase> cases, final KnownCaseComparator comp,
+    public static List<String> getWordsRequired(final Assessment assessment, final KnownCaseComparator comp,
         boolean splitConsonantClusters) {
+        final List<KnownCase> cases = assessment.getCases();
         // sortList will return always the same order for the first three comparators, because they don't use assessment information
         if (comp.equals(KnownCaseComparator.BlocksOfWords)) {
             ExperimentUtils.sortList(cases, KnownCaseComparator.BinaryTreeComparator);
@@ -286,13 +288,20 @@ public class SequencesExperiment extends Experiment {
          */
         if (cases != null) {
             List<String> wordsToVisit = new LinkedList<>();
+            List<String> wordsInCases = new LinkedList<>();
 
-            cases.forEach(c -> {
-                String w = c.getWord();
+            if (comp.equals(KnownCaseComparator.BinaryTreeSDA) || comp.equals(KnownCaseComparator.BlocksOfWordsSDA)) {
+                // the only words to coonsider here is the ones of SDA (until there is no more words to go in the tree).
+                wordsInCases.addAll(Util.getIndicatorSDA(assessment, 0).getWordsSequence());
+            } else {
+                cases.forEach(c -> wordsInCases.add(c.getWord()));
+            }
+
+            wordsInCases.forEach(w -> {
                 if (!wordsToVisit.contains(w)) {
                     wordsToVisit.add(w);
 
-                    if (comp.equals(KnownCaseComparator.BlocksOfWords)) {
+                    if (comp.equals(KnownCaseComparator.BlocksOfWords) || comp.equals(KnownCaseComparator.BlocksOfWordsSDA)) {
                         // adds all the similar words in the sequence
                         Defaults.SIMILAR_WORDS.get(w).forEach(similar -> {
                             if (!wordsToVisit.contains(similar)) {

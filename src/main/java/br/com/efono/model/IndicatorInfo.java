@@ -6,6 +6,7 @@ package br.com.efono.model;
 import br.com.efono.tree.Node;
 import br.com.efono.util.Defaults;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -51,5 +52,11 @@ public class IndicatorInfo {
             return "Moderate-Low";
         }
         return "Low";
+    }
+
+    public List<String> getWordsSequence() {
+        List<String> words = new LinkedList<>();
+        sequence.forEach(node -> words.add(node.getValue()));
+        return words;
     }
 }
