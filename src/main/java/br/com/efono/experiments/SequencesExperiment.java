@@ -11,6 +11,7 @@ import br.com.efono.util.Util;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -50,6 +51,13 @@ public class SequencesExperiment extends Experiment {
             KnownCaseComparator.BinaryTreeComparator, KnownCaseComparator.BinaryTreeSDA,
             KnownCaseComparator.BlocksOfWords, KnownCaseComparator.BlocksOfWordsSDA};
         // TODO: comparator para usar somente as 55 palavras de marques:2023 e ver como fica
+        //            // 55 words from Algorithm for Selecting Words to Compose Phonological Assessments
+//            String[] words55 = new String[]{"Jornal", "Tênis", "Cruz", "Mesa", "Tesoura", "Bebê", "Cachorro", "Terra", "Rabo",
+//                "Dragão", "Língua", "Chiclete", "Gritar", "Porta", "Refri", "Dado", "Igreja", "Relógio", "Cobra", "Zebra",
+//                "Brinco", "Placa", "Plástico", "Vaca", "Soprar", "Travesseiro", "Escrever", "Bruxa", "Zero", "Dedo",
+//                "Fralda", "Estrela", "Espelho", "Flor", "Faca", "Fogo", "Girafa", "Garfo", "Sofá", "Trem", "Vidro", "Sapo",
+//                "Livro", "Magro", "Pedra", "Nuvem", "Galinha", "Grama", "Chapéu", "Navio", "Caixa", "Letra", "Chifre",
+//                "Folha", "Cama"};
 
         // initializing the map with aggregators
         final Map<KnownCaseComparator, ResultAggregator> map = new HashMap<>();
@@ -99,14 +107,57 @@ public class SequencesExperiment extends Experiment {
         }
 
         // exporting report results
-//        System.out.println("Exporting report results to csv...");
-//        File file = new File(parent, "Report.csv");
-//        try (PrintWriter out = new PrintWriter(file)) {
-//            out.print(exportReportResults(map, assessments));
-//            System.out.println("File at: " + file);
-//        } catch (final FileNotFoundException ex) {
-//            System.out.println("Couldn't write into file: " + ex);
-//        }
+        System.out.println("Exporting report results to csv...");
+        File file = new File(parent, "Report.csv");
+        try (PrintWriter out = new PrintWriter(file)) {
+            out.print(exportReportResults(map));
+            System.out.println("File at: " + file);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
+    }
+
+    private String exportReportResults(final Map<KnownCaseComparator, ResultAggregator> map) {
+        // Ordenar as entradas do mapa pelos valores em ordem decrescente
+        List<Map.Entry<KnownCaseComparator, ResultAggregator>> sortedEntries = map.entrySet().stream().sorted(
+            (final Map.Entry<KnownCaseComparator, ResultAggregator> o1, final Map.Entry<KnownCaseComparator, ResultAggregator> o2)
+            -> o2.getValue().getAllResultSplit().bestSize - o1.getValue().getAllResultSplit().bestSize).collect(Collectors.toList());
+
+        List<String> columnsCounters = new ArrayList<>();
+        columnsCounters.add("");
+        columnsCounters.add("Qt Palavras Mais Comum [split]");
+        columnsCounters.add("Concordância [split]");
+        columnsCounters.add("Qt Palavras Mais Comum [no split]");
+        columnsCounters.add("Concordância [no split]");
+
+        List<List<String>> columns = new ArrayList<>();
+        columns.add(columnsCounters);
+
+        DecimalFormat df = new DecimalFormat("#");
+        sortedEntries.forEach(entry -> {
+            ResultAggregator.Result resultSplit = entry.getValue().getAllResultSplit();
+            ResultAggregator.Result resultNoSplit = entry.getValue().getAllResultNoSplit();
+
+            List<String> column = new ArrayList<>();
+            column.add(entry.getKey().name());
+            column.add(Integer.toString(resultSplit.bestSize));
+            column.add(df.format(entry.getValue().concordanceSplit).replaceAll(",", "."));
+            column.add(Integer.toString(resultNoSplit.bestSize));
+            column.add(df.format(entry.getValue().concordanceNoSplit).replaceAll(",", "."));
+
+            columns.add(column);
+        });
+
+        StringBuilder lines = new StringBuilder();
+        // all the columns have the same number of lines
+        for (int i = 0; i < columnsCounters.size(); i++) {
+            StringBuilder line = new StringBuilder();
+            for (List<String> c : columns) {
+                line.append(c.get(i)).append(",");
+            }
+            lines.append(line.substring(0, line.lastIndexOf(","))).append("\n");
+        }
+        return lines.toString();
     }
 
     private boolean isKindOfBinaryTreeComparator(final KnownCaseComparator comp) {
@@ -147,7 +198,6 @@ public class SequencesExperiment extends Experiment {
 
             return resultNoSplit;
         }
-
 
         String exportCSV(final List<Assessment> assessments) {
             // words required section
@@ -208,12 +258,15 @@ public class SequencesExperiment extends Experiment {
             return resultNoSplitMap.getOrDefault(a, new Result());
         }
 
+        double concordanceSplit, concordanceNoSplit;
+
         List<String> getIndicatorsResult(final List<Assessment> assessments) {
             System.out.println("Getting indicators results");
 
+            double countTrueSplit = 0, countTrueNoSplit = 0;
             List<String> indicators = new ArrayList<>();
             indicators.add("Degree 84w,Custom words [split],Degree [split],Custom words [no-split],Degree [no-split],Concordance [split],Concordance [no-split]");
-            assessments.forEach(a -> {
+            for (Assessment a : assessments) {
                 String degree84w = Util.getDegree(a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS)));
 
                 List<String> customWordsSplit = getResultSplit(a).getBestWords();
@@ -225,9 +278,19 @@ public class SequencesExperiment extends Experiment {
                 String matchSplit = degree84w.equals(degreeSplit) ? "TRUE" : "FALSE";
                 String matchNoSplit = degree84w.equals(degreeNoSplit) ? "TRUE" : "FALSE";
 
+                if (matchSplit.equals("TRUE")) {
+                    countTrueSplit++;
+                }
+                if (matchNoSplit.equals("TRUE")) {
+                    countTrueNoSplit++;
+                }
+
                 indicators.add(buildLine(degree84w, customWordsSplit.size(), degreeSplit, customWordsNoSplit.size(), degreeNoSplit, matchSplit, matchNoSplit));
-            });
+            }
             System.out.println("Done!");
+
+            concordanceSplit = (countTrueSplit / assessments.size()) * 100;
+            concordanceNoSplit = (countTrueNoSplit / assessments.size()) * 100;
 
             return indicators;
         }
