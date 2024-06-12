@@ -49,16 +49,10 @@ public class SequencesExperiment extends Experiment {
             KnownCaseComparator.HardWordsFirst, KnownCaseComparator.EasyWordsFirst, KnownCaseComparator.EasyHardWords,
             KnownCaseComparator.BinaryTreeComparator, KnownCaseComparator.BinaryTreeSDA,
             KnownCaseComparator.BlocksOfWords, KnownCaseComparator.BlocksOfWordsSDA};
+        // TODO: comparator para usar somente as 55 palavras de marques:2023 e ver como fica
 
         // initializing the map with aggregators
         final Map<KnownCaseComparator, ResultAggregator> map = new HashMap<>();
-        for (KnownCaseComparator comp : comparators) {
-            if (isKindOfBinaryTreeComparator(comp)) {
-                map.put(comp, new ResultAggregatorBinaryTree());
-            } else {
-                map.put(comp, new ResultAggregator());
-            }
-        }
 
         // for the first three comparators doesn't matter what is it in the assessment, only the words. We create a fake cases here to pass to getWordsRequired (it will only use the word).
         List<KnownCase> fakeCases = new ArrayList<>();
@@ -85,7 +79,7 @@ public class SequencesExperiment extends Experiment {
                 List<String> wordsRequiredNoSplit = getWordsRequired(assessment, comp, false);
 
                 System.out.println(comp + ": Updating result " + (i + 1) + "/" + list.size());
-                ResultAggregator aggregator = map.get(comp);
+                ResultAggregator aggregator = map.getOrDefault(comp, new ResultAggregator());
                 aggregator.updateResults(assessment, wordsRequiredSplit, wordsRequiredNoSplit);
 
                 map.put(comp, aggregator);
@@ -104,7 +98,15 @@ public class SequencesExperiment extends Experiment {
             }
         }
 
-//        ResultAggregator bstResult = map.get(KnownCaseComparator.BinaryTreeComparator);
+        // exporting report results
+//        System.out.println("Exporting report results to csv...");
+//        File file = new File(parent, "Report.csv");
+//        try (PrintWriter out = new PrintWriter(file)) {
+//            out.print(exportReportResults(map, assessments));
+//            System.out.println("File at: " + file);
+//        } catch (final FileNotFoundException ex) {
+//            System.out.println("Couldn't write into file: " + ex);
+//        }
     }
 
     private boolean isKindOfBinaryTreeComparator(final KnownCaseComparator comp) {
@@ -112,54 +114,6 @@ public class SequencesExperiment extends Experiment {
             || comp.equals(KnownCaseComparator.BinaryTreeSDA)
             || comp.equals(KnownCaseComparator.BlocksOfWords)
             || comp.equals(KnownCaseComparator.BlocksOfWordsSDA);
-    }
-
-    private class ResultAggregatorBinaryTree extends ResultAggregator {
-
-        @Override
-        List<String> getIndicatorsResult(final List<Assessment> assessments) {
-            System.out.println("Getting indicators results from BinaryTree alike");
-
-            System.out.print("Building lines...");
-            List<String> indicators = new ArrayList<>();
-            indicators.add("Degree 84w,Custom words split,Degree split,Custom words no-split,Degree no-split,Concordance split,Concordance no-split");
-            assessments.forEach(a -> {
-                String degree84w = Util.getDegree(a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS)));
-
-                List<String> customWordsSplit = resultSplitMap.get(a).getBestWords();
-                List<String> customWordsNoSplit = resultNoSplitMap.get(a).getBestWords();
-
-                String degreeSplit = Util.getDegree(a.getPCCR(customWordsSplit));
-                String degreeNoSplit = Util.getDegree(a.getPCCR(customWordsNoSplit));
-
-                String matchSplit = degree84w.equals(degreeSplit) ? "TRUE" : "FALSE";
-                String matchNoSplit = degree84w.equals(degreeNoSplit) ? "TRUE" : "FALSE";
-
-                indicators.add(buildLine(degree84w, customWordsSplit.size(), degreeSplit, customWordsNoSplit.size(), degreeNoSplit, matchSplit, matchNoSplit));
-            });
-            System.out.println("Done!");
-
-            return indicators;
-        }
-
-//        String exportBlockOfWordsCSV(final List<Assessment> assessments) {
-//            StringBuilder builder = new StringBuilder();
-//            builder.append("Degree 84w,Degree 55w,words-in-blocks,Degree blocks,Concordance BLOCKS x 84w\n");
-//
-//            // 55 words from Algorithm for Selecting Words to Compose Phonological Assessments
-//            String[] words55 = new String[]{"Jornal", "Tênis", "Cruz", "Mesa", "Tesoura", "Bebê", "Cachorro", "Terra", "Rabo",
-//                "Dragão", "Língua", "Chiclete", "Gritar", "Porta", "Refri", "Dado", "Igreja", "Relógio", "Cobra", "Zebra",
-//                "Brinco", "Placa", "Plástico", "Vaca", "Soprar", "Travesseiro", "Escrever", "Bruxa", "Zero", "Dedo",
-//                "Fralda", "Estrela", "Espelho", "Flor", "Faca", "Fogo", "Girafa", "Garfo", "Sofá", "Trem", "Vidro", "Sapo",
-//                "Livro", "Magro", "Pedra", "Nuvem", "Galinha", "Grama", "Chapéu", "Navio", "Caixa", "Letra", "Chifre",
-//                "Folha", "Cama"};
-//
-//            assessments.forEach(a -> {
-//
-//            });
-//
-//            return builder.toString();
-//        }
     }
 
     private class ResultAggregator {
@@ -178,20 +132,32 @@ public class SequencesExperiment extends Experiment {
             resultNoSplitMap.put(assessment, resultNoSplit);
         }
 
+        Result getAllResultSplit() {
+            Result resultSplit = new Result();
+            System.out.print("Updating global results...");
+            resultSplitMap.values().forEach(r -> resultSplit.update(r));
+
+            return resultSplit;
+        }
+
+        Result getAllResultNoSplit() {
+            Result resultNoSplit = new Result();
+            System.out.print("Updating global results...");
+            resultNoSplitMap.values().forEach(r -> resultNoSplit.update(r));
+
+            return resultNoSplit;
+        }
+
+
         String exportCSV(final List<Assessment> assessments) {
             // words required section
             List<String> wordsRequired = new ArrayList<>();
             wordsRequired.add("qtd-WordsRequired,frequency-split,frequency-no-split");
 
             List<Integer> keys = new ArrayList<>();
-            Result resultSplit = new Result();
-            Result resultNoSplit = new Result();
+            Result resultSplit = getAllResultSplit();
+            Result resultNoSplit = getAllResultNoSplit();
 
-            System.out.print("Updating global results...");
-            resultSplitMap.values().forEach(r -> resultSplit.update(r));
-            resultNoSplitMap.values().forEach(r -> resultNoSplit.update(r));
-
-            System.out.println("Done!");
             for (Integer k : resultSplit.mapWordsRequired.keySet()) {
                 if (!keys.contains(k)) {
                     keys.add(k);
@@ -228,29 +194,40 @@ public class SequencesExperiment extends Experiment {
                 wordsCounter, Arrays.asList("-"), Arrays.asList("-"), report, Arrays.asList("-"), indicators));
         }
 
+        Result getResultSplit(final Assessment a) {
+            if (resultSplitMap.size() == 1) {
+                return new ArrayList<>(resultSplitMap.values()).get(0);
+            }
+            return resultSplitMap.getOrDefault(a, new Result());
+        }
+
+        Result getResultNoSplit(final Assessment a) {
+            if (resultNoSplitMap.size() == 1) {
+                return new ArrayList<>(resultNoSplitMap.values()).get(0);
+            }
+            return resultNoSplitMap.getOrDefault(a, new Result());
+        }
+
         List<String> getIndicatorsResult(final List<Assessment> assessments) {
             System.out.println("Getting indicators results");
-            Result resultSplit = new Result();
-            Result resultNoSplit = new Result();
-
-            System.out.print("Updating global results again...");
-            resultSplitMap.values().forEach(r -> resultSplit.update(r));
-            resultNoSplitMap.values().forEach(r -> resultNoSplit.update(r));
-            System.out.println("Done!");
 
             List<String> indicators = new ArrayList<>();
-            indicators.add("Degree 84w,Degree split " + resultSplit.bestSize + "w,Degree no-split " + resultNoSplit.bestSize + "w,Concordance split,Concordance no-split");
+            indicators.add("Degree 84w,Custom words [split],Degree [split],Custom words [no-split],Degree [no-split],Concordance [split],Concordance [no-split]");
             assessments.forEach(a -> {
                 String degree84w = Util.getDegree(a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS)));
 
-                String degreeSplit = Util.getDegree(a.getPCCR(resultSplit.getBestWords()));
-                String degreeNoSplit = Util.getDegree(a.getPCCR(resultNoSplit.getBestWords()));
+                List<String> customWordsSplit = getResultSplit(a).getBestWords();
+                List<String> customWordsNoSplit = getResultNoSplit(a).getBestWords();
+
+                String degreeSplit = Util.getDegree(a.getPCCR(customWordsSplit));
+                String degreeNoSplit = Util.getDegree(a.getPCCR(customWordsNoSplit));
 
                 String matchSplit = degree84w.equals(degreeSplit) ? "TRUE" : "FALSE";
                 String matchNoSplit = degree84w.equals(degreeNoSplit) ? "TRUE" : "FALSE";
 
-                indicators.add(buildLine(degree84w, degreeSplit, degreeNoSplit, matchSplit, matchNoSplit));
+                indicators.add(buildLine(degree84w, customWordsSplit.size(), degreeSplit, customWordsNoSplit.size(), degreeNoSplit, matchSplit, matchNoSplit));
             });
+            System.out.println("Done!");
 
             return indicators;
         }
