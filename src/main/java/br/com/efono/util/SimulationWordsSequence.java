@@ -116,6 +116,8 @@ public class SimulationWordsSequence {
 
                         if (count <= minimum && !wordsRequired.contains(c.getWord())) {
                             wordsRequired.add(c.getWord());
+
+//                            toBeTested.addAll(list); o certo não seria isso?
                             toBeTested.add(p);
                         }
                     }

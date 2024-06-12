@@ -50,7 +50,15 @@ public class SequencesExperiment extends Experiment {
             KnownCaseComparator.BinaryTreeComparator, KnownCaseComparator.BinaryTreeSDA,
             KnownCaseComparator.BlocksOfWords, KnownCaseComparator.BlocksOfWordsSDA};
 
+        // initializing the map with aggregators
         final Map<KnownCaseComparator, ResultAggregator> map = new HashMap<>();
+        for (KnownCaseComparator comp : comparators) {
+            if (isKindOfBinaryTreeComparator(comp)) {
+                map.put(comp, new ResultAggregatorBinaryTree());
+            } else {
+                map.put(comp, new ResultAggregator());
+            }
+        }
 
         // for the first three comparators doesn't matter what is it in the assessment, only the words. We create a fake cases here to pass to getWordsRequired (it will only use the word).
         List<KnownCase> fakeCases = new ArrayList<>();
@@ -63,28 +71,30 @@ public class SequencesExperiment extends Experiment {
         for (KnownCaseComparator comp : comparators) {
             List<Assessment> list;
 
-            if (!comp.equals(KnownCaseComparator.BinaryTreeComparator)
-                && !comp.equals(KnownCaseComparator.BinaryTreeSDA)
-                && !comp.equals(KnownCaseComparator.BlocksOfWords)
-                && !comp.equals(KnownCaseComparator.BlocksOfWordsSDA)) {
+            if (!isKindOfBinaryTreeComparator(comp)) {
                 list = fakeAssessments;
             } else {
                 list = assessments;
             }
 
-            list.forEach(assessment -> {
+            System.out.println("Running " + comp + " for " + list.size() + " assessments");
+            for (int i = 0; i < list.size(); i++) {
+                Assessment assessment = list.get(i);
+
                 List<String> wordsRequiredSplit = getWordsRequired(assessment, comp, true);
                 List<String> wordsRequiredNoSplit = getWordsRequired(assessment, comp, false);
 
-                ResultAggregator aggregator = map.getOrDefault(comp, new ResultAggregator());
-                aggregator.updateResults(wordsRequiredSplit, wordsRequiredNoSplit);
+                System.out.println(comp + ": Updating result " + (i + 1) + "/" + list.size());
+                ResultAggregator aggregator = map.get(comp);
+                aggregator.updateResults(assessment, wordsRequiredSplit, wordsRequiredNoSplit);
 
                 map.put(comp, aggregator);
-            });
+            }
         }
 
         // exporting results
         for (Map.Entry<KnownCaseComparator, ResultAggregator> next : map.entrySet()) {
+            System.out.println("Exporting results of " + next.getKey() + " to csv...");
             File file = new File(parent, next.getKey().name() + ".csv");
             try (PrintWriter out = new PrintWriter(file)) {
                 out.print(next.getValue().exportCSV(assessments));
@@ -97,18 +107,39 @@ public class SequencesExperiment extends Experiment {
 //        ResultAggregator bstResult = map.get(KnownCaseComparator.BinaryTreeComparator);
     }
 
-    private class ResultAggregator {
+    private boolean isKindOfBinaryTreeComparator(final KnownCaseComparator comp) {
+        return comp.equals(KnownCaseComparator.BinaryTreeComparator)
+            || comp.equals(KnownCaseComparator.BinaryTreeSDA)
+            || comp.equals(KnownCaseComparator.BlocksOfWords)
+            || comp.equals(KnownCaseComparator.BlocksOfWordsSDA);
+    }
 
-        private final Result resultSplit, resultNoSplit;
+    private class ResultAggregatorBinaryTree extends ResultAggregator {
 
-        ResultAggregator() {
-            this.resultSplit = new Result();
-            this.resultNoSplit = new Result();
-        }
+        @Override
+        List<String> getIndicatorsResult(final List<Assessment> assessments) {
+            System.out.println("Getting indicators results from BinaryTree alike");
 
-        void updateResults(final List<String> wordsRequiredSplit, final List<String> wordsRequiredNoSplit) {
-            resultSplit.update(wordsRequiredSplit);
-            resultNoSplit.update(wordsRequiredNoSplit);
+            System.out.print("Building lines...");
+            List<String> indicators = new ArrayList<>();
+            indicators.add("Degree 84w,Custom words split,Degree split,Custom words no-split,Degree no-split,Concordance split,Concordance no-split");
+            assessments.forEach(a -> {
+                String degree84w = Util.getDegree(a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS)));
+
+                List<String> customWordsSplit = resultSplitMap.get(a).getBestWords();
+                List<String> customWordsNoSplit = resultNoSplitMap.get(a).getBestWords();
+
+                String degreeSplit = Util.getDegree(a.getPCCR(customWordsSplit));
+                String degreeNoSplit = Util.getDegree(a.getPCCR(customWordsNoSplit));
+
+                String matchSplit = degree84w.equals(degreeSplit) ? "TRUE" : "FALSE";
+                String matchNoSplit = degree84w.equals(degreeNoSplit) ? "TRUE" : "FALSE";
+
+                indicators.add(buildLine(degree84w, customWordsSplit.size(), degreeSplit, customWordsNoSplit.size(), degreeNoSplit, matchSplit, matchNoSplit));
+            });
+            System.out.println("Done!");
+
+            return indicators;
         }
 
 //        String exportBlockOfWordsCSV(final List<Assessment> assessments) {
@@ -129,12 +160,38 @@ public class SequencesExperiment extends Experiment {
 //
 //            return builder.toString();
 //        }
+    }
+
+    private class ResultAggregator {
+
+        protected final Map<Assessment, Result> resultSplitMap = new HashMap<>();
+        protected final Map<Assessment, Result> resultNoSplitMap = new HashMap<>();
+
+        void updateResults(final Assessment assessment, final List<String> wordsRequiredSplit,
+            final List<String> wordsRequiredNoSplit) {
+            Result resultSplit = resultSplitMap.getOrDefault(assessment, new Result());
+            resultSplit.update(wordsRequiredSplit);
+            resultSplitMap.put(assessment, resultSplit);
+
+            Result resultNoSplit = resultNoSplitMap.getOrDefault(assessment, new Result());
+            resultNoSplit.update(wordsRequiredNoSplit);
+            resultNoSplitMap.put(assessment, resultNoSplit);
+        }
+
         String exportCSV(final List<Assessment> assessments) {
             // words required section
             List<String> wordsRequired = new ArrayList<>();
             wordsRequired.add("qtd-WordsRequired,frequency-split,frequency-no-split");
 
             List<Integer> keys = new ArrayList<>();
+            Result resultSplit = new Result();
+            Result resultNoSplit = new Result();
+
+            System.out.print("Updating global results...");
+            resultSplitMap.values().forEach(r -> resultSplit.update(r));
+            resultNoSplitMap.values().forEach(r -> resultNoSplit.update(r));
+
+            System.out.println("Done!");
             for (Integer k : resultSplit.mapWordsRequired.keySet()) {
                 if (!keys.contains(k)) {
                     keys.add(k);
@@ -164,8 +221,25 @@ public class SequencesExperiment extends Experiment {
             report.add("words," + resultSplit.getBestWordsFormated() + "," + resultNoSplit.getBestWordsFormated());
 
             // PCC-R
+            List<String> indicators = getIndicatorsResult(assessments);
+
+            // Arrays.asList("-"): this is a empty column
+            return ExperimentUtils.concatListsToCSV(Arrays.asList(wordsRequired, Arrays.asList("-"),
+                wordsCounter, Arrays.asList("-"), Arrays.asList("-"), report, Arrays.asList("-"), indicators));
+        }
+
+        List<String> getIndicatorsResult(final List<Assessment> assessments) {
+            System.out.println("Getting indicators results");
+            Result resultSplit = new Result();
+            Result resultNoSplit = new Result();
+
+            System.out.print("Updating global results again...");
+            resultSplitMap.values().forEach(r -> resultSplit.update(r));
+            resultNoSplitMap.values().forEach(r -> resultNoSplit.update(r));
+            System.out.println("Done!");
+
             List<String> indicators = new ArrayList<>();
-            indicators.add("Degree 84w,Degree split " + resultSplit.bestSize + "w,Degree no-split " + resultNoSplit.bestSize + "w,precision split,precision no-split");
+            indicators.add("Degree 84w,Degree split " + resultSplit.bestSize + "w,Degree no-split " + resultNoSplit.bestSize + "w,Concordance split,Concordance no-split");
             assessments.forEach(a -> {
                 String degree84w = Util.getDegree(a.getPCCR(Arrays.asList(Defaults.SORTED_WORDS)));
 
@@ -175,12 +249,18 @@ public class SequencesExperiment extends Experiment {
                 String matchSplit = degree84w.equals(degreeSplit) ? "TRUE" : "FALSE";
                 String matchNoSplit = degree84w.equals(degreeNoSplit) ? "TRUE" : "FALSE";
 
-                indicators.add(degree84w + "," + degreeSplit + "," + degreeNoSplit + "," + matchSplit + "," + matchNoSplit);
+                indicators.add(buildLine(degree84w, degreeSplit, degreeNoSplit, matchSplit, matchNoSplit));
             });
 
-            // Arrays.asList("-"): this is a empty column
-            return ExperimentUtils.concatListsToCSV(Arrays.asList(wordsRequired, Arrays.asList("-"),
-                wordsCounter, Arrays.asList("-"), Arrays.asList("-"), report, Arrays.asList("-"), indicators));
+            return indicators;
+        }
+
+        String buildLine(final Object... columns) {
+            StringBuilder builder = new StringBuilder();
+            for (Object col : columns) {
+                builder.append(col).append(",");
+            }
+            return builder.substring(0, builder.toString().lastIndexOf(","));
         }
 
         private class Result {
@@ -218,6 +298,22 @@ public class SequencesExperiment extends Experiment {
                     mostRepeatedFrequency = newVal;
                     bestSize = countWordsRequired;
                 }
+            }
+
+            void update(final Result result) {
+                result.mapWordsCounter.entrySet().forEach(entry -> {
+                    mapWordsCounter.put(entry.getKey(), mapWordsCounter.getOrDefault(entry.getKey(), 0) + entry.getValue());
+                });
+
+                result.mapWordsRequired.entrySet().forEach(entry -> {
+                    Integer newVal = mapWordsRequired.getOrDefault(entry.getKey(), 0) + entry.getValue();
+                    mapWordsRequired.put(entry.getKey(), newVal);
+
+                    if (newVal > mostRepeatedFrequency) {
+                        mostRepeatedFrequency = newVal;
+                        bestSize = entry.getKey();
+                    }
+                });
             }
 
             List<String> getBestWords() {

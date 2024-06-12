@@ -64,6 +64,7 @@ public class TreeUtils {
      * @param words The list to keep the words sequence.
      * @param cases The list with cases to analyze. This usually comes from assessments.
      */
+    @Deprecated
     public static void getFirstWords(final Node<String> node, final LinkedList<String> words, 
             final List<KnownCase> cases) {
         if (node == null || node.isVisited()) {
