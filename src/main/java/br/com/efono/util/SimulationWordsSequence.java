@@ -36,7 +36,7 @@ public class SimulationWordsSequence {
      * @return The information about the simulation.
      */
     public static SimulationInfo runSimulation(final Assessment assessment, final KnownCaseComparator comp,
-            final int minimum) {
+        final int minimum) {
         return runSimulation(assessment, comp, minimum, SPLIT_CONSONANTS, true);
     }
 
@@ -55,15 +55,15 @@ public class SimulationWordsSequence {
      * @return The information about the simulation.
      */
     public static SimulationInfo runSimulation(final Assessment assessment, final KnownCaseComparator comp,
-            final int minimum, boolean splitConsonantClusters, final boolean phoneticInventory) {
+        final int minimum, boolean splitConsonantClusters, final boolean phoneticInventory) {
         if (assessment != null && minimum > 0) {
             final Map<Phoneme, Integer> mapCounter = new HashMap<>();
 
             List<KnownCase> cases = assessment.getCases();
-            ExperimentUtils.sortList(cases, comp);
+            cases = ExperimentUtils.sortList(cases, comp);
 
             List<String> wordsRequired = getWordsRequired(cases, mapCounter, splitConsonantClusters, minimum,
-                    phoneticInventory);
+                phoneticInventory);
             /**
              * TODO: todos os fonemas produzidos ou testados (depende da flag phoneticInventory) estão em "mapCounter".
              * Os fonemas testados (alvos) deverão ser calculados a partir dos gabaritos corretos. Aí sim, podemos
@@ -76,18 +76,19 @@ public class SimulationWordsSequence {
 
     // todo: adicionar esse mecanismo com as 7 palavras, serão mais, mas pode melhorar a precisão na hora de advinhar o PCC-R
     @Deprecated
-    public static SimulationInfo runSimulation2(final Assessment assessment, final KnownCaseComparator comp,            final int minimum, boolean splitConsonantClusters) {
+    public static SimulationInfo runSimulation2(final Assessment assessment, final KnownCaseComparator comp,
+        final int minimum, boolean splitConsonantClusters) {
         if (assessment != null && minimum > 0) {
             final Map<Phoneme, Integer> mapCounter = new HashMap<>();
 
             List<KnownCase> cases = assessment.getCases();
-            ExperimentUtils.sortList(cases, comp);
+            cases = ExperimentUtils.sortList(cases, comp);
 
             final List<String> wordsRequired = new LinkedList<>();
 
             if (cases != null) {
                 mapCounter.clear();
-                cases.forEach(c -> {
+                for (KnownCase c : cases) {
                     List<Phoneme> phonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
 
                     final List<Phoneme> list = new ArrayList<>();
@@ -125,7 +126,7 @@ public class SimulationWordsSequence {
                     List<String> nextWords = getNextWords(toBeTested, splitConsonantClusters);
 
                     testNextWords(nextWords, cases, minimum, splitConsonantClusters, mapCounter, wordsRequired);
-                });
+                }
             }
 
             return new SimulationInfo(mapCounter, wordsRequired, assessment, comp, splitConsonantClusters);
@@ -135,7 +136,7 @@ public class SimulationWordsSequence {
 
     @Deprecated
     private static void testNextWords(final List<String> nextWords, final List<KnownCase> cases, final int minimum,
-            boolean splitConsonantClusters, final Map<Phoneme, Integer> mapCounter, final List<String> wordsRequired) {
+        boolean splitConsonantClusters, final Map<Phoneme, Integer> mapCounter, final List<String> wordsRequired) {
         cases.forEach(c -> {
             if (nextWords.contains(c.getWord())) {
                 List<Phoneme> phonemes = Defaults.TARGET_PHONEMES.get(c.getWord());
@@ -239,7 +240,7 @@ public class SimulationWordsSequence {
      */
     @Deprecated
     public static List<String> getWordsRequired(final List<KnownCase> cases, final Map<Phoneme, Integer> mapCounter,
-            boolean splitConsonantClusters, final int minimum, final boolean phoneticInventory) {
+        boolean splitConsonantClusters, final int minimum, final boolean phoneticInventory) {
         final List<String> wordsRequired = new LinkedList<>();
 
         // TODO: vai pegar somente as palavras que estão nos casos e não considerando todas as palavras do conjunto. Como estou trabalhando apenas com avaliações completas, isso não é um problema agora

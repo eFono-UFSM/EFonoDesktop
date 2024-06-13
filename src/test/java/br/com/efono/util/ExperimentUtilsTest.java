@@ -45,14 +45,14 @@ public class ExperimentUtilsTest {
         List<KnownCase> list = Arrays.asList(faca, dedo, travesseiro, terra, sapo);
 
         System.out.println("testSortList - EasyWordsFirst");
-        ExperimentUtils.sortList(list, KnownCaseComparator.EasyWordsFirst);
+        list = ExperimentUtils.sortList(list, KnownCaseComparator.EasyWordsFirst);
         KnownCase[] expected = new KnownCase[]{dedo, terra, faca, sapo, travesseiro};
         for (int i = 0; i < list.size(); i++) {
             assertEquals(expected[i], list.get(i));
         }
 
         System.out.println("testSortList - HardWordsFirst");
-        ExperimentUtils.sortList(list, KnownCaseComparator.HardWordsFirst);
+        list = ExperimentUtils.sortList(list, KnownCaseComparator.HardWordsFirst);
         expected = new KnownCase[]{travesseiro, sapo, faca, terra, dedo};
         for (int i = 0; i < list.size(); i++) {
             assertEquals(expected[i], list.get(i));
@@ -60,7 +60,7 @@ public class ExperimentUtilsTest {
 
         System.out.println("testSortList - EasyHardWords");
         list = Arrays.asList(faca, dedo, travesseiro, terra, sapo);
-        ExperimentUtils.sortList(list, KnownCaseComparator.EasyHardWords);
+        list = ExperimentUtils.sortList(list, KnownCaseComparator.EasyHardWords);
         expected = new KnownCase[]{dedo, travesseiro, terra, sapo, faca};
         for (int i = 0; i < list.size(); i++) {
             assertEquals("Failed in " + i, expected[i], list.get(i));
@@ -69,7 +69,7 @@ public class ExperimentUtilsTest {
         System.out.println("testSortList - EasyHardWords - with repeated words");
         KnownCase otherDedo = new KnownCase(dedo);
         list = Arrays.asList(faca, dedo, travesseiro, terra, otherDedo, sapo);
-        ExperimentUtils.sortList(list, KnownCaseComparator.EasyHardWords);
+        list = ExperimentUtils.sortList(list, KnownCaseComparator.EasyHardWords);
         expected = new KnownCase[]{dedo, otherDedo, travesseiro, terra, sapo, faca};
         for (int i = 0; i < list.size(); i++) {
             assertEquals("Failed in " + i, expected[i], list.get(i));
@@ -105,9 +105,9 @@ public class ExperimentUtilsTest {
         KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
         KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
 
-        final List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
+        List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
         list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
-        ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
+        list = ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
         int[] expectedSequence = new int[]{4, 7, 8, 9, 5, 6, 2, 3, 1, 0};
@@ -146,9 +146,9 @@ public class ExperimentUtilsTest {
         KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
         KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
 
-        final List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
+        List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
         list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
-        ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
+        list = ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
         int[] expectedSequence = new int[]{4, 7, 5, 6, 8, 9, 2, 3, 1, 0};
@@ -187,9 +187,9 @@ public class ExperimentUtilsTest {
         KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
         KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
 
-        final List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
+        List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
         list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
-        ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
+        list = ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
         int[] expectedSequence = new int[]{4, 7, 5, 6, 8, 9, 2, 3, 1, 0};
@@ -231,9 +231,9 @@ public class ExperimentUtilsTest {
         KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
         KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
 
-        final List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
+        List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
         list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
-        ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
+        list = ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
         int[] expectedSequence = new int[]{4, 2, 3, 1, 0, 7, 5, 6, 8, 9};
@@ -275,9 +275,9 @@ public class ExperimentUtilsTest {
         KnownCase anel = new KnownCase("Anel", "[a’nɛw]", true, Arrays.asList(new Phoneme("n", Phoneme.POSITION.OM)));
         KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
 
-        final List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
+        List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
         list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
-        ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
+        list = ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
         int[] expectedSequence = new int[]{4, 2, 1, 0, 3, 7, 5, 6, 8, 9};
@@ -321,10 +321,10 @@ public class ExperimentUtilsTest {
         KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
 
         // incomplete evaluation
-        final List<KnownCase> list = Arrays.asList(batom, dado, tenis, dente, navio, dedo, cama, anel, bebe);
+        List<KnownCase> list = Arrays.asList(batom, dado, tenis, dente, navio, dedo, cama, anel, bebe);
         assertEquals(9, list.size());
         list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
-        ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
+        list = ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
         assertEquals(9, list.size()); // makes sure that the list size didn't change
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
@@ -368,10 +368,10 @@ public class ExperimentUtilsTest {
         KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
 
         // incomplete evaluation
-        final List<KnownCase> list = Arrays.asList(batom, dado, tenis, dente, dedo, cama, anel, bebe);
+        List<KnownCase> list = Arrays.asList(batom, dado, tenis, dente, dedo, cama, anel, bebe);
         assertEquals(8, list.size());
         list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
-        ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
+        list = ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
         assertEquals(8, list.size()); // makes sure that the list size didn't change
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando
@@ -414,10 +414,10 @@ public class ExperimentUtilsTest {
         KnownCase bebe = new KnownCase("Bebê", "[be’be]", true, Arrays.asList(new Phoneme("b", Phoneme.POSITION.OI), new Phoneme("b", Phoneme.POSITION.OM)));
 
         // incomplete evaluation
-        final List<KnownCase> list = Arrays.asList(batom, dado, tenis, dente, cama, anel, bebe);
+        List<KnownCase> list = Arrays.asList(batom, dado, tenis, dente, cama, anel, bebe);
         assertEquals(7, list.size());
         list.sort(KnownCaseComparator.EasyWordsFirst.getComparator()); // this is already tested
-        ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
+        list = ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
         assertEquals(7, list.size()); // makes sure that the list size didn't change
 
         // the indexes // essa eh uma abordagem, vai ate o mais dificil e vai voltando

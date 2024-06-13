@@ -405,12 +405,12 @@ public class SequencesExperiment extends Experiment {
      */
     public static List<String> getWordsRequired(final Assessment assessment, final KnownCaseComparator comp,
         boolean splitConsonantClusters) {
-        final List<KnownCase> cases = assessment.getCases();
+        List<KnownCase> cases = assessment.getCases();
         // sortList will return always the same order for the first three comparators, because they don't use assessment information
         if (isKindOfBinaryTreeComparator(comp)) {
-            ExperimentUtils.sortList(cases, KnownCaseComparator.BinaryTreeComparator);
+            cases = ExperimentUtils.sortList(cases, KnownCaseComparator.BinaryTreeComparator);
         } else {
-            ExperimentUtils.sortList(cases, comp);
+            cases = ExperimentUtils.sortList(cases, comp);
         }
         /**
          * A map only to count how many times each phoneme was tested.

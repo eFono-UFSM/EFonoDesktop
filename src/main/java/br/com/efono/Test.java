@@ -115,7 +115,7 @@ public class Test {
         BinaryTreePrinter.print(Defaults.TREE);
 
         System.out.println("list before: " + list);
-        ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
+        list = ExperimentUtils.sortList(list, KnownCaseComparator.BinaryTreeComparator);
         System.out.println("list after: " + list);
     }
 

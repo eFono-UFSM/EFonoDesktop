@@ -26,7 +26,7 @@ public class TreeUtilsTest {
         for (int i = 0; i < 10; i++) {
             words.add(Defaults.SORTED_WORDS[i]);
         }
-        Defaults.TREE.init(words.toArray(new String[0]));
+        Defaults.TREE.init(words.toArray(String[]::new));
 
         System.out.println("-------------------");
         BinaryTreePrinter.print(Defaults.TREE, System.out);
@@ -45,8 +45,15 @@ public class TreeUtilsTest {
 
         final List<KnownCase> list = Arrays.asList(batom, terra, dado, tenis, dente, navio, dedo, cama, anel, bebe);
 
-        String[] expected = new String[]{"Batom", "Terra", "Dado", "Navio", "Tênis", "Dente", "Dedo", "Cama", "Bebê", "Anel"};
-        final List<String> result = new LinkedList<>();
+        String[] wordsSequence = new String[]{"Batom", "Terra", "Dado", "Navio", "Tênis", "Dente", "Bebê", "Dedo", "Cama", "Anel"};
+        KnownCase[] expected = new KnownCase[list.size()];
+
+        for (int i = 0; i < expected.length; i++) {
+            int k = i;
+            expected[k] = list.stream().filter(c -> c.getWord().equalsIgnoreCase(wordsSequence[k])).findFirst().orElse(null);
+        }
+
+        List<KnownCase> result = new LinkedList<>();
         TreeUtils.buildSequenceOrder(Defaults.TREE.getRoot(), result, list);
 
         assertEquals(expected.length, result.size());
@@ -64,7 +71,7 @@ public class TreeUtilsTest {
         for (int i = 0; i < 10; i++) {
             words.add(Defaults.SORTED_WORDS[i]);
         }
-        Defaults.TREE.init(words.toArray(new String[0]));
+        Defaults.TREE.init(words.toArray(String[]::new));
 
         System.out.println("-------------------");
         BinaryTreePrinter.print(Defaults.TREE, System.out);
@@ -82,8 +89,15 @@ public class TreeUtilsTest {
 
         final List<KnownCase> list = Arrays.asList(batom, terra, tenis, dente, navio, dedo, cama, anel);
 
-        String[] expected = new String[]{"Batom", "Terra", "Navio", "Tênis", "Dente", "Dedo", "Cama", "Anel"};
-        final List<String> result = new LinkedList<>();
+        String[] wordsSequence = new String[]{"Batom", "Terra", "Navio", "Tênis", "Dente", "Dedo", "Cama", "Anel"};
+        KnownCase[] expected = new KnownCase[list.size()];
+
+        for (int i = 0; i < expected.length; i++) {
+            int k = i;
+            expected[k] = list.stream().filter(c -> c.getWord().equalsIgnoreCase(wordsSequence[k])).findFirst().orElse(null);
+        }
+
+        List<KnownCase> result = new LinkedList<>();
         TreeUtils.buildSequenceOrder(Defaults.TREE.getRoot(), result, list);
 
         assertEquals(expected.length, result.size());

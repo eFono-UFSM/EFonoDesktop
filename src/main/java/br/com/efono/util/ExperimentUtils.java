@@ -23,8 +23,9 @@ public class ExperimentUtils {
      *
      * @param list List to sort.
      * @param comp {@link KnownCaseComparator} to use.
+     * @return The sorted list.
      */
-    public static void sortList(final List<KnownCase> list, final KnownCaseComparator comp) {
+    public static List<KnownCase> sortList(final List<KnownCase> list, final KnownCaseComparator comp) {
         if (list != null && comp != null) {
             switch (comp) {
                 case EasyHardWords -> {
@@ -49,9 +50,8 @@ public class ExperimentUtils {
                     });
                 }
                 case BinaryTreeComparator -> {
-                    final List<String> insertionOrder = new LinkedList<>();
-
-                    TreeUtils.buildSequenceOrder(Defaults.TREE.getRoot(), insertionOrder, list);
+                    List<KnownCase> sortedCases = new LinkedList<>();
+                    TreeUtils.buildSequenceOrder(Defaults.TREE.getRoot(), sortedCases, list);
 
                     /**
                      * Sorts the list as insertion order in the tree. This means that the first word will be the middle
@@ -62,16 +62,13 @@ public class ExperimentUtils {
                      * than 20 and easier than 41); and so on. When the algorithm arrive in some leaf node, it starts to
                      * returning back to parents nodes and visit the ones in the other side of its node parent.
                      */
-                    list.sort((KnownCase o1, KnownCase o2) -> {
-                        int indexOfo1 = Defaults.findIndexOf(o1.getWord(), insertionOrder.toArray(String[]::new));
-                        int indexOfo2 = Defaults.findIndexOf(o2.getWord(), insertionOrder.toArray(String[]::new));
-                        return indexOfo1 - indexOfo2;
-                    });
+                    return sortedCases;
                 }
                 default ->
                     list.sort(comp.getComparator());
             }
         }
+        return list;
     }
 
     /**
