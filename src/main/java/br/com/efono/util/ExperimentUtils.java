@@ -62,7 +62,10 @@ public class ExperimentUtils {
                      * than 20 and easier than 41); and so on. When the algorithm arrive in some leaf node, it starts to
                      * returning back to parents nodes and visit the ones in the other side of its node parent.
                      */
-                    return sortedCases;
+                    if (sortedCases.size() == list.size()) {
+                        return sortedCases;
+                    }
+                    return null;
                 }
                 default ->
                     list.sort(comp.getComparator());
