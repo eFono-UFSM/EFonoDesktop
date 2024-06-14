@@ -99,50 +99,47 @@ public class Util {
      * Build a map of words and their similar words. Similar words are words that have at least one phoneme in commom.
      *
      * @param words A list with words to find their similar.
-     * @param targetPhonemes A map containing all the target phonemes for a word.
+     * @param targetPhonemes A map containing all the target targetPhonemesForWord for a word.
      * @param minimumRepeat The minimum number of times that each phoneme must appear sum all the occurences in the word
      * and their similar.
      * @return A map containing the word and their similar words.
      */
-    public static Map<String, List<String>> buildSimilarWords(final List<String> words, final Map<String, List<Phoneme>> targetPhonemes, final int minimumRepeat) {
+    public static Map<String, List<String>> buildSimilarWords(final List<String> words,
+        final Map<String, List<Phoneme>> targetPhonemes, final int minimumRepeat) {
         Map<String, List<String>> map = new HashMap<>();
         if (words != null && targetPhonemes != null) {
-            words.forEach(w -> {
+            for (String word : words) {
                 List<String> similarWords = new ArrayList<>();
 
-                List<Phoneme> phonemes = targetPhonemes.getOrDefault(w, new ArrayList<>());
+                List<Phoneme> targetPhonemesForWord = targetPhonemes.getOrDefault(word, new ArrayList<>());
 
-                // linked hashmap to check in the same order
-                Map<Phoneme, Integer> mapCount = new LinkedHashMap<>();
-                phonemes.forEach(p -> {
-                    Integer newCount = mapCount.getOrDefault(p, 0) + 1;
-                    mapCount.put(p, newCount);
-                });
+                // linked hashmap to check in the same order: they can be repeated
+                Map<Phoneme, Integer> mapCountPhonemesInWord = new LinkedHashMap<>();
+                targetPhonemesForWord.forEach(p -> mapCountPhonemesInWord.put(p, mapCountPhonemesInWord.getOrDefault(p, 0) + 1));
 
-                int i = words.size();
-                while (--i >= 0 && !mapCount.values().stream().filter(v -> v < minimumRepeat).collect(Collectors.toList()).isEmpty()) {
-                    String otherWord = words.get(i);
-                    if (!otherWord.equals(w)) {
-                        // common phonemes and have another necessary phonemes to reach the minimum tests required
-                        List<Phoneme> commonPhonemes = targetPhonemes.getOrDefault(otherWord, new ArrayList<>()).stream().filter(p -> mapCount.containsKey(p) && mapCount.get(p) < minimumRepeat).collect(Collectors.toList());
+                List<String> wordsWithCommonPhonemes = words.stream().filter(w
+                    -> !w.equals(word) && !targetPhonemes.getOrDefault(w, new ArrayList<>()).stream().filter(p -> targetPhonemesForWord.contains(p)).toList().isEmpty()
+                ).toList();
+                // as últimas primeiro
+                int i = wordsWithCommonPhonemes.size();
+                while (--i >= 0 && !mapCountPhonemesInWord.values().stream().filter(v -> v < minimumRepeat).toList().isEmpty()) {
+                    String otherWord = wordsWithCommonPhonemes.get(i);
+                    // filter the common phonemes to consider only necessary phonemes to reach the minimum tests required
+                    List<Phoneme> filteredCommonPhonemes = targetPhonemes.getOrDefault(otherWord, new ArrayList<>()).stream().filter(p
+                        // consider only phonemes that are in mapCountPhonemesInWord
+                        -> mapCountPhonemesInWord.getOrDefault(p, minimumRepeat) < minimumRepeat
+                    ).toList();
 
-                        if (!commonPhonemes.isEmpty()) {
-                            similarWords.add(otherWord);
-                            // update the map
-                            targetPhonemes.get(otherWord).forEach(p -> {
-                                if (mapCount.containsKey(p)) {
-                                    mapCount.put(p, mapCount.get(p) + 1);
-                                }
-                            });
-                        }
+                    if (!filteredCommonPhonemes.isEmpty()) {
+                        similarWords.add(otherWord);
+                        // update the map
+                        filteredCommonPhonemes.forEach(p -> mapCountPhonemesInWord.put(p, mapCountPhonemesInWord.getOrDefault(p, 0) + 1));
                     }
                 }
 
-                map.put(w, similarWords);
-                // TODO: não preciso de todas as palavras, só de 4 ou 5 pra testar os mesmos fonemas dela
-                // mesmo assim, se cada palavra tiver 4 fonemas, vão ser 24 palavras ou 28 (6x4, 7x4). Será que melhora a precisão do PCC-R?
-                System.out.println(w + "->SimilarWords[" + similarWords.size() + "]: " + similarWords);
-            });
+                map.put(word, similarWords);
+                System.out.println(word + "->SimilarWords[" + similarWords.size() + "]: " + similarWords);
+            }
         }
         return map;
     }
@@ -334,7 +331,7 @@ public class Util {
 
     private static String retrieveSpecialPhoneme(final String phoneme) {
         String special = phoneme;
-        // replaces all possible labialization phonemes. This array never must have an index greater than 9
+        // replaces all possible labialization targetPhonemesForWord. This array never must have an index greater than 9
         for (int i = 0; i < Phoneme.SPECIAL_PHONEMES.size(); i++) {
             special = special.replaceAll(i + "", Phoneme.SPECIAL_PHONEMES.get(i));
         }
@@ -364,11 +361,11 @@ public class Util {
     }
 
     /**
-     * Checks if the given phoneme is valid or not and return a valid array containing all the valid phonemes in the
-     * given target.
+     * Checks if the given phoneme is valid or not and return a valid array containing all the valid
+     * targetPhonemesForWord in the given target.
      *
      * @param phonemeTarget Target phoneme to check.
-     * @return An array with the valid phonemes found in the target.
+     * @return An array with the valid targetPhonemesForWord found in the target.
      */
     public static List<Phoneme> checkPhoneme(final String phonemeTarget) {
         String phoneme = phonemeTarget;
@@ -418,10 +415,10 @@ public class Util {
     }
 
     /**
-     * Gets consonant phonemes from the given transcription with their respective position at the word.
+     * Gets consonant targetPhonemesForWord from the given transcription with their respective position at the word.
      *
      * @param transcription Given transcription.
-     * @return An ordered list with the consonant phonemes or empty if inconsistencies were found.
+     * @return An ordered list with the consonant targetPhonemesForWord or empty if inconsistencies were found.
      */
     public static List<Phoneme> getConsonantPhonemes(final String transcription) {
         if (transcription != null && !transcription.trim().isEmpty()) {
@@ -435,7 +432,7 @@ public class Util {
                 clean = clean.replaceAll(sv, " ");
             }
 
-            // replace double spaces for just one: this will be used to separe the positions of the phonemes
+            // replace double spaces for just one: this will be used to separe the positions of the targetPhonemesForWord
             clean = clean.trim().replaceAll(" +", " ");
 
             List<Phoneme> list = new ArrayList<>();
@@ -465,7 +462,7 @@ public class Util {
                 }
             }
 
-            // Final Coda must be added only at the end, because it keep the same order of the phonemes in transcription
+            // Final Coda must be added only at the end, because it keep the same order of the targetPhonemesForWord in transcription
             if (finalCoda != null) {
                 list.add(finalCoda);
             }
@@ -496,8 +493,8 @@ public class Util {
     /**
      * Gets the target phonemes from the cases. The target phonemes will be the ones which are in all the given cases.
      *
-     * @param cases Cases to look for target phonemes.
-     * @return The target phonemes.
+     * @param cases Cases to look for target targetPhonemesForWord.
+     * @return The target targetPhonemesForWord.
      */
     public static List<Phoneme> getTargetPhonemes(final List<KnownCase> cases) {
         final List<Phoneme> target = new ArrayList<>();
@@ -544,9 +541,9 @@ public class Util {
      *
      * In this case, this method will return {Medial Complex Onset(bɾ), Medial Complex Onset(kl)}.
      *
-     * @param map A map with words spoken by the subject and its phonemes reproduced.
+     * @param map A map with words spoken by the subject and its targetPhonemesForWord reproduced.
      * @param clustersParts A list with all the clusters parts.
-     * @return A non-null list with inferred phonemes.
+     * @return A non-null list with inferred targetPhonemesForWord.
      */
     @Deprecated
     public static List<Phoneme> getInferredPhonemes(final Map<String, List<Phoneme>> map,
@@ -718,7 +715,7 @@ public class Util {
      * Exports info in CSV format as input for ML algorithms.
      *
      * @param assessments Assessment to be analyzed.
-     * @param targetPhonemes Target phonemes expected for each word.
+     * @param targetPhonemes Target targetPhonemesForWord expected for each word.
      * @return The info in CSV format.
      */
     public static String exportClustersInfo(final List<Assessment> assessments,
@@ -766,7 +763,7 @@ public class Util {
      * Exports info in CSV format as input for ML algorithms.
      *
      * @param assessments Assessment to be analyzed.
-     * @param targetPhonemes Target phonemes expected for each word.
+     * @param targetPhonemes Target targetPhonemesForWord expected for each word.
      * @return The info in CSV format.
      */
     public static String exportClustersInfosGeneral(final List<Assessment> assessments,
