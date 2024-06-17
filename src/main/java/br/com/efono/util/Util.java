@@ -315,7 +315,7 @@ public class Util {
          * not the case (it was just read before).
          */
         String otherPart = phoneme.substring(1);
-        if (isRegularPhoneme(otherPart) || isSpecialPhoneme(otherPart) || isConsonantCluster(otherPart)) {
+        if (isSpecialPhoneme(otherPart) || isConsonantCluster(otherPart)) {
             list.add(processRegularPhoneme(otherPart));
         } else {
             /**
@@ -339,7 +339,7 @@ public class Util {
     }
 
     private static Phoneme processRegularPhoneme(final String phoneme) {
-        if (isRegularPhoneme(phoneme) || Phoneme.SPECIAL_PHONEMES.contains(phoneme)) {
+        if (isSingleCharPhoneme(phoneme) || Phoneme.SPECIAL_PHONEMES.contains(phoneme)) {
             return new Phoneme(phoneme, Phoneme.POSITION.OM);
         } else if (Arrays.asList(CONSONANT_CLUSTERS).contains(phoneme)) {
             return new Phoneme(phoneme, Phoneme.POSITION.OCME);
@@ -348,7 +348,7 @@ public class Util {
         return null;
     }
 
-    private static boolean isRegularPhoneme(final String phoneme) {
+    private static boolean isSingleCharPhoneme(final String phoneme) {
         return phoneme.length() == 1;
     }
 
@@ -375,7 +375,7 @@ public class Util {
             phoneme = phoneme.trim();
             if (!phoneme.trim().isEmpty()) {
                 // TODO: ter uma lista de fonemas consonantais válidos? existe algum pacote com esses fonemas? ver Phon
-                if (isRegularPhoneme(phoneme) || isSpecialPhoneme(phoneme) || isConsonantCluster(phoneme)) {
+                if (isSingleCharPhoneme(phoneme) || isSpecialPhoneme(phoneme) || isConsonantCluster(phoneme)) {
                     list.add(processRegularPhoneme(phoneme));
                 } else {
                     list.addAll(processIrregularPhoneme(phoneme));
