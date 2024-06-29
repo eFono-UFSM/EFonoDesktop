@@ -115,6 +115,32 @@ public class SequencesExperiment extends Experiment {
         } catch (final FileNotFoundException ex) {
             System.out.println("Couldn't write into file: " + ex);
         }
+
+        // exporting report results
+        System.out.println("Exporting words report to csv...");
+        File fileWordsReport = new File(parent, "Words-Report.csv");
+        try (PrintWriter out = new PrintWriter(fileWordsReport)) {
+            out.print(exportWordsEntriesReport());
+            System.out.println("File at: " + fileWordsReport);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
+    }
+
+    private String exportWordsEntriesReport() {
+        Map<String, List<String>> allSimilarWords = new HashMap<>();
+        allSimilarWords.putAll(
+            Util.buildSimilarWords(Arrays.asList(Defaults.SORTED_WORDS),
+                Defaults.TARGET_PHONEMES,
+                Defaults.SORTED_WORDS.length + 1));
+
+        StringBuilder builder = new StringBuilder();
+        builder.append("Palavra\tFonemas-Alvo\tBloco de Palavras Similares\n");
+        for (String w : Defaults.SORTED_WORDS) {
+            builder.append(w).append("\t").append(Defaults.TARGET_PHONEMES.getOrDefault(w, new ArrayList<>())).append("\t").append(allSimilarWords.getOrDefault(w, new ArrayList<>())).append("\n");
+        }
+
+        return builder.toString();
     }
 
     private String exportReportResults(final Map<KnownCaseComparator, ResultAggregator> map) {
