@@ -5,10 +5,6 @@ import br.com.efono.db.MySQLConnection;
 import br.com.efono.model.Assessment;
 import br.com.efono.model.KnownCase;
 import br.com.efono.model.Phoneme;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mongodb.client.FindIterable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,7 +14,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import org.bson.Document;
 
 /**
  *
@@ -45,34 +40,27 @@ public class DatabaseUtils {
      */
     public Map<String, List<KnownCase>> getCorrectCasesForEachWord(final String[] words) {
         Map<String, List<KnownCase>> map = new HashMap<>();
+        try {
+            String query = "SELECT palavra.palavra, avaliacaopalavra.transcricao, avaliacaopalavra.correto FROM palavra, avaliacaopalavra "
+                + "WHERE palavra.id_palavra = avaliacaopalavra.id_palavra AND transcricao != \"\" AND correto=1;";
 
-        ObjectMapper objectMapper = new ObjectMapper();
+            ResultSet rs = MySQLConnection.getInstance().executeQuery(query);
+            while (rs.next()) {
+                try {
+                    KnownCase knownCase = new KnownCase(rs.getString("palavra"), rs.getString("transcricao"), rs.getBoolean("correto"));
+                    if (Arrays.asList(words).contains(knownCase.getWord())) {
+                        List<KnownCase> list = map.getOrDefault(knownCase.getWord(), new ArrayList<>());
+                        list.add(knownCase);
 
-        Map<String, Object> filters = new HashMap<>();
-        filters.put("correct", true);
-
-        Arrays.asList(words).forEach(w -> {
-            filters.put("word", w);
-            FindIterable<Document> result = MongoConnection.getInstance().executeQuery("knowncases", filters,
-                null);
-
-            // correct known cases for word <w>
-            final List<KnownCase> correctCases = new ArrayList<>();
-
-            if (result != null) {
-                result.forEach(doc -> {
-                    try {
-                        KnownCase val = objectMapper.readValue(doc.toJson(), new TypeReference<KnownCase>() {
-                        });
-                        correctCases.add(val);
-                    } catch (final JsonProcessingException ex) {
-                        System.out.println("Error while parsing doc " + doc.toJson() + ":\n " + ex);
+                        map.put(knownCase.getWord(), list);
                     }
-                });
+                } catch (final Exception e) {
+                    System.out.println("Can't compute this case: " + e);
+                }
             }
-            map.put(w, correctCases);
-        });
-
+        } catch (final SQLException ex) {
+            System.out.println("Exception " + ex);
+        }
         return map;
     }
 
@@ -89,25 +77,11 @@ public class DatabaseUtils {
 
         Map<String, List<Phoneme>> map = new HashMap<>();
 
-        String word = "";
-        int maxDif = Integer.MIN_VALUE;
         while (it.hasNext()) {
             Map.Entry<String, List<KnownCase>> next = it.next();
             List<Phoneme> targetPhonemes = Util.getTargetPhonemes(next.getValue());
-            next.getValue().size();
-
-            int dif = next.getValue().size() - targetPhonemes.size();
-            if (dif > maxDif && !next.getKey().equals("Soprar")) {
-                maxDif = dif;
-                word = next.getKey();
-            }
             map.put(next.getKey(), targetPhonemes);
         }
-
-        System.out.println("word with biggest difference: " + word + " dif: " + maxDif);
-        System.out.println("correct cases: " + correctCases.get(word));
-        System.out.println("target phonemes for " + word + ": " + map.get(word));
-
         return map;
     }
 

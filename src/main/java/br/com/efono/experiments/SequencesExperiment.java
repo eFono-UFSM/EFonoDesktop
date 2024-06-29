@@ -14,6 +14,7 @@ import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -228,7 +229,7 @@ public class SequencesExperiment extends Experiment {
         String exportCSV(final List<Assessment> assessments) {
             // words required section
             List<String> wordsRequired = new ArrayList<>();
-            wordsRequired.add("qtd-WordsRequired,frequency-split,frequency-no-split");
+            wordsRequired.add("Qt Palavras,sem split,split");
 
             List<Integer> keys = new ArrayList<>();
             Result resultSplit = getAllResultSplit();
@@ -245,8 +246,9 @@ public class SequencesExperiment extends Experiment {
                 }
             }
 
+            Collections.sort(keys);
             for (Integer k : keys) {
-                wordsRequired.add(k + "," + resultSplit.mapWordsRequired.getOrDefault(k, 0) + "," + resultNoSplit.mapWordsRequired.getOrDefault(k, 0));
+                wordsRequired.add(k + "," + resultNoSplit.mapWordsRequired.getOrDefault(k, 0) + "," + resultSplit.mapWordsRequired.getOrDefault(k, 0));
             }
 
             // words counter section

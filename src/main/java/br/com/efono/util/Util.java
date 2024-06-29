@@ -491,7 +491,8 @@ public class Util {
     }
 
     /**
-     * Gets the target phonemes from the cases. The target phonemes will be the ones which are in all the given cases.
+     * Gets the target phonemes from the correct cases. The target phonemes will be the ones which are in all the given
+     * cases.
      *
      * @param cases Cases to look for target targetPhonemesForWord.
      * @return The target targetPhonemesForWord.
@@ -518,7 +519,8 @@ public class Util {
                         }
                     }
 
-                    if (count == cases.size()) {
+                    // if the phoneme is present in more than 50% of the correct cases, then it's a target
+                    if (count >= cases.size() / 2) {
                         target.add(p);
                     }
                 }

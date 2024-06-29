@@ -82,6 +82,9 @@ public class KnownCase {
         }
         this.correct = correct;
         this.phonemes = Objects.requireNonNull(phonemes);
+        if (this.phonemes.isEmpty()) {
+            this.phonemes.addAll(Util.getConsonantPhonemes(this.representation));
+        }
     }
 
     /**
