@@ -110,9 +110,15 @@ public class ScreeningAssessmentExperiment extends Experiment {
             linesAssessments.add(sb.toString());
         }
 
-        return ExperimentUtils.concatListsToCSV(Arrays.asList(linesAssessments, Arrays.asList("-"),
-            getLinesDeltasFrequencies(mapErrors), Arrays.asList("-"),
-            getLinesDeltasFrequenciesPercentErrors(mapErrors), Arrays.asList("-"),
+        Map<Integer, List<Integer>> mapFrequencies = new HashMap<>();
+        mapErrors.keySet().forEach(k -> {
+            mapFrequencies.put(k, sortByFrequency(mapErrors.get(k)));
+        });
+
+        return ExperimentUtils.concatListsToCSV(Arrays.asList(linesAssessments,
+            getLinesDeltasFrequencies(mapErrors),
+            getLinesDeltasFrequenciesPercentErrors(mapErrors),
+            getLinesUniqueDeltas(mapFrequencies),
             getLinesConfusionMatrix(mapConfusionMatrix, realValues)));
     }
 
@@ -173,6 +179,26 @@ public class ScreeningAssessmentExperiment extends Experiment {
         return lines;
     }
 
+    private List<String> getLinesUniqueDeltas(final Map<Integer, List<Integer>> mapFrequencies) {
+        List<String> lines = new ArrayList<>();
+
+        lines.add("Limite da Triagem,Deltas Únicos");
+        mapFrequencies.entrySet().forEach(e -> {
+            if (e.getKey() > 0) {
+                StringBuilder word = new StringBuilder(" Palavra");
+                if (e.getKey() > 1) {
+                    word.append("s");
+                }
+                lines.add(e.getKey() + word.toString() + "," + e.getValue().size());
+            }
+        });
+        if (mapFrequencies.containsKey(0)) {
+            List<Integer> get = mapFrequencies.get(0);
+            lines.add("Altura BST," + get.size());
+        }
+        return lines;
+    }
+
     private List<String> getLinesDeltasFrequenciesPercentErrors(final Map<Integer, List<Integer>> mapErrors) {
         List<String> lines = new ArrayList<>();
 
@@ -217,7 +243,7 @@ public class ScreeningAssessmentExperiment extends Experiment {
             // Altura BST
             if (mapFrequencies.containsKey(0)) {
                 double percentErrors = getPercentErrors(mapErrors, mapFrequencies, 0, th);
-                line.append("\"").append(dfErrors.format(percentErrors)).append("\"").append(",");
+                line.append("\"").append(dfErrors.format(percentErrors)).append("\"");
             } else {
                 line.delete(line.lastIndexOf(","), line.lastIndexOf(",") + 1);
             }
@@ -244,7 +270,6 @@ public class ScreeningAssessmentExperiment extends Experiment {
         }
 
 //        System.out.println("key: " + key + " deltas: " + deltas.size() + " delta target: " + deltaTarget + " th: " + th + " count errors: " + countDelta);
-
         return countDelta / deltas.size();
     }
 
