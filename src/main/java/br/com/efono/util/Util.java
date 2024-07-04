@@ -494,37 +494,32 @@ public class Util {
      * Gets the target phonemes from the correct cases. The target phonemes will be the ones which are in all the given
      * cases.
      *
-     * @param cases Cases to look for target targetPhonemesForWord.
+     * @param correctCases Cases to look for target targetPhonemesForWord.
      * @return The target targetPhonemesForWord.
      */
-    public static List<Phoneme> getTargetPhonemes(final List<KnownCase> cases) {
+    public static List<Phoneme> getTargetPhonemes(final List<KnownCase> correctCases) {
         final List<Phoneme> target = new ArrayList<>();
-        if (cases != null && !cases.isEmpty()) {
+        if (correctCases != null) {
             /**
              * The target phonemes will be the ones which are in all the given cases, that is the reason we only need
              * the first case here.
              */
-            KnownCase firstCase = cases.get(0);
-
-            if (firstCase.getWord().equals("Soprar")) {
-                System.out.println("first: " + firstCase + " phonemes: " + firstCase.getPhonemes());
-            }
-            firstCase.getPhonemes().forEach(p -> {
+            correctCases.stream().findFirst().ifPresent(firstCase -> firstCase.getPhonemes().forEach(p -> {
                 if (!target.contains(p)) {
-                    // count in how many cases this phoneme is 
+                    // count in how many correctCases this phoneme is
                     int count = 0;
-                    for (KnownCase k : cases) {
+                    for (KnownCase k : correctCases) {
                         if (k.getPhonemes().contains(p)) {
                             count++;
                         }
                     }
 
-                    // if the phoneme is present in more than 50% of the correct cases, then it's a target
-                    if (count >= cases.size() / 2) {
+                    // if the phoneme is present in more than 50% of the correct correctCases, then it's a target
+                    if (count >= correctCases.size() / 2) {
                         target.add(p);
                     }
                 }
-            });
+            }));
         }
         return target;
     }
