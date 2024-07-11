@@ -51,6 +51,9 @@ public class ScreeningAssessmentExperiment extends Experiment {
         // key: palavras na triagem, 0 -> Altura BST. Value: erros
         Map<Integer, List<Integer>> mapErrors = new HashMap<>();
 
+        // key: palavras na triagem, 0 -> Altura BST. Value: how many concordance we had (Delta == 0).
+        Map<Integer, Integer> mapConcordance = new HashMap<>();
+
         String negativo = "Negativo";
         String positivo = "Positivo";
         List<String> allWords = Arrays.asList(Defaults.SORTED_WORDS);
@@ -98,6 +101,9 @@ public class ScreeningAssessmentExperiment extends Experiment {
                     List<Integer> deltas = mapErrors.getOrDefault(i, new ArrayList<>());
                     deltas.add(deltaFromSDA);
                     mapErrors.put(i, deltas);
+                } else {
+                    Integer current = mapConcordance.getOrDefault(i, 0);
+                    mapConcordance.put(i, current + 1);
                 }
 
                 String indicationKey = INDICATOR_PREFIX_KEY + i + "w";
@@ -115,10 +121,12 @@ public class ScreeningAssessmentExperiment extends Experiment {
             mapFrequencies.put(k, sortByFrequency(mapErrors.get(k)));
         });
 
+        // IMPORTANT: keep confusion matrix as last thing to add
         return ExperimentUtils.concatListsToCSV(Arrays.asList(linesAssessments,
             getLinesDeltasFrequencies(mapErrors),
             getLinesDeltasFrequenciesPercentErrors(mapErrors),
             getLinesUniqueDeltas(mapFrequencies),
+            getLinesConcordance(mapConcordance),
             getLinesConfusionMatrix(mapConfusionMatrix, realValues)));
     }
 
@@ -175,6 +183,47 @@ public class ScreeningAssessmentExperiment extends Experiment {
 
             lines.add(line.toString());
         }
+
+        return lines;
+    }
+
+    private List<String> getLinesConcordance(final Map<Integer, Integer> mapConcordance) {
+        List<String> lines = new ArrayList<>();
+
+        // sorts the lists
+        StringBuilder headerBuilder = new StringBuilder(",");
+        mapConcordance.keySet().forEach(k -> {
+            if (k != 0) {
+                // skip Altura da BST: adiciona depois
+                headerBuilder.append(k).append(" Palavra");
+                if (k > 1) {
+                    headerBuilder.append("s");
+                }
+                headerBuilder.append(",");
+            }
+        });
+        if (mapConcordance.containsKey(0)) {
+            headerBuilder.append("Altura BST");
+        } else {
+            headerBuilder.delete(headerBuilder.lastIndexOf(","), headerBuilder.lastIndexOf(",") + 1);
+        }
+        lines.add(headerBuilder.toString());
+
+        StringBuilder line = new StringBuilder("Full Concordance,");
+        mapConcordance.entrySet().forEach(e -> {
+            if (e.getKey() != 0) {
+                line.append(e.getValue()).append(",");
+            }
+        });
+
+        // Altura BST
+        if (mapConcordance.containsKey(0)) {
+            line.append(mapConcordance.get(0));
+        } else {
+            line.delete(line.lastIndexOf(","), line.lastIndexOf(",") + 1);
+        }
+
+        lines.add(line.toString());
 
         return lines;
     }
