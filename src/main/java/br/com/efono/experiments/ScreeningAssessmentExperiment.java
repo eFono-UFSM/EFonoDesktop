@@ -39,6 +39,51 @@ public class ScreeningAssessmentExperiment extends Experiment {
         super(prop);
     }
 
+    private String exportOnlyErrosDeltas(final List<Assessment> assessments) {
+        int maxWordsScreening = 5;
+        List<String> allWords = Arrays.asList(Defaults.SORTED_WORDS);
+
+        // SDA (Screening Dynamic Assessment): no limits, continue until reaches a leaf node in the screening.
+        StringBuilder headerBuilder = new StringBuilder(INDICATOR_PREFIX_KEY + "SDA,");
+        for (int i = 1; i <= maxWordsScreening; i++) {
+            headerBuilder.append(INDICATOR_PREFIX_KEY).append(i).append("w");
+            if (i < maxWordsScreening) {
+                headerBuilder.append(",");
+            }
+        }
+
+        List<String> linesAssessments = new ArrayList<>();
+        linesAssessments.add(headerBuilder.toString());
+
+        for (int index = 0; index < assessments.size(); index++) {
+            Assessment a = assessments.get(index);
+            double pccr = a.getPCCR(allWords);
+            String indicatorPCCR = Util.getDegree(pccr);
+
+            StringBuilder sb = new StringBuilder();
+            Range referenceRangeIndicatorPCCR = Util.getTreeIndicatorFromPCCR(indicatorPCCR);
+
+            // 0 -> SDA
+            for (int i = 0; i <= maxWordsScreening; i++) {
+                IndicatorInfo info = Util.getIndicatorSDA(a, i);
+                int indicatorSDA = info.getIndicator();
+                int deltaFromSDA = getDelta(referenceRangeIndicatorPCCR, indicatorSDA);
+                if (deltaFromSDA > 0) {
+                    sb.append(deltaFromSDA);
+                } else {
+                    sb.append("");
+                }
+                if (i < maxWordsScreening) {
+                    sb.append(",");
+                }
+            }
+            linesAssessments.add(sb.toString());
+        }
+
+        // IMPORTANT: keep confusion matrix as last thing to add
+        return ExperimentUtils.concatListsToCSV(Arrays.asList(linesAssessments));
+    }
+
     private String exportCSV(final List<Assessment> assessments) {
         // 0 -> NEGATIVO (não tem desvio - baixo,mod-baixo)
         // 1 -> POSITIVO (tem desvio - alto,mod-alto)
@@ -90,7 +135,13 @@ public class ScreeningAssessmentExperiment extends Experiment {
                 IndicatorInfo info = Util.getIndicatorSDA(a, i);
                 int indicatorSDA = info.getIndicator();
                 int deltaFromSDA = getDelta(referenceRangeIndicatorPCCR, indicatorSDA);
-                sb.append(deltaFromSDA);
+//                sb.append(deltaFromSDA);
+
+                if (deltaFromSDA > 0) {
+                    sb.append(deltaFromSDA);
+                } else {
+                    sb.append("");
+                }
 
                 if (i < maxWordsScreening) {
                     sb.append(",");
@@ -130,9 +181,20 @@ public class ScreeningAssessmentExperiment extends Experiment {
             getLinesConfusionMatrix(mapConfusionMatrix, realValues)));
     }
 
+    private int getMaxThDelta(final Map<Integer, List<Integer>> mapFrequencies) {
+        int max = 3; // 1º, 2º, maxº...
+        for (List<Integer> v : mapFrequencies.values()) {
+            if (v.size() > max) {
+                max = v.size();
+            }
+        }
+        return max;
+    }
+
     private List<String> getLinesDeltasFrequencies(final Map<Integer, List<Integer>> mapErrors) {
         List<String> lines = new ArrayList<>();
 
+        // mapErrors, key: limite da triagem, value: 
         // sorts the lists
         StringBuilder headerBuilder = new StringBuilder(",");
         mapErrors.keySet().forEach(k -> {
@@ -162,21 +224,33 @@ public class ScreeningAssessmentExperiment extends Experiment {
         });
 
         // the max most frequent deltas
-        int max = 3; // 1º, 2º, maxº...
+        int max = getMaxThDelta(mapFrequencies);
         for (int i = 0; i < max; i++) {
             StringBuilder line = new StringBuilder((i + 1) + "º Delta Mais Frequente,");
 
+            // constroi a linha dos thº deltas mais frequentes para todos os limites da triagem
             int th = i;
             mapFrequencies.entrySet().forEach(e -> {
+                // skip Altura da BST: adiciona depois
                 if (e.getKey() != 0) {
-                    // skip Altura da BST: adiciona depois
-                    line.append(e.getValue().get(th)).append(",");
+                    List<Integer> value = e.getValue();
+                    if (th < value.size()) {
+                        line.append(value.get(th));
+                    } else {
+                        line.append("");
+                    }
+                    line.append(",");
                 }
             });
 
             // Altura BST
             if (mapFrequencies.containsKey(0)) {
-                line.append(mapFrequencies.get(0).get(th));
+                List<Integer> value = mapFrequencies.get(0);
+                if (th < value.size()) {
+                    line.append(value.get(th));
+                } else {
+                    line.append("");
+                }
             } else {
                 line.delete(line.lastIndexOf(","), line.lastIndexOf(",") + 1);
             }
@@ -275,7 +349,7 @@ public class ScreeningAssessmentExperiment extends Experiment {
         lines.add(headerBuilder.toString());
 
         // the max most frequent deltas
-        int max = 3; // 1º, 2º, maxº...
+        int max = getMaxThDelta(mapFrequencies);  // 1º, 2º, maxº...
 
         DecimalFormat dfErrors = new DecimalFormat("#.####");
         for (int i = 0; i < max; i++) {
@@ -285,14 +359,23 @@ public class ScreeningAssessmentExperiment extends Experiment {
             mapFrequencies.entrySet().forEach(e -> {
                 if (e.getKey() != 0) {
                     double percentErrors = getPercentErrors(mapErrors, mapFrequencies, e.getKey(), th);
-                    line.append("\"").append(dfErrors.format(percentErrors)).append("\"").append(",");
+                    if (percentErrors > 0) {
+                        line.append("\"").append(dfErrors.format(percentErrors)).append("\"");
+                    } else {
+                        line.append("");
+                    }
+                    line.append(",");
                 }
             });
 
             // Altura BST
             if (mapFrequencies.containsKey(0)) {
                 double percentErrors = getPercentErrors(mapErrors, mapFrequencies, 0, th);
-                line.append("\"").append(dfErrors.format(percentErrors)).append("\"");
+                if (percentErrors > 0) {
+                    line.append("\"").append(dfErrors.format(percentErrors)).append("\"");
+                } else {
+                    line.append("");
+                }
             } else {
                 line.delete(line.lastIndexOf(","), line.lastIndexOf(",") + 1);
             }
@@ -305,21 +388,24 @@ public class ScreeningAssessmentExperiment extends Experiment {
 
     private double getPercentErrors(final Map<Integer, List<Integer>> mapErrors,
         final Map<Integer, List<Integer>> mapFrequencies, final int key, final int th) {
-        // the most frequent delta
-        int deltaTarget = mapFrequencies.get(key).get(th);
+        List<Integer> get = mapFrequencies.get(key);
+        if (th < get.size()) {
+            // the most frequent delta
+            int deltaTarget = mapFrequencies.get(key).get(th);
 
-        // how many times it appears?
-        double countDelta = 0;
-        List<Integer> deltas = mapErrors.getOrDefault(key, new ArrayList<>());
+            // how many times it appears?
+            double countDelta = 0;
+            List<Integer> deltas = mapErrors.getOrDefault(key, new ArrayList<>());
 
-        for (Integer d : deltas) {
-            if (d == deltaTarget) {
-                countDelta++;
+            for (Integer d : deltas) {
+                if (d == deltaTarget) {
+                    countDelta++;
+                }
             }
-        }
 
-//        System.out.println("key: " + key + " deltas: " + deltas.size() + " delta target: " + deltaTarget + " th: " + th + " count errors: " + countDelta);
-        return countDelta / deltas.size();
+            return countDelta / deltas.size();
+        }
+        return -1;
     }
 
     @Override
@@ -336,6 +422,13 @@ public class ScreeningAssessmentExperiment extends Experiment {
         try (PrintWriter out = new PrintWriter(file)) {
             out.print(exportCSV(assessments));
             System.out.println("File at: " + file);
+        } catch (final FileNotFoundException ex) {
+            System.out.println("Couldn't write into file: " + ex);
+        }
+        File fileOnlyErrors = new File(parent, "only-errors.csv");
+        try (PrintWriter out = new PrintWriter(fileOnlyErrors)) {
+            out.print(exportOnlyErrosDeltas(assessments));
+            System.out.println("File at: " + fileOnlyErrors);
         } catch (final FileNotFoundException ex) {
             System.out.println("Couldn't write into file: " + ex);
         }
